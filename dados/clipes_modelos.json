@@ -1,0 +1,742 @@
+{
+  "endo_01": {
+    "nome": "Endo 01 · Base",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Endoesqueletos",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_01/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_01/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_01/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      }
+    }
+  },
+  "raposa": {
+    "nome": "Raposa",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 11.6,
+      "start": 5.2,
+      "hold": 1,
+      "recovery": 0.7
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/raposa/parado",
+        "frames": 132,
+        "columns": 16,
+        "duracao": 11
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/raposa/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/raposa/cantar",
+        "frames": 118,
+        "columns": 16,
+        "duracao": 9.8
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/raposa/dancar",
+        "frames": 125,
+        "columns": 16,
+        "duracao": 10.4
+      }
+    }
+  },
+  "dragao": {
+    "nome": "Dragão",
+    "width": 96,
+    "height": 112,
+    "pivot": [
+      48,
+      106
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 12.2,
+      "start": 4.8,
+      "hold": 0.25,
+      "recovery": 0.42
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/dragao/parado",
+        "frames": 120,
+        "columns": 16,
+        "duracao": 10
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/dragao/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/dragao/cantar",
+        "frames": 77,
+        "columns": 16,
+        "duracao": 6.4
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/dragao/dancar",
+        "frames": 89,
+        "columns": 16,
+        "duracao": 7.4
+      }
+    }
+  },
+  "endo_08": {
+    "nome": "Endo 08 · Colosso avariado",
+    "width": 128,
+    "height": 192,
+    "pivot": [
+      64,
+      166
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Estruturas especiais",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_08/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_08/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_08/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1.8
+      }
+    }
+  },
+  "galo": {
+    "nome": "Galo",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Variantes",
+    "mecanica": {
+      "period": 11.2,
+      "start": 6.9,
+      "hold": 0.3,
+      "recovery": 0.3
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/galo/parado",
+        "frames": 113,
+        "columns": 16,
+        "duracao": 9.4
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/galo/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/galo/cantar",
+        "frames": 106,
+        "columns": 16,
+        "duracao": 8.8
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/galo/dancar",
+        "frames": 113,
+        "columns": 16,
+        "duracao": 9.4
+      }
+    }
+  },
+  "endo_04": {
+    "nome": "Endo 04 · Ave",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Endoesqueletos",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_04/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_04/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_04/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      }
+    }
+  },
+  "ave": {
+    "nome": "Ave",
+    "width": 96,
+    "height": 112,
+    "pivot": [
+      48,
+      106
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 10.8,
+      "start": 3.2,
+      "hold": 0.24,
+      "recovery": 0.36
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/ave/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/ave/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/ave/cantar",
+        "frames": 72,
+        "columns": 16,
+        "duracao": 6
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/ave/dancar",
+        "frames": 77,
+        "columns": 16,
+        "duracao": 6.4
+      }
+    }
+  },
+  "endo_03": {
+    "nome": "Endo 03 · Barril",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Endoesqueletos",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_03/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_03/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_03/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      }
+    }
+  },
+  "macaco": {
+    "nome": "Macaco",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Variantes",
+    "mecanica": {
+      "period": 12.6,
+      "start": 8.8,
+      "hold": 0.26,
+      "recovery": 0.3
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/macaco/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/macaco/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/macaco/cantar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/macaco/dancar",
+        "frames": 104,
+        "columns": 16,
+        "duracao": 8.6
+      }
+    }
+  },
+  "endo_02": {
+    "nome": "Endo 02 · Dragão",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Endoesqueletos",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_02/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_02/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_02/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      }
+    }
+  },
+  "guaxinim": {
+    "nome": "Guaxinim",
+    "width": 96,
+    "height": 112,
+    "pivot": [
+      48,
+      106
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 13.8,
+      "start": 2.7,
+      "hold": 0.18,
+      "recovery": 0.3
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/guaxinim/parado",
+        "frames": 154,
+        "columns": 16,
+        "duracao": 12.8
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/guaxinim/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/guaxinim/cantar",
+        "frames": 75,
+        "columns": 16,
+        "duracao": 6.2
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/guaxinim/dancar",
+        "frames": 75,
+        "columns": 16,
+        "duracao": 6.2
+      }
+    }
+  },
+  "coelho": {
+    "nome": "Coelho",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 14,
+      "start": 9.6,
+      "hold": 0.16,
+      "recovery": 0.3
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/coelho/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/coelho/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/coelho/cantar",
+        "frames": 89,
+        "columns": 16,
+        "duracao": 7.4
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/coelho/dancar",
+        "frames": 101,
+        "columns": 16,
+        "duracao": 8.4
+      }
+    }
+  },
+  "ovelha": {
+    "nome": "Ovelha",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Animatrônicos",
+    "mecanica": {
+      "period": 8.4,
+      "start": 3.4,
+      "hold": 0.55,
+      "recovery": 0.5
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/ovelha/parado",
+        "frames": 144,
+        "columns": 16,
+        "duracao": 12
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/ovelha/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/ovelha/cantar",
+        "frames": 118,
+        "columns": 16,
+        "duracao": 9.8
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/ovelha/dancar",
+        "frames": 125,
+        "columns": 16,
+        "duracao": 10.4
+      }
+    }
+  },
+  "endo_07": {
+    "nome": "Endo 07 · Fantoche",
+    "width": 128,
+    "height": 192,
+    "pivot": [
+      64,
+      166
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Estruturas especiais",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_07/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_07/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_07/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1.8
+      }
+    }
+  },
+  "gato": {
+    "nome": "Gato",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Variantes",
+    "mecanica": {
+      "period": 13,
+      "start": 7.4,
+      "hold": 0.5,
+      "recovery": 0.5
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/gato/parado",
+        "frames": 113,
+        "columns": 16,
+        "duracao": 9.4
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/gato/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/gato/cantar",
+        "frames": 101,
+        "columns": 16,
+        "duracao": 8.4
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/gato/dancar",
+        "frames": 101,
+        "columns": 16,
+        "duracao": 8.4
+      }
+    }
+  },
+  "endo_05": {
+    "nome": "Endo 05 · Rastejante quebrado",
+    "width": 128,
+    "height": 192,
+    "pivot": [
+      64,
+      166
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Estruturas especiais",
+    "mecanica": {
+      "period": 10.4,
+      "start": 2.8,
+      "hold": 0.28,
+      "recovery": 0.4
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/endo_05/parado",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "olhar": {
+        "pasta": "res://assets/modelos/endo_05/olhar",
+        "frames": 108,
+        "columns": 16,
+        "duracao": 9
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/endo_05/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1.8
+      }
+    }
+  },
+  "dragao_variante": {
+    "nome": "Dragão",
+    "width": 64,
+    "height": 100,
+    "pivot": [
+      32,
+      94
+    ],
+    "scale": [
+      1.2,
+      1
+    ],
+    "grupo": "Variantes",
+    "mecanica": {
+      "period": 12.4,
+      "start": 8.1,
+      "hold": 0.75,
+      "recovery": 0.6
+    },
+    "clipes": {
+      "parado": {
+        "pasta": "res://assets/modelos/dragao_variante/parado",
+        "frames": 128,
+        "columns": 16,
+        "duracao": 10.6
+      },
+      "andar": {
+        "pasta": "res://assets/modelos/dragao_variante/andar",
+        "frames": 12,
+        "columns": 12,
+        "duracao": 1
+      },
+      "cantar": {
+        "pasta": "res://assets/modelos/dragao_variante/cantar",
+        "frames": 104,
+        "columns": 16,
+        "duracao": 8.6
+      },
+      "dancar": {
+        "pasta": "res://assets/modelos/dragao_variante/dancar",
+        "frames": 116,
+        "columns": 16,
+        "duracao": 9.6
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "deposito": {
+    "nome": "Depósito",
+    "cor": "88a78e",
+    "requisitos": {
+      "estante": 1
+    },
+    "funcao": "Guardar caixas e abastecer os equipamentos.",
+    "fluxo": [
+      "Recolher caixas",
+      "Guardar na estante",
+      "Separar ingredientes e peças"
+    ]
+  },
+  "cozinha": {
+    "nome": "Cozinha",
+    "cor": "c6a47b",
+    "requisitos": {
+      "bancada_preparo": 1,
+      "forno": 1,
+      "geladeira": 1,
+      "pia": 1
+    },
+    "funcao": "Abastecer a geladeira, preparar e assar pizzas, lavar pratos.",
+    "fluxo": [
+      "Buscar ingrediente",
+      "Preparar na bancada",
+      "Assar no forno",
+      "Retirar o pedido"
+    ]
+  },
+  "salao": {
+    "nome": "Salão",
+    "cor": "b89385",
+    "requisitos": {
+      "mesa": 1,
+      "cadeira": 1
+    },
+    "funcao": "Receber pedidos nas mesas e recolher o que fica depois.",
+    "fluxo": [
+      "Reservar mesa",
+      "Entregar pizza",
+      "Recolher restos",
+      "Limpar a mesa"
+    ]
+  },
+  "recepcao": {
+    "nome": "Recepção e caixa",
+    "cor": "c3b178",
+    "requisitos": {
+      "balcao": 1,
+      "registradora": 1
+    },
+    "funcao": "Registrar pedidos; também pode funcionar dentro do salão.",
+    "fluxo": [
+      "Registrar pedido",
+      "Acompanhar preparo",
+      "Confirmar entrega"
+    ]
+  },
+  "apresentacoes": {
+    "nome": "Apresentações",
+    "cor": "a79bb9",
+    "requisitos": {
+      "palco": 1,
+      "pose": 1,
+      "escada": 1
+    },
+    "funcao": "Receber animatrônicos em posições de palco acessíveis por escadas.",
+    "fluxo": [
+      "Alcançar a escada",
+      "Subir no palco",
+      "Ocupar a Pose"
+    ]
+  },
+  "oficina": {
+    "nome": "Oficina",
+    "cor": "90a9b5",
+    "requisitos": {
+      "bancada": 1,
+      "suporte": 1
+    },
+    "funcao": "Montar animatrônicos com caixas de peças, bancada e suporte.",
+    "fluxo": [
+      "Buscar peças",
+      "Apoiar caixa na bancada",
+      "Montar no suporte",
+      "Liberar a saída"
+    ]
+  },
+  "descanso": {
+    "nome": "Descanso",
+    "cor": "a8b59b",
+    "requisitos": {
+      "cadeira": 1
+    },
+    "funcao": "Permitir que funcionários recuperem energia entre as tarefas.",
+    "fluxo": [
+      "Reservar cadeira",
+      "Fazer pausa",
+      "Recuperar energia",
+      "Voltar ao trabalho"
+    ]
+  },
+  "salao_festas": {
+    "nome": "Salão de festas",
+    "cor": "b893a4",
+    "requisitos": {
+      "mesa": 1,
+      "cadeira": 1,
+      "palco": 1,
+      "pose": 1,
+      "escada": 1
+    },
+    "funcao": "Servir refeições e apresentar animatrônicos no mesmo ambiente.",
+    "fluxo": []
+  },
+  "banheiro": {
+    "nome": "Banheiro",
+    "cor": "9db9b4",
+    "requisitos": {
+      "vaso_sanitario": 1,
+      "pia_banheiro": 1,
+      "divisoria_porta": 1
+    },
+    "funcao": "Usar uma cabine reservada e lavar as mãos antes de sair.",
+    "fluxo": []
+  },
+  "jogos": {
+    "nome": "Área de jogos",
+    "cor": "b8a97b",
+    "requisitos": {
+      "maquina_fliperama": 1
+    },
+    "funcao": "Usar máquinas ligadas para recuperar lazer.",
+    "fluxo": []
+  },
+  "vestiario": {
+    "nome": "Vestiário e descanso",
+    "cor": "a8b59b",
+    "requisitos": {
+      "armario_funcionarios": 1,
+      "cadeira": 1
+    },
+    "funcao": "Guardar pertences no início do turno e descansar entre tarefas.",
+    "fluxo": []
+  },
+  "limpeza": {
+    "nome": "Apoio de limpeza",
+    "cor": "8eafa8",
+    "requisitos": {
+      "armario_limpeza": 1
+    },
+    "funcao": "Guardar e retirar vassouras e baldes para limpar o restaurante.",
+    "fluxo": []
+  }
+}

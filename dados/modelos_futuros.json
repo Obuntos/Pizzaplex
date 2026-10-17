@@ -1,0 +1,72 @@
+[
+  {
+    "id": "endo_01",
+    "nome": "Endo 01 · Base",
+    "grupo": "Endoesqueletos"
+  },
+  {
+    "id": "dragao",
+    "nome": "Dragão",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "endo_08",
+    "nome": "Endo 08 · Colosso avariado",
+    "grupo": "Estruturas especiais"
+  },
+  {
+    "id": "galo",
+    "nome": "Galo",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "endo_04",
+    "nome": "Endo 04 · Ave",
+    "grupo": "Endoesqueletos"
+  },
+  {
+    "id": "ave",
+    "nome": "Ave",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "endo_03",
+    "nome": "Endo 03 · Barril",
+    "grupo": "Endoesqueletos"
+  },
+  {
+    "id": "macaco",
+    "nome": "Macaco",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "endo_02",
+    "nome": "Endo 02 · Dragão",
+    "grupo": "Endoesqueletos"
+  },
+  {
+    "id": "guaxinim",
+    "nome": "Guaxinim",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "endo_07",
+    "nome": "Endo 07 · Fantoche",
+    "grupo": "Estruturas especiais"
+  },
+  {
+    "id": "gato",
+    "nome": "Gato",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "endo_05",
+    "nome": "Endo 05 · Rastejante quebrado",
+    "grupo": "Estruturas especiais"
+  },
+  {
+    "id": "dragao_variante",
+    "nome": "Dragão",
+    "grupo": "Variantes"
+  }
+]

@@ -1,0 +1,194 @@
+{
+  "chao": {
+    "nome": "Chão",
+    "pasta": "res://assets/objetos/chao",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "parede": {
+    "nome": "Parede",
+    "pasta": "res://assets/objetos/parede",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 104,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "porta": {
+    "nome": "Porta normal",
+    "pasta": "res://assets/objetos/porta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 104,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "porta_dupla": {
+    "nome": "Porta dupla",
+    "pasta": "res://assets/objetos/porta_dupla",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 104,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "mesa": {
+    "nome": "Mesa",
+    "pasta": "res://assets/objetos/mesa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 29,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "cadeira": {
+    "nome": "Cadeira",
+    "pasta": "res://assets/objetos/cadeira",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 37,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "balcao": {
+    "nome": "Balcão",
+    "pasta": "res://assets/objetos/balcao",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 31,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "bancada": {
+    "nome": "Bancada de manutenção",
+    "pasta": "res://assets/objetos/bancada",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 31,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "suporte": {
+    "nome": "Suporte de manutenção",
+    "pasta": "res://assets/objetos/suporte",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 60,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "palco": {
+    "nome": "Bloco de palco",
+    "pasta": "res://assets/objetos/palco",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 18,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "escada": {
+    "nome": "Escada de madeira",
+    "pasta": "res://assets/objetos/escada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 18,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "caixa": {
+    "nome": "Caixa de peças",
+    "pasta": "res://assets/objetos/caixa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 11.3,
+    "pivo": [
+      96,
+      144
+    ]
+  },
+  "luz_teto": {
+    "nome": "Luz de teto",
+    "pasta": "res://assets/objetos/luz_teto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 140,
+    "pivo": [
+      96,
+      144
+    ],
+    "sobreposto": true
+  },
+  "luz_parede": {
+    "nome": "Luz de parede",
+    "pasta": "res://assets/objetos/luz_parede",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 72,
+    "pivo": [
+      96,
+      144
+    ],
+    "sobreposto": true
+  },
+  "luz_chao": {
+    "nome": "Luz de chão",
+    "pasta": "res://assets/objetos/luz_chao",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 2,
+    "pivo": [
+      96,
+      144
+    ],
+    "sobreposto": true
+  },
+  "pose": {
+    "nome": "Pose",
+    "pasta": "res://assets/objetos/pose",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "sobreposto": true
+  },
+  "pose_quebrado": {
+    "nome": "Destino de quebrado",
+    "pasta": "res://assets/objetos/pose",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "sobreposto": true
+  }
+}

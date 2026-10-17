@@ -1,0 +1,68 @@
+{
+  "massa": {
+    "nome": "Massa",
+    "tipo": "caixa_massa",
+    "grupo": "mercado",
+    "preco": 18,
+    "unidades": 6,
+    "componente": "massa",
+    "descricao": "Porções de massa para preparar as pizzas.",
+    "cor": "#a1ba95"
+  },
+  "molho": {
+    "nome": "Molho",
+    "tipo": "caixa_molho",
+    "grupo": "mercado",
+    "preco": 16,
+    "unidades": 6,
+    "componente": "molho",
+    "descricao": "Molho de tomate para os pedidos da cozinha.",
+    "cor": "#a1ba95"
+  },
+  "queijo": {
+    "nome": "Queijo",
+    "tipo": "caixa_queijo",
+    "grupo": "mercado",
+    "preco": 24,
+    "unidades": 6,
+    "componente": "queijo",
+    "descricao": "Queijo para finalizar as pizzas.",
+    "cor": "#a1ba95"
+  },
+  "pecas_media": {
+    "nome": "Peças · Média",
+    "tipo": "caixa_pecas_media",
+    "grupo": "oficina",
+    "preco": 35,
+    "unidades": 1,
+    "qualidade": "media",
+    "durabilidade": 100,
+    "nivel": 1,
+    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "cor": "#c7ab71"
+  },
+  "pecas_boa": {
+    "nome": "Peças · Boa",
+    "tipo": "caixa_pecas_boa",
+    "grupo": "oficina",
+    "preco": 65,
+    "unidades": 1,
+    "qualidade": "boa",
+    "durabilidade": 160,
+    "nivel": 2,
+    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "cor": "#97b9b2"
+  },
+  "pecas_otima": {
+    "nome": "Peças · Ótima",
+    "tipo": "caixa_pecas_otima",
+    "grupo": "oficina",
+    "preco": 95,
+    "unidades": 1,
+    "qualidade": "otima",
+    "durabilidade": 240,
+    "nivel": 3,
+    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "cor": "#b3a6c5"
+  }
+}

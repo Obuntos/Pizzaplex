@@ -1,0 +1,42 @@
+{
+  "escalas": {
+    "prato": 0.34,
+    "pizza": 0.4,
+    "fatia_pizza": 0.45,
+    "restos_mesa": 0.32,
+    "copo_bebida": 0.75,
+    "bandeja": 0.65,
+    "vassoura": 1,
+    "balde": 1,
+    "terminal_ibm": 0.66,
+    "caixa_massa": 0.6,
+    "caixa_molho": 0.6,
+    "caixa_queijo": 0.6,
+    "caixa_pecas_media": 0.6,
+    "caixa_pecas_boa": 0.6,
+    "caixa_pecas_otima": 0.6
+  },
+  "caixas": {
+    "caixa": "#899096",
+    "caixa_ingredientes": "#8a9a70",
+    "caixa_utensilios": "#859fb0"
+  },
+  "categorias": {
+    "caixa": "caixa",
+    "caixa_ingredientes": "caixa",
+    "caixa_utensilios": "caixa",
+    "prato": "prato",
+    "pizza": "prato",
+    "fatia_pizza": "prato",
+    "bandeja": "prato",
+    "vassoura": "vassoura",
+    "balde": "balde",
+    "dinheiro": "prato",
+    "caixa_massa": "caixa",
+    "caixa_molho": "caixa",
+    "caixa_queijo": "caixa",
+    "caixa_pecas_media": "caixa",
+    "caixa_pecas_boa": "caixa",
+    "caixa_pecas_otima": "caixa"
+  }
+}

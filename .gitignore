@@ -1,0 +1,15 @@
+.godot/
+*.tmp
+.import/
+.mono/
+.vs/
+node_modules/
+export.cfg
+export_credentials.cfg
+*.translation
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key

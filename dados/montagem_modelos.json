@@ -1,0 +1,143 @@
+{
+  "familias": {
+    "base": {
+      "nome": "Endo Base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "modelos": [
+        "gato",
+        "coelho",
+        "ovelha",
+        "raposa"
+      ]
+    },
+    "dragao": {
+      "nome": "Endo Dragão",
+      "endo": "endo_02",
+      "estrutura": "dragao",
+      "modelos": [
+        "dragao",
+        "dragao_variante"
+      ]
+    },
+    "barril": {
+      "nome": "Endo Barril",
+      "endo": "endo_03",
+      "estrutura": "barril",
+      "modelos": [
+        "macaco",
+        "guaxinim"
+      ]
+    },
+    "ave": {
+      "nome": "Endo Ave",
+      "endo": "endo_04",
+      "estrutura": "ave",
+      "modelos": [
+        "galo",
+        "ave"
+      ]
+    },
+    "quebrados": {
+      "nome": "Quebrados",
+      "modelos": [
+        "endo_05",
+        "endo_07",
+        "endo_08"
+      ]
+    }
+  },
+  "modelos": {
+    "gato": {
+      "nome": "Gato",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false
+    },
+    "coelho": {
+      "nome": "Coelho",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false
+    },
+    "ovelha": {
+      "nome": "Ovelha",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false
+    },
+    "raposa": {
+      "nome": "Raposa",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false
+    },
+    "dragao": {
+      "nome": "Dragão 1",
+      "familia": "dragao",
+      "endo": "endo_02",
+      "estrutura": "dragao",
+      "quebrado": false
+    },
+    "dragao_variante": {
+      "nome": "Dragão 2",
+      "familia": "dragao",
+      "endo": "endo_02",
+      "estrutura": "dragao",
+      "quebrado": false
+    },
+    "macaco": {
+      "nome": "Macaco",
+      "familia": "barril",
+      "endo": "endo_03",
+      "estrutura": "barril",
+      "quebrado": false
+    },
+    "guaxinim": {
+      "nome": "Guaxinim",
+      "familia": "barril",
+      "endo": "endo_03",
+      "estrutura": "barril",
+      "quebrado": false
+    },
+    "galo": {
+      "nome": "Galo",
+      "familia": "ave",
+      "endo": "endo_04",
+      "estrutura": "ave",
+      "quebrado": false
+    },
+    "ave": {
+      "nome": "Ave",
+      "familia": "ave",
+      "endo": "endo_04",
+      "estrutura": "ave",
+      "quebrado": false
+    },
+    "endo_05": {
+      "nome": "Rastejante quebrado",
+      "familia": "quebrados",
+      "endo": "endo_05",
+      "estrutura": "base",
+      "quebrado": true
+    },
+    "endo_07": {
+      "nome": "Fantoche",
+      "familia": "quebrados",
+      "endo": "endo_07",
+      "estrutura": "base",
+      "quebrado": true
+    },
+    "endo_08": {
+      "nome": "Colosso avariado",
+      "familia": "quebrados",
+      "endo": "endo_08",
+      "estrutura": "base",
+      "quebrado": true
+    }
+  }
+}

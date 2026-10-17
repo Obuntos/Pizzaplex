@@ -1,0 +1,4050 @@
+{
+  "bancada_preparo": {
+    "id": "bancada_preparo",
+    "grupo": "bancada-preparo",
+    "nome": "Bancada de preparo",
+    "superficie": 31,
+    "apoio": false,
+    "categoria": "bancada_preparo",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.56,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.56,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.56,
+              "z": 31,
+              "size": 0.4,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.56,
+              "z": 31,
+              "size": 0.4,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.56,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.56,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.56,
+              "z": 31,
+              "size": 0.4,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.56,
+              "z": 31,
+              "size": 0.4,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "pizza",
+                "prato",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "registradora": {
+    "id": "registradora",
+    "grupo": "caixa-registradora",
+    "nome": "Caixa registradora",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "registradora",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "pizza": {
+    "id": "pizza",
+    "grupo": "comida-bebida",
+    "nome": "Pizza inteira",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "pizza",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "fatia_pizza": {
+    "id": "fatia_pizza",
+    "grupo": "comida-bebida",
+    "nome": "Fatia de pizza",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "fatia_pizza",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "copo_bebida": {
+    "id": "copo_bebida",
+    "grupo": "comida-bebida",
+    "nome": "Copo de bebida",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "copo_bebida",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "estante": {
+    "id": "estante",
+    "grupo": "estante-deposito",
+    "nome": "Estante de depósito",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "estante",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 6,
+              "size": 0.65,
+              "label": "1",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 6,
+              "size": 0.65,
+              "label": "2",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 24,
+              "size": 0.65,
+              "label": "3",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 24,
+              "size": 0.65,
+              "label": "4",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 42,
+              "size": 0.65,
+              "label": "5",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 42,
+              "size": 0.65,
+              "label": "6",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 6,
+              "size": 0.65,
+              "label": "1",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 6,
+              "size": 0.65,
+              "label": "2",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 24,
+              "size": 0.65,
+              "label": "3",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 24,
+              "size": 0.65,
+              "label": "4",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 42,
+              "size": 0.65,
+              "label": "5",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 42,
+              "size": 0.65,
+              "label": "6",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 6,
+              "size": 0.65,
+              "label": "1",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 6,
+              "size": 0.65,
+              "label": "2",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 24,
+              "size": 0.65,
+              "label": "3",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 24,
+              "size": 0.65,
+              "label": "4",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 42,
+              "size": 0.65,
+              "label": "5",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 42,
+              "size": 0.65,
+              "label": "6",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 6,
+              "size": 0.65,
+              "label": "1",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 6,
+              "size": 0.65,
+              "label": "2",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 24,
+              "size": 0.65,
+              "label": "3",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 24,
+              "size": 0.65,
+              "label": "4",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 42,
+              "size": 0.65,
+              "label": "5",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 42,
+              "size": 0.65,
+              "label": "6",
+              "accepts": [
+                "caixa",
+                "prato"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "forno": {
+    "id": "forno",
+    "grupo": "forno-pizza",
+    "nome": "Forno de pizza",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "forno",
+    "estados": {
+      "fechado": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ],
+      "aberto": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 2,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 15,
+              "size": 0.62,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": -0.5,
+              "v": 1
+            },
+            {
+              "u": 0.5,
+              "v": 1
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": -2,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 15,
+              "size": 0.62,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": -1,
+              "v": -0.5
+            },
+            {
+              "u": -1,
+              "v": 0.5
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -2,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 15,
+              "size": 0.62,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": 0.5,
+              "v": -1
+            },
+            {
+              "u": -0.5,
+              "v": -1
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": 2,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 15,
+              "size": 0.62,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "bandeja"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": 1,
+              "v": 0.5
+            },
+            {
+              "u": 1,
+              "v": -0.5
+            }
+          ]
+        }
+      ],
+      "funcionando": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "geladeira": {
+    "id": "geladeira",
+    "grupo": "geladeira",
+    "nome": "Geladeira",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "geladeira",
+    "estados": {
+      "fechada": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ],
+      "aberta": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 2,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 10,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 25,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 40,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": 0,
+              "v": 1
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": -2,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 10,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 25,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 40,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": -1,
+              "v": 0
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -2,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 10,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 25,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 40,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": 0,
+              "v": -1
+            }
+          ]
+        },
+        {
+          "interacao": {
+            "u": 2,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 10,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 25,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 40,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ingrediente",
+                "bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [
+            {
+              "u": 1,
+              "v": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "prato": {
+    "id": "prato",
+    "grupo": "itens-atendimento",
+    "nome": "Prato",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "utensilio",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 1.2,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 1.2,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 1.2,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 1.2,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "bandeja": {
+    "id": "bandeja",
+    "grupo": "itens-atendimento",
+    "nome": "Bandeja",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "utensilio",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.2,
+              "v": 0,
+              "z": 1.4,
+              "size": 0.42,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.32,
+              "v": 0,
+              "z": 1.4,
+              "size": 0.2,
+              "label": "2",
+              "accepts": [
+                "copo-bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.2,
+              "z": 1.4,
+              "size": 0.42,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.32,
+              "z": 1.4,
+              "size": 0.2,
+              "label": "2",
+              "accepts": [
+                "copo-bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.2,
+              "v": 0,
+              "z": 1.4,
+              "size": 0.42,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.32,
+              "v": 0,
+              "z": 1.4,
+              "size": 0.2,
+              "label": "2",
+              "accepts": [
+                "copo-bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.2,
+              "z": 1.4,
+              "size": 0.42,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "pizza",
+                "fatia-pizza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.32,
+              "z": 1.4,
+              "size": 0.2,
+              "label": "2",
+              "accepts": [
+                "copo-bebida"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "caixa_ferramentas": {
+    "id": "caixa_ferramentas",
+    "grupo": "kit-manutencao",
+    "nome": "Caixa de ferramentas",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "caixa_ferramentas",
+    "estados": {
+      "fechada": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ],
+      "aberta": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 2,
+              "size": 0.33,
+              "label": "1",
+              "accepts": [
+                "peca",
+                "ferramenta"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 2,
+              "size": 0.33,
+              "label": "1",
+              "accepts": [
+                "peca",
+                "ferramenta"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 2,
+              "size": 0.33,
+              "label": "1",
+              "accepts": [
+                "peca",
+                "ferramenta"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 2,
+              "size": 0.33,
+              "label": "1",
+              "accepts": [
+                "peca",
+                "ferramenta"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "pecas_manutencao": {
+    "id": "pecas_manutencao",
+    "grupo": "kit-manutencao",
+    "nome": "Conjunto de peças",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "pecas_manutencao",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "lixeira": {
+    "id": "lixeira",
+    "grupo": "lixeira",
+    "nome": "Lixeira",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "lixeira",
+    "estados": {
+      "vazia": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ],
+      "cheia": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "vassoura": {
+    "id": "vassoura",
+    "grupo": "material-limpeza",
+    "nome": "Vassoura",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "vassoura",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "balde": {
+    "id": "balde",
+    "grupo": "material-limpeza",
+    "nome": "Balde",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "balde",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "pia": {
+    "id": "pia",
+    "grupo": "pia",
+    "nome": "Pia",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "pia",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.4,
+              "v": 0,
+              "z": 23,
+              "size": 0.38,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.58,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.4,
+              "z": 23,
+              "size": 0.38,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.58,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.4,
+              "v": 0,
+              "z": 23,
+              "size": 0.38,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.58,
+              "v": 0,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.4,
+              "z": 23,
+              "size": 0.38,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.58,
+              "z": 31,
+              "size": 0.4,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "utensilio"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "mancha_chao": {
+    "id": "mancha_chao",
+    "grupo": "sujeira",
+    "nome": "Mancha no chão",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "mancha_chao",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "bebida_derramada": {
+    "id": "bebida_derramada",
+    "grupo": "sujeira",
+    "nome": "Bebida derramada",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "bebida_derramada",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "restos_mesa": {
+    "id": "restos_mesa",
+    "grupo": "sujeira",
+    "nome": "Restos sobre mesa",
+    "superficie": null,
+    "apoio": true,
+    "categoria": "restos_mesa",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 0.5,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": []
+        }
+      ]
+    }
+  },
+  "armario_ferramentas": {
+    "id": "armario_ferramentas",
+    "grupo": "armario-ferramentas",
+    "nome": "Armário de ferramentas",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "armario_ferramentas",
+    "estados": {
+      "fechado": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "aberto": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.46,
+              "v": 0,
+              "z": 23,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.46,
+              "v": 0,
+              "z": 23,
+              "size": 0.5,
+              "label": "4",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": 0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.46,
+              "z": 23,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.46,
+              "z": 23,
+              "size": 0.5,
+              "label": "4",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.86,
+              "v": -0.9,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": -0.86,
+              "v": 0.9,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.5,
+              "v": 0,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.46,
+              "v": 0,
+              "z": 23,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.46,
+              "v": 0,
+              "z": 23,
+              "size": 0.5,
+              "label": "4",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8999999999999999,
+              "v": -0.8600000000000001,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": -0.9000000000000001,
+              "v": -0.8599999999999999,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "1",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.5,
+              "z": 47,
+              "size": 0.5,
+              "label": "2",
+              "accepts": [
+                "caixa-ferramentas",
+                "pecas-manutencao"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.46,
+              "z": 23,
+              "size": 0.5,
+              "label": "3",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.46,
+              "z": 23,
+              "size": 0.5,
+              "label": "4",
+              "accepts": [
+                "ferramenta",
+                "peca"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8600000000000001,
+              "v": 0.8999999999999999,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": 0.8599999999999999,
+              "v": -0.9000000000000001,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "armario_funcionarios": {
+    "id": "armario_funcionarios",
+    "grupo": "armario-funcionarios",
+    "nome": "Armário de funcionários",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "armario_funcionarios",
+    "estados": {
+      "fechado": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "aberto": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.52,
+              "label": "1",
+              "accepts": [
+                "sapatos",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 47,
+              "size": 0.52,
+              "label": "2",
+              "accepts": [
+                "roupa",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.44,
+              "v": 0.795,
+              "w": 0.12,
+              "d": 0.82
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.52,
+              "label": "1",
+              "accepts": [
+                "sapatos",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 47,
+              "size": 0.52,
+              "label": "2",
+              "accepts": [
+                "roupa",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.795,
+              "v": -0.43999999999999995,
+              "w": 0.82,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.52,
+              "label": "1",
+              "accepts": [
+                "sapatos",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 47,
+              "size": 0.52,
+              "label": "2",
+              "accepts": [
+                "roupa",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.4399999999999999,
+              "v": -0.795,
+              "w": 0.12,
+              "d": 0.82
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.52,
+              "label": "1",
+              "accepts": [
+                "sapatos",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 47,
+              "size": 0.52,
+              "label": "2",
+              "accepts": [
+                "roupa",
+                "objeto-pessoal"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.7950000000000002,
+              "v": 0.43999999999999984,
+              "w": 0.82,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "armario_limpeza": {
+    "id": "armario_limpeza",
+    "grupo": "armario-limpeza",
+    "nome": "Armário de limpeza",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "armario_limpeza",
+    "estados": {
+      "fechado": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "aberto": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.45,
+              "v": 0,
+              "z": 4,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "vassoura"
+              ],
+              "capacity": 1,
+              "maxHeight": 48
+            },
+            {
+              "u": 0.45,
+              "v": 0,
+              "z": 4,
+              "size": 0.55,
+              "label": "2",
+              "accepts": [
+                "balde"
+              ],
+              "capacity": 1,
+              "maxHeight": 19
+            },
+            {
+              "u": 0.45,
+              "v": 0,
+              "z": 26,
+              "size": 0.55,
+              "label": "3",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0.45,
+              "v": 0,
+              "z": 42,
+              "size": 0.55,
+              "label": "4",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": 0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": -0.45,
+              "z": 4,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "vassoura"
+              ],
+              "capacity": 1,
+              "maxHeight": 48
+            },
+            {
+              "u": 0,
+              "v": 0.45,
+              "z": 4,
+              "size": 0.55,
+              "label": "2",
+              "accepts": [
+                "balde"
+              ],
+              "capacity": 1,
+              "maxHeight": 19
+            },
+            {
+              "u": 0,
+              "v": 0.45,
+              "z": 26,
+              "size": 0.55,
+              "label": "3",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": 0.45,
+              "z": 42,
+              "size": 0.55,
+              "label": "4",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.86,
+              "v": -0.9,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": -0.86,
+              "v": 0.9,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.45,
+              "v": 0,
+              "z": 4,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "vassoura"
+              ],
+              "capacity": 1,
+              "maxHeight": 48
+            },
+            {
+              "u": -0.45,
+              "v": 0,
+              "z": 4,
+              "size": 0.55,
+              "label": "2",
+              "accepts": [
+                "balde"
+              ],
+              "capacity": 1,
+              "maxHeight": 19
+            },
+            {
+              "u": -0.45,
+              "v": 0,
+              "z": 26,
+              "size": 0.55,
+              "label": "3",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": -0.45,
+              "v": 0,
+              "z": 42,
+              "size": 0.55,
+              "label": "4",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8999999999999999,
+              "v": -0.8600000000000001,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": -0.9000000000000001,
+              "v": -0.8599999999999999,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0.45,
+              "z": 4,
+              "size": 0.55,
+              "label": "1",
+              "accepts": [
+                "vassoura"
+              ],
+              "capacity": 1,
+              "maxHeight": 48
+            },
+            {
+              "u": 0,
+              "v": -0.45,
+              "z": 4,
+              "size": 0.55,
+              "label": "2",
+              "accepts": [
+                "balde"
+              ],
+              "capacity": 1,
+              "maxHeight": 19
+            },
+            {
+              "u": 0,
+              "v": -0.45,
+              "z": 26,
+              "size": 0.55,
+              "label": "3",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            },
+            {
+              "u": 0,
+              "v": -0.45,
+              "z": 42,
+              "size": 0.55,
+              "label": "4",
+              "accepts": [
+                "produto-limpeza"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8600000000000001,
+              "v": 0.8999999999999999,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": 0.8599999999999999,
+              "v": -0.9000000000000001,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "armario_utensilios": {
+    "id": "armario_utensilios",
+    "grupo": "armario-utensilios",
+    "nome": "Armário de utensílios",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "armario_utensilios",
+    "estados": {
+      "fechado": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "aberto": [
+        {
+          "interacao": {
+            "u": -0.5,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.68,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 21,
+              "size": 0.68,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 38,
+              "size": 0.68,
+              "label": "3",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": 0.9,
+              "v": 0.86,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": -0.49999999999999994,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.68,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 21,
+              "size": 0.68,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 38,
+              "size": 0.68,
+              "label": "3",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.86,
+              "v": -0.9,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": -0.86,
+              "v": 0.9,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0.4999999999999999,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.68,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 21,
+              "size": 0.68,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 38,
+              "size": 0.68,
+              "label": "3",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8999999999999999,
+              "v": -0.8600000000000001,
+              "w": 0.12,
+              "d": 0.88
+            },
+            {
+              "u": -0.9000000000000001,
+              "v": -0.8599999999999999,
+              "w": 0.12,
+              "d": 0.88
+            }
+          ],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0.49999999999999983,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0,
+              "v": 0,
+              "z": 4,
+              "size": 0.68,
+              "label": "1",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 21,
+              "size": 0.68,
+              "label": "2",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            },
+            {
+              "u": 0,
+              "v": 0,
+              "z": 38,
+              "size": 0.68,
+              "label": "3",
+              "accepts": [
+                "prato",
+                "bandeja",
+                "copo",
+                "utensilio"
+              ],
+              "capacity": 1,
+              "bounds": {
+                "width": 1.65,
+                "depth": 0.68
+              }
+            }
+          ],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.8600000000000001,
+              "v": 0.8999999999999999,
+              "w": 0.88,
+              "d": 0.12
+            },
+            {
+              "u": 0.8599999999999999,
+              "v": -0.9000000000000001,
+              "w": 0.88,
+              "d": 0.12
+            }
+          ],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "divisoria_porta": {
+    "id": "divisoria_porta",
+    "grupo": "divisoria-porta",
+    "nome": "Divisória com porta",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "divisoria_porta",
+    "estados": {
+      "fechada": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": {
+            "open": false,
+            "width": 0.72,
+            "entry": {
+              "u": 0,
+              "v": 1.5
+            },
+            "exit": {
+              "u": 0,
+              "v": 0.5
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": -1.5,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": {
+            "open": false,
+            "width": 0.72,
+            "entry": {
+              "u": -1.5,
+              "v": 0
+            },
+            "exit": {
+              "u": -0.5,
+              "v": 0
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": {
+            "open": false,
+            "width": 0.72,
+            "entry": {
+              "u": 0,
+              "v": -1.5
+            },
+            "exit": {
+              "u": 0,
+              "v": -0.5
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": 1.5,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": {
+            "open": false,
+            "width": 0.72,
+            "entry": {
+              "u": 1.5,
+              "v": 0
+            },
+            "exit": {
+              "u": 0.5,
+              "v": 0
+            }
+          }
+        }
+      ],
+      "aberta": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.37,
+              "v": 0.45,
+              "w": 0.12,
+              "d": 0.74
+            }
+          ],
+          "passagem": {
+            "open": true,
+            "width": 0.72,
+            "entry": {
+              "u": 0,
+              "v": 1.5
+            },
+            "exit": {
+              "u": 0,
+              "v": 0.5
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": -1.5,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": -0.45,
+              "v": -0.37,
+              "w": 0.74,
+              "d": 0.12
+            }
+          ],
+          "passagem": {
+            "open": true,
+            "width": 0.72,
+            "entry": {
+              "u": -1.5,
+              "v": 0
+            },
+            "exit": {
+              "u": -0.5,
+              "v": 0
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1.5,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.36999999999999994,
+              "v": -0.45000000000000007,
+              "w": 0.12,
+              "d": 0.74
+            }
+          ],
+          "passagem": {
+            "open": true,
+            "width": 0.72,
+            "entry": {
+              "u": 0,
+              "v": -1.5
+            },
+            "exit": {
+              "u": 0,
+              "v": -0.5
+            }
+          }
+        },
+        {
+          "interacao": {
+            "u": 1.5,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [
+            {
+              "u": 0.45000000000000007,
+              "v": 0.36999999999999994,
+              "w": 0.74,
+              "d": 0.12
+            }
+          ],
+          "passagem": {
+            "open": true,
+            "width": 0.72,
+            "entry": {
+              "u": 1.5,
+              "v": 0
+            },
+            "exit": {
+              "u": 0.5,
+              "v": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "maquina_fliperama": {
+    "id": "maquina_fliperama",
+    "grupo": "maquina-fliperama",
+    "nome": "Máquina de fliperama",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "maquina_fliperama",
+    "estados": {
+      "desligada": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "ligada": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "pia_banheiro": {
+    "id": "pia_banheiro",
+    "grupo": "pia-banheiro",
+    "nome": "Pia de banheiro",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "pia_banheiro",
+    "estados": {
+      "padrao": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.3,
+              "v": -0.23,
+              "z": 31,
+              "size": 0.16,
+              "label": "1",
+              "accepts": [
+                "sabonete"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": 0.23000000000000004,
+              "v": 0.3,
+              "z": 31,
+              "size": 0.16,
+              "label": "1",
+              "accepts": [
+                "sabonete"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.29999999999999993,
+              "v": 0.23000000000000004,
+              "z": 31,
+              "size": 0.16,
+              "label": "1",
+              "accepts": [
+                "sabonete"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [
+            {
+              "u": -0.23000000000000007,
+              "v": -0.29999999999999993,
+              "z": 31,
+              "size": 0.16,
+              "label": "1",
+              "accepts": [
+                "sabonete"
+              ],
+              "capacity": 1
+            }
+          ],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ]
+    }
+  },
+  "vaso_sanitario": {
+    "id": "vaso_sanitario",
+    "grupo": "vaso-sanitario",
+    "nome": "Vaso sanitário",
+    "superficie": null,
+    "apoio": false,
+    "categoria": "vaso_sanitario",
+    "estados": {
+      "aberta": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ],
+      "fechada": [
+        {
+          "interacao": {
+            "u": 0,
+            "v": 1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": -1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 0,
+            "v": -1,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        },
+        {
+          "interacao": {
+            "u": 1,
+            "v": 0,
+            "z": 0
+          },
+          "apoios": [],
+          "reserva": [],
+          "folhas": [],
+          "passagem": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,162 @@
+class_name PersonagemPlex
+extends Node2D
+
+var identificador: int = 0
+var identidade: Dictionary = {}
+var modelo: String = "humano"
+var robo: bool = false
+var celula := Vector2i.ZERO
+var local := Vector2.ZERO
+var altura: float = 0.0
+var direcao: int = 7
+var fase: float = 0.25
+var relogio: float = 0.0
+var carregando: bool = false
+var trabalho: String = ""
+var automatico: bool = true
+var suporte: int = -1
+var pose: int = -1
+var selecionado: bool = false
+var animacao := AnimacaoPlex.new()
+var movimento := MovimentoPlex.new()
+var visual := Node2D.new()
+var carga := Sprite2D.new()
+var pecas: int = -1
+var progresso_acao: float = 0.0
+var alvo_carga := Vector3.ZERO
+var em_degraus: bool = false
+var aguardando_saida: bool = false
+var carga_item: int = -1
+var energia: float = 100.0
+var cargo: String = "funcionario"
+var funcao: String = "geral"
+var funcoes_secundarias: Array = []
+var caixa_tipo: String = "caixa"
+var caixa_qualidade: String = "media"
+var caixa_durabilidade: int = 100
+var cabelo: String = "automatico"
+var uniforme: String = "automatico"
+var personalizacao := AparenciaPlex.new()
+var familia: int = -1
+var responsavel: int = -1
+var visita: Dictionary = {}
+var planta_visual: PlantaPlex
+var manuseio := ManuseioPlex.new()
+var necessidades: Dictionary = {"banheiro":100.0,"higiene":100.0,"lazer":100.0,"turno":false}
+var assento: int = -1
+var postura := PosturaPlex.new()
+var identificacao := IdentificacaoPlex.new()
+var pintura := ComposicaoPersonagemPlex.new()
+
+func configurar(id: int, aparencia: String, local_inicial: Vector2i, robotico: bool = false) -> void:
+	identificador = id
+	modelo = aparencia
+	robo = robotico
+	IdentidadesPlex.garantir(self)
+	celula = local_inicial
+	local = Vector2(celula)
+	name = modelo.capitalize() + str(id)
+	add_child(visual)
+	visual.add_child(animacao)
+	animacao.configurar(modelo)
+	carga.texture = CatalogoPlex.sprite(caixa_tipo, GradePlex.rotacao_visual(0))
+	carga.centered = false
+	carga.scale = Vector2.ONE
+	carga.position = Vector2(-96, -144)
+	carga.visible = false
+	visual.add_child(carga)
+	visual.add_child(manuseio)
+	visual.add_child(postura)
+	add_child(personalizacao)
+	personalizacao.configurar(self)
+	add_child(identificacao)
+	add_child(pintura)
+
+func mudar_modelo(valor: String) -> void:
+	modelo = valor
+	animacao.configurar(valor)
+	pecas = -1
+	animacao.endo_config.clear()
+	animacao.endo_partes.clear()
+
+func andar(caminho: Array[Vector2i]) -> void:
+	if not ocupado():
+		fase = 0.25
+	movimento.iniciar(self, caminho)
+
+func origem_rota() -> Vector2i:
+	return movimento.origem_planejamento(self)
+
+func ocupado() -> bool:
+	return movimento.cedendo or movimento.atravessando or not movimento.rota.is_empty()
+
+func atualizar(delta: float, planta: PlantaPlex, rotas: RotasPlex, personagens: Array) -> void:
+	planta_visual = planta
+	relogio += delta
+	if suporte >= 0 and planta.objetos.has(suporte) and not ocupado():
+		direcao = GradePlex.direcao_suporte(planta.objetos[suporte].rotacao)
+	em_degraus = movimento.escala.ativo
+	var distancia := movimento.atualizar(self, delta, planta, rotas, personagens)
+	em_degraus = em_degraus or movimento.escala.ativo
+	if distancia > 0.0 and not em_degraus:
+		fase += distancia / (0.34 if robo else 0.42)
+	if not movimento.escala.ativo:
+		altura = EscadasPlex.altura(local, planta)
+		if suporte >= 0 and not ocupado():
+			altura += ApoioMontagemPlex.elevacao(self)
+	atualizar_visual(distancia > 0.0)
+
+func atualizar_visual(andando: bool) -> void:
+	var ponto := ponto_visual()
+	position = GradePlex.projetar(Vector2(ponto.x, ponto.y)) + Vector2(0.0, 0.01)
+	visual.position.y = -ponto.z
+	var acao: String = "parado"
+	if trabalho in ["montar", "colocar"]:
+		acao = trabalho
+	elif trabalho in ["preparar", "lavar"] and not ocupado():
+		acao = "parado"
+	elif trabalho in ["jogar", "assistir"] and modelo == "crianca" and not ocupado():
+		acao = "parado" if trabalho == "assistir" and visita.get("assistiu",false) else trabalho
+	elif trabalho == "sentar_mesa" and assento >= 0 and not ocupado():
+		acao = "sentar"
+	elif trabalho == "apresentar" and not ocupado():
+		acao = "cantar"
+	elif andando:
+		acao = "carregar" if carregando else "andar"
+	if CatalogoMontagemPlex.quebrado(modelo): acao="andar" if andando and ClipesPlex.possui(modelo,"andar") else "parado"
+	if em_degraus:
+		animacao.atualizar_escada(movimento.escala, GradePlex.direcao_visual(direcao), relogio)
+	else:
+		animacao.atualizar(acao, GradePlex.direcao_visual(direcao), fase, relogio, pecas, progresso_acao)
+	carga.visible = (carregando or carga_item>=0) and not em_degraus and trabalho == "colocar" and animacao.definicao.layered
+	carga.texture = CatalogoPlex.sprite(caixa_tipo, GradePlex.rotacao_visual(0))
+	if carga.visible:
+		var angulo := GradePlex.direcao_visual(direcao) * PI / 4.0
+		var origem := Vector2(sin(angulo) * 6.75, cos(angulo) * 3.375 - 19.75) - Vector2(96, 144)
+		carga.position = origem
+		if trabalho == "colocar":
+			carga.position = origem.lerp(GradePlex.projetar(Vector2(alvo_carga.x, alvo_carga.y), alvo_carga.z) - position - visual.position - Vector2(96, 144), smoothstep(0.0, 1.0, progresso_acao))
+		visual.move_child(carga, 0 if GradePlex.direcao_visual(direcao) in [3, 4, 5] else visual.get_child_count() - 1)
+	manuseio.atualizar(self,planta_visual,andando or em_degraus)
+	personalizacao.atualizar(self,andando or em_degraus)
+	postura.atualizar(self)
+	identificacao.atualizar(self)
+	pintura.atualizar(self)
+	queue_redraw()
+
+func _draw() -> void:
+	if selecionado:
+		draw_polyline(GradePlex.poligono(Vector2(0, -altura)) + PackedVector2Array([Vector2(0, -16 - altura)]), Color("a4c2b0"), 1.0)
+
+func ponto_visual() -> Vector3:
+	if assento >= 0 and trabalho in ["usar_vaso", "sentar_mesa"] and planta_visual != null and planta_visual.objetos.has(assento):
+		var item: Dictionary = planta_visual.objetos[assento]
+		var centro := ApoiosPlex.posicao(planta_visual, item)
+		var frente := Vector2(GradePlex.frente(item.rotacao)) * (0.12 if trabalho == "usar_vaso" else 0.12)
+		var altura_assento := 18.0 if trabalho == "usar_vaso" else 21.2
+		var quadril := 11.0 if modelo == "crianca" else 15.0
+		return centro + Vector3(frente.x, frente.y, altura_assento - quadril * animacao.scale.y)
+	return Vector3(local.x, local.y, altura)
+
+func pronto_para_destino() -> bool:
+	return robo and modelo!="endo" and animacao.endo_config.is_empty()
