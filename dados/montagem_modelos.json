@@ -8,7 +8,10 @@
         "gato",
         "coelho",
         "ovelha",
-        "raposa"
+        "raposa",
+        "coelho_travado",
+        "ovelha_travada",
+        "raposa_travada"
       ]
     },
     "dragao": {
@@ -43,7 +46,13 @@
       "modelos": [
         "endo_05",
         "endo_07",
-        "endo_08"
+        "endo_08",
+        "coelho_quebrado",
+        "ovelha_quebrada",
+        "raposa_quebrada",
+        "cervo_quebrado",
+        "hipopotamo_quebrado",
+        "sol_fantoche"
       ]
     }
   },
@@ -138,6 +147,78 @@
       "endo": "endo_08",
       "estrutura": "base",
       "quebrado": true
+    },
+    "coelho_quebrado": {
+      "nome": "Coelho quebrado",
+      "familia": "quebrados",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
+    },
+    "coelho_travado": {
+      "nome": "Coelho travado",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false,
+      "carcaca": true
+    },
+    "ovelha_quebrada": {
+      "nome": "Ovelha quebrada",
+      "familia": "quebrados",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
+    },
+    "ovelha_travada": {
+      "nome": "Ovelha travada",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false,
+      "carcaca": true
+    },
+    "raposa_quebrada": {
+      "nome": "Raposa quebrada",
+      "familia": "quebrados",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
+    },
+    "raposa_travada": {
+      "nome": "Raposa travada",
+      "familia": "base",
+      "endo": "endo_01",
+      "estrutura": "base",
+      "quebrado": false,
+      "carcaca": true
+    },
+    "cervo_quebrado": {
+      "nome": "Cervo oxidado quebrado",
+      "familia": "quebrados",
+      "endo": "endo_08",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
+    },
+    "hipopotamo_quebrado": {
+      "nome": "Hipopótamo quebrado",
+      "familia": "quebrados",
+      "endo": "endo_05",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
+    },
+    "sol_fantoche": {
+      "nome": "Sol fantoche",
+      "familia": "quebrados",
+      "endo": "endo_07",
+      "estrutura": "base",
+      "quebrado": true,
+      "carcaca": true
     }
   }
 }

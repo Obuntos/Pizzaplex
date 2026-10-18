@@ -4,6 +4,9 @@ extends Node2D
 static var definicoes: Dictionary = {}
 var objeto := Sprite2D.new()
 var maos := Sprite2D.new()
+var objeto_extra := Sprite2D.new()
+var uniforme_extra := ShaderMaterial.new()
+var assinatura_extra := ""
 var pernas := Sprite2D.new()
 var atlas_maos := AtlasTexture.new()
 var atlas_pernas := AtlasTexture.new()
@@ -12,11 +15,12 @@ var uniforme := ShaderMaterial.new()
 var movimento := ""
 var arquivo_pernas := ""
 var carga_na_frente := true
+var carga_apoiada := false
 var integrado := false
 
 func _init() -> void:
 	if definicoes.is_empty(): definicoes = JSON.parse_string(FileAccess.get_file_as_string("res://dados/animacoes_servico.json"))
-	for sprite in [pernas,objeto,maos]:
+	for sprite in [pernas,objeto,objeto_extra,maos]:
 		sprite.centered = false
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		add_child(sprite)
@@ -27,6 +31,8 @@ func _init() -> void:
 	use_parent_material = true
 	uniforme.shader = load("res://shaders/carga.gdshader")
 	objeto.material = uniforme
+	uniforme_extra.shader = uniforme.shader
+	objeto_extra.material = uniforme_extra
 	hide()
 
 func configurar(cena: CenaPlex, luz: IluminacaoPlex) -> void:
@@ -34,6 +40,10 @@ func configurar(cena: CenaPlex, luz: IluminacaoPlex) -> void:
 	uniforme.set_shader_parameter("origem",Vector2(cena.ORIGEM))
 	uniforme.set_shader_parameter("tamanho",Vector2(cena.TAMANHO))
 	luz.vincular(uniforme)
+	uniforme_extra.set_shader_parameter("profundidade_cena",cena.profundidade)
+	uniforme_extra.set_shader_parameter("origem",Vector2(cena.ORIGEM))
+	uniforme_extra.set_shader_parameter("tamanho",Vector2(cena.TAMANHO))
+	luz.vincular(uniforme_extra)
 
 func componentes(planta: PlantaPlex, id: int, origem: Vector3, resultado: Array, nivel: int = 0) -> void:
 	if nivel>6 or not planta.objetos.has(id): return
@@ -43,6 +53,7 @@ func componentes(planta: PlantaPlex, id: int, origem: Vector3, resultado: Array,
 
 func atualizar(ator: PersonagemPlex, planta: PlantaPlex, andando: bool) -> void:
 	integrado = false
+	objeto_extra.hide()
 	var material_ator := ator.material as ShaderMaterial
 	if material_ator!=null: material_ator.set_shader_parameter("usar_bracos",false)
 	var item: Dictionary = planta.objetos.get(ator.carga_item,{})
@@ -58,9 +69,11 @@ func atualizar(ator: PersonagemPlex, planta: PlantaPlex, andando: bool) -> void:
 		hide()
 		return
 	show()
+	carga_apoiada = EncaixeCargaPlex.apoiado(str(item.get("tipo","")))
 	var categoria := ItensPlex.categoria(item.get("tipo","prato"))
 	movimento = acao if acao in ["lavar","varrer","esfregar","preparar"] and not andando else ("levar_" if andando else "segurar_")+categoria
 	carga_na_frente = direcao_carga(ator,movimento)
+	if categoria=="prato" and not ator.carga_extra.is_empty(): movimento = ("levar_" if andando else "segurar_")+"dois_pratos"
 	var dados: Dictionary = definicoes[ator.modelo][movimento]
 	integrado = dados.get("integrado",false)
 	var direcao := GradePlex.direcao_visual(ator.direcao)
@@ -109,7 +122,7 @@ func atualizar(ator: PersonagemPlex, planta: PlantaPlex, andando: bool) -> void:
 	atlas_maos.region = Rect2(quadro*48,direcao*60,48,60)
 	maos.scale = ator.animacao.scale
 	maos.position = Vector2(-24,-55)*ator.animacao.scale
-	objeto.visible = not item.is_empty()
+	objeto.visible = not item.is_empty() and not dados.get("prop_integrado",false)
 	if objeto.visible:
 		var lista: Array = []
 		if caixa_virtual: lista.append({"volume":GeometriaPlex.obter(item.tipo,GradePlex.rotacao_visual(0)),"posicao":Vector3.ZERO})
@@ -121,10 +134,21 @@ func atualizar(ator: PersonagemPlex, planta: PlantaPlex, andando: bool) -> void:
 			objeto.texture = imagem.textura
 			uniforme.set_shader_parameter("profundidade_item",imagem.profundidade)
 			uniforme.set_shader_parameter("superficies_item",imagem.normais)
-		var centro: Array = dados.carga[direcao][quadro]
-		objeto.position = Vector2(roundf(centro[0]),roundf(centro[1]))-Vector2(96,144)
-		var y_chao: float = centro[1]+centro[2]
-		uniforme.set_shader_parameter("base",GradePlex.profundidade(ator.local,ator.altura)+float(centro[2])+2*y_chao+2.0*(roundf(centro[1])-float(centro[1])))
+		EncaixeCargaPlex.aplicar(objeto,uniforme,ator,EncaixeCargaPlex.ponto(ator,item,dados,direcao,quadro))
+	if not ator.carga_extra.is_empty() and dados.has("carga_extra"):
+		var id := ator.carga_extra[0]
+		if planta.objetos.has(id):
+			objeto_extra.show()
+			var lista: Array = []
+			componentes(planta,id,ApoiosPlex.posicao(planta,planta.objetos[id]),lista)
+			var chave := str(lista.map(func(c): return [c.volume.image,c.posicao]))+str(id)
+			if chave!=assinatura_extra:
+				assinatura_extra = chave
+				var imagem := ItensPlex.compor(lista)
+				objeto_extra.texture = imagem.textura
+				uniforme_extra.set_shader_parameter("profundidade_item",imagem.profundidade)
+				uniforme_extra.set_shader_parameter("superficies_item",imagem.normais)
+			EncaixeCargaPlex.aplicar(objeto_extra,uniforme_extra,ator,EncaixeCargaPlex.ponto(ator,planta.objetos[id],dados,direcao,quadro,true))
 	ator.visual.move_child(self,0 if direcao in [3,4,5] else ator.visual.get_child_count()-1)
 
 func direcao_carga(ator: PersonagemPlex, acao: String) -> bool:

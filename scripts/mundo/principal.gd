@@ -29,6 +29,9 @@ var traco_parede := TracoParedePlex.new()
 var saida_montagem: SaidaMontagemPlex
 var ambientes: AmbientesPlex
 var servicos: ServicosPlex
+var atendimento: CaixaPlex
+var rondas: RondasPlex
+var animatronicos: AnimatronicosPlex
 var clientes: ClientesPlex
 var compras: ComprasPlex
 var projetos_endo: ProjetosEndoPlex
@@ -58,6 +61,9 @@ func _ready() -> void:
 	ambientes = AmbientesPlex.new(planta, rotas)
 	servicos = ServicosPlex.new(planta, rotas, ambientes, tarefas, personagens)
 	clientes = ClientesPlex.new(self)
+	atendimento = CaixaPlex.new(self)
+	rondas = RondasPlex.new(self)
+	animatronicos = AnimatronicosPlex.new(self)
 	compras = ComprasPlex.new(self)
 	quebrados = DestinosQuebradosPlex.new(self)
 	projetos_endo = ProjetosEndoPlex.new(self)
@@ -129,14 +135,14 @@ func escolher_ferramenta(valor: String) -> void:
 	painel.ferramenta.text = texto + " · direção " + str(editor.rotacao + 1)
 
 func spawn(modelo: String, celula: Vector2i, cargo: String = "funcionario") -> PersonagemPlex:
-	var oficio := modelo if modelo in ["faxineiro","entregador"] else ""
+	var oficio := modelo if modelo in ["faxineiro","entregador","caixista","seguranca"] else ""
 	if not oficio.is_empty(): modelo="humano"
 	var ator: PersonagemPlex = CENA_PERSONAGEM.instantiate()
 	var robo: bool = CatalogoMontagemPlex.robotico(modelo)
 	ator.cargo = cargo
 	ator.configurar(proximo_personagem, modelo, celula, robo)
 	if not oficio.is_empty():
-		ator.funcao="limpeza" if oficio=="faxineiro" else "estoque"
+		ator.funcao={"faxineiro":"limpeza","entregador":"estoque","caixista":"caixa","seguranca":"seguranca"}[oficio]
 		ator.uniforme=oficio
 		ator.cabelo="curto"
 	proximo_personagem += 1
@@ -231,6 +237,8 @@ func finalizar_montagem(suporte: int) -> void:
 	for ator in personagens:
 		if ator.suporte == suporte:
 			ator.mudar_modelo(planta.objetos[suporte].get("modelo_alvo",planta.objetos[suporte].get("fur_modelo","coelho")))
+			ator.caixa_qualidade = str(planta.objetos[suporte].get("qualidade_pecas",planta.objetos[suporte].get("qualidade",ator.caixa_qualidade)))
+			ator.robotica.clear()
 			var marca: int = planta.objetos[suporte].get("destino_quebrado",-1)
 			if planta.objetos.has(marca): planta.objetos[marca].dono = ator.identificador
 			ator.direcao = GradePlex.direcao_suporte(planta.objetos[suporte].rotacao)
@@ -312,22 +320,25 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	compras.atualizar(delta)
 	projetos_endo.atualizar(delta)
+	atendimento.atualizar(delta)
+	rondas.atualizar(delta)
 	servicos.atualizar(delta)
 	clientes.atualizar(delta)
 	tarefas.atualizar(delta)
 	saida_montagem.atualizar()
 	poses.atualizar()
+	animatronicos.atualizar(delta)
 	for ator in personagens:
-		ator.set_meta("tarefa_ativa", servicos.trabalhos.has(ator.identificador) or tarefas.trabalhos.has(ator.identificador) or ator.pose >= 0 or ator.trabalho == "liberar_saida" or ator.cargo in ["cliente", "crianca"])
+		ator.set_meta("tarefa_ativa", servicos.trabalhos.has(ator.identificador) or tarefas.trabalhos.has(ator.identificador) or ator.pose >= 0 or ator.trabalho == "liberar_saida" or ator.cargo in ["cliente", "crianca"] or ator.funcao in ["caixa","seguranca"])
 		ator.atualizar(delta, planta, rotas, personagens)
 		composicao.atualizar_personagem(ator)
 	for sombra in sombras_luzes.get_children():
-		sombra.atualizar()
+		sombra.atualizar(delta)
 	espera_palco += delta
 	if espera_palco >= 1.0:
 		espera_palco = 0.0
 		for ator in personagens:
-			if ator.robo and ator.automatico and not ator.ocupado() and ator.pronto_para_destino() and ator.pose < 0:
+			if ator.robo and ator.automatico and not AnimatronicosPlex.pausado(ator) and not ator.ocupado() and ator.pronto_para_destino() and ator.pose < 0:
 				levar_ao_palco(ator)
 
 func terminal_apontado() -> int:
@@ -557,16 +568,18 @@ func carregar() -> void:
 		ator.funcao = str(registro.get("funcao","geral"))
 		ator.funcoes_secundarias = registro.get("funcoes_secundarias",[]).duplicate()
 		ator.caixa_tipo = str(registro.get("caixa_tipo","caixa"))
-		ator.caixa_qualidade = str(registro.get("caixa_qualidade","media"))
+		ator.caixa_qualidade = str(registro.get("caixa_qualidade","boa"))
 		ator.caixa_durabilidade = int(registro.get("caixa_durabilidade",100))
 		ator.cabelo = str(registro.get("cabelo","automatico"))
 		ator.uniforme = str(registro.get("uniforme","automatico"))
 		ator.familia = int(registro.get("familia", -1))
 		ator.responsavel = int(registro.get("responsavel", -1))
 		ator.visita = registro.get("visita", {}).duplicate(true)
+		ator.robotica = registro.get("robotica",{}).duplicate(true)
 		ator.direcao = int(registro.direcao)
 		ator.automatico = registro.get("automatico", true)
 		ator.carga_item = int(registro.get("carga_item", -1))
+		ator.carga_extra.assign(registro.get("carga_extra",[]).map(func(id): return int(id)))
 		ator.energia = float(registro.get("energia", 100.0))
 		ator.necessidades.merge(registro.get("necessidades", {}), true)
 		ator.carregando = registro.carregando

@@ -8,6 +8,8 @@ var raiz := Control.new()
 var folha := PanelContainer.new()
 var conteudo := VBoxContainer.new()
 var atividade: Label
+var condicao: Label
+var botao_energia: Button
 var espera := 0.0
 
 func configurar(mundo: Node) -> void:
@@ -37,17 +39,17 @@ func aberto() -> bool:
 
 func redimensionar() -> void:
 	var tela := get_viewport().get_visible_rect().size
-	folha.size = Vector2(minf(650,tela.x-32),minf(540,tela.y-32))
+	folha.size = Vector2(minf(650,tela.x-32),minf(760 if is_instance_valid(ator) and ator.robo else 540,tela.y-32))
 	folha.position = (tela-folha.size)*.5
 
 func fechar() -> void:
 	raiz.hide()
 	ator = null
 
-func abrir(pessoa: PersonagemPlex) -> void:
+func abrir(entrada: PersonagemPlex) -> void:
 	jogo.terminal_ui.fechar()
 	jogo.catalogo_modelos.fechar()
-	ator = pessoa
+	ator = entrada
 	IdentidadesPlex.garantir(ator)
 	for filho in conteudo.get_children():
 		conteudo.remove_child(filho)
@@ -89,16 +91,13 @@ func abrir(pessoa: PersonagemPlex) -> void:
 	conteudo.add_child(HSeparator.new())
 	if visitante:
 		T.texto(conteudo,"ACOMPANHAMENTO",10,destaque,true)
-		var familia := "Visita em família"
-		if ator.cargo=="crianca":
-			for pessoa_grupo in jogo.personagens:
-				if pessoa_grupo.identificador==ator.responsavel: familia = "Responsável: "+IdentidadesPlex.completo(pessoa_grupo)
-		else:
-			var nomes := PackedStringArray()
-			for pessoa_grupo in jogo.personagens:
-				if pessoa_grupo.responsavel==ator.identificador: nomes.append(IdentidadesPlex.curto(pessoa_grupo))
-			familia = "Acompanhantes: "+", ".join(nomes) if not nomes.is_empty() else "Visita sem acompanhantes"
-		T.texto(conteudo,familia,14).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var acompanhantes: Array = jogo.personagens.filter(func(pessoa): return pessoa!=ator and pessoa.cargo in ["cliente","crianca"] and ator.familia>=0 and pessoa.familia==ator.familia)
+		var adultos := acompanhantes.filter(func(pessoa): return pessoa.cargo=="cliente").size()
+		var criancas := acompanhantes.size()-adultos
+		T.texto(conteudo,"Visitante em família · "+str(adultos)+" adulto(s) e "+str(criancas)+" criança(s) acompanhando" if not acompanhantes.is_empty() else "Visitante sem acompanhantes",14).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		for pessoa in acompanhantes:
+			var papel := "Responsável" if pessoa.identificador==ator.responsavel else "Adulto" if pessoa.cargo=="cliente" else "Criança"
+			T.texto(conteudo,papel+" · "+IdentidadesPlex.completo(pessoa)+" · "+str(pessoa.identidade.idade)+" anos",13,T.SUAVE).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	elif not ator.robo:
 		T.texto(conteudo,"FUNÇÃO PRINCIPAL",10,destaque,true)
 		T.texto(conteudo,EquipePlex.NOMES.get(ator.funcao,"Geral"),19)
@@ -108,6 +107,46 @@ func abrir(pessoa: PersonagemPlex) -> void:
 	else:
 		T.texto(conteudo,"MODELO",10,destaque,true)
 		T.texto(conteudo,ator.modelo.replace("_"," ").capitalize(),18)
+		var linha_nome := HBoxContainer.new()
+		conteudo.add_child(linha_nome)
+		var campo := LineEdit.new()
+		campo.text = str(ator.identidade.get("nome_robotico",""))
+		campo.placeholder_text = "Nome do animatrônico"
+		campo.max_length = 40
+		campo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		linha_nome.add_child(campo)
+		var salvar := func():
+			var valor := campo.text.strip_edges().replace("\n"," ").replace("\r"," ").replace("\t"," ")
+			ator.identidade.nome_robotico = valor
+			nome.text = IdentidadesPlex.completo(ator)
+			jogo.selecionar(ator)
+		T.botao(linha_nome,"Salvar nome",salvar)
+		campo.text_submitted.connect(func(_valor): salvar.call())
+	if ator.robo:
+		AnimatronicosPlex.garantir(ator)
+		botao_energia=T.botao(conteudo,"",func():
+			AnimatronicosPlex.comandar_energia(ator,bool(ator.robotica.get("desligado_manual",false)))
+			atualizar_atividade())
+		var energia:=CheckButton.new()
+		energia.text="Manter sempre ligado"
+		energia.button_pressed=ator.robotica.modo=="sempre"
+		energia.toggled.connect(func(ligado):
+			ator.robotica.modo="sempre" if ligado else "automatico"
+			if ligado: AnimatronicosPlex.comandar_energia(ator,true)
+			atualizar_atividade())
+		conteudo.add_child(energia)
+		if ReparosPlex.reparavel(ator):
+			var pausa:=CheckButton.new()
+			pausa.text="Pausar para manutenção"
+			pausa.button_pressed=bool(ator.robotica.get("manutencao_solicitada",false))
+			pausa.toggled.connect(func(v): ator.robotica.manutencao_solicitada=v)
+			conteudo.add_child(pausa)
+		T.texto(conteudo,"Automático: liga com a plateia do palco. Desligar mantém este robô parado e permite o reparo com peças da Oficina. Ligar retoma o modo escolhido.",12,T.SUAVE).autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		condicao=T.texto(conteudo,"",13,destaque)
+		condicao.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	else:
+		condicao=null
+		botao_energia=null
 	atividade = T.texto(conteudo,"",13,T.SUAVE)
 	atividade.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	T.texto(conteudo,"ENTRADA EM FAMÍLIA  ·  RESTAURANTE & SHOWS" if visitante else "IDENTIFICAÇÃO INTERNA  ·  PESSOAL AUTORIZADO",10,destaque,true).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -116,7 +155,29 @@ func abrir(pessoa: PersonagemPlex) -> void:
 	atualizar_atividade()
 
 func atualizar_atividade() -> void:
-	var nomes := {"varrer":"Varrendo o chão","esfregar":"Limpando o piso","montar":"Montando animatrônico","lavar":"Lavando pratos","preparar":"Preparando comida","jogar":"Jogando","assistir":"Assistindo ao show","sentar_mesa":"À mesa","apresentar":"Apresentando show","visitar":"Visitando o restaurante"}
+	var nomes := {"reparar":"Reparando animatrônico","circular_salao":"Circulando pelo salão","reservado_pecas":"Reservado para reutilização de peças","ir_pose":"Indo para o posto","liberar_saida":"Saindo da oficina","caixa":"No posto da registradora","usar_caixa":"Recebendo pagamento","ir_caixa":"Indo ao caixa","fila_caixa":"Aguardando na fila","pagar":"Pagando a refeição","aguardar_familia":"Aguardando acompanhantes","vigiar_palco":"Vigiando o palco","vigiar_ibm":"Verificando o IBM","ronda":"Em ronda","aguardar_caixa":"Aguardando registradora","varrer":"Varrendo o chão","esfregar":"Limpando o piso","montar":"Montando animatrônico","lavar":"Lavando pratos","preparar":"Preparando comida","jogar":"Jogando","assistir":"Assistindo ao show","sentar_mesa":"À mesa","apresentar":"Apresentando show","visitar":"Visitando o restaurante"}
+	if ator.robo and is_instance_valid(condicao):
+		AnimatronicosPlex.garantir(ator)
+		var desligado_manual:=bool(ator.robotica.get("desligado_manual",false))
+		botao_energia.text="Ligar" if desligado_manual else "Desligar"
+		botao_energia.disabled=int(ator.robotica.get("reparo_por",0))>0 or (desligado_manual and bool(ator.robotica.get("avariado",false)))
+		botao_energia.tooltip_text="Aguarde o reparo terminar." if botao_energia.disabled else "Retomar o modo escolhido." if desligado_manual else "Desligar somente este animatrônico, dentro ou fora do palco."
+		for controle in conteudo.get_children():
+			if not controle is CheckButton: continue
+			if controle.text=="Pausar para manutenção": controle.set_pressed_no_signal(bool(ator.robotica.get("manutencao_solicitada",false)))
+			elif controle.text=="Manter sempre ligado": controle.set_pressed_no_signal(ator.robotica.modo=="sempre")
+		var qualidade:String={"media":"Médias","boa":"Boas","otima":"Perfeitas"}.get(str(ator.robotica.qualidade),"Médias")
+		condicao.text=AnimatronicosPlex.titulo(ator)+" · Peças: "+qualidade+"\nDesgaste: "+str(roundi(float(ator.robotica.desgaste)*50))+"% · Uso: "+str(ator.robotica.minutos_uso)+" min"
+	if ator.robo:
+		if int(ator.robotica.get("reparo_por",0))>0:
+			atividade.text="Agora: Recebendo reparos"
+			return
+		if bool(ator.robotica.get("desligado_manual",false)) and not ator.ocupado():
+			atividade.text="Agora: Desligado manualmente"+(" · aguardando reparo" if ReparosPlex.danificado(ator) else "")
+			return
+	if ator.robo and ator.trabalho=="apresentar":
+		atividade.text="Agora: "+str({"desligado":"Aguardando plateia","ativando":"Iniciando apresentação","ligado":"Apresentando show","desligando":"Desligando","avariado":"Aguardando manutenção"}.get(str(ator.robotica.get("estado","desligado")),"Aguardando plateia"))
+		return
 	atividade.text = "Agora: "+str(nomes.get(ator.trabalho, "A caminho" if ator.ocupado() else "Disponível" if ator.cargo=="funcionario" else "Em visita"))
 
 func _process(delta: float) -> void:

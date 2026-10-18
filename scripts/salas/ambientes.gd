@@ -8,11 +8,15 @@ var definicoes: Dictionary
 var ambientes: Array[Dictionary] = []
 var por_celula: Dictionary = {}
 var sujo := true
+var assinatura_estrutura := -1
+var requisitos: Dictionary = {}
 
 func _init(p: PlantaPlex, r: RotasPlex) -> void:
 	planta = p
 	rotas = r
 	definicoes = JSON.parse_string(FileAccess.get_file_as_string("res://dados/salas.json"))
+	for definicao in definicoes.values():
+		for tipo in definicao.requisitos: requisitos[tipo] = true
 	planta.alterada.connect(invalidar)
 
 func invalidar() -> void:
@@ -21,40 +25,49 @@ func invalidar() -> void:
 func atualizar() -> void:
 	if not sujo: return
 	sujo = false
-	ambientes.clear()
-	por_celula.clear()
-	var vistas: Dictionary = {}
-	for y in GradePlex.TAMANHO.y:
-		for x in GradePlex.TAMANHO.x:
-			var inicio := Vector2i(x, y)
-			if vistas.has(inicio) or planta.em(inicio).get("tipo", "") in SalasPlex.ESTRUTURA: continue
-			var fila: Array[Vector2i] = [inicio]
-			var celulas: Dictionary = {inicio:true}
-			var fechada := true
-			vistas[inicio] = true
-			var indice := 0
-			while indice < fila.size():
-				var c := fila[indice]
-				indice += 1
-				if c.x == 0 or c.y == 0 or c.x == GradePlex.TAMANHO.x - 1 or c.y == GradePlex.TAMANHO.y - 1: fechada = false
-				for d in GradePlex.VIZINHOS:
-					var v: Vector2i = c + d
-					if GradePlex.dentro(v) and not vistas.has(v) and planta.em(v).get("tipo", "") not in SalasPlex.ESTRUTURA:
-						vistas[v] = true
-						celulas[v] = true
-						fila.append(v)
-			var tipos: Array[String] = []
-			for marca in planta.funcoes_salas:
-				if celulas.has(marca) and not tipos.has(planta.funcoes_salas[marca]): tipos.append(planta.funcoes_salas[marca])
-			var ambiente := {"id":ambientes.size(),"celulas":celulas,"fechada":fechada,"tipo":tipos[0] if not tipos.is_empty() else "livre","marcas":tipos,"conflito":tipos.size() > 1,"objetos":[],"faltas":[],"operacional":false,"portas":[]}
-			for c in celulas: por_celula[c] = ambiente.id
-			ambientes.append(ambiente)
+	var estrutura: Array = [planta.ocupacao,planta.reservas_abertura.keys(),planta.funcoes_salas]
+	for item in planta.objetos.values():
+		if requisitos.has(item.tipo): estrutura.append([item.id,item.tipo,item.celula,item.rotacao,item.get("sobre",-1),item.get("carregada_por",0)])
+	var assinatura := hash(estrutura)
+	var reconstruir := assinatura!=assinatura_estrutura
+	if reconstruir:
+		assinatura_estrutura = assinatura
+		ambientes.clear()
+		por_celula.clear()
+		var vistas: Dictionary = {}
+		for y in GradePlex.TAMANHO.y:
+			for x in GradePlex.TAMANHO.x:
+				var inicio := Vector2i(x, y)
+				if vistas.has(inicio) or planta.em(inicio).get("tipo", "") in SalasPlex.ESTRUTURA: continue
+				var fila: Array[Vector2i] = [inicio]
+				var celulas: Dictionary = {inicio:true}
+				var fechada := true
+				vistas[inicio] = true
+				var indice := 0
+				while indice < fila.size():
+					var c := fila[indice]
+					indice += 1
+					if c.x == 0 or c.y == 0 or c.x == GradePlex.TAMANHO.x - 1 or c.y == GradePlex.TAMANHO.y - 1: fechada = false
+					for d in GradePlex.VIZINHOS:
+						var v: Vector2i = c + d
+						if GradePlex.dentro(v) and not vistas.has(v) and planta.em(v).get("tipo", "") not in SalasPlex.ESTRUTURA:
+							vistas[v] = true
+							celulas[v] = true
+							fila.append(v)
+				var tipos: Array[String] = []
+				for marca in planta.funcoes_salas:
+					if celulas.has(marca) and not tipos.has(planta.funcoes_salas[marca]): tipos.append(planta.funcoes_salas[marca])
+				var ambiente := {"id":ambientes.size(),"celulas":celulas,"fechada":fechada,"tipo":tipos[0] if not tipos.is_empty() else "livre","marcas":tipos,"conflito":tipos.size() > 1,"objetos":[],"faltas":[],"operacional":false,"portas":[]}
+				for c in celulas: por_celula[c] = ambiente.id
+				ambientes.append(ambiente)
+	for ambiente in ambientes: ambiente.objetos.clear()
 	for item in planta.objetos.values():
 		if ApoiosPlex.portador(planta,item.id) > 0: continue
 		var raiz := ApoiosPlex.raiz(planta, item.id)
 		if raiz >= 0:
 			var base: Dictionary = planta.objetos[raiz]
 			if por_celula.has(base.celula): ambientes[por_celula[base.celula]].objetos.append(item.id)
+	if not reconstruir: return
 	for ambiente in ambientes:
 		FuncoesSalaPlex.classificar(planta, ambiente, definicoes)
 		validar(ambiente)

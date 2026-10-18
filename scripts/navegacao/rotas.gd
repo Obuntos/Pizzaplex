@@ -3,6 +3,12 @@ extends RefCounted
 
 var planta: PlantaPlex
 var grafo := AStar2D.new()
+var assinatura: int = -1
+var revisao := 0
+var cache: Dictionary = {}
+var consultas := 0
+var calculadas := 0
+var reconstrucoes := 0
 
 func _init(valor: PlantaPlex) -> void:
 	planta = valor
@@ -47,6 +53,15 @@ func conectavel(a: Vector2i, b: Vector2i) -> bool:
 	return is_equal_approx(planta.altura(a), planta.altura(b))
 
 func reconstruir() -> void:
+	var estrutura: Array = [planta.ocupacao,planta.reservas_abertura.keys()]
+	for item in planta.objetos.values():
+		if planta.ocupa(item) or item.tipo=="divisoria_porta": estrutura.append([item.tipo,item.celula,item.rotacao])
+	var atual := hash(estrutura)
+	if assinatura==atual: return
+	assinatura = atual
+	revisao += 1
+	reconstrucoes += 1
+	cache.clear()
 	grafo.clear()
 	for y in GradePlex.TAMANHO.y:
 		for x in GradePlex.TAMANHO.x:
@@ -61,6 +76,12 @@ func reconstruir() -> void:
 				grafo.connect_points(id, indice(b))
 
 func caminho(origem: Vector2i, destino: Vector2i, bloqueados: Array[Vector2i] = []) -> Array[Vector2i]:
+	consultas += 1
+	var chave := Vector4i(origem.x,origem.y,destino.x,destino.y)
+	if bloqueados.is_empty() and cache.has(chave):
+		var salva: Array[Vector2i] = []
+		salva.assign(cache[chave])
+		return salva
 	var resultado: Array[Vector2i] = []
 	if not GradePlex.dentro(origem) or not GradePlex.dentro(destino):
 		return resultado
@@ -71,10 +92,14 @@ func caminho(origem: Vector2i, destino: Vector2i, bloqueados: Array[Vector2i] = 
 		if local != origem and GradePlex.dentro(local) and grafo.has_point(indice(local)):
 			grafo.set_point_disabled(indice(local), true)
 			desativados.append(indice(local))
+	calculadas += 1
 	for id in grafo.get_id_path(indice(origem), indice(destino)):
 		resultado.append(celula(id))
 	for id in desativados:
 		grafo.set_point_disabled(id, false)
+	if bloqueados.is_empty():
+		if cache.size()>=4096: cache.clear()
+		cache[chave] = resultado.duplicate()
 	return resultado
 
 func aproximar(origem: Vector2i, objeto: int) -> Array[Vector2i]:

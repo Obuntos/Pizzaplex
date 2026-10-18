@@ -7,7 +7,7 @@ static func reservas(servico: ServicosPlex, alvos: Array) -> Array:
 		if id < 0 or not servico.planta.objetos.has(id): continue
 		if not resultado.has(id): resultado.append(id)
 		var raiz := ApoiosPlex.raiz(servico.planta, id)
-		if raiz >= 0 and not resultado.has(raiz): resultado.append(raiz)
+		if raiz >= 0 and servico.planta.objetos[raiz].tipo!="forno" and not resultado.has(raiz): resultado.append(raiz)
 	return resultado
 
 static func iniciar(servico: ServicosPlex, ator: PersonagemPlex, alvo: int) -> bool:

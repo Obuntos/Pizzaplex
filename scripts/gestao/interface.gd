@@ -35,6 +35,7 @@ var tempo_notificacao := 0.0
 var ultimo_tamanho := Vector2.ZERO
 var rolagem := ScrollContainer.new()
 var pagina_endo: UIEndoPlex
+var reparos_label: Label
 
 func configurar(cena: Node) -> void:
 	jogo = cena
@@ -122,7 +123,7 @@ func construir_abas() -> void:
 	corpo.add_child(painel)
 	var linha := HBoxContainer.new()
 	painel.add_child(linha)
-	for item in [["funcionarios","01  Funcionários"],["mercado","02  Mercado"],["oficina","03  Oficina"],["endo","04  Endo"]]:
+	for item in [["funcionarios","01  Funcionários"],["mercado","02  Mercado"],["oficina","03  Oficina"],["endo","04  Animatrônicos"]]:
 		var id: String = item[0]
 		var b := T.botao(linha,item[1],func(): mudar_aba(id))
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -182,6 +183,7 @@ func montar_pagina() -> void:
 	limpar(detalhe_area)
 	limpar(conclusao)
 	estoques.clear()
+	reparos_label=null
 	for id in abas:
 		var b: Button = abas[id]
 		var ativa: bool = aba == id
@@ -195,7 +197,7 @@ func montar_pagina() -> void:
 		montar_equipe()
 		return
 	titulo.text = "Peças para continuar o show" if aba == "oficina" else "A cozinha começa no estoque"
-	subtitulo.text = "Compare a qualidade e escolha o próximo kit da oficina." if aba == "oficina" else "Massa, molho e queijo. Caixas que o estoquista leva até a cozinha."
+	subtitulo.text = "Compre um kit de reposição. O mecânico fará o reparo assim que o animatrônico estiver desligado." if aba == "oficina" else "Massa, molho e queijo. Caixas que o estoquista leva até a cozinha."
 	grade = GridContainer.new()
 	grade.columns = 3 if janela.size.x >= 1080 else 1
 	grade.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -264,6 +266,10 @@ func montar_detalhe() -> void:
 	var desc := T.texto(c,p.descricao,12,T.SUAVE)
 	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	desc.set_meta("ocultar_compacto",true)
+	if aba=="oficina":
+		T.texto(c,"MANUTENÇÃO AUTOMÁTICA",10,T.VERDE,true)
+		reparos_label=T.texto(c,ReparosPlex.resumo(jogo.servicos),12,T.SUAVE)
+		reparos_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	T.texto(c,"Quantidade de caixas",12,T.TINTA)
 	var linha := HBoxContainer.new()
 	c.add_child(linha)
@@ -362,6 +368,7 @@ func mensagem(valor: String) -> void:
 func atualizar_valores() -> void:
 	if jogo == null or not aberto(): return
 	saldo_label.text = "$ "+str(jogo.compras.saldo())
+	if is_instance_valid(reparos_label): reparos_label.text=ReparosPlex.resumo(jogo.servicos)
 	for id in estoques:
 		if is_instance_valid(estoques[id]): estoques[id].text = str(jogo.compras.estoque(id))+" em estoque"
 	if aba not in ["funcionarios","endo"] and is_instance_valid(total_label):
@@ -376,7 +383,7 @@ func atualizar_valores() -> void:
 		aviso_label.text = notificacao if tempo_notificacao>0 else erro if not erro.is_empty() else "Compras debitadas do saldo. Entregas físicas no restaurante."
 	if aba == "endo":
 		pagina_endo.atualizar()
-		aviso_label.text = notificacao if tempo_notificacao>0 else "Peças e carcaças por R$ 0 nesta versão. Entregas físicas no recebimento."
+		aviso_label.text = notificacao if tempo_notificacao>0 else "Animatrônicos por R$ 0 nesta versão. Reposição de peças e reparos na aba Oficina."
 	elif aba == "funcionarios": aviso_label.text = "O número e a função também aparecem sobre cada funcionário no restaurante."
 	var lista: Array[String] = []
 	for p in jogo.compras.encomendas.slice(maxi(0,jogo.compras.encomendas.size()-2)):

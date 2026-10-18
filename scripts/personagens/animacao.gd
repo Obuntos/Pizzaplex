@@ -1,6 +1,7 @@
 class_name AnimacaoPlex
 extends Node2D
 
+var desgaste: float = 0.0
 var modelo: String = "humano"
 var expressao: String = "neutro"
 var camadas: Dictionary = {}
@@ -44,11 +45,12 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 		arquivos.modelo = "modular:"+EndoPecasPlex.chave(endo_config,endo_partes,direcao)
 		return
 	if not definicao.layered and pecas < 0 and ClipesPlex.possui(modelo,acao):
-		var clipe := ClipesPlex.quadro(modelo,acao,direcao,fase,relogio)
+		var clipe := ClipesPlex.quadro(modelo,acao,direcao,fase,relogio,desgaste)
 		if arquivos.get("modelo","") != clipe.arquivo:
 			atlases.modelo.atlas = CatalogoPlex.textura_iluminada(clipe.arquivo)
 			arquivos.modelo = clipe.arquivo
 		atlases.modelo.region = clipe.regiao
+		camadas.modelo.position=-Vector2(definicao.pivot[0],definicao.pivot[1])+clipe.get("deslocamento",Vector2.ZERO)
 		return
 	var largura: int = definicao.width
 	var altura: int = definicao.height
@@ -93,9 +95,10 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 func atualizar_escada(escala: EscalaPlex, direcao: int, relogio: float) -> void:
 	atualizar("parado", direcao, 0.0, relogio)
 	var nome: String = "corpo" if definicao.layered else "modelo"
+	camadas[nome].position=-Vector2(definicao.pivot[0],definicao.pivot[1])
 	var sufixo: String = "_corpo" if definicao.layered else ""
 	var caixa: String = "_caixa" if escala.carregando else ""
-	var caminho: String = "res://assets/personagens/" + modelo + "/escada/" + escala.sentido + caixa + sufixo + "/" + CatalogoPlex.DIRECOES[GradePlex.rotacao_visual(escala.rotacao)] + ".png"
+	var caminho: String = "res://assets/personagens/" + (AnimatronicosPlex.base(modelo) if not AnimatronicosPlex.base(modelo).is_empty() else modelo) + "/escada/" + escala.sentido + caixa + sufixo + "/" + CatalogoPlex.DIRECOES[GradePlex.rotacao_visual(escala.rotacao)] + ".png"
 	atlases[nome].atlas = CatalogoPlex.textura_iluminada(caminho)
 	arquivos[nome] = caminho
 	var coluna: int = escala.quadro % int(escala.definicao.columns)

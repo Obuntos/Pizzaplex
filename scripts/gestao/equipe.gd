@@ -1,13 +1,13 @@
 class_name EquipePlex
 extends RefCounted
 
-const NOMES = {"geral":"Geral", "cozinha":"Cozinha", "atendimento":"Atendimento", "limpeza":"Limpeza", "estoque":"Estoque", "manutencao":"Manutenção"}
+const NOMES = {"geral":"Geral", "cozinha":"Cozinha", "atendimento":"Atendimento", "limpeza":"Limpeza", "estoque":"Estoque", "manutencao":"Manutenção", "caixa":"Caixa", "seguranca":"Segurança"}
 const FUNCOES = ["cozinha","atendimento","limpeza","estoque","manutencao"]
 
 static func prioridades(ator: PersonagemPlex) -> Array:
 	if ator.cargo != "funcionario" or ator.robo: return []
 	if ator.funcao == "geral": return FUNCOES.duplicate()
-	var resultado: Array = [ator.funcao] if FUNCOES.has(ator.funcao) else []
+	var resultado: Array = [ator.funcao] if NOMES.has(ator.funcao) else []
 	for funcao in ator.funcoes_secundarias:
 		if FUNCOES.has(funcao) and not resultado.has(funcao): resultado.append(funcao)
 	return resultado

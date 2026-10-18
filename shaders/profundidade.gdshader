@@ -1,4 +1,5 @@
 shader_type canvas_item;
+uniform float desgaste_plex = 0.0;
 render_mode unshaded;
 #include "res://shaders/iluminacao.gdshaderinc"
 
@@ -78,6 +79,7 @@ void fragment() {
 	if (z < inicio_cabeca) {
 		normal = normalize(vec3(n.x, n.z, n.y));
 	}
+	COLOR.rgb *= mix(vec3(1.0),vec3(.83,.80,.75),clamp(desgaste_plex,0.0,1.0));
 	COLOR.rgb = iluminar_plex(COLOR.rgb, vec3(mundo.x, distancia - z, z), normal, dados, 1.0, false);
 
 }

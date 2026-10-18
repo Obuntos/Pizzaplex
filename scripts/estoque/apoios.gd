@@ -27,7 +27,7 @@ static func pontos(objeto: Dictionary, planta: PlantaPlex = null) -> Array:
 		resultado.append({"u":0.0,"v":0.0,"z":30.0,"accepts":["terminal-ibm"],"capacity":1})
 		return resultado
 	if objeto.tipo == "forno":
-		return [{"u":0.0,"v":0.0,"z":15.0,"accepts":["pizza"],"capacity":1}]
+		return FornoPlex.pontos(objeto)
 	if definicoes.has(objeto.tipo):
 		var definicao: Dictionary = definicoes[objeto.tipo]
 		var estado: String = objeto.get("estado", CatalogoPlex.objetos[objeto.tipo].get("estado_padrao", "padrao"))
@@ -52,11 +52,11 @@ static func pontos(objeto: Dictionary, planta: PlantaPlex = null) -> Array:
 		resultado.append({"u":0.0,"v":0.0,"z":30.8,"accepts":["dinheiro"],"capacity":1})
 		return resultado
 	if objeto.tipo == "forno":
-		return [{"u":0.0,"v":0.0,"z":15.0,"accepts":["pizza"],"capacity":1}]
+		return FornoPlex.pontos(objeto)
 	return []
 
 static func filhos(planta: PlantaPlex, pai: int, slot: int = -1) -> Array:
-	return planta.objetos.values().filter(func(item): return item.get("sobre", -1) == pai and (slot < 0 or item.get("slot", -1) == slot) and item.get("carregada_por", 0) == 0)
+	return planta.filhos_de(pai,slot)
 
 static func aceita(planta: PlantaPlex, pai: int, tipo: String, slot: int) -> bool:
 	if not planta.objetos.has(pai): return false

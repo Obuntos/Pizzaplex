@@ -27,7 +27,7 @@ func motivo(terminal: int, suporte: int, modelo: String) -> String:
 	if CatalogoMontagemPlex.quebrado(modelo) and not GradePlex.dentro(jogo.quebrados.escolher(suporte)): return "Libere um canto acessível no chão da sala para o quebrado."
 	return ""
 
-func encomendar(terminal: int, suporte: int, modelo: String) -> bool:
+func encomendar(terminal: int, suporte: int, modelo: String, _qualidade: String = "boa") -> bool:
 	var erro := motivo(terminal,suporte,modelo)
 	if not erro.is_empty():
 		aviso.emit(erro)
@@ -40,6 +40,7 @@ func encomendar(terminal: int, suporte: int, modelo: String) -> bool:
 		if marca<0: return false
 	var estacao: Dictionary = jogo.planta.objetos[suporte]
 	estacao.endo = false
+	estacao.qualidade_pecas = "boa"
 	estacao.modelo_alvo = modelo
 	estacao.familia_endo = definicao.familia
 	estacao.fur_modelo = modelo
@@ -52,7 +53,7 @@ func encomendar(terminal: int, suporte: int, modelo: String) -> bool:
 	estacao.robo_saiu = false
 	estacao.pecas = 0
 	var partes: Array = ["pernas","bracos","cabeca","corpo"]
-	if not definicao.quebrado: partes.append("fur")
+	if CatalogoMontagemPlex.carcaca(modelo): partes.append("fur")
 	pedidos.append({"id":proximo_id,"suporte":suporte,"modelo":modelo,"config":config.duplicate(true),"pendentes":partes,"tempo":2.0,"estado":"Em transporte","etapa":"completo","custo":0})
 	proximo_id+=1
 	jogo.planta.alterada.emit()
@@ -75,6 +76,7 @@ func entregar(pedido: Dictionary) -> bool:
 		var caixa: Dictionary = jogo.planta.objetos[id]
 		caixa.recurso = "fur" if parte=="fur" else "endo"
 		caixa.quantidade = 1
+		caixa.qualidade = str(estacao.get("qualidade_pecas","boa"))
 		caixa.pedido_endo = pedido.id
 		caixa.suporte_endo = pedido.suporte
 		caixa.parte_endo = parte

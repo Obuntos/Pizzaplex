@@ -14,7 +14,7 @@ static func modelo(id: String, direcao: int = 0, roupa: String = "nenhum", cabel
 	CatalogoPlex.carregar()
 	var chave := id+":"+str(direcao)+":"+roupa+":"+cabelo
 	if cache.has(chave): return cache[chave]
-	if id in ["faxineiro","entregador"]:
+	if id in ["faxineiro","entregador","caixista","seguranca"]:
 		return modelo("humano",direcao,id,"curto")
 	var d: Dictionary = CatalogoPlex.personagens.get(id,{})
 	if d.is_empty(): return null

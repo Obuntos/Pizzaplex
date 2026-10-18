@@ -1,7 +1,7 @@
 class_name IdentificacaoPlex
 extends Node2D
 
-const CORES = {"geral":"d5dcd1","cozinha":"f2dfaf","atendimento":"efb6a7","limpeza":"acd6d4","estoque":"c2d49e","manutencao":"b8c8e3"}
+const CORES = {"geral":"d5dcd1","cozinha":"f2dfaf","atendimento":"efb6a7","limpeza":"acd6d4","estoque":"c2d49e","manutencao":"b8c8e3","caixa":"e1c79c","seguranca":"b5bad6"}
 var texto := Label.new()
 var assinatura := ""
 

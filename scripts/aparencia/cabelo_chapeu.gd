@@ -20,7 +20,7 @@ static func textura(arquivo: String, uniforme: String) -> CanvasTexture:
 	var cabeca := CatalogoPlex.imagem("res://assets/personagens/humano/parado_cabeca.png")
 	var chapeu := CatalogoPlex.imagem("res://assets/aparencias/uniformes/"+uniforme+"/chapeu.png")
 	for d in 8:
-		for y in range(0,29):
+		for y in range(0,14):
 			var esquerda := 48
 			var direita := -1
 			for x in 48:

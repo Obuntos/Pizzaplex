@@ -131,7 +131,7 @@ func _ready() -> void:
 	var lista_atores := VBoxContainer.new()
 	lista_atores.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rolagem_atores.add_child(lista_atores)
-	for item in [["humano", "Dummy homem"], ["humana", "Dummy mulher"], ["faxineiro", "Faxineiro"], ["entregador", "Entregador"], ["fantasia_coelho", "Fantasia de coelho"], ["fantasia_ovelha", "Fantasia de ovelha"], ["fantasia_raposa", "Fantasia de raposa"], ["coelho", "Animatrônico coelho"], ["ovelha", "Animatrônico ovelha"], ["raposa", "Animatrônico raposa"]]:
+	for item in [["humano", "Dummy homem"], ["humana", "Dummy mulher"], ["faxineiro", "Faxineiro"], ["entregador", "Entregador"], ["caixista", "Caixista"], ["seguranca", "Segurança"], ["fantasia_coelho", "Fantasia de coelho"], ["fantasia_ovelha", "Fantasia de ovelha"], ["fantasia_raposa", "Fantasia de raposa"], ["coelho", "Animatrônico coelho"], ["ovelha", "Animatrônico ovelha"], ["raposa", "Animatrônico raposa"]]:
 		botao(lista_atores, item[1], "spawn:" + item[0])
 	retrato.custom_minimum_size=Vector2(64,64)
 	retrato.expand_mode=TextureRect.EXPAND_IGNORE_SIZE

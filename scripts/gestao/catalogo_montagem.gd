@@ -17,6 +17,9 @@ static func robotico(id: String) -> bool:
 static func quebrado(id: String) -> bool:
 	return bool(modelo(id).get("quebrado",false))
 
+static func carcaca(id: String) -> bool:
+	return bool(modelo(id).get("carcaca",not quebrado(id)))
+
 static func config(id: String) -> Dictionary:
 	var m := modelo(id)
 	if m.is_empty(): return {}

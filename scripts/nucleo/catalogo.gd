@@ -24,7 +24,7 @@ static func textura_iluminada(caminho: String) -> Texture2D:
 	if not texturas.has(chave):
 		var canvas := CanvasTexture.new()
 		canvas.diffuse_texture = textura(caminho)
-		var mapa := caminho.replace("res://assets/personagens/", "res://assets/iluminacao/personagens/").replace("res://assets/modelos/","res://assets/iluminacao/modelos/").replace("res://assets/aparencias/","res://assets/iluminacao/aparencias/")
+		var mapa := caminho.replace("res://assets/deterioracao/","res://assets/iluminacao/deterioracao/").replace("res://assets/personagens/", "res://assets/iluminacao/personagens/").replace("res://assets/modelos/","res://assets/iluminacao/modelos/").replace("res://assets/aparencias/","res://assets/iluminacao/aparencias/")
 		if not ResourceLoader.exists(mapa) and caminho.begins_with("res://assets/aparencias/uniformes/"):
 			var relativo := caminho.trim_prefix("res://assets/aparencias/uniformes/")
 			mapa = "res://assets/iluminacao/personagens/"+relativo.substr(relativo.find("/")+1)

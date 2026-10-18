@@ -43,7 +43,7 @@ func planejar(ator: PersonagemPlex, preferida: int = -1) -> Dictionary:
 	return {"pose": destino, "caminho": melhor}
 
 func encaminhar(ator: PersonagemPlex, preferida: int = -1) -> bool:
-	if ator.aguardando_saida:
+	if ator.aguardando_saida or AnimatronicosPlex.pausado(ator):
 		return false
 	var plano := planejar(ator, preferida)
 	if plano.is_empty():
@@ -81,6 +81,8 @@ func retirar_sem_pose(ator: PersonagemPlex) -> bool:
 func atualizar() -> void:
 	var reservadas: Dictionary = {}
 	for ator in personagens:
+		var pausado: bool=ator.robo and AnimatronicosPlex.pausado(ator)
+		if pausado: ator.movimento.cancelar()
 		if ator.pose >= 0:
 			if not valida(ator.pose) or not adequada(planta.objetos.get(ator.pose,{}),ator) or reservadas.has(ator.pose):
 				ator.pose = -1
@@ -93,14 +95,14 @@ func atualizar() -> void:
 					if ator.celula == marca.celula:
 						ator.direcao = GradePlex.direcao_suporte(marca.rotacao)
 						ator.trabalho = "reservado_pecas" if marca.tipo=="pose_quebrado" else "apresentar"
-					elif ator.automatico:
+					elif ator.automatico and not pausado:
 						ator.trabalho = "ir_pose"
 						var caminho := rotas.caminho(ator.celula, marca.celula)
 						if not caminho.is_empty():
 							ator.andar(caminho)
 		if ator.pose < 0 and ator.trabalho == "apresentar":
 			ator.trabalho = ""
-		if ator.robo and ator.modelo != "endo" and ator.pose < 0 and not ator.ocupado() and planta.em(ator.celula).get("tipo", "") == "palco":
+		if ator.robo and ator.modelo != "endo" and ator.pose < 0 and not pausado and not ator.ocupado() and planta.em(ator.celula).get("tipo", "") == "palco":
 			retirar_sem_pose(ator)
 
 func adequada(item: Dictionary, ator: PersonagemPlex) -> bool:

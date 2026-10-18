@@ -42,7 +42,13 @@ func alvos(personagem: PersonagemPlex) -> Array:
 	return resultado
 
 func caixas(personagem: PersonagemPlex) -> Array:
-	return planta.objetos.values().filter(func(item): return item.has("parte_endo") and item.get("carregada_por",0)==0 and disponivel(item,personagem) and PilhasPlex.retiravel(planta,item.id) and planta.objetos.has(item.suporte_endo))
+	var resultado: Array = planta.objetos.values().filter(func(item): return item.has("parte_endo") and item.get("carregada_por",0)==0 and disponivel(item,personagem) and PilhasPlex.retiravel(planta,item.id) and planta.objetos.has(item.suporte_endo))
+	resultado.sort_custom(func(a,b):
+		var ativo_a: bool = not planta.objetos[a.suporte_endo].get("instaladas_endo",[]).is_empty()
+		var ativo_b: bool = not planta.objetos[b.suporte_endo].get("instaladas_endo",[]).is_empty()
+		if ativo_a!=ativo_b: return ativo_a
+		return int(a.suporte_endo)<int(b.suporte_endo) if a.suporte_endo!=b.suporte_endo else int(a.id)<int(b.id))
+	return resultado
 
 func buscar(personagem: PersonagemPlex, caixa: int, estacao: int = -1) -> bool:
 	if not EquipePlex.permite(personagem,"manutencao") or personagem.carga_item>=0 or not planta.objetos.has(caixa): return false
@@ -163,7 +169,7 @@ func atualizar_trabalho(personagem: PersonagemPlex, trabalho: Dictionary, delta:
 				estacao.endo = true
 				estacao.pecas = estacao.instaladas_endo.size()
 				if estacao.pecas==4:
-					estacao.montado = CatalogoMontagemPlex.quebrado(estacao.get("modelo_alvo",""))
+					estacao.montado = not CatalogoMontagemPlex.carcaca(estacao.get("modelo_alvo",""))
 					estacao.fase_montagem = "concluido" if estacao.montado else "fur"
 			bancada.caixa = false
 			bancada.erase("caixa_montagem")

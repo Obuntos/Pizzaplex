@@ -48,7 +48,9 @@ static func familiar(filho: PersonagemPlex, adulta: PersonagemPlex) -> void:
 
 static func completo(ator: PersonagemPlex) -> String:
 	garantir(ator)
-	if ator.robo: return ator.modelo.replace("_"," ").capitalize()+" · "+str(ator.identificador).pad_zeros(3)
+	if ator.robo:
+		var nome := str(ator.identidade.get("nome_robotico", "")).strip_edges()
+		return nome if not nome.is_empty() else ator.modelo.replace("_"," ").capitalize()+" · "+str(ator.identificador).pad_zeros(3)
 	return (str(ator.identidade.nome)+" "+str(ator.identidade.sobrenome)).strip_edges()
 
 static func curto(ator: PersonagemPlex) -> String:

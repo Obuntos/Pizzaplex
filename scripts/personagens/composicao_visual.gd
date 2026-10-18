@@ -9,7 +9,7 @@ func _init() -> void:
 
 func adicionar(sprite: Sprite2D, ordem: int) -> void:
 	if not is_instance_valid(sprite): return
-	sprite.visibility_layer = 0
+	if sprite.visibility_layer!=0: sprite.visibility_layer = 0
 	if not sprite.is_visible_in_tree() or sprite.texture==null: return
 	fontes.append({"sprite":sprite,"ordem":ordem,"indice":fontes.size()})
 
@@ -28,8 +28,11 @@ func atualizar(ator: PersonagemPlex) -> void:
 	adicionar(ator.personalizacao.camadas.frente,14)
 	adicionar(ator.personalizacao.camadas.chapeu,15)
 	adicionar(ator.manuseio.pernas,-1 if ator.manuseio.integrado else 0)
-	adicionar(ator.manuseio.objeto,4 if ator.manuseio.carga_na_frente else -1)
-	adicionar(ator.manuseio.maos,5 if ator.manuseio.carga_na_frente else -1)
+	var ordem_carga := (6 if ator.manuseio.carga_apoiada else 4) if ator.manuseio.carga_na_frente else -1
+	adicionar(ator.manuseio.objeto,ordem_carga)
+	adicionar(ator.manuseio.objeto_extra,ordem_carga)
+	var separados: bool = ManuseioPlex.definicoes.get(ator.modelo,{}).get(ator.manuseio.movimento,{}).get("bracos_separados",false)
+	adicionar(ator.manuseio.maos,5 if separados or ator.manuseio.carga_na_frente else -1)
 	adicionar(ator.carga,-1 if costas else 4)
 	adicionar(ator.postura.pernas,1)
 	fontes.sort_custom(func(a,b): return a.ordem<b.ordem if a.ordem!=b.ordem else a.indice<b.indice)
@@ -54,7 +57,7 @@ func atualizar(ator: PersonagemPlex) -> void:
 		copia.use_parent_material = origem.material==null
 		copia.modulate = origem.modulate
 		copia.self_modulate = origem.self_modulate
-		move_child(copia,get_child_count()-1)
+		if copia.get_index()!=fontes.find(f): move_child(copia,fontes.find(f))
 	for id in sprites.keys():
 		if not presentes.has(id):
 			sprites[id].queue_free()

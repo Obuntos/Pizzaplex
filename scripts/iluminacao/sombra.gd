@@ -5,7 +5,11 @@ var ator: PersonagemPlex
 var iluminacao: IluminacaoPlex
 var planos: Array[Sprite2D] = []
 var chave: String = ""
-var textura: ImageTexture
+var textura: Texture2D
+var espera := 1.0
+var melhor_luz := -1
+var energia := 0.0
+var revisao_luz := -1
 
 func configurar(personagem: PersonagemPlex, luzes: IluminacaoPlex, composicao: CenaPlex) -> void:
 	ator = personagem
@@ -26,7 +30,7 @@ func configurar(personagem: PersonagemPlex, luzes: IluminacaoPlex, composicao: C
 		planos.append(sprite)
 		add_child(sprite)
 
-func atualizar() -> void:
+func atualizar(delta: float = .1) -> void:
 	if not is_instance_valid(ator):
 		queue_free()
 		return
@@ -37,14 +41,23 @@ func atualizar() -> void:
 		return
 	var origem := ator.ponto_visual()
 	var ponto := GradePlex.projetar(Vector2(origem.x,origem.y))
-	for i in iluminacao.quantidade:
-		var p: Vector4 = iluminacao.posicoes[i]
-		if p.z <= origem.z + 25.0 or iluminacao.direcoes[i].z > 0.2:
-			continue
-		var atual := iluminacao.energia_recebida(i, Vector3(ponto.x, ponto.y * 2.0, origem.z + 20.0))
-		if atual > nota:
-			nota = atual
-			melhor = i
+	espera += delta
+	if espera>=.1 or revisao_luz!=iluminacao.revisao:
+		espera = 0.0
+		revisao_luz = iluminacao.revisao
+		for i in iluminacao.quantidade:
+			var p: Vector4 = iluminacao.posicoes[i]
+			if p.z <= origem.z + 25.0 or iluminacao.direcoes[i].z > 0.2:
+				continue
+			var atual := iluminacao.energia_recebida(i, Vector3(ponto.x, ponto.y * 2.0, origem.z + 20.0))
+			if atual > nota:
+				nota = atual
+				melhor = i
+		melhor_luz = melhor
+		energia = nota
+	else:
+		melhor = melhor_luz
+		nota = energia
 	visible = melhor >= 0 and nota > 0.015
 	if not visible:
 		return
@@ -58,7 +71,7 @@ func atualizar() -> void:
 	var fontes: Array = []
 	for f in ator.pintura.fontes:
 		var camada: Sprite2D = f.sprite
-		if camada in [ator.manuseio.objeto,ator.carga]: continue
+		if camada in [ator.manuseio.objeto,ator.manuseio.objeto_extra,ator.carga]: continue
 		var fonte: Texture2D = camada.texture
 		var regiao := Rect2(Vector2.ZERO,fonte.get_size())
 		if fonte is AtlasTexture:
@@ -67,16 +80,7 @@ func atualizar() -> void:
 		var relativo := ator.global_transform.affine_inverse()*camada.global_transform
 		var posicao := (relativo.origin+Vector2(0,origem.z))/ator.animacao.scale+pivo
 		fontes.append({"textura":fonte,"regiao":regiao,"posicao":posicao})
-	var quadro := str(fontes)
-	if quadro != chave and not fontes.is_empty():
-		chave = quadro
-		var imagem := Image.create_empty(int(d.width),int(d.height)+extra,false,Image.FORMAT_RGBA8)
-		for fonte in fontes:
-			var textura_fonte: Texture2D = fonte.textura
-			if textura_fonte is CanvasTexture: textura_fonte = textura_fonte.diffuse_texture
-			imagem.blend_rect(textura_fonte.get_image(),Rect2i(fonte.regiao),Vector2i(fonte.posicao.round()))
-		if textura == null or Vector2i(textura.get_size()) != imagem.get_size(): textura = ImageTexture.create_from_image(imagem)
-		else: textura.update(imagem)
+	if not fontes.is_empty(): textura = SilhuetasPlex.obter(fontes,Vector2i(int(d.width),int(d.height)+extra))
 
 	for sprite in planos:
 		sprite.texture = textura

@@ -16,6 +16,9 @@ var bloqueios: ImageTexture
 var salas: Dictionary = {}
 var mapa_bloqueios: Image
 var passagens: ImageTexture
+var revisao := 0
+var sujo := true
+var estrutura_anterior: int = -1
 
 func _init(p: PlantaPlex) -> void:
 	planta = p
@@ -26,7 +29,7 @@ func _init(p: PlantaPlex) -> void:
 	planta.alterada.connect(invalidar)
 
 func invalidar() -> void:
-	assinatura = ""
+	sujo = true
 
 func configurar(chao: ChaoPlex, composicao: CenaPlex) -> void:
 	var piso := ShaderMaterial.new()
@@ -87,8 +90,16 @@ func atualizar() -> void:
 	for item in planta.objetos.values():
 		if item.tipo in ["porta", "porta_dupla"]:
 			estados += str(item.id) + str(item.aberta)
-	if assinatura == "atual" and estados == portas_anteriores:
-		return
+	if not sujo and assinatura=="atual" and estados==portas_anteriores: return
+	var estrutura: Array = [GradePlex.visao]
+	for item in planta.objetos.values():
+		if item.tipo in ["parede","porta","porta_dupla","palco"] or item.tipo.begins_with("luz_"):
+			estrutura.append([item.id,item.tipo,item.celula,item.rotacao,item.get("aberta",false),item.get("ligada",true),item.get("energia",1.2),item.get("cor_luz","#fff0d5")])
+	var atual := hash(estrutura)
+	sujo = false
+	if estrutura_anterior==atual: return
+	estrutura_anterior = atual
+	revisao += 1
 	portas_anteriores = estados
 	assinatura = "atual"
 	posicoes.resize(LIMITE)

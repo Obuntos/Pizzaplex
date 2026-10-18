@@ -68,5 +68,65 @@
     "id": "dragao_variante",
     "nome": "Dragão",
     "grupo": "Variantes"
+  },
+  {
+    "id": "coelho",
+    "nome": "Coelho",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "coelho_quebrado",
+    "nome": "Coelho quebrado",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "coelho_travado",
+    "nome": "Coelho travado",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "ovelha",
+    "nome": "Ovelha",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "ovelha_quebrada",
+    "nome": "Ovelha quebrada",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "ovelha_travada",
+    "nome": "Ovelha travada",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "raposa",
+    "nome": "Raposa",
+    "grupo": "Animatrônicos"
+  },
+  {
+    "id": "raposa_quebrada",
+    "nome": "Raposa quebrada",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "raposa_travada",
+    "nome": "Raposa travada",
+    "grupo": "Variantes"
+  },
+  {
+    "id": "cervo_quebrado",
+    "nome": "Cervo oxidado quebrado",
+    "grupo": "Estruturas especiais"
+  },
+  {
+    "id": "hipopotamo_quebrado",
+    "nome": "Hipopótamo quebrado",
+    "grupo": "Estruturas especiais"
+  },
+  {
+    "id": "sol_fantoche",
+    "nome": "Sol fantoche",
+    "grupo": "Estruturas especiais"
   }
 ]

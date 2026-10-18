@@ -133,6 +133,7 @@ func escolher_mesa(a: PersonagemPlex, grupo: Dictionary) -> bool:
 
 func sentar(a: PersonagemPlex, grupo: Dictionary) -> bool:
 	if not jogo.planta.objetos.has(grupo.cadeira): return false
+	if a.assento==int(grupo.cadeira) and a.trabalho=="sentar_mesa" and not a.ocupado(): return true
 	if not aproximar(a,grupo.cadeira): return false
 	a.assento = grupo.cadeira
 	a.direcao = GradePlex.direcao_suporte(jogo.planta.objetos[grupo.cadeira].rotacao)
@@ -173,7 +174,7 @@ func adulta(a: PersonagemPlex, grupo: Dictionary) -> void:
 
 func ponto_show(a: PersonagemPlex) -> Dictionary:
 	for robo in jogo.personagens:
-		if not robo.robo or robo.trabalho != "apresentar" or robo.pose < 0: continue
+		if not robo.robo or robo.trabalho != "apresentar" or robo.pose < 0 or bool(robo.robotica.get("avariado",false)) or AnimatronicosPlex.pausado(robo): continue
 		var marca: Dictionary = jogo.planta.objetos.get(robo.pose,{})
 		if marca.is_empty(): continue
 		var frente := GradePlex.frente(marca.rotacao)
@@ -212,9 +213,16 @@ func crianca(a: PersonagemPlex, grupo: Dictionary, delta: float) -> void:
 				return
 			var robo: PersonagemPlex = null
 			for candidato in jogo.personagens:
-				if candidato.robo and candidato.pose == int(a.visita.pose) and candidato.trabalho == "apresentar" and not candidato.ocupado():
+				if candidato.robo and candidato.pose == int(a.visita.pose) and candidato.trabalho == "apresentar" and not candidato.ocupado() and not bool(candidato.robotica.get("avariado",false)) and not AnimatronicosPlex.pausado(candidato):
 					robo = candidato
 					break
+			if not is_instance_valid(robo):
+				var palco: int=jogo.animatronicos.palcos.da_pose(int(a.visita.pose))
+				for candidato in jogo.personagens:
+					if candidato.robo and candidato.trabalho=="apresentar" and not candidato.ocupado() and not bool(candidato.robotica.get("avariado",false)) and not AnimatronicosPlex.pausado(candidato) and palco>=0 and jogo.animatronicos.palcos.da_pose(candidato.pose)==palco:
+						robo=candidato
+						a.visita.pose=candidato.pose
+						break
 			if not is_instance_valid(robo):
 				a.visita.erase("show")
 				a.trabalho = "visitar"
@@ -223,8 +231,8 @@ func crianca(a: PersonagemPlex, grupo: Dictionary, delta: float) -> void:
 				a.trabalho = "assistir"
 				jogo.tarefas.orientar(a,robo.local)
 				a.animacao.expressao = "feliz"
-				a.visita.tempo_show = float(a.visita.get("tempo_show",0.0))+delta
-				if a.visita.tempo_show >= 12: a.visita.assistiu = true
+				if robo.robotica.get("estado","")=="ligado": a.visita.tempo_show = float(a.visita.get("tempo_show",0.0))+delta
+				if float(a.visita.get("tempo_show",0.0)) >= 12: a.visita.assistiu = true
 		"aguardar":
 			if a.visita.get("assistiu",false) or not ponto_show(a).is_empty():
 				a.visita.etapa = "show"
@@ -246,20 +254,15 @@ func sair(grupo: Dictionary) -> void:
 		a.visita.erase("show")
 
 func pagamento(grupo: Dictionary) -> void:
-	if grupo.pago: return
-	var pedido: Dictionary = jogo.servicos.pedido_por_id(grupo.pedido)
-	if pedido.get("estado","") != "consumido" or not jogo.planta.objetos.has(grupo.mesa): return
-	var id: int = jogo.servicos.inventario.criar("dinheiro",jogo.planta.objetos[grupo.mesa].celula)
-	jogo.planta.objetos[id].valor = 25
-	jogo.planta.objetos[id].familia = grupo.id
-	if ApoiosPlex.fixar(jogo.planta,id,grupo.mesa,4): grupo.pago = true
-	else: jogo.planta.remover(id)
+	if grupo.get("pago",false): return
+	var pedido: Dictionary=jogo.servicos.pedido_por_id(grupo.pedido)
+	if pedido.get("estado","")=="consumido": jogo.atendimento.solicitar(grupo)
 
 func remover_grupo(grupo: Dictionary, pagar: bool = false) -> void:
 	var pedido: Dictionary = jogo.servicos.pedido_por_id(grupo.pedido)
 	if not pedido.is_empty() and pedido.estado not in ["consumido","cancelado"]:
 		for id in jogo.servicos.trabalhos.keys():
-			if jogo.servicos.trabalhos[id].pedido == grupo.pedido:
+			if grupo.pedido in jogo.servicos.trabalhos[id].get("pedidos",[jogo.servicos.trabalhos[id].pedido]):
 				var funcionario := ator(int(id))
 				if is_instance_valid(funcionario): jogo.servicos.cancelar(funcionario)
 		if jogo.planta.objetos.has(pedido.pizza): jogo.planta.remover(pedido.pizza)
@@ -267,6 +270,8 @@ func remover_grupo(grupo: Dictionary, pagar: bool = false) -> void:
 	if pagar:
 		pagamento(grupo)
 		visitas_concluidas += 1
+	var dinheiro := int(grupo.get("dinheiro_pagamento",-1))
+	if jogo.planta.objetos.has(dinheiro): jogo.planta.remover(dinheiro)
 	for id in [grupo.adulta]+grupo.criancas:
 		var a := ator(int(id))
 		if is_instance_valid(a): jogo.despawn(a)
@@ -305,13 +310,14 @@ func atualizar(delta: float) -> void:
 		if grupo.estado == "saindo":
 			atualizar_saida(grupo)
 			continue
-		adulta(mae,grupo)
+		if grupo.estado=="visita": adulta(mae,grupo)
+		elif grupo.estado=="pagamento": jogo.atendimento.solicitar(grupo)
 		for filho_id in grupo.criancas:
 			var filho := ator(int(filho_id))
 			if is_instance_valid(filho): crianca(filho,grupo,tempo)
 		var pedido: Dictionary = jogo.servicos.pedido_por_id(grupo.pedido)
 		var filhos_prontos: bool = grupo.criancas.all(func(f): return is_instance_valid(ator(f)) and (ator(f).visita.get("assistiu",false) or ator(f).visita.get("etapa","")=="aguardar"))
-		if (pedido.get("estado","") == "consumido" and grupo.pago and filhos_prontos) or grupo.tempo > 600: sair(grupo)
+		if (pedido.get("estado","") == "consumido" and grupo.pago and filhos_prontos) or (grupo.tempo>600 and pedido.get("estado","") not in ["consumido","servido"]): sair(grupo)
 
 func gravar() -> Dictionary:
 	return {"versao":2,"grupos":grupos.values(),"proximo_grupo":proximo_grupo,"visitas_concluidas":visitas_concluidas}

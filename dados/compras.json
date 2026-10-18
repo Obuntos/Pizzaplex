@@ -38,7 +38,7 @@
     "qualidade": "media",
     "durabilidade": 100,
     "nivel": 1,
-    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
     "cor": "#c7ab71"
   },
   "pecas_boa": {
@@ -50,7 +50,7 @@
     "qualidade": "boa",
     "durabilidade": 160,
     "nivel": 2,
-    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
     "cor": "#97b9b2"
   },
   "pecas_otima": {
@@ -62,7 +62,7 @@
     "qualidade": "otima",
     "durabilidade": 240,
     "nivel": 3,
-    "descricao": "Peças de reposição para manutenção. Para montar um endo por componentes, abra a aba Endo.",
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
     "cor": "#b3a6c5"
   }
 }

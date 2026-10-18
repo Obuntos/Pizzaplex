@@ -20,10 +20,7 @@ static func aceita(planta: PlantaPlex, pai: int, slot: int) -> bool:
 
 static func retiravel(planta: PlantaPlex, id: int) -> bool:
 	if not planta.objetos.has(id): return false
-	var caixa: Dictionary = planta.objetos[id]
-	var pai: int = caixa.get("sobre",-1)
-	if planta.objetos.get(pai,{}).get("tipo","") != "ponto_recebimento": return true
-	return ApoiosPlex.filhos(planta,pai).all(func(c): return int(c.get("slot",-1)) <= int(caixa.get("slot",-1)))
+	return int(planta.objetos[id].get("carregada_por",0))==0
 
 static func compactar(planta: PlantaPlex, pai: int) -> void:
 	if planta.objetos.get(pai,{}).get("tipo","") != "ponto_recebimento": return

@@ -18,6 +18,8 @@ static func montar(jogo: Node) -> bool:
 	var tecnico: PersonagemPlex = jogo.spawn("humano", Vector2i(19, 9))
 	EquipePlex.definir(tecnico,"manutencao",[])
 	jogo.spawn("faxineiro", Vector2i(26, 3))
+	jogo.spawn("caixista",Vector2i(3,15))
+	jogo.spawn("seguranca",Vector2i(8,16))
 	EquipePlex.definir(funcionario,"cozinha",["estoque"])
 	planta.colocar("balcao",Vector2i(3,20),0)
 	planta.colocar("terminal_ibm",Vector2i(3,20),0)
@@ -33,5 +35,5 @@ static func montar(jogo: Node) -> bool:
 	jogo.painel.paredes.text = "Paredes: 2 / 4 · Ctrl"
 	planta.alterada.emit()
 	jogo.enquadrar()
-	jogo.painel.mensagem("Restaurante montado: nove áreas configuradas, quatro funcionários e palco. Terminal e recebimento na recepção. Saldo de demonstração: $ 300. Clique direito no terminal. Na aba Endo, encomende os quatro componentes para o suporte vazio.")
+	jogo.painel.mensagem("Restaurante montado: nove áreas configuradas, seis funcionários e palco. Terminal e recebimento na recepção. Saldo de demonstração: $ 300. Clique direito no terminal. Na aba Animatrônicos, encomende um personagem para o suporte vazio. A Oficina vende peças para os reparos.")
 	return true

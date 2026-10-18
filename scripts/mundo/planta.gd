@@ -9,9 +9,29 @@ var proximo_id: int = 1
 var funcoes_salas: Dictionary = {}
 var reservas_abertura: Dictionary = {}
 var cabines_por_celula: Dictionary = {}
+var revisao := 0
+var indice_filhos: Dictionary = {}
+var indice_sujo := true
 
 func _init() -> void:
+	alterada.connect(invalidar_indices)
 	alterada.connect(atualizar_reservas)
+
+func invalidar_indices() -> void:
+	revisao += 1
+	indice_sujo = true
+
+func filhos_de(pai: int, slot: int = -1) -> Array:
+	if indice_sujo:
+		indice_filhos.clear()
+		for item in objetos.values():
+			var base: int = item.get("sobre",-1)
+			if base<0 or item.get("carregada_por",0)>0: continue
+			if not indice_filhos.has(base): indice_filhos[base] = []
+			indice_filhos[base].append(item)
+		indice_sujo = false
+	var lista: Array = indice_filhos.get(pai,[])
+	return lista.duplicate() if slot<0 else lista.filter(func(item): return int(item.get("slot",-1))==slot)
 
 func atualizar_reservas() -> void:
 	cabines_por_celula.clear()
@@ -154,6 +174,7 @@ func ocupa(objeto: Dictionary) -> bool:
 	return objeto.tipo != "divisoria_porta" and not sobreposto(objeto.tipo) and not objeto.get("solto", false) and objeto.get("sobre", -1) < 0 and objeto.get("carregada_por", 0) == 0
 
 func reindexar() -> void:
+	indice_sujo = true
 	for objeto in objetos.values():
 		if objeto.tipo == "terminal_ibm" and int(objeto.get("slot",-1)) == 3: objeto.slot = 0
 		if objeto.tipo == "ponto_recebimento": PilhasPlex.compactar(self,objeto.id)

@@ -33,6 +33,9 @@ func encontrar(tipo: String, ambientes: Array = []) -> Array:
 	return salas.equipamentos(tipo, ambientes).filter(func(id): return livre(id))
 
 func alvos_passo(passo: Dictionary) -> Array[Vector2i]:
+	if passo.acao=="reparar":
+		var robo:=ReparosPlex.alvo(self,passo)
+		return ReparosPlex.pontos(self,robo) if is_instance_valid(robo) else []
 	var objeto: Dictionary = planta.objetos.get(passo.alvo,{})
 	if passo.acao == "devolver" and planta.objetos.has(int(objeto.get("origem_sobre", -1))): return planta.interacoes(int(objeto.origem_sobre))
 	if objeto.get("tipo","") in ["pia","bancada_preparo"]:
@@ -46,6 +49,9 @@ func alvos_passo(passo: Dictionary) -> Array[Vector2i]:
 	return planta.interacoes(passo.alvo)
 
 func ponto_trabalho(passo: Dictionary) -> Vector2:
+	if passo.acao=="reparar":
+		var robo:=ReparosPlex.alvo(self,passo)
+		return robo.local if is_instance_valid(robo) else Vector2.ZERO
 	var raiz := ApoiosPlex.raiz(planta,passo.alvo)
 	if passo.acao == "devolver":
 		var origem: int = planta.objetos.get(passo.alvo, {}).get("origem_sobre", -1)
@@ -84,6 +90,10 @@ func iniciar(ator: PersonagemPlex, tipo: String, passos: Array, reservas: Array,
 		origem = rota[-1]
 	for id in reservas:
 		if not livre(id): return false
+	if ator.trabalho=="circular_salao":
+		ator.movimento.cancelar()
+		ator.trabalho=""
+	ator.visita.passeio_espera=2.0
 	for id in reservas: planta.objetos[id].reserva = ator.identificador
 	trabalhos[ator.identificador] = {"tipo":tipo,"passos":passos,"indice":0,"tempo":0.0,"reservas":reservas,"pedido":pedido,"iniciado":false}
 	aviso.emit(tipo)
@@ -148,6 +158,7 @@ func utensilios(ator: PersonagemPlex) -> bool:
 	return false
 
 func cozinhar(ator: PersonagemPlex) -> bool:
+	if PreparoDuploPlex.iniciar(self,ator): return true
 	for pedido in pedidos:
 		if pedido.estado != "aguardando": continue
 		for ambiente in salas.ambientes:
@@ -158,9 +169,11 @@ func cozinhar(ator: PersonagemPlex) -> bool:
 				for bancada in salas.objetos(ambiente,"bancada_preparo"):
 					if not livre(bancada) or ApoiosPlex.livre(planta,bancada,"pizza") < 0: continue
 					for forno in salas.objetos(ambiente,"forno"):
-						if not livre(forno) or planta.objetos[forno].get("tempo_assar",0.0)>0 or ApoiosPlex.livre(planta,forno,"pizza") < 0: continue
-						var passos := [etapa(geladeira,"ingrediente",.8),etapa(bancada,"preparar",3.0,{"slot":ApoiosPlex.livre(planta,bancada,"pizza")}),etapa(bancada,"pegar_pizza"),etapa(forno,"assar",1.0)]
-						if iniciar(ator,"Preparar pedido",passos,[geladeira,bancada,forno],pedido.id):
+						var slot_forno := FornoPlex.vaga(planta,forno)
+						if slot_forno<0: continue
+						var passos := [etapa(geladeira,"ingrediente",.8),etapa(bancada,"preparar",3.0,{"slot":ApoiosPlex.livre(planta,bancada,"pizza")}),etapa(bancada,"pegar_pizza"),etapa(forno,"assar",1.0,{"slot":slot_forno})]
+						if iniciar(ator,"Preparar pedido",passos,[geladeira,bancada],pedido.id):
+							FornoPlex.reservar(planta.objetos[forno],slot_forno,pedido.id)
 							pedido.estado = "preparando"
 							return true
 	return false
@@ -187,6 +200,7 @@ func guardar_pratos(ator: PersonagemPlex) -> bool:
 	return false
 
 func servir(ator: PersonagemPlex) -> bool:
+	if EntregaDuplaPlex.iniciar(self,ator): return true
 	for pedido in pedidos:
 		if pedido.estado not in ["assando","pronta"] or not livre(pedido.mesa) or not planta.objetos.has(pedido.pizza): continue
 		var forno: int = planta.objetos[pedido.pizza].get("sobre", -1)
@@ -207,17 +221,7 @@ func servir(ator: PersonagemPlex) -> bool:
 				pedido.estado = "entregando"
 				return true
 			continue
-		if not livre(forno) or planta.objetos[forno].tipo != "forno": continue
-		var destino := destino_mesa(pedido.mesa, pedido)
-		if destino.is_empty(): continue
-		for estante in estantes():
-			for prato in ApoiosPlex.filhos(planta, estante):
-				if prato.tipo != "prato" or prato.get("sujo", false) or not livre(prato.id) or not ApoiosPlex.filhos(planta, prato.id).is_empty(): continue
-				var passos := [etapa(prato.id,"pegar"),etapa(forno,"aguardar_forno",0),etapa(forno,"emplatar",1.1,{"prato":prato.id}),etapa(pedido.mesa,"servir",.8,destino)]
-				if iniciar(ator,"Servir refeição no prato",passos,[estante,prato.id,forno,pedido.mesa,pedido.pizza],pedido.id):
-					pedido.estado = "entregando"
-					pedido.prato = prato.id
-					return true
+
 	return false
 
 func limpar(ator: PersonagemPlex) -> bool:
@@ -277,10 +281,13 @@ func descansar(ator: PersonagemPlex) -> bool:
 
 func cancelar(ator: PersonagemPlex) -> void:
 	var trabalho: Dictionary = trabalhos.get(ator.identificador,{})
+	ReparosPlex.liberar(self,ator,trabalho)
 	ArmariosPlex.fechar_reservas(planta, trabalho)
 	ator.assento = -1
-	var pedido := pedido_por_id(trabalho.get("pedido",-1))
-	if not pedido.is_empty():
+	for pedido_id in trabalho.get("pedidos",[trabalho.get("pedido",-1)]):
+		var pedido := pedido_por_id(int(pedido_id))
+		FornoPlex.liberar(planta,int(pedido_id))
+		if pedido.is_empty(): continue
 		if pedido.estado == "preparando":
 			if pedido.get("ingrediente_retirado", false) and planta.objetos.has(pedido.get("geladeira", -1)):
 				SuprimentosPlex.devolver(planta.objetos[pedido.geladeira])
@@ -289,8 +296,7 @@ func cancelar(ator: PersonagemPlex) -> void:
 			pedido.pizza = -1
 			pedido.estado = "aguardando"
 		elif pedido.estado == "entregando":
-			var forno: int = planta.objetos.get(pedido.pizza, {}).get("sobre", -1)
-			pedido.estado = "assando" if planta.objetos.get(forno, {}).get("tempo_assar", 0.0) > 0.0 else "pronta"
+			pedido.estado = "assando" if FornoPlex.tempo(planta,pedido)>0 else "pronta"
 	for id in trabalho.get("reservas",[]):
 		if planta.objetos.has(id) and planta.objetos[id].reserva == ator.identificador: planta.objetos[id].reserva = 0
 	for item in planta.objetos.values():
@@ -302,6 +308,7 @@ func cancelar(ator: PersonagemPlex) -> void:
 
 func concluir(ator: PersonagemPlex) -> void:
 	var trabalho: Dictionary = trabalhos[ator.identificador]
+	ReparosPlex.liberar(self,ator,trabalho)
 	ArmariosPlex.fechar_reservas(planta, trabalho)
 	ator.assento = -1
 	for id in trabalho.reservas:
@@ -313,8 +320,9 @@ func concluir(ator: PersonagemPlex) -> void:
 func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> bool:
 	var alvo: int = passo.alvo
 	var objeto: Dictionary = planta.objetos.get(alvo,{})
-	var pedido := pedido_por_id(trabalho.pedido)
+	var pedido := pedido_por_id(int(passo.dados.get("pedido",trabalho.pedido)))
 	match passo.acao:
+		"reparar": return ReparosPlex.concluir(self,ator,passo)
 		"pegar": return inventario.pegar(ator,alvo)
 		"devolver": return inventario.devolver(ator)
 		"apoiar": return inventario.apoiar(ator,alvo,int(passo.dados.slot))
@@ -357,19 +365,22 @@ func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> 
 			if pedido.is_empty() or not inventario.pegar(ator,pedido.pizza): return false
 			if objeto.tipo == "forno": objeto.estado = "fechado"
 		"emplatar":
-			if ator.carga_item != int(passo.dados.prato) or not planta.objetos.has(pedido.pizza): return false
-			var slot := ApoiosPlex.livre(planta, ator.carga_item, "pizza")
-			if slot < 0 or not ApoiosPlex.fixar(planta, pedido.pizza, ator.carga_item, slot): return false
-			objeto.estado = "fechado"
+			if not InventarioPlex.tem(ator,int(passo.dados.prato)) or not planta.objetos.has(pedido.pizza): return false
+			var prato := int(passo.dados.prato)
+			var slot := ApoiosPlex.livre(planta, prato, "pizza")
+			if slot < 0 or not ApoiosPlex.fixar(planta, pedido.pizza, prato, slot): return false
+			FornoPlex.fechar(planta,objeto)
 		"assar":
-			var slot := ApoiosPlex.livre(planta,alvo,"pizza")
-			if not inventario.apoiar(ator,alvo,slot): return false
-			objeto.tempo_assar = 6.0
+			var slot := int(passo.dados.get("slot",FornoPlex.vaga(planta,alvo)))
+			if not inventario.apoiar_item(ator,pedido.pizza,alvo,slot): return false
+			planta.objetos[pedido.pizza].tempo_assar = FornoPlex.DURACAO
+			FornoPlex.liberar(planta,pedido.id)
+			objeto.tempo_assar = maxf(FornoPlex.DURACAO,float(objeto.get("tempo_assar",0.0)))
 			objeto.pedido_forno = pedido.id
 			objeto.estado = "funcionando"
 			pedido.estado = "assando"
 		"servir":
-			if not inventario.apoiar(ator,int(passo.dados.pai),int(passo.dados.slot)): return false
+			if not inventario.apoiar_item(ator,int(passo.dados.get("prato",ator.carga_item)),int(passo.dados.pai),int(passo.dados.slot)): return false
 			pedido.estado = "entregue"
 			pedido.tempo = 10.0
 			entregas += 1
@@ -400,6 +411,9 @@ func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> 
 	return true
 
 func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float) -> void:
+	if trabalho.indice<trabalho.passos.size() and not ReparosPlex.valido(self,ator,trabalho):
+		cancelar(ator)
+		return
 	if trabalho.indice >= trabalho.passos.size():
 		concluir(ator)
 		return
@@ -429,7 +443,7 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 			cancelar(ator)
 		else: ator.andar(rota)
 		return
-	if passo.acao in ["aguardar_forno", "emplatar"] and planta.objetos[passo.alvo].get("tempo_assar", 0.0) > 0.0:
+	if passo.acao in ["aguardar_forno", "emplatar"] and FornoPlex.tempo(planta,pedido_por_id(int(passo.dados.get("pedido",trabalho.pedido))))>0.0:
 		montagem.orientar(ator, ponto_trabalho(passo))
 		ator.trabalho = "aguardar_forno"
 		ator.progresso_acao = 0.0
@@ -439,10 +453,10 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 		trabalho.tempo = 0.0
 		ator.trabalho = ""
 		return
-	if passo.acao in ["limpar","lavar","preparar"] and trabalho.get("acomodado",-1)!=trabalho.indice:
+	if passo.acao in ["limpar","lavar","preparar","reparar"] and trabalho.get("acomodado",-1)!=trabalho.indice:
 		trabalho.acomodado = trabalho.indice
 		var destino := ponto_trabalho(passo)
-		var ponto := PosicaoTrabalhoPlex.aproximacao(ator, planta, destino, .6 if passo.acao=="preparar" else .42 if passo.acao=="lavar" else .28)
+		var ponto := PosicaoTrabalhoPlex.aproximacao(ator, planta, destino, .25 if passo.acao=="reparar" else .6 if passo.acao=="preparar" else .42 if passo.acao=="lavar" else .28)
 		ator.movimento.aproximar(ator,ponto)
 		return
 	if passo.alvo >= 0:
@@ -457,6 +471,7 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 			planta.alterada.emit()
 	if passo.acao == "depositar": ator.trabalho = "usar_caixa"
 	RotinasPlex.preparar(self, ator, passo)
+	if passo.acao=="reparar": ReparosPlex.preparar(self,ator,passo)
 	trabalho.tempo += delta
 	ator.progresso_acao = fposmod(trabalho.tempo/2.5,1.0)
 	if trabalho.tempo >= passo.duracao:
@@ -471,14 +486,7 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 		ator.trabalho = ""
 
 func atualizar_pedidos(delta: float) -> void:
-	for objeto in planta.objetos.values():
-		if objeto.tipo == "forno" and objeto.get("tempo_assar",0.0) > 0:
-			objeto.tempo_assar = maxf(0,objeto.tempo_assar-delta)
-			if objeto.tempo_assar <= 0:
-				objeto.estado = "fechado"
-				var pedido := pedido_por_id(objeto.get("pedido_forno",-1))
-				if not pedido.is_empty() and pedido.estado == "assando": pedido.estado = "pronta"
-				planta.alterada.emit()
+	FornoPlex.atualizar(self,delta)
 	for pedido in pedidos:
 		if not planta.objetos.has(pedido.mesa):
 			pedido.estado = "cancelado"
@@ -507,23 +515,28 @@ func atualizar(delta: float) -> void:
 	atualizar_pedidos(delta)
 	espera += delta
 	for ator in personagens:
-		if ator.robo: continue
+		if ator.robo or (ator.cargo=="funcionario" and ator.funcao in ["caixa","seguranca"]): continue
 		RotinasPlex.atualizar(ator, delta)
 		if trabalhos.has(ator.identificador):
 			ator.energia = maxf(0,ator.energia-delta*.15)
 			atualizar_trabalho(ator,trabalhos[ator.identificador],delta)
-		elif espera >= .5 and ator.cargo == "funcionario" and ator.automatico and not ator.ocupado() and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
+		elif espera >= .5 and ator.cargo == "funcionario" and ator.automatico and (not ator.ocupado() or ator.trabalho=="circular_salao") and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
 			if ator.carregando: continue
-			if EquipePlex.permite(ator,"manutencao") and ator.funcao in ["geral","manutencao"] and not montagem.alvos(ator).is_empty() and not montagem.caixas(ator).is_empty(): continue
+			if EquipePlex.permite(ator,"manutencao") and ator.funcao in ["geral","manutencao"] and not montagem.alvos(ator).is_empty() and not montagem.caixas(ator).is_empty():
+				ReparosPlex.iniciar(self,ator)
+				continue
 			if ator.carga_item >= 0:
 				if DevolucaoPlex.guardar_carga(self, ator): continue
 				inventario.devolver(ator)
 			if RotinasPlex.prioritaria(self, ator) or descansar(ator) or atribuir_funcao(ator) or RotinasPlex.entre_tarefas(self, ator): continue
+			PasseioAtendimentoPlex.iniciar(self,ator,espera)
 	if espera >= .5: espera = 0
 
 func atribuir_funcao(ator: PersonagemPlex) -> bool:
 	for funcao in EquipePlex.prioridades(ator):
 		match str(funcao):
+			"manutencao":
+				if ReparosPlex.iniciar(self,ator): return true
 			"cozinha":
 				if cozinhar(ator): return true
 			"atendimento":
@@ -562,10 +575,11 @@ func restaurar(dados: Dictionary) -> void:
 		var trabalho: Dictionary = salvo.trabalho.duplicate(true)
 		trabalho.indice = int(trabalho.indice)
 		trabalho.pedido = int(trabalho.get("pedido", -1))
+		if trabalho.has("pedidos"): trabalho.pedidos = trabalho.pedidos.map(func(id): return int(id))
 		trabalho.reservas = trabalho.reservas.map(func(id): return int(id))
 		for passo in trabalho.passos:
 			passo.alvo = int(passo.alvo)
-			for campo in ["prato", "pai", "slot", "lixeira"]:
+			for campo in ["prato", "pai", "slot", "lixeira", "pedido", "robo", "caixa"]:
 				if passo.dados.has(campo): passo.dados[campo] = int(passo.dados[campo])
 		if int(dados.get("versao",0)) < 3 and (trabalho.tipo in ["Lavar prato","Recolher e lavar prato","Arrumar lugar na mesa","Entregar pedido","Separar pratos"] or trabalho.passos.any(func(p): return p.acao=="limpar" and planta.objetos.get(p.alvo,{}).get("tipo","")=="restos_mesa")):
 			for ator in personagens:
@@ -579,3 +593,11 @@ func restaurar(dados: Dictionary) -> void:
 		trabalhos[ator_id] = trabalho
 		for id in trabalho.reservas:
 			if planta.objetos.has(int(id)): planta.objetos[int(id)].reserva = ator_id
+
+	for a in personagens:
+		if a.robo: a.robotica.reparo_por=0
+	for id in trabalhos:
+		var trabalho: Dictionary=trabalhos[id]
+		if trabalho.tipo!="Reparar animatrônico": continue
+		var robo:=ReparosPlex.alvo(self,trabalho.passos[-1])
+		if is_instance_valid(robo): robo.robotica.reparo_por=int(id)

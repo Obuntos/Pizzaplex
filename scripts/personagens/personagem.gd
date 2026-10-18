@@ -27,12 +27,13 @@ var alvo_carga := Vector3.ZERO
 var em_degraus: bool = false
 var aguardando_saida: bool = false
 var carga_item: int = -1
+var carga_extra: Array[int] = []
 var energia: float = 100.0
 var cargo: String = "funcionario"
 var funcao: String = "geral"
 var funcoes_secundarias: Array = []
 var caixa_tipo: String = "caixa"
-var caixa_qualidade: String = "media"
+var caixa_qualidade: String = "boa"
 var caixa_durabilidade: int = 100
 var cabelo: String = "automatico"
 var uniforme: String = "automatico"
@@ -40,6 +41,7 @@ var personalizacao := AparenciaPlex.new()
 var familia: int = -1
 var responsavel: int = -1
 var visita: Dictionary = {}
+var robotica: Dictionary = {}
 var planta_visual: PlantaPlex
 var manuseio := ManuseioPlex.new()
 var necessidades: Dictionary = {"banheiro":100.0,"higiene":100.0,"lazer":100.0,"turno":false}
@@ -107,27 +109,36 @@ func atualizar(delta: float, planta: PlantaPlex, rotas: RotasPlex, personagens: 
 	atualizar_visual(distancia > 0.0)
 
 func atualizar_visual(andando: bool) -> void:
+	if trabalho=="usar_caixa": progresso_acao=fposmod(relogio/1.6,1.0)
 	var ponto := ponto_visual()
 	position = GradePlex.projetar(Vector2(ponto.x, ponto.y)) + Vector2(0.0, 0.01)
 	visual.position.y = -ponto.z
 	var acao: String = "parado"
-	if trabalho in ["montar", "colocar"]:
-		acao = trabalho
-	elif trabalho in ["preparar", "lavar"] and not ocupado():
+	var tempo_visual:=relogio
+	animacao.desgaste=float(robotica.get("desgaste",0.0))
+	if trabalho in ["montar", "colocar", "reparar"]:
+		acao = "montar" if trabalho=="reparar" else trabalho
+	elif trabalho in ["preparar", "lavar", "usar_caixa"] and not ocupado():
 		acao = "parado"
 	elif trabalho in ["jogar", "assistir"] and modelo == "crianca" and not ocupado():
 		acao = "parado" if trabalho == "assistir" and visita.get("assistiu",false) else trabalho
 	elif trabalho == "sentar_mesa" and assento >= 0 and not ocupado():
 		acao = "sentar"
-	elif trabalho == "apresentar" and not ocupado():
-		acao = "cantar"
-	elif andando:
+	elif andando or (robo and ocupado()):
 		acao = "carregar" if carregando else "andar"
+	elif robo and pronto_para_destino() and not ocupado():
+		var estado:=str(robotica.get("estado","desligado"))
+		acao=("cantar" if trabalho=="apresentar" else "parado") if estado=="ligado" else "ativando" if estado in ["ativando","desligando"] else "desligado"
+		tempo_visual=float(robotica.get("tempo_estado",0.0))
+		if estado=="desligando": tempo_visual=(1.0-clampf(tempo_visual/1.6,0.0,1.0))*AnimatronicosPlex.duracao_partida(self)
+		if not ClipesPlex.possui(modelo,acao):
+			acao="parado"
+			if estado!="ligado": tempo_visual=0.0
 	if CatalogoMontagemPlex.quebrado(modelo): acao="andar" if andando and ClipesPlex.possui(modelo,"andar") else "parado"
 	if em_degraus:
 		animacao.atualizar_escada(movimento.escala, GradePlex.direcao_visual(direcao), relogio)
 	else:
-		animacao.atualizar(acao, GradePlex.direcao_visual(direcao), fase, relogio, pecas, progresso_acao)
+		animacao.atualizar(acao, GradePlex.direcao_visual(direcao), fase, tempo_visual, pecas, progresso_acao)
 	carga.visible = (carregando or carga_item>=0) and not em_degraus and trabalho == "colocar" and animacao.definicao.layered
 	carga.texture = CatalogoPlex.sprite(caixa_tipo, GradePlex.rotacao_visual(0))
 	if carga.visible:
