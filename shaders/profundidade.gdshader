@@ -9,6 +9,9 @@ uniform vec2 tamanho;
 uniform float plano;
 uniform float inicio_cabeca = 40.0;
 uniform bool em_escada = false;
+uniform bool apoiar_degraus = false;
+uniform bool apoiar_solas = false;
+uniform float altura_apoio = 0.0;
 uniform float raio = 3.5;
 uniform vec4 pernas[6];
 uniform bool normal_automatica=false;
@@ -53,6 +56,17 @@ void fragment() {
 					distancia = ponto.z + ponto.y - mundo.y;
 				}
 			}
+			vec4 pe = pernas[perna * 3 + 2];
+			vec2 sola = mundo - pe.xy;
+			if (apoiar_degraus && abs(sola.x) <= raio + 1.0 && sola.y >= -raio && sola.y <= raio) {
+				distancia = max(distancia, mundo.y * 2.0 + pe.w * 3.0 + 0.15);
+			}
+		}
+	}
+	if (apoiar_solas) {
+		float altura_pixel = (distancia - mundo.y * 2.0) / 3.0;
+		if (altura_pixel >= altura_apoio - 5.0 && altura_pixel <= altura_apoio + 3.0) {
+			distancia = max(distancia, mundo.y * 2.0 + altura_apoio * 3.0 + 0.15);
 		}
 	}
 	vec2 uv = (mundo - origem) / tamanho;

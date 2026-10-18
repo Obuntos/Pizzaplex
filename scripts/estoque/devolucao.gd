@@ -2,6 +2,7 @@ class_name DevolucaoPlex
 extends RefCounted
 
 static func tipos(tipo: String) -> Array:
+	if tipo.begins_with("caixa_pecas_"): return ["armario_ferramentas"]
 	if tipo in ["vassoura", "balde"]: return ["armario_limpeza"]
 	if tipo in ["caixa_ferramentas", "pecas_manutencao"]: return ["armario_ferramentas"]
 	if tipo in ["prato", "copo_bebida", "bandeja"]: return ["armario_utensilios", "estante"]

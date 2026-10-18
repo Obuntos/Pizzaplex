@@ -201,6 +201,9 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 	material_atual.set_shader_parameter("quadro_nativo",Vector2(personagem.animacao.definicao.width,personagem.animacao.definicao.height))
 	var ponto_visual := personagem.ponto_visual()
 	material_atual.set_shader_parameter("plano", GradePlex.projetar(Vector2(ponto_visual.x, ponto_visual.y)).y * 3.0)
+	material_atual.set_shader_parameter("apoiar_solas", not personagem.em_degraus and not PosturaPlex.sentada(personagem) and personagem.assento < 0)
+	material_atual.set_shader_parameter("apoiar_degraus", personagem.em_degraus)
+	material_atual.set_shader_parameter("altura_apoio", ponto_visual.z)
 	var cabeca: float = 49.0 if personagem.robo or personagem.modelo.begins_with("fantasia_") else 33.0 if personagem.modelo == "crianca" else 29.0
 	if personagem.robo: cabeca=float(ClipesPlex.modelos.get(personagem.modelo,{}).get("cabeca_y",cabeca))
 	var pivo: float = personagem.animacao.definicao.pivot[1]
@@ -221,7 +224,9 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 			var meio := joelho(inicio, destino, 11.95 if personagem.robo else 7.15, 11.95 if personagem.robo else 6.75)
 			pernas.append(osso(local_osso(personagem, inicio)))
 			pernas.append(osso(local_osso(personagem, meio)))
-			pernas.append(osso(pe))
+			var sola := osso(pe)
+			sola.w = pe.z
+			pernas.append(sola)
 	if PosturaPlex.sentada(personagem): pernas = PosturaPlex.ossos(personagem)
 	while pernas.size() < 6:
 		pernas.append(Vector4(-10000, -10000, 0, 0))

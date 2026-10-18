@@ -31,7 +31,7 @@ static func iniciar(servico: ServicosPlex, mecanico: PersonagemPlex) -> bool:
 		if a.robo: AnimatronicosPlex.garantir(a)
 	var robos: Array = servico.personagens.filter(func(a): return danificado(a) and desligado(a) and int(a.robotica.get("reparo_por",0)) == 0)
 	robos.sort_custom(func(a,b): return float(a.robotica.get("desgaste",0.0)) > float(b.robotica.get("desgaste",0.0)))
-	var caixas := servico.inventario.caixas("pecas").filter(func(c): return not c.has("parte_endo"))
+	var caixas := servico.inventario.pecas_oficina()
 	caixas.sort_custom(func(a,b): return int(a.get("durabilidade",100)) > int(b.get("durabilidade",100)))
 	for robo in robos:
 		if pontos(servico,robo).is_empty(): continue
@@ -101,7 +101,7 @@ static func liberar(servico: ServicosPlex, mecanico: PersonagemPlex, trabalho: D
 
 static func resumo(servico: ServicosPlex) -> String:
 	var linhas: Array[String] = []
-	var pecas := not servico.inventario.caixas("pecas").filter(func(c): return not c.has("parte_endo")).is_empty()
+	var pecas := not servico.inventario.pecas_oficina().is_empty()
 	for a in servico.personagens:
 		if not danificado(a): continue
 		var situacao := "Em reparo" if int(a.robotica.get("reparo_por",0)) > 0 else "Aguardando desligar" if not desligado(a) else "Aguardando mecânico" if pecas else "Aguardando peças"

@@ -11,6 +11,7 @@ static func superficie(tipo: String) -> bool:
 	return bool(CatalogoPlex.objetos.get(tipo, {}).get("apoio", false))
 
 static func categoria(tipo: String) -> String:
+	if tipo.begins_with("caixa_pecas_"): return "pecas-manutencao"
 	if tipo.begins_with("caixa"): return "caixa"
 	return tipo.replace("_", "-")
 
@@ -69,7 +70,9 @@ static func aceita(planta: PlantaPlex, pai: int, tipo: String, slot: int) -> boo
 	if planta.objetos[pai].tipo == "ponto_recebimento" and not PilhasPlex.aceita(planta,pai,slot): return false
 	if planta.objetos[pai].tipo=="mesa" and tipo not in ["dinheiro","terminal_ibm"] and not LugaresPlex.ativo(planta,pai,slot): return false
 	var permitidos: Array = apoios[slot].accepts
-	return (permitidos.has(categoria(tipo)) or (tipo == "copo_bebida" and permitidos.has("copo")) or (tipo == "restos_mesa" and planta.objetos[pai].tipo == "prato") or (tipo == "pecas_manutencao" and permitidos.has("ingrediente"))) and filhos(planta, pai, slot).size() < int(apoios[slot].get("capacity", 1))
+	if tipo.begins_with("caixa_pecas_") or tipo == "pecas_manutencao":
+		return planta.objetos[pai].tipo in ["armario_ferramentas", "ponto_recebimento"] and filhos(planta, pai, slot).size() < int(apoios[slot].get("capacity", 1))
+	return (permitidos.has(categoria(tipo)) or (tipo == "copo_bebida" and permitidos.has("copo")) or (tipo == "restos_mesa" and planta.objetos[pai].tipo == "prato")) and filhos(planta, pai, slot).size() < int(apoios[slot].get("capacity", 1))
 
 static func livre(planta: PlantaPlex, pai: int, tipo: String) -> int:
 	for i in pontos(planta.objetos.get(pai, {"tipo":"","rotacao":0}),planta).size():

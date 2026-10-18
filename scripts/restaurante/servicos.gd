@@ -79,6 +79,9 @@ func etapa(alvo: int, acao: String, duracao: float = .6, dados: Dictionary = {})
 
 func iniciar(ator: PersonagemPlex, tipo: String, passos: Array, reservas: Array, pedido: int = -1) -> bool:
 	if passos.is_empty(): return false
+	if not EquipePlex.permite(ator, "manutencao"):
+		if passos.any(func(p): return InventarioPlex.peca_oficina(planta.objetos.get(p.alvo, {}))): return false
+		if InventarioPlex.peca_oficina(planta.objetos.get(ator.carga_item, {})): return false
 	passos = passos.duplicate(true)
 	reservas = reservas.duplicate()
 	DevolucaoPlex.preparar(self, passos, reservas)
@@ -125,12 +128,23 @@ func criar_pedido(mesa: int = -1, cliente: int = -1, familia: int = -1, slot: in
 
 func organizar(ator: PersonagemPlex) -> bool:
 	for caixa in inventario.caixas():
-		if caixa.has("parte_endo"): continue
+		if caixa.has("parte_endo") or InventarioPlex.peca_oficina(caixa): continue
 		if caixa.get("sobre", -1) >= 0 and planta.objetos.get(caixa.sobre,{}).get("tipo","") != "ponto_recebimento": continue
-		if caixa.get("recurso","") == "pecas" and EquipePlex.permite(ator,"manutencao") and not montagem.alvos(ator).is_empty(): continue
 		for estante in encontrar("estante", ["deposito"]):
 			var slot := ApoiosPlex.livre(planta, estante, caixa.tipo)
 			if slot >= 0 and iniciar(ator, "Guardar caixa", [etapa(caixa.id,"pegar"),etapa(estante,"apoiar",.8,{"slot":slot})], [caixa.id,estante]): return true
+	return false
+
+func guardar_pecas(ator: PersonagemPlex) -> bool:
+	if not EquipePlex.permite(ator, "manutencao"): return false
+	for item in inventario.pecas_oficina():
+		var raiz := ApoiosPlex.raiz(planta, item.id)
+		if planta.objetos.get(raiz, {}).get("tipo", "") == "armario_ferramentas": continue
+		for pai in encontrar("armario_ferramentas"):
+			var slot := ApoiosPlex.livre(planta, pai, item.tipo)
+			if slot < 0: continue
+			var passos := [etapa(item.id, "pegar"), etapa(pai, "apoiar", .9, {"slot":slot})]
+			if iniciar(ator, "Guardar peças na oficina", passos, RotinasPlex.reservas(self, [item.id, pai])): return true
 	return false
 
 func abastecer(ator: PersonagemPlex) -> bool:
@@ -411,6 +425,9 @@ func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> 
 	return true
 
 func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float) -> void:
+	if not EquipePlex.permite(ator, "manutencao") and InventarioPlex.peca_oficina(planta.objetos.get(ator.carga_item, {})):
+		cancelar(ator)
+		return
 	if trabalho.indice<trabalho.passos.size() and not ReparosPlex.valido(self,ator,trabalho):
 		cancelar(ator)
 		return
@@ -536,7 +553,7 @@ func atribuir_funcao(ator: PersonagemPlex) -> bool:
 	for funcao in EquipePlex.prioridades(ator):
 		match str(funcao):
 			"manutencao":
-				if ReparosPlex.iniciar(self,ator): return true
+				if ReparosPlex.iniciar(self,ator) or guardar_pecas(ator) or RotinasPlex.organizar(self,ator): return true
 			"cozinha":
 				if cozinhar(ator): return true
 			"atendimento":

@@ -78,6 +78,8 @@ static func entre_tarefas(servico: ServicosPlex, ator: PersonagemPlex) -> bool:
 static func organizar(servico: ServicosPlex, ator: PersonagemPlex) -> bool:
 	for item in servico.planta.objetos.values():
 		if item.tipo not in ["vassoura", "balde", "caixa_ferramentas", "pecas_manutencao"]: continue
+		if item.tipo in ["caixa_ferramentas", "pecas_manutencao"] and not EquipePlex.permite(ator, "manutencao"): continue
+		if item.tipo in ["vassoura", "balde"] and not EquipePlex.permite(ator, "limpeza"): continue
 		if item.get("sobre", -1) >= 0 or not servico.livre(item.id): continue
 		var tipo := "armario_limpeza" if item.tipo in ["vassoura", "balde"] else "armario_ferramentas"
 		for pai in servico.encontrar(tipo):

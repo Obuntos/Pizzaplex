@@ -3,6 +3,14 @@ extends RefCounted
 
 var planta: PlantaPlex
 
+static func peca_oficina(item: Dictionary) -> bool:
+	if item.has("parte_endo"): return false
+	var tipo := str(item.get("tipo", ""))
+	return tipo == "pecas_manutencao" or tipo.begins_with("caixa_pecas_")
+
+func pecas_oficina() -> Array:
+	return planta.objetos.values().filter(func(item): return peca_oficina(item) and item.get("carregada_por", 0) == 0 and item.get("quantidade", 1) > 0 and item.get("reserva", 0) == 0 and PilhasPlex.retiravel(planta, item.id))
+
 func _init(p: PlantaPlex) -> void:
 	planta = p
 
@@ -15,6 +23,7 @@ func criar(tipo: String, celula: Vector2i) -> int:
 
 func pegar(ator: PersonagemPlex, id: int) -> bool:
 	if not planta.objetos.has(id): return false
+	if peca_oficina(planta.objetos[id]) and not EquipePlex.permite(ator, "manutencao"): return false
 	if tem(ator,id): return true
 	if not PilhasPlex.retiravel(planta,id): return false
 	if ator.carga_item>=0 and (not ator.carga_extra.is_empty() or planta.objetos.get(ator.carga_item,{}).get("tipo","") not in ["prato","pizza"] or planta.objetos[id].tipo!=planta.objetos.get(ator.carga_item,{}).get("tipo","")): return false
@@ -83,8 +92,8 @@ func caixas(recurso: String = "") -> Array:
 	return planta.objetos.values().filter(func(item): return item.tipo.begins_with("caixa") and item.get("carregada_por", 0) == 0 and item.get("quantidade", 1) > 0 and item.get("reserva", 0) == 0 and PilhasPlex.retiravel(planta,item.id) and (recurso.is_empty() or item.get("recurso", "pecas") == recurso))
 
 func consumir_caixa(id: int, quantidade: int = 1) -> bool:
-	if not planta.objetos.has(id) or planta.objetos[id].get("quantidade", 0) < quantidade: return false
-	planta.objetos[id].quantidade -= quantidade
+	if not planta.objetos.has(id) or planta.objetos[id].get("quantidade", 1) < quantidade: return false
+	planta.objetos[id].quantidade = int(planta.objetos[id].get("quantidade", 1)) - quantidade
 	if planta.objetos[id].quantidade == 0: planta.remover(id)
 	else: planta.alterada.emit()
 	return true
