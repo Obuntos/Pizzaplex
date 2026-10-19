@@ -173,7 +173,7 @@ func limpar(pai: Node) -> void:
 func mudar_aba(valor: String) -> void:
 	aba = valor
 	if aba not in ["funcionarios","endo"]:
-		produto = "pecas_boa" if aba == "oficina" else "massa"
+		produto = "pecas_boa" if aba == "oficina" else "pizza"
 		quantidade = 1
 	montar_pagina()
 	atualizar_valores()
@@ -197,7 +197,7 @@ func montar_pagina() -> void:
 		montar_equipe()
 		return
 	titulo.text = "Peças para continuar o show" if aba == "oficina" else "A cozinha começa no estoque"
-	subtitulo.text = "Compre um kit de reposição. O mecânico fará o reparo assim que o animatrônico estiver desligado." if aba == "oficina" else "Massa, molho e queijo. Caixas que o estoquista leva até a cozinha."
+	subtitulo.text = "Compre um kit de reposição. O mecânico fará o reparo assim que o animatrônico estiver desligado." if aba == "oficina" else "Pizza e guaraná. Caixas que o estoquista leva até a cozinha."
 	grade = GridContainer.new()
 	grade.columns = 3 if janela.size.x >= 1080 else 1
 	grade.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -227,7 +227,7 @@ func montar_produto(id: String, p: Dictionary) -> void:
 	var espaco := Control.new()
 	espaco.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	linha.add_child(espaco)
-	T.texto(linha,"0"+str(int(p.get("nivel",1))) if aba == "oficina" else "06",12,T.SUAVE,true)
+	T.texto(linha,"0"+str(int(p.get("nivel",1))) if aba == "oficina" else str(int(p.unidades)).pad_zeros(2),12,T.SUAVE,true)
 	var quadro := PanelContainer.new()
 	quadro.add_theme_stylebox_override("panel",T.caixa(Color("e2e5d7"),Color.TRANSPARENT,4,12))
 	c.add_child(quadro)
@@ -242,7 +242,7 @@ func montar_produto(id: String, p: Dictionary) -> void:
 			barra.custom_minimum_size = Vector2(26,4)
 			barra.color = Color(p.cor) if i<int(p.nivel) else Color("d9ddcf")
 			barras.add_child(barra)
-	var unidade := T.texto(c,"1 kit completo" if aba=="oficina" else "6 unidades por caixa",12,T.SUAVE)
+	var unidade := T.texto(c,"1 kit completo" if aba=="oficina" else str(int(p.unidades))+" unidades por caixa",12,T.SUAVE)
 	unidade.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	if aba == "oficina": T.texto(c,"Durabilidade  "+str(int(p.durabilidade)),12,T.SUAVE)
 	estoques[id] = T.texto(c,str(jogo.compras.estoque(id))+" em estoque",11,T.SUAVE,true)
@@ -427,3 +427,4 @@ func _input(evento: InputEvent) -> void:
 	if aberto() and evento is InputEventKey and evento.pressed and evento.keycode==KEY_ESCAPE:
 		fechar()
 		get_viewport().set_input_as_handled()
+

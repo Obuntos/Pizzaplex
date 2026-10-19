@@ -26,7 +26,7 @@ static func ceder(ator: Node2D, passante: Node2D, planta: PlantaPlex, rotas: Rot
 			if local == ator.celula or Vector2(local - ator.celula).length_squared() > 4.0: continue
 			if vetados.has(local) or corredor.has(local) or not planta.transitavel(local): continue
 			if not is_equal_approx(planta.altura(local), ator.altura): continue
-			if planta.em(local).get("tipo", "") in ["porta", "porta_dupla", "escada"]: continue
+			if planta.em(local).get("tipo", "") in (CatalogoPlex.PORTAS + ["escada"]): continue
 			var caminho := rotas.caminho(ator.celula, local, vetados)
 			if not caminho.is_empty() and (melhor.is_empty() or caminho.size() < melhor.size()): melhor = caminho
 	if melhor.is_empty(): return false
@@ -67,3 +67,4 @@ static func permitir(ator: Node2D, primeiro: Vector2i, destino: Vector2i, planta
 			movimento.bloqueado = 0.0
 			return true
 	return false
+

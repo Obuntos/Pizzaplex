@@ -35,7 +35,7 @@ func estacionamento(ajudante: PersonagemPlex, corredor: Array[Vector2i], suporte
 				continue
 			if not planta.transitavel(local) or not is_zero_approx(planta.altura(local)):
 				continue
-			if planta.em(local).get("tipo", "") in ["porta", "porta_dupla", "escada"]:
+			if planta.em(local).get("tipo", "") in (CatalogoPlex.PORTAS + ["escada"]):
 				continue
 			var caminho := rotas.caminho(ajudante.origem_rota(), local, vetados)
 			if not caminho.is_empty() and (melhor.is_empty() or caminho.size() < melhor.size()):
@@ -95,3 +95,4 @@ func atualizar() -> void:
 			if is_instance_valid(ajudante) and ajudante.trabalho == "liberar_saida":
 				ajudante.trabalho = ""
 		pendentes.erase(registro)
+

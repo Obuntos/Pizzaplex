@@ -75,20 +75,32 @@ func configurar(cena: Node) -> void:
 	estado.pressed.connect(alterar_estado)
 	gestao.add_child(estado)
 	botao(gestao,"Testar interação",func(): RotinasPlex.solicitar(jogo.servicos, selecionado))
-	botao(gestao,"Pedido de teste",func(): jogo.servicos.criar_pedido(selecionado if jogo.planta.objetos.get(selecionado,{}).get("tipo","") == "mesa" else -1))
+	botao(gestao,"Pedido de teste",func(): jogo.servicos.criar_pedido(selecionado if LugaresPlex.mesa(jogo.planta.objetos.get(selecionado,{}).get("tipo","")) else -1))
 	texto(gestao,"O pedido de teste simula consumo. Para clientes reais, adicione uma família na aba Clientes.")
 	gestao.add_child(pedidos)
 	pedidos.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	botao(gestao,"Montar exemplo",func(): ExemploSalasPlex.montar(jogo))
-	texto(gestao,"32 × 24 tiles: salão com palco, recepção, cozinha, depósito, oficina, jogos, banheiro, vestiário e limpeza.")
+	texto(gestao,"64 × 48 tiles: salão com palco, recepção, cozinha, depósito, oficina, jogos, banheiro, vestiário e limpeza.")
+	for velocidade in [0.0,1.0,2.0]:
+		botao(gestao,"Pausar" if velocidade==0 else "Simulação · "+str(int(velocidade))+"×",func(): jogo.velocidade_tempo=velocidade)
 	botao(gestao,"Enquadrar restaurante",func(): jogo.enquadrar())
 	botao(gestao,"Alternar tela cheia · F11",func(): jogo.alternar_tela_cheia())
 	var clientes := coluna("Clientes")
-	texto(clientes,"Escolha uma família e clique no chão, perto da entrada. Cada adulta acompanha uma ou duas crianças.")
-	botao(clientes,"Adulta + 1 criança",func(): jogo.escolher_ferramenta("visita:familia1"))
-	botao(clientes,"Adulta + 2 crianças",func(): jogo.escolher_ferramenta("visita:familia2"))
-	botao(clientes,"Adicionar criança à adulta selecionada",func(): jogo.escolher_ferramenta("visita:crianca"))
-	texto(clientes,"A adulta senta, pede e espera a refeição na mesa. Após comer, deixa o pagamento e sai com as crianças. Elas jogam e assistem ao palco. O banheiro é usado quando necessário.")
+	texto(clientes,"As famílias entram juntas. Adolescentes desacompanhados visitam apenas os fliperamas; cada partida rende $ 1.")
+	botao(clientes,"Família variada",func(): jogo.escolher_ferramenta("visita:grupo:variada"))
+	botao(clientes,"2 adultos + 2 crianças",func(): jogo.escolher_ferramenta("visita:grupo:dupla_criancas"))
+	botao(clientes,"2 adultos + criança + adolescente",func(): jogo.escolher_ferramenta("visita:grupo:dupla_mista"))
+	botao(clientes,"1 adulto + 1 adolescente",func(): jogo.escolher_ferramenta("visita:grupo:adulto_adolescente"))
+	botao(clientes,"2 adultos",func(): jogo.escolher_ferramenta("visita:grupo:casal"))
+	botao(clientes,"Adulto sozinho",func(): jogo.escolher_ferramenta("visita:grupo:adulto"))
+	botao(clientes,"Mulher + 1 criança",func(): jogo.escolher_ferramenta("visita:familia1_humana"))
+	botao(clientes,"Mulher + 2 crianças",func(): jogo.escolher_ferramenta("visita:familia2_humana"))
+	botao(clientes,"Homem + 1 criança",func(): jogo.escolher_ferramenta("visita:familia1_humano"))
+	botao(clientes,"Homem + 2 crianças",func(): jogo.escolher_ferramenta("visita:familia2_humano"))
+	botao(clientes,"Adolescente sozinho",func(): jogo.escolher_ferramenta("visita:adolescente"))
+	botao(clientes,"Adolescente sozinha",func(): jogo.escolher_ferramenta("visita:adolescente_feminina"))
+	botao(clientes,"Adicionar criança ao responsável selecionado",func(): jogo.escolher_ferramenta("visita:crianca"))
+	texto(clientes,"Adultos e adolescentes acompanhados sentam juntos para comer e beber. Crianças brincam e assistem aos shows. O responsável paga a conta da família antes da saída.")
 	clientes.add_child(visitas)
 	visitas.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	jogo.painel.atualizar_abas()
@@ -145,7 +157,7 @@ func atualizar(delta: float) -> void:
 			inspecao.text += "\nMassa: "+str(item.estoque.massa)+" · Molho: "+str(item.estoque.molho)+" · Queijo: "+str(item.estoque.queijo)
 		if item.tipo == "estante": inspecao.text += "\nPosições ocupadas: "+str(ApoiosPlex.filhos(jogo.planta,item.id).size())+" / 6"
 		if item.tipo.begins_with("caixa"): inspecao.text += "\nConteúdo: "+str(item.get("rotulo",item.get("recurso","peças")))+" × "+str(item.get("quantidade",1))
-		if item.tipo == "lixeira": inspecao.text += "\nResíduos: "+str(item.get("lixo",0))+" / 6"
+		if CatalogoPlex.base(item.tipo) == "lixeira": inspecao.text += "\nResíduos: "+str(item.get("lixo",0))+" / 6"
 		if item.tipo == "prato": inspecao.text += "\n"+("Precisa de lavagem" if item.get("sujo",false) else "Limpo")
 		if ArmariosPlex.armario(item.tipo): inspecao.text += "\nItens guardados: " + str(ApoiosPlex.filhos(jogo.planta, item.id).size())
 		if item.tipo == "maquina_fliperama": inspecao.text += "\n" + ("Disponível para jogar" if item.estado == "ligada" else "Máquina desligada")
@@ -155,12 +167,13 @@ func atualizar(delta: float) -> void:
 		if item.tipo == "suporte" and item.has("qualidade"): inspecao.text += "\nPeças: "+str(item.qualidade).capitalize()+" · Durabilidade: "+str(item.durabilidade)
 		if item.tipo == "terminal_ibm": inspecao.text += "\nClique direito curto: abrir central. Arraste para mover a câmera."
 		if item.tipo == "registradora": inspecao.text += "\nRecebido: $ " + str(item.get("saldo",0))
-		if item.tipo == "mesa": inspecao.text += "\nLugares ativos: "+str(LugaresPlex.total(jogo.planta,item.id))+" / 4"
+		if LugaresPlex.mesa(item.tipo): inspecao.text += "\nLugares ativos: "+str(LugaresPlex.total(jogo.planta,item.id))+" / "+str(LugaresPlex.cadeiras(jogo.planta,item).size())
 		estado.disabled = not info.has("estados") or info.get("estados",[]).size()<2
 	var ativos: Array[String] = []
 	for pedido in jogo.servicos.pedidos.slice(maxi(0,jogo.servicos.pedidos.size()-5)):
 		ativos.append("Pedido "+str(pedido.id)+": "+pedido.estado)
 	for id in jogo.servicos.trabalhos:
 		ativos.append("Funcionário "+str(id)+": "+jogo.servicos.trabalhos[id].tipo)
-	visitas.text = "Famílias presentes: " + str(jogo.clientes.grupos.size()) + "\nVisitas concluídas: " + str(jogo.clientes.visitas_concluidas) + "\nGuardado no caixa: $ " + str(jogo.servicos.saldo)
+	visitas.text = "Famílias presentes: " + str(jogo.clientes.grupos.size()) + "\nVisitas concluídas: " + str(jogo.clientes.visitas_concluidas) + "\nReceita dos fliperamas: $ " + str(jogo.servicos.receita_arcade) + "\nTotal disponível: $ " + str(jogo.servicos.saldo)
 	pedidos.text = "Caixa: $ " + str(jogo.servicos.saldo) + "\nEntregas: "+str(jogo.servicos.entregas)+" · Limpezas: "+str(jogo.servicos.limpezas)+"\n"+"\n".join(ativos)+"\n"+jogo.servicos.motivo
+

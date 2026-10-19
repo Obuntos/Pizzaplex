@@ -10,6 +10,7 @@ var arquivos: Dictionary = {}
 var definicao: Dictionary = {}
 var endo_config: Dictionary = {}
 var endo_partes: Array = []
+var roupa_visitante: String = ""
 
 func configurar(valor: String) -> void:
 	CatalogoPlex.carregar()
@@ -59,7 +60,7 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 		quadro = int(floor(fposmod(relogio / 4.0, 1.0) * definicao.frames))
 	if acao in ["cantar", "dancar"]:
 		quadro = int(floor(fposmod(relogio / (1.2 if acao == "cantar" else 1.5),1.0) * definicao.frames))
-	if modelo == "crianca" and acao in ["jogar", "assistir"]:
+	if (modelo == "crianca" or modelo.begins_with("adolescente")) and acao in ["jogar", "assistir"]:
 		quadro = int(floor(fposmod(relogio / (1.6 if acao == "jogar" else 2.4),1.0) * definicao.frames))
 	var deslocamento := Vector2.ZERO
 	if acao in ["colocar", "montar"] and definicao.layered:
@@ -86,6 +87,8 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 			if modelo == "endo" and pecas >= 0:
 				arquivo = "res://assets/personagens/endo/montagem.png"
 				coluna = clampi(pecas, 0, 4)
+		if nome=="corpo" and not roupa_visitante.is_empty() and acao in ["parado","andar","sentar"]:
+			arquivo=roupa_visitante+"/"+acao+"_corpo.png"
 		if arquivos.get(nome, "") != arquivo:
 			atlases[nome].atlas = CatalogoPlex.textura_iluminada(arquivo)
 			arquivos[nome] = arquivo
@@ -104,3 +107,4 @@ func atualizar_escada(escala: EscalaPlex, direcao: int, relogio: float) -> void:
 	var coluna: int = escala.quadro % int(escala.definicao.columns)
 	var linha: int = escala.quadro / int(escala.definicao.columns)
 	atlases[nome].region = Rect2(coluna * int(definicao.width), linha * int(definicao.height), int(definicao.width), int(definicao.height))
+

@@ -20,8 +20,8 @@ static func entrada(origem: Vector2, destino: Vector2, caixa: Rect2) -> float:
 
 static func limitar(planta: PlantaPlex, origem: Vector2, destino: Vector2) -> Vector2:
 	var limite := 1.0
-	for y in GradePlex.TAMANHO.y:
-		for x in GradePlex.TAMANHO.x:
+	for y in range(maxi(0,floori(minf(origem.y,destino.y))-2),mini(GradePlex.TAMANHO.y,ceili(maxf(origem.y,destino.y))+3)):
+		for x in range(maxi(0,floori(minf(origem.x,destino.x))-2),mini(GradePlex.TAMANHO.x,ceili(maxf(origem.x,destino.x))+3)):
 			var celula := Vector2i(x, y)
 			if planta.transitavel(celula): continue
 			var caixa := Rect2(Vector2(celula) - Vector2(.5, .5), Vector2.ONE).grow(MARGEM)
@@ -31,3 +31,4 @@ static func limitar(planta: PlantaPlex, origem: Vector2, destino: Vector2) -> Ve
 static func aproximacao(ator: PersonagemPlex, planta: PlantaPlex, alvo: Vector2, proporcao: float) -> Vector2:
 	var origem := Vector2(ator.celula)
 	return limitar(planta, origem, origem.lerp(alvo, proporcao))
+

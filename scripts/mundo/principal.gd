@@ -1,6 +1,7 @@
 extends Node2D
 
 const CENA_PERSONAGEM = preload("res://cenas/personagens/personagem.tscn")
+const VISUAIS_DIRETOS = ["luz_teto","luz_parede","luz_chao","pose","pose_quebrado"]
 const CENA_OBJETO = preload("res://cenas/objetos/objeto.tscn")
 var planta := PlantaPlex.new()
 var rotas: RotasPlex
@@ -32,6 +33,8 @@ var servicos: ServicosPlex
 var atendimento: CaixaPlex
 var rondas: RondasPlex
 var animatronicos: AnimatronicosPlex
+var lazer: LazerPlex
+var cortinas: CortinasPalcoPlex
 var clientes: ClientesPlex
 var compras: ComprasPlex
 var projetos_endo: ProjetosEndoPlex
@@ -45,6 +48,7 @@ var inicio_direito := Vector2.ZERO
 var interface_gestao := InterfaceGestaoPlex.new()
 var desenho_salas := DesenhoSalasPlex.new()
 var visor := VisorPlex.new()
+var velocidade_tempo := 1.0
 
 func _ready() -> void:
 	CatalogoPlex.carregar()
@@ -64,6 +68,8 @@ func _ready() -> void:
 	atendimento = CaixaPlex.new(self)
 	rondas = RondasPlex.new(self)
 	animatronicos = AnimatronicosPlex.new(self)
+	cortinas = CortinasPalcoPlex.new(self)
+	lazer = LazerPlex.new(self)
 	compras = ComprasPlex.new(self)
 	quebrados = DestinosQuebradosPlex.new(self)
 	projetos_endo = ProjetosEndoPlex.new(self)
@@ -204,10 +210,11 @@ func sincronizar() -> void:
 		rotas.reconstruir()
 	chao.queue_redraw()
 	for id in visuais.keys():
-		if not planta.objetos.has(id):
+		if not planta.objetos.has(id) or planta.objetos[id].tipo not in VISUAIS_DIRETOS:
 			visuais[id].queue_free()
 			visuais.erase(id)
 	for id in planta.objetos:
+		if planta.objetos[id].tipo not in VISUAIS_DIRETOS: continue
 		if not visuais.has(id):
 			var visual: ObjetoVisualPlex = CENA_OBJETO.instantiate()
 			mundo.add_child(visual)
@@ -277,12 +284,9 @@ func trocar_paredes() -> void:
 
 func apontada() -> Vector2i:
 	var mouse := get_global_mouse_position()
-	for y in GradePlex.TAMANHO.y:
-		for x in GradePlex.TAMANHO.x:
-			var celula := Vector2i(x, y)
-			if planta.em(celula).get("tipo", "") == "palco":
-				if Geometry2D.is_point_in_polygon(mouse, GradePlex.poligono(GradePlex.projetar(Vector2(celula), 18.0))):
-					return celula
+	for item in planta.objetos.values():
+		if item.tipo == "palco":
+			if Geometry2D.is_point_in_polygon(mouse,GradePlex.poligono(GradePlex.projetar(Vector2(item.celula),18.0))): return item.celula
 	return GradePlex.selecionar(mouse)
 
 func _process(delta: float) -> void:
@@ -295,7 +299,7 @@ func _process(delta: float) -> void:
 		arrastando = false
 	if traco_parede.ativo and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		traco_parede.encerrar()
-	portas.atualizar(delta, planta, personagens)
+	portas.atualizar(delta*velocidade_tempo, planta, personagens)
 	CabinesPlex.atualizar(planta, personagens)
 	composicao.atualizar(planta, nivel_paredes, cortar_frente)
 	iluminacao.atualizar()
@@ -318,16 +322,20 @@ func _process(delta: float) -> void:
 	cursor.queue_redraw()
 
 func _physics_process(delta: float) -> void:
+	delta *= velocidade_tempo
+	if delta <= 0: return
 	compras.atualizar(delta)
 	projetos_endo.atualizar(delta)
 	atendimento.atualizar(delta)
 	rondas.atualizar(delta)
 	servicos.atualizar(delta)
 	clientes.atualizar(delta)
+	lazer.atualizar(delta)
 	tarefas.atualizar(delta)
 	saida_montagem.atualizar()
 	poses.atualizar()
 	animatronicos.atualizar(delta)
+	cortinas.atualizar(delta)
 	for ator in personagens:
 		ator.set_meta("tarefa_ativa", servicos.trabalhos.has(ator.identificador) or tarefas.trabalhos.has(ator.identificador) or ator.pose >= 0 or ator.trabalho == "liberar_saida" or ator.cargo in ["cliente", "crianca"] or ator.funcao in ["caixa","seguranca"])
 		ator.atualizar(delta, planta, rotas, personagens)
@@ -424,8 +432,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 			camera.zoom = Vector2.ONE * clampf(camera.zoom.x * fator, 0.30, 3.5)
 		elif evento.button_index == MOUSE_BUTTON_LEFT and evento.pressed:
 			if editor.ferramenta.begins_with("visita:"):
-				if editor.ferramenta == "visita:crianca": clientes.adicionar_crianca(apontada())
-				else: clientes.criar(apontada(), 1 if editor.ferramenta == "visita:familia1" else 2)
+				if editor.ferramenta.begins_with("visita:adolescente"): lazer.criar(apontada(),editor.ferramenta == "visita:adolescente_feminina")
+				elif editor.ferramenta == "visita:crianca": clientes.adicionar_crianca(apontada())
+				elif editor.ferramenta.begins_with("visita:grupo:"): clientes.criar_preset(apontada(),editor.ferramenta.trim_prefix("visita:grupo:"))
+				else: clientes.criar(apontada(),1 if editor.ferramenta.begins_with("visita:familia1") else 2,"humana" if editor.ferramenta.ends_with("_humana") else "humano" if editor.ferramenta.ends_with("_humano") else "")
 			elif editor.ferramenta.begins_with("sala:"):
 				ambientes.definir(apontada(), editor.ferramenta.trim_prefix("sala:"))
 				interface_gestao.inspecionar(apontada())
@@ -443,7 +453,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 					painel.mostrar_luz(adicionais[indice])
 			elif editor.ferramenta == "selecionar":
 				clicar_mundo(apontada())
-			elif editor.ferramenta == "parede":
+			elif CatalogoPlex.base(editor.ferramenta) == "parede" and not editor.ferramenta.begins_with("janela"):
 				traco_parede.iniciar(apontada(), editor)
 			else:
 				editor.aplicar(apontada())
@@ -475,7 +485,7 @@ func comandar(celula: Vector2i) -> void:
 	if not is_instance_valid(selecionado):
 		painel.mensagem("Selecione um personagem para mover.")
 		return
-	if selecionado.cargo in ["cliente", "crianca"]:
+	if selecionado.cargo in ["cliente", "crianca", "adolescente"]:
 		painel.mensagem("Clientes seguem a visita automaticamente. Use a aba Clientes para adicionar famílias.")
 		return
 	if selecionado.robo and selecionado.modelo != "endo" and planta.em(celula).get("tipo", "") == "palco":
@@ -523,6 +533,8 @@ func carregar() -> void:
 	carteira.fechar()
 	traco_parede.encerrar()
 	saida_montagem.limpar()
+	cortinas.assinatura = 0
+	cortinas.fases.clear()
 	for ator in personagens:
 		ator.queue_free()
 	personagens.clear()
@@ -593,6 +605,7 @@ func carregar() -> void:
 	planta.reindexar()
 	clientes.restaurar(dados.get("clientes", {}))
 	compras.restaurar(dados.get("compras",{}))
+	FachadaPlex.corrigir_decoracao(planta)
 	planta.alterada.emit()
 	painel.mensagem("Construção carregada. As tarefas são recalculadas pelos objetos disponíveis.")
 
@@ -601,3 +614,4 @@ func enquadrar() -> void:
 
 func alternar_tela_cheia() -> void:
 	visor.alternar_tela_cheia()
+

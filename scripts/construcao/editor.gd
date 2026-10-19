@@ -58,7 +58,7 @@ func aplicar(celula: Vector2i) -> void:
 		return
 	if not CatalogoPlex.objetos.has(ferramenta):
 		return
-	var rotacao_real := PortasPlex.rotacao_para(planta, ferramenta, celula, rotacao) if ferramenta in ["porta", "porta_dupla"] else rotacao
+	var rotacao_real := PortasPlex.rotacao_para(planta, ferramenta, celula, rotacao) if ferramenta in CatalogoPlex.PORTAS else rotacao
 	for local in planta.celulas(ferramenta, celula, rotacao_real):
 		if not planta.sobreposto(ferramenta) and not livre(local):
 			aviso.emit("Este tile está ocupado por um personagem.")
@@ -71,3 +71,4 @@ func aplicar(celula: Vector2i) -> void:
 			planta.objetos[id].merge(luz_padrao, true)
 			planta.alterada.emit()
 		aviso.emit(CatalogoPlex.objetos[ferramenta].nome + " colocado. R gira o próximo objeto.")
+

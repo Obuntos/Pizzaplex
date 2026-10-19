@@ -27,7 +27,7 @@ static func rotacao_para(planta: PlantaPlex, tipo: String, origem: Vector2i, ped
 static func normalizar(planta: PlantaPlex) -> bool:
 	var mudou := false
 	for objeto in planta.objetos.values():
-		if objeto.tipo not in ["porta", "porta_dupla"]:
+		if objeto.tipo not in CatalogoPlex.PORTAS:
 			continue
 		var correta := rotacao_para(planta, objeto.tipo, objeto.celula, objeto.rotacao, objeto.id)
 		if correta != objeto.rotacao:
@@ -46,7 +46,7 @@ func atravessando(pessoa: Node2D, objeto: Dictionary, planta: PlantaPlex) -> boo
 	var frente := Vector2(GradePlex.frente(objeto.rotacao))
 	var lado := Vector2(frente.y, -frente.x)
 	var local: Vector2 = pessoa.local - centro
-	var meia_largura := 1.0 if objeto.tipo == "porta_dupla" else .5
+	var meia_largura := 1.0 if CatalogoPlex.base(objeto.tipo) == "porta_dupla" else .5
 	if absf(local.dot(frente)) < .45 and absf(local.dot(lado)) < meia_largura - .08:
 		return true
 	var movimento: MovimentoPlex = pessoa.movimento
@@ -61,9 +61,10 @@ func atualizar(delta: float, planta: PlantaPlex, personagens: Array) -> void:
 	for id in atrasos.keys():
 		if not planta.objetos.has(id): atrasos.erase(id)
 	for objeto in planta.objetos.values():
-		if objeto.tipo not in ["porta", "porta_dupla"]: continue
+		if objeto.tipo not in CatalogoPlex.PORTAS: continue
 		var id: int = int(objeto.id)
 		var em_uso := personagens.any(func(pessoa): return is_instance_valid(pessoa) and atravessando(pessoa, objeto, planta))
 		if em_uso: atrasos[id] = .7
 		else: atrasos[id] = maxf(0.0, atrasos.get(id, 0.0) - delta)
 		objeto.aberta = atrasos.get(id, 0.0) > 0.0
+

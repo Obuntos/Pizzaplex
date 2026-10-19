@@ -25,7 +25,7 @@ func _draw() -> void:
 		DesenhoLuzPlex.desenhar(self, editor.ferramenta, rotacao_luz, altura, Color(editor.luz_padrao.cor_luz), true, [6.0, 22.0, 52.0, 104.0][nivel - 1], montagem)
 		draw_set_transform(Vector2.ZERO)
 	elif CatalogoPlex.objetos.has(editor.ferramenta) and editor.ferramenta != "chao":
-		var rotacao := PortasPlex.rotacao_para(editor.planta, editor.ferramenta, celula, editor.rotacao) if editor.ferramenta in ["porta", "porta_dupla"] else editor.rotacao
+		var rotacao := PortasPlex.rotacao_para(editor.planta, editor.ferramenta, celula, editor.rotacao) if editor.ferramenta in CatalogoPlex.PORTAS else editor.rotacao
 		var dimensao := CatalogoPlex.dimensoes(editor.ferramenta, rotacao)
 		var ponto := GradePlex.projetar(Vector2(celula) + Vector2(dimensao - Vector2i.ONE) * 0.5)
 		var apoio := ApoiosPlex.encontrar(editor.planta, celula, editor.ferramenta) if ApoiosPlex.superficie(editor.ferramenta) else {}
@@ -34,3 +34,4 @@ func _draw() -> void:
 			var slot: Dictionary = ApoiosPlex.pontos(editor.planta.objetos[apoio.pai],editor.planta)[apoio.slot]
 			ponto = GradePlex.projetar(Vector2(base.x + slot.u, base.y + slot.v), base.z + slot.z)
 		draw_texture(CatalogoPlex.sprite(editor.ferramenta, GradePlex.rotacao_visual(rotacao)), ponto - Vector2(96, 144), Color(1, 1, 1, 0.45))
+

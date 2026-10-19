@@ -33,7 +33,7 @@ static func titulo(a: PersonagemPlex) -> String:
 	return {"deslocando":"Em deslocamento","desligado":"Desligado","ativando":"Ativando","ligado":"Ligado","desligando":"Desligando","avariado":"Avariado"}.get(str(a.robotica.get("estado","desligado")),"Desligado")
 func plateia(a: PersonagemPlex) -> bool:
 	var palco:=palcos.da_pose(a.pose)
-	return palco>=0 and jogo.personagens.any(func(p): return p.cargo=="crianca" and p.trabalho=="assistir" and not p.ocupado() and palcos.da_pose(int(p.visita.get("pose",-1)))==palco)
+	return palco>=0 and jogo.personagens.any(func(p): return p.cargo in ["crianca","adolescente"] and p.trabalho=="assistir" and not p.ocupado() and palcos.da_pose(int(p.visita.get("pose",-1)))==palco)
 static func mudar(a: PersonagemPlex, estado: String) -> void:
 	if str(a.robotica.estado)==estado: return
 	a.robotica.estado=estado
@@ -56,7 +56,7 @@ func atualizar(delta: float) -> void:
 	palcos.atualizar()
 	var ativos: Dictionary={}
 	for p in jogo.personagens:
-		if p.cargo=="crianca" and p.trabalho=="assistir" and not p.ocupado():
+		if p.cargo in ["crianca","adolescente"] and p.trabalho=="assistir" and not p.ocupado():
 			var id:=palcos.da_pose(int(p.visita.get("pose",-1)))
 			if id>=0: ativos[id]=true
 	for a in jogo.personagens:
@@ -101,3 +101,4 @@ func atualizar(delta: float) -> void:
 				mudar(a,"avariado")
 				break
 		if alterou: limpar_cache(a)
+

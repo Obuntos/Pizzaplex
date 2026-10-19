@@ -33,7 +33,9 @@ static func iniciar(servico: ServicosPlex, ator: PersonagemPlex, alvo: int) -> b
 			titulo = "Lavar as mãos"
 		"maquina_fliperama":
 			if item.estado != "ligada" or not servico.salas.permite(alvo, ["jogos"]): return false
-			passos = [servico.etapa(alvo, "jogar", 7.0)]
+			var lugares:=LazerPlex.lugares_maquina(servico,ator,alvo)
+			if lugares.is_empty(): return false
+			passos = [servico.etapa(alvo,"jogar",9.0,{"posto":lugares.posto}),servico.etapa(-1,"afastar_fliperama",.15,{"celula":lugares.saida})]
 			titulo = "Jogar no fliperama"
 		"armario_funcionarios":
 			if not servico.salas.permite(alvo, ["vestiario"]): return false
@@ -104,7 +106,15 @@ static func preparar(servico: ServicosPlex, ator: PersonagemPlex, passo: Diction
 			item.estado = "aberta"
 			servico.planta.alterada.emit()
 	if passo.acao == "higienizar": ator.trabalho = "higienizar"
-	elif passo.acao == "jogar": ator.trabalho = "jogar"
+	elif passo.acao == "jogar":
+		ator.trabalho="jogar"
+		if ator.cargo in ["cliente","crianca","adolescente"] and not passo.dados.get("cobrado",false):
+			passo.dados.cobrado=true
+			servico.saldo+=1
+			servico.receita_arcade+=1
+			ator.visita.gasto_arcade=int(ator.visita.get("gasto_arcade",0))+1
+			var maquina: Dictionary=servico.planta.objetos[passo.alvo]
+			maquina.saldo=int(maquina.get("saldo",0))+1
 	elif passo.acao == "usar_vaso": ator.trabalho = "usar_vaso"
 	elif passo.acao in ["guardar_pertences", "consultar_armario"]: ator.trabalho = "usar_armario"
 
@@ -122,6 +132,15 @@ static func executar(servico: ServicosPlex, ator: PersonagemPlex, passo: Diction
 		"jogar":
 			ator.necessidades.lazer = 100.0
 			if ator.cargo == "crianca": ator.visita.jogou = true
+			elif ator.cargo=="adolescente":
+				ator.visita.partidas=int(ator.visita.get("partidas",0))+1
+				if ator.visita.get("solo",false):
+					ator.visita.etapa="sair" if int(ator.visita.partidas)>=int(ator.visita.get("limite_partidas",3)) else "arcade"
+					ator.visita.espera_jogo=2.0
+				else: ator.visita.etapa="show" if ator.visita.partidas==1 and ator.identificador%2==0 else "refeicao" if not ator.visita.get("comeu",false) else "show"
+				ator.visita.erase("show")
+				ator.visita.tempo_show=0.0
+		"afastar_fliperama": pass
 		"guardar_pertences": ator.necessidades.turno = true
 		"consultar_armario": pass
 		_: return false
@@ -130,3 +149,4 @@ static func executar(servico: ServicosPlex, ator: PersonagemPlex, passo: Diction
 static func atualizar(ator: PersonagemPlex, delta: float) -> void:
 	for item in [["banheiro", 0.055], ["higiene", 0.04], ["lazer", 0.025]]:
 		ator.necessidades[item[0]] = maxf(0.0, float(ator.necessidades[item[0]]) - delta * float(item[1]))
+

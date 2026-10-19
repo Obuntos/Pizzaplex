@@ -4,7 +4,7 @@ extends RefCounted
 static func codificar(normal: Vector3, neutra: bool = false) -> Color:
 	return Color(normal.x * .5 + .5, normal.y * .5 + .5, normal.z * .5 + .5, 1.0 if neutra else .5)
 
-static func porta(pontos: PackedVector3Array, cores: PackedColorArray, nivel: int) -> PackedColorArray:
+static func normais_volume(pontos: PackedVector3Array) -> PackedColorArray:
 	var resultado := PackedColorArray()
 	var profundidades: Dictionary = {}
 	for ponto in pontos:
@@ -12,9 +12,7 @@ static func porta(pontos: PackedVector3Array, cores: PackedColorArray, nivel: in
 	var gradientes := [Vector2(-1.5, -1), Vector2(1.5, -1), Vector2(0, 2)]
 	var normais := [Vector3(.707107, .707107, 0), Vector3(-.707107, .707107, 0), Vector3(0, 0, 1)]
 	var vizinhas := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(2, 0), Vector2i(-2, 0), Vector2i(0, 2), Vector2i(0, -2)]
-	var altura: float = [6.0, 22.0, 52.0, 104.0][clampi(nivel - 1, 0, 3)]
-	for i in pontos.size():
-		var ponto := pontos[i]
+	for ponto in pontos:
 		var pixel := Vector2i(ponto.x, ponto.y)
 		var melhor := 0
 		var nota_melhor := -1.0
@@ -28,11 +26,18 @@ static func porta(pontos: PackedVector3Array, cores: PackedColorArray, nivel: in
 			if nota > nota_melhor:
 				nota_melhor = nota
 				melhor = face
-		var z := (ponto.z - ponto.y * 2.0) / 3.0
-		var cor := cores[i]
-		var madeira: bool = cor.r > cor.g * 1.04 and cor.g > cor.b * 1.08
-		var neutra := (nivel < 4 and not madeira) or z >= altura - .7
-		resultado.append(codificar(normais[melhor], neutra))
+		resultado.append(codificar(normais[melhor]))
+	return resultado
+
+static func porta(pontos: PackedVector3Array, cores: PackedColorArray, nivel: int) -> PackedColorArray:
+	var resultado:=normais_volume(pontos)
+	var altura: float=[6.0,22.0,52.0,104.0][clampi(nivel-1,0,3)]
+	for i in pontos.size():
+		var ponto:=pontos[i]
+		var z: float=(ponto.z-ponto.y*2.0)/3.0
+		var cor:=cores[i]
+		var madeira: bool=cor.r>cor.g*1.04 and cor.g>cor.b*1.08
+		if (nivel<4 and not madeira) or z>=altura-.7: resultado[i].a=1.0
 	return resultado
 
 static func parede(pontos: PackedVector3Array, nivel: int, ligacoes: int = 0) -> PackedColorArray:
@@ -69,3 +74,4 @@ static func cores_continuas(pontos: PackedVector3Array, cores: PackedColorArray,
 			base.a = cor.a
 			resultado[i] = base
 	return resultado
+

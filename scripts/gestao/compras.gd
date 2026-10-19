@@ -56,6 +56,7 @@ func estoque(produto: String) -> int:
 	return total
 
 func entregar(pedido: Dictionary) -> bool:
+	if pedido.produto in ["massa","molho","queijo"]: pedido.produto = "pizza"
 	var produto: Dictionary = catalogo.get(pedido.produto,{})
 	if produto.is_empty(): return false
 	for ponto in recebimentos():
@@ -100,3 +101,4 @@ func restaurar(dados: Dictionary) -> void:
 	jogo.projetos_endo.restaurar(dados.get("endos",{}))
 	for objeto in jogo.planta.objetos.values():
 		if objeto.tipo == "terminal_ibm" and objeto.estado == "uso": objeto.estado = "ligado"
+

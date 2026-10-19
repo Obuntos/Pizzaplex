@@ -33,10 +33,11 @@ static func ossos(ator: PersonagemPlex) -> PackedVector4Array:
 	var origem := ator.ponto_visual()
 	var angulo := ator.direcao * PI / 4.0
 	var escala := ator.animacao.scale
-	var abertura := 2.2 if ator.modelo == "crianca" else 2.45
-	var quadril := 10.0 if ator.modelo == "crianca" else 15.0
+	var jovem:=.86 if ator.modelo.begins_with("adolescente") else 1.0
+	var abertura := 2.2 if ator.modelo == "crianca" else 2.45*(.9 if jovem<1.0 else 1.0)
+	var quadril := 10.0 if ator.modelo == "crianca" else 15.0*jovem
 	for lado in [-1,1]:
-		for p in [Vector3(lado*abertura,0,quadril),Vector3(lado*abertura,6.5,quadril-.8),Vector3(lado*abertura,7,.4)]:
+		for p in [Vector3(lado*abertura,0,quadril),Vector3(lado*abertura,6.5*jovem,quadril-.8*jovem),Vector3(lado*abertura,7*jovem,.4*jovem)]:
 			var x: float = (cos(angulo)*p.x+sin(angulo)*p.y)*escala.x
 			var y: float = (-sin(angulo)*p.x+cos(angulo)*p.y)*.5*escala.y
 			var local := Vector2(origem.x,origem.y)+GradePlex.inverter_local(Vector2(x,y))
@@ -44,3 +45,4 @@ static func ossos(ator: PersonagemPlex) -> PackedVector4Array:
 			var tela := GradePlex.projetar(local,z)
 			resultado.append(Vector4(tela.x,tela.y,GradePlex.profundidade(local,z),0.0))
 	return resultado
+

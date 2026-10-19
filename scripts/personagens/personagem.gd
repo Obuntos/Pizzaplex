@@ -110,6 +110,7 @@ func atualizar(delta: float, planta: PlantaPlex, rotas: RotasPlex, personagens: 
 
 func atualizar_visual(andando: bool) -> void:
 	if trabalho=="usar_caixa": progresso_acao=fposmod(relogio/1.6,1.0)
+	animacao.roupa_visitante=RoupasVisitantesPlex.pasta(self)
 	var ponto := ponto_visual()
 	position = GradePlex.projetar(Vector2(ponto.x, ponto.y)) + Vector2(0.0, 0.01)
 	visual.position.y = -ponto.z
@@ -120,7 +121,7 @@ func atualizar_visual(andando: bool) -> void:
 		acao = "montar" if trabalho=="reparar" else trabalho
 	elif trabalho in ["preparar", "lavar", "usar_caixa"] and not ocupado():
 		acao = "parado"
-	elif trabalho in ["jogar", "assistir"] and modelo == "crianca" and not ocupado():
+	elif trabalho in ["jogar", "assistir"] and (modelo == "crianca" or modelo.begins_with("adolescente")) and not ocupado():
 		acao = "parado" if trabalho == "assistir" and visita.get("assistiu",false) else trabalho
 	elif trabalho == "sentar_mesa" and assento >= 0 and not ocupado():
 		acao = "sentar"
@@ -165,9 +166,10 @@ func ponto_visual() -> Vector3:
 		var centro := ApoiosPlex.posicao(planta_visual, item)
 		var frente := Vector2(GradePlex.frente(item.rotacao)) * (0.12 if trabalho == "usar_vaso" else 0.12)
 		var altura_assento := 18.0 if trabalho == "usar_vaso" else 21.2
-		var quadril := 11.0 if modelo == "crianca" else 15.0
+		var quadril := 11.0 if modelo == "crianca" else 12.9 if modelo.begins_with("adolescente") else 15.0
 		return centro + Vector3(frente.x, frente.y, altura_assento - quadril * animacao.scale.y)
 	return Vector3(local.x, local.y, altura)
 
 func pronto_para_destino() -> bool:
 	return robo and modelo!="endo" and animacao.endo_config.is_empty()
+

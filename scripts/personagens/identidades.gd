@@ -23,7 +23,7 @@ static func garantir(ator: PersonagemPlex) -> void:
 	if ator.robo:
 		ator.identidade = {"nome":ator.modelo.replace("_"," ").capitalize(),"sobrenome":"","apelido":"","idade":0,"sexo":"maquina"}
 		return
-	var feminino := ator.modelo=="humana" or (ator.cargo=="crianca" and rng.randf()<.5)
+	var feminino := ator.modelo in ["humana","adolescente_feminina"] or (ator.cargo=="crianca" and rng.randf()<.5)
 	var nome := escolher(banco.femininos if feminino else banco.masculinos)
 	var sobrenome := escolher(banco.sobrenomes)
 	for tentativa in 20:
@@ -38,7 +38,7 @@ static func garantir(ator: PersonagemPlex) -> void:
 	if apelido.is_empty() and ator.cargo!="crianca" and rng.randf()<.12:
 		var alcunhas: Array = banco.alcunhas.filter(func(a): return a.origens.is_empty() or (feminino and a.nome=="Broto"))
 		if not alcunhas.is_empty(): apelido = str(alcunhas[rng.randi_range(0,alcunhas.size()-1)].nome)
-	ator.identidade = {"nome":nome,"sobrenome":sobrenome,"apelido":apelido,"idade":rng.randi_range(6,12) if ator.cargo=="crianca" else rng.randi_range(24,56),"sexo":"feminino" if feminino else "masculino"}
+	ator.identidade = {"nome":nome,"sobrenome":sobrenome,"apelido":apelido,"idade":rng.randi_range(6,12) if ator.cargo=="crianca" else rng.randi_range(13,17) if ator.cargo=="adolescente" else rng.randi_range(24,56),"sexo":"feminino" if feminino else "masculino"}
 
 static func familiar(filho: PersonagemPlex, adulta: PersonagemPlex) -> void:
 	garantir(filho)
@@ -56,3 +56,4 @@ static func completo(ator: PersonagemPlex) -> String:
 static func curto(ator: PersonagemPlex) -> String:
 	garantir(ator)
 	return completo(ator) if ator.robo else str(ator.identidade.apelido if not str(ator.identidade.apelido).is_empty() else ator.identidade.nome)
+

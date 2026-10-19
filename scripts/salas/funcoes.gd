@@ -8,7 +8,7 @@ static func possui(planta: PlantaPlex, ambiente: Dictionary, requisitos: Diction
 	for tipo in requisitos:
 		var total := 0
 		for id in ambiente.objetos:
-			if planta.objetos.get(id, {}).get("tipo", "") == tipo: total += 1
+			if CatalogoPlex.base(planta.objetos.get(id, {}).get("tipo", "")) == tipo: total += 1
 		if total < int(requisitos[tipo]): return false
 	return true
 
@@ -36,3 +36,4 @@ static func classificar(planta: PlantaPlex, ambiente: Dictionary, definicoes: Di
 
 static func aceita(ambiente: Dictionary, tipos: Array) -> bool:
 	return tipos.is_empty() or tipos.any(func(tipo): return tipo in ambiente.get("funcoes", [ambiente.tipo]))
+

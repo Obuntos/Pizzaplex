@@ -54,7 +54,7 @@ func abrir(entrada: PersonagemPlex) -> void:
 	for filho in conteudo.get_children():
 		conteudo.remove_child(filho)
 		filho.queue_free()
-	var visitante := ator.cargo in ["cliente","crianca"]
+	var visitante := ator.cargo in ["cliente","crianca","adolescente"]
 	var destaque := Color("a74b3b") if visitante else T.VERDE
 	if ator.robo: destaque = Color("3d5966")
 	folha.add_theme_stylebox_override("panel",T.caixa(T.PAPEL,destaque,10,24))
@@ -91,12 +91,13 @@ func abrir(entrada: PersonagemPlex) -> void:
 	conteudo.add_child(HSeparator.new())
 	if visitante:
 		T.texto(conteudo,"ACOMPANHAMENTO",10,destaque,true)
-		var acompanhantes: Array = jogo.personagens.filter(func(pessoa): return pessoa!=ator and pessoa.cargo in ["cliente","crianca"] and ator.familia>=0 and pessoa.familia==ator.familia)
+		var acompanhantes: Array = jogo.personagens.filter(func(pessoa): return pessoa!=ator and pessoa.cargo in ["cliente","crianca","adolescente"] and ator.familia>=0 and pessoa.familia==ator.familia)
 		var adultos := acompanhantes.filter(func(pessoa): return pessoa.cargo=="cliente").size()
-		var criancas := acompanhantes.size()-adultos
-		T.texto(conteudo,"Visitante em família · "+str(adultos)+" adulto(s) e "+str(criancas)+" criança(s) acompanhando" if not acompanhantes.is_empty() else "Visitante sem acompanhantes",14).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var criancas := acompanhantes.filter(func(pessoa): return pessoa.cargo=="crianca").size()
+		var adolescentes := acompanhantes.filter(func(pessoa): return pessoa.cargo=="adolescente").size()
+		T.texto(conteudo,"Visitante em família · "+str(adultos)+" adulto(s) e "+str(criancas)+" criança(s) e "+str(adolescentes)+" adolescente(s) acompanhando" if not acompanhantes.is_empty() else "Visitante sem acompanhantes",14).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		for pessoa in acompanhantes:
-			var papel := "Responsável" if pessoa.identificador==ator.responsavel else "Adulto" if pessoa.cargo=="cliente" else "Criança"
+			var papel := "Responsável" if pessoa.identificador==ator.responsavel else "Adulto" if pessoa.cargo=="cliente" else "Adolescente" if pessoa.cargo=="adolescente" else "Criança"
 			T.texto(conteudo,papel+" · "+IdentidadesPlex.completo(pessoa)+" · "+str(pessoa.identidade.idade)+" anos",13,T.SUAVE).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	elif not ator.robo:
 		T.texto(conteudo,"FUNÇÃO PRINCIPAL",10,destaque,true)
@@ -155,7 +156,7 @@ func abrir(entrada: PersonagemPlex) -> void:
 	atualizar_atividade()
 
 func atualizar_atividade() -> void:
-	var nomes := {"reparar":"Reparando animatrônico","circular_salao":"Circulando pelo salão","reservado_pecas":"Reservado para reutilização de peças","ir_pose":"Indo para o posto","liberar_saida":"Saindo da oficina","caixa":"No posto da registradora","usar_caixa":"Recebendo pagamento","ir_caixa":"Indo ao caixa","fila_caixa":"Aguardando na fila","pagar":"Pagando a refeição","aguardar_familia":"Aguardando acompanhantes","vigiar_palco":"Vigiando o palco","vigiar_ibm":"Verificando o IBM","ronda":"Em ronda","aguardar_caixa":"Aguardando registradora","varrer":"Varrendo o chão","esfregar":"Limpando o piso","montar":"Montando animatrônico","lavar":"Lavando pratos","preparar":"Preparando comida","jogar":"Jogando","assistir":"Assistindo ao show","sentar_mesa":"À mesa","apresentar":"Apresentando show","visitar":"Visitando o restaurante"}
+	var nomes := {"reparar":"Reparando animatrônico","circular_salao":"Circulando pelo salão","reservado_pecas":"Reservado para reutilização de peças","ir_pose":"Indo para o posto","liberar_saida":"Saindo da oficina","caixa":"No posto da registradora","usar_caixa":"Recebendo pagamento","ir_caixa":"Indo ao caixa","fila_caixa":"Aguardando na fila","pagar":"Pagando a refeição","aguardar_familia":"Aguardando acompanhantes","vigiar_palco":"Vigiando o palco","vigiar_ibm":"Verificando o IBM","ronda":"Em ronda","aguardar_caixa":"Aguardando registradora","varrer":"Varrendo o chão","esfregar":"Limpando o piso","montar":"Montando animatrônico","lavar":"Lavando pratos","preparar":"Preparando comida","jogar":"Jogando","assistir":"Assistindo ao show","sentar_mesa":"À mesa","apresentar":"Apresentando show","visitar":"Visitando o restaurante","seguir_familia":"Entrando com a família","procurar_salao":"Procurando acesso ao salão","aguardar_acesso":"Aguardando acesso ao restaurante","sair_visita":"Saindo da visita"}
 	if ator.robo and is_instance_valid(condicao):
 		AnimatronicosPlex.garantir(ator)
 		var desligado_manual:=bool(ator.robotica.get("desligado_manual",false))
@@ -189,3 +190,4 @@ func _process(delta: float) -> void:
 	if espera>=.25:
 		espera = 0
 		atualizar_atividade()
+

@@ -1,12 +1,12 @@
 class_name SalasPlex
 extends RefCounted
 
-const ESTRUTURA = ["parede", "porta", "porta_dupla"]
+const ESTRUTURA = ["parede", "porta", "porta_dupla", "porta_principal", "porta_servico", "parede_fachada", "janela", "janela_2", "janela_3"]
 
 static func ambiente_com_portas(planta: PlantaPlex, salas: Dictionary) -> Dictionary:
 	var resultado := salas.duplicate()
 	for porta in planta.objetos.values():
-		if porta.tipo not in ["porta", "porta_dupla"]: continue
+		if porta.tipo not in CatalogoPlex.PORTAS: continue
 		var ocupadas := planta.celulas(porta.tipo, porta.celula, porta.rotacao)
 		var frente := GradePlex.frente(porta.rotacao)
 		var interna := false
@@ -53,3 +53,4 @@ static func fechadas(planta: PlantaPlex) -> Dictionary:
 			if not exteriores.has(c) and planta.em(c).get("tipo", "") not in ESTRUTURA:
 				resultado[c] = true
 	return resultado
+

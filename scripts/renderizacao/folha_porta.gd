@@ -26,8 +26,8 @@ static func face(vertices: Array[Vector3], cor: Color, pontos: PackedVector3Arra
 static func acrescentar(tipo: String, rotacao: int, pontos: PackedVector3Array, cores: PackedColorArray) -> void:
 	var frente := Vector2(GradePlex.frente(rotacao))
 	var lado := Vector2(frente.y, -frente.x)
-	var largura := (2.0 if tipo == "porta_dupla" else 1.0) - .26
-	var quantidade := 2 if tipo == "porta_dupla" else 1
+	var largura := (2.0 if CatalogoPlex.base(tipo) == "porta_dupla" else 1.0) - .26
+	var quantidade := 2 if CatalogoPlex.base(tipo) == "porta_dupla" else 1
 	for i in quantidade:
 		var minimo := -largura * .5 + largura * float(i) / quantidade + .008
 		var maximo := -largura * .5 + largura * float(i + 1) / quantidade - .008
@@ -40,3 +40,4 @@ static func acrescentar(tipo: String, rotacao: int, pontos: PackedVector3Array, 
 		face([ponto(c, 0), ponto(d, 0), ponto(d, 6), ponto(c, 6)], Color("b49565"), pontos, cores)
 		face([ponto(d, 0), ponto(a, 0), ponto(a, 6), ponto(d, 6)], Color("927750"), pontos, cores)
 		face([ponto(a, 6), ponto(b, 6), ponto(c, 6), ponto(d, 6)], Color("bfa574"), pontos, cores)
+

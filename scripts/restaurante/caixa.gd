@@ -123,9 +123,10 @@ func atualizar(delta: float) -> void:
 			if grupo.tempo_pagamento<2.5: continue
 			grupo.pago=true
 			grupo.estado="pago"
-			grupo.recibo={"registradora":caixa.id,"valor":25}
-			jogo.servicos.saldo+=25
-			caixa.saldo=int(caixa.get("saldo",0))+25
+			var valor: int=25*maxi(1,jogo.servicos.pedidos.filter(func(p): return int(p.get("familia",-1))==int(grupo.id) and p.estado=="consumido").size())
+			grupo.recibo={"registradora":caixa.id,"valor":valor}
+			jogo.servicos.saldo+=valor
+			caixa.saldo=int(caixa.get("saldo",0))+valor
 			if jogo.planta.objetos.has(int(grupo.get("dinheiro_pagamento",-1))): jogo.planta.remover(int(grupo.dinheiro_pagamento))
 			a.carga_item=-1
 			grupo.erase("dinheiro_pagamento")
@@ -133,3 +134,4 @@ func atualizar(delta: float) -> void:
 			if not livres.is_empty(): mover(a,livres[0])
 			a.trabalho="aguardar_familia"
 			atendente.trabalho="caixa"
+

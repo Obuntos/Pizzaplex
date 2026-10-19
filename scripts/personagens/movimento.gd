@@ -126,6 +126,7 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 			ponto_destino -= Vector2(GradePlex.frente(objeto.rotacao)) / 3.0
 	var caixa: bool = personagem.carregando or planta.objetos.get(personagem.carga_item,{}).get("tipo","").begins_with("caixa")
 	var velocidade: float = 0.425 if personagem.robo else (0.475 if caixa else 0.55)
+	if personagem.cargo == "crianca" and personagem.visita.get("correndo",false): velocidade *= 1.6
 	if planta.em(inicio).get("tipo", "") == "escada" or planta.em(destino).get("tipo", "") == "escada":
 		velocidade *= 0.62
 	var anterior := progresso
@@ -140,3 +141,4 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 		rota.pop_front()
 		atravessando = false
 	return (progresso - anterior) * comprimento
+

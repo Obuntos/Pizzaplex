@@ -1,7 +1,7 @@
 class_name EncaixeCargaPlex
 extends RefCounted
 
-const APOIADOS = ["prato","pizza","fatia_pizza","bandeja","dinheiro"]
+const APOIADOS = ["prato","pizza","fatia_pizza","bandeja","dinheiro","guarana_copo","guarana_tampa"]
 static var bordas: Dictionary = {}
 
 static func apoiado(tipo: String) -> bool:
@@ -36,3 +36,4 @@ static func aplicar(sprite: Sprite2D, material_carga: ShaderMaterial, ator: Pers
 	sprite.position = tela-Vector2(96,144)
 	var profundidade := GradePlex.profundidade(ator.local,ator.altura)+2*ponto_apoio.y+3*ponto_apoio.z+2*(tela.y-ponto_apoio.y)
 	material_carga.set_shader_parameter("base",profundidade)
+

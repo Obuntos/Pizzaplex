@@ -7,8 +7,8 @@
       55
     ],
     "scale": [
-      1.25,
-      1.25
+      1.375,
+      1.375
     ],
     "frames": 12,
     "directions": 8,
@@ -8147,8 +8147,8 @@
       55
     ],
     "scale": [
-      1.25,
-      1.25
+      1.375,
+      1.375
     ],
     "frames": 12,
     "directions": 8,
@@ -16743,5 +16743,37 @@
     "frames": 12,
     "directions": 8,
     "layered": false
+  },
+  "adolescente": {
+    "width": 48,
+    "height": 60,
+    "pivot": [
+      24,
+      55
+    ],
+    "scale": [
+      1.25,
+      1.25
+    ],
+    "frames": 12,
+    "directions": 8,
+    "layered": true,
+    "trabalho": {}
+  },
+  "adolescente_feminina": {
+    "width": 48,
+    "height": 60,
+    "pivot": [
+      24,
+      55
+    ],
+    "scale": [
+      1.25,
+      1.25
+    ],
+    "frames": 12,
+    "directions": 8,
+    "layered": true,
+    "trabalho": {}
   }
 }

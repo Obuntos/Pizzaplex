@@ -88,12 +88,12 @@ func energia_recebida(indice: int, ponto: Vector3) -> float:
 func atualizar() -> void:
 	var estados := str(GradePlex.visao)
 	for item in planta.objetos.values():
-		if item.tipo in ["porta", "porta_dupla"]:
+		if item.tipo in CatalogoPlex.PORTAS:
 			estados += str(item.id) + str(item.aberta)
 	if not sujo and assinatura=="atual" and estados==portas_anteriores: return
 	var estrutura: Array = [GradePlex.visao]
 	for item in planta.objetos.values():
-		if item.tipo in ["parede","porta","porta_dupla","palco"] or item.tipo.begins_with("luz_"):
+		if item.tipo in (SalasPlex.ESTRUTURA + ["palco"]) or item.tipo.begins_with("luz_"):
 			estrutura.append([item.id,item.tipo,item.celula,item.rotacao,item.get("aberta",false),item.get("ligada",true),item.get("energia",1.2),item.get("cor_luz","#fff0d5")])
 	var atual := hash(estrutura)
 	sujo = false
@@ -111,7 +111,7 @@ func atualizar() -> void:
 	salas = SalasPlex.fechadas(planta)
 	var imagem := SalasPlex.mapa_ambiente(SalasPlex.ambiente_com_portas(planta, salas))
 	for objeto in planta.objetos.values():
-		if objeto.tipo in ["parede", "porta", "porta_dupla", "palco"]:
+		if objeto.tipo in (SalasPlex.ESTRUTURA + ["palco"]):
 			var altura := 18.0 if objeto.tipo == "palco" else (0.0 if objeto.get("aberta", false) else 160.0)
 			for celula in planta.celulas(objeto.tipo, objeto.celula, objeto.rotacao):
 				var marca := imagem.get_pixel(celula.x, celula.y)
@@ -142,3 +142,4 @@ func atualizar() -> void:
 			aplicar(mat)
 		else:
 			materiais.erase(referencia)
+

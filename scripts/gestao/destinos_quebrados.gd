@@ -35,7 +35,7 @@ func escolher(suporte: int) -> Vector2i:
 			for d in GradePlex.VIZINHOS:
 				var tipo: String = jogo.planta.em(c+d).get("tipo","")
 				if tipo=="parede" or not GradePlex.dentro(c+d): paredes+=1
-				if tipo in ["porta","porta_dupla"]: perto_porta=true
+				if tipo in CatalogoPlex.PORTAS: perto_porta=true
 			if perto_porta: continue
 			var atual := paredes*100.0-Vector2(c).distance_to(Vector2(estacao.celula))
 			if atual<=nota or caminho(suporte,c).is_empty(): continue
@@ -75,3 +75,4 @@ func mover(id: int, celula: Vector2i, rotacao: int) -> bool:
 	jogo.escolher_ferramenta("selecionar")
 	jogo.painel.mensagem("Destino vermelho atualizado. A seta define para onde o quebrado olhará.")
 	return true
+

@@ -1,7 +1,7 @@
 class_name GradePlex
 extends RefCounted
 
-const TAMANHO = Vector2i(32, 24)
+const TAMANHO = Vector2i(64, 48)
 const TILE = Vector2(64, 32)
 const ALTURA_PALCO = 18.0
 const CENTRO = Vector2(TAMANHO - Vector2i.ONE) * 0.5
@@ -70,3 +70,4 @@ static func direcao_suporte(rotacao: int) -> int:
 
 static func poligono(centro: Vector2) -> PackedVector2Array:
 	return PackedVector2Array([centro + Vector2(0, -16), centro + Vector2(32, 0), centro + Vector2(0, 16), centro + Vector2(-32, 0)])
+

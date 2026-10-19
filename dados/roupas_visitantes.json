@@ -1,0 +1,122 @@
+{
+  "humano_look_1": {
+    "modelo": "humano",
+    "nome": "Jeans com barra dobrada · Camisa de boliche",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_1/humano"
+  },
+  "humano_look_2": {
+    "modelo": "humano",
+    "nome": "Calça de flanela cintura alta · Jaqueta college",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_2/humano"
+  },
+  "humano_look_3": {
+    "modelo": "humano",
+    "nome": "Bermuda xadrez · Colete argyle com gravata",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_3/humano"
+  },
+  "humano_look_4": {
+    "modelo": "humano",
+    "nome": "Short jeans · Camisa de boliche azul royal",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_4/humano"
+  },
+  "humano_look_5": {
+    "modelo": "humano",
+    "nome": "Short bege com tênis branco · Camisa de boliche vermelha",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_5/humano"
+  },
+  "humano_look_6": {
+    "modelo": "humano",
+    "nome": "Bermuda xadrez azul · Camisa havaiana floral",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_6/humano"
+  },
+  "humano_look_7": {
+    "modelo": "humano",
+    "nome": "Bermuda madras vermelha · Camisa listrada vertical mostarda",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_7/humano"
+  },
+  "humano_look_8": {
+    "modelo": "humano",
+    "nome": "Short cinza de flanela · Camisa xadrez de flanela",
+    "pasta": "res://assets/aparencias/visitantes/humano_look_8/humano"
+  },
+  "humana_look_1": {
+    "modelo": "humana",
+    "nome": "Saia rodada turquesa · Blusa gola Peter Pan",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_1/humana"
+  },
+  "humana_look_2": {
+    "modelo": "humana",
+    "nome": "Saia lápis · Cardigã rosa",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_2/humana"
+  },
+  "humana_look_3": {
+    "modelo": "humana",
+    "nome": "Calça capri · Blusa marinheira listrada",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_3/humana"
+  },
+  "humana_look_4": {
+    "modelo": "humana",
+    "nome": "Short jeans cintura alta · Blusa branca gola Peter Pan marinho",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_4/humana"
+  },
+  "humana_look_5": {
+    "modelo": "humana",
+    "nome": "Short amarelo manteiga · Blusa de poá gola Peter Pan",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_5/humana"
+  },
+  "humana_look_6": {
+    "modelo": "humana",
+    "nome": "Short verde menta · Cardigã lavanda",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_6/humana"
+  },
+  "humana_look_7": {
+    "modelo": "humana",
+    "nome": "Short branco · Cardigã azul bebê",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_7/humana"
+  },
+  "humana_look_8": {
+    "modelo": "humana",
+    "nome": "Short xadrez vichy rosa · Blusa marinheira vermelha",
+    "pasta": "res://assets/aparencias/visitantes/humana_look_8/humana"
+  },
+  "humana_vestido_1": {
+    "modelo": "humana",
+    "nome": "Vestido poá neon com gola xale",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_1/humana"
+  },
+  "humana_vestido_2": {
+    "modelo": "humana",
+    "nome": "Vestido de gala rosa com laço azul",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_2/humana"
+  },
+  "humana_vestido_3": {
+    "modelo": "humana",
+    "nome": "Vestido camisa xadrez vichy",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_3/humana"
+  },
+  "humana_vestido_4": {
+    "modelo": "humana",
+    "nome": "Vestido camisa xadrez vichy azul",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_4/humana"
+  },
+  "humana_vestido_5": {
+    "modelo": "humana",
+    "nome": "Vestido camisa xadrez vichy verde",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_5/humana"
+  },
+  "humana_vestido_6": {
+    "modelo": "humana",
+    "nome": "Vestido poá vermelho com gola xale",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_6/humana"
+  },
+  "humana_vestido_7": {
+    "modelo": "humana",
+    "nome": "Vestido de gala lilás com laço amarelo",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_7/humana"
+  },
+  "humana_vestido_8": {
+    "modelo": "humana",
+    "nome": "Vestido de gala azul bebê com laço rosa",
+    "pasta": "res://assets/aparencias/visitantes/humana_vestido_8/humana"
+  }
+}

@@ -9,11 +9,11 @@ static func carregar() -> void:
 	if dados.is_empty(): dados = JSON.parse_string(FileAccess.get_file_as_string("res://dados/aparencias.json"))
 
 static func permitida(ator: PersonagemPlex) -> bool:
-	return ator.cargo == "funcionario" and ator.modelo in ["humano","humana"]
+	return (ator.cargo in ["funcionario","cliente"] and ator.modelo in ["humano","humana"]) or ator.cargo == "adolescente"
 
 static func roupa(ator: PersonagemPlex) -> String:
 	carregar()
-	if not permitida(ator): return "nenhum"
+	if not permitida(ator) or ator.cargo in ["adolescente","cliente"]: return "nenhum"
 	return dados.padroes.get(ator.funcao,"funcionario") if ator.uniforme == "automatico" else ator.uniforme
 
 static func cabelo(ator: PersonagemPlex) -> String:
@@ -21,6 +21,7 @@ static func cabelo(ator: PersonagemPlex) -> String:
 	return ("curto" if ator.modelo == "humano" else "camadas") if ator.cabelo == "automatico" else ator.cabelo
 
 static func vestir(ator: PersonagemPlex, arquivo: String) -> String:
+	if ator.cargo=="cliente": return RoupasVisitantesPlex.arquivo(ator,arquivo)
 	var uniforme := roupa(ator)
 	if uniforme == "nenhum": return arquivo
 	var novo := arquivo.replace("res://assets/personagens/","res://assets/aparencias/uniformes/"+uniforme+"/")
@@ -46,7 +47,7 @@ func aplicar(nome: String, arquivo: String, regiao: Rect2, pivo: Vector2, ator: 
 		atlas.atlas = CabeloChapeuPlex.textura(arquivo,roupa(ator)) if nome in ["tras","frente"] else CatalogoPlex.textura_iluminada(arquivo)
 		arquivos[nome] = chave
 	atlas.region = regiao
-	s.scale = ator.animacao.scale
+	s.scale = ator.animacao.scale * (.86 if ator.cargo == "adolescente" else 1.0)
 	s.position = (-pivo+deslocamento)*s.scale
 
 func atualizar(ator: PersonagemPlex, andando: bool) -> void:
@@ -78,3 +79,4 @@ func atualizar(ator: PersonagemPlex, andando: bool) -> void:
 
 func sombras() -> Array:
 	return camadas.values().filter(func(s): return s.visible)
+

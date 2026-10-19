@@ -1,8 +1,8 @@
 class_name CenaPlex
 extends Node2D
 
-const ORIGEM = Vector2i(-864, -176)
-const TAMANHO = Vector2i(1984, 1216)
+const ORIGEM = Vector2i(-1632, -176)
+const TAMANHO = Vector2i(3776, 2176)
 const MATERIAL = preload("res://shaders/profundidade.gdshader")
 var sprite := Sprite2D.new()
 var imagem: Image
@@ -17,6 +17,11 @@ var recorte := RecorteParedesPlex.new()
 var mapa_superficies: Image
 var superficies: ImageTexture
 var fundo_superficies: Image
+var buffer_atual := PackedFloat32Array()
+var anteriores: Dictionary = {}
+var regiao := Rect2i(Vector2i.ZERO, TAMANHO)
+var fixos_anteriores: Dictionary = {}
+var contexto_fundo := ""
 
 func _init() -> void:
 	z_index = -1
@@ -44,7 +49,7 @@ func compor(volume: Dictionary, centro: Vector2, altura: float, buffer: PackedFl
 		var local := pontos[i]
 		var x: int = base.x + int(local.x)
 		var y: int = base.y + int(local.y)
-		if x < 0 or x >= TAMANHO.x or y < 0 or y >= TAMANHO.y:
+		if x < 0 or x >= TAMANHO.x or y < 0 or y >= TAMANHO.y or not regiao.has_point(Vector2i(x,y)):
 			continue
 		var indice: int = y * TAMANHO.x + x
 		var valor: float = distancia + local.z
@@ -62,17 +67,57 @@ func compor(volume: Dictionary, centro: Vector2, altura: float, buffer: PackedFl
 		mapa_superficies.set_pixel(x, y, faces[i] if faces.size() == pontos.size() else Color(.5, .5, 1, 0))
 
 func dinamico(registro: Dictionary) -> bool:
-	return registro.tipo in ["porta","porta_dupla"] or registro.tipo.begins_with("caixa") or registro.get("sobre",-1)>=0 or CatalogoPlex.objetos[registro.tipo].get("estados",[]).size()>1
+	return registro.tipo in CatalogoPlex.PORTAS or registro.tipo.begins_with("caixa") or registro.get("sobre",-1)>=0 or CatalogoPlex.objetos[registro.tipo].get("estados",[]).size()>1
+
+func desenho(registro: Dictionary, planta: PlantaPlex, nivel: int) -> Dictionary:
+	var p := ApoiosPlex.posicao(planta,registro)
+	var volume := GeometriaPlex.objeto(registro,planta,recorte.nivel_para(registro,nivel),recorte.niveis)
+	var origem := Vector2i(GradePlex.projetar(Vector2(p.x,p.y),p.z).round())-ORIGEM
+	var limites := Rect2i(origem+Vector2i(volume.origin[0],volume.origin[1]),volume.textura.get_size())
+	return {"id":registro.id,"volume":volume,"posicao":Vector2(p.x,p.y),"altura":p.z,"limites":limites,"chave":hash([registro.tipo,registro.rotacao,FachadaPlex.estado(planta,registro),registro.get("aberta",false),p,nivel,recorte.nivel_para(registro,nivel),GeometriaPlex.mascara(registro,planta,recorte.niveis),GradePlex.visao])}
+
+func unir(a: Rect2i, b: Rect2i) -> Rect2i:
+	if not b.has_area(): return a
+	return a.merge(b) if a.has_area() else b
+
+func alteracoes(desenhos: Array, anteriores_base: Dictionary) -> Dictionary:
+	var atuais: Dictionary = {}
+	var area := Rect2i()
+	for d in desenhos:
+		atuais[d.id] = {"chave":d.chave,"limites":d.limites}
+		if not anteriores_base.has(d.id) or anteriores_base[d.id].chave != d.chave:
+			area = unir(area,d.limites)
+			if anteriores_base.has(d.id): area=unir(area,anteriores_base[d.id].limites)
+	for id in anteriores_base:
+		if not atuais.has(id): area=unir(area,anteriores_base[id].limites)
+	return {"registros":atuais,"area":area}
+
+func atualizar_fundo(desenhos: Array, area: Rect2i, planta: PlantaPlex, nivel: int) -> void:
+	regiao=area.grow(2).intersection(Rect2i(Vector2i.ZERO,TAMANHO))
+	if not regiao.has_area(): return
+	var final_imagem:=imagem
+	var final_superficies:=mapa_superficies
+	imagem=fundo
+	mapa_superficies=fundo_superficies
+	imagem.fill_rect(regiao,Color.TRANSPARENT)
+	mapa_superficies.fill_rect(regiao,Color.TRANSPARENT)
+	for y in range(regiao.position.y,regiao.end.y):
+		for x in range(regiao.position.x,regiao.end.x): distancias[y*TAMANHO.x+x]=-10000.0
+	for d in desenhos:
+		if d.limites.intersects(regiao): compor(d.volume,d.posicao,d.altura,distancias)
+	conectar_topos(planta,nivel,distancias)
+	imagem=final_imagem
+	mapa_superficies=final_superficies
 
 func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> void:
-	var fixos: Array = []
-	var moveis: Array = []
-	var estados: Array = [nivel,cortar_frente,GradePlex.visao]
-	var variacoes: Array = []
+	var fixos: Array=[]
+	var moveis: Array=[]
+	var estados: Array=[nivel,cortar_frente,GradePlex.visao]
+	var variacoes: Array=[]
 	for registro in planta.objetos.values():
 		if registro.tipo in ["luz_teto","luz_parede","luz_chao","pose","pose_quebrado"] or ApoiosPlex.portador(planta,registro.id)>0: continue
-		var dados := [registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1)]
-		if registro.tipo in ["parede","porta","porta_dupla"]: estados.append(dados)
+		var dados: Array=[registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1)]
+		if registro.tipo in SalasPlex.ESTRUTURA: estados.append(dados.slice(0,4))
 		if dinamico(registro):
 			moveis.append(registro)
 			variacoes.append(dados+[registro.get("aberta",false)])
@@ -80,43 +125,66 @@ func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> v
 			fixos.append(registro)
 			estados.append(dados)
 		if registro.tipo=="bancada" and registro.caixa: variacoes.append([registro.id,registro.get("caixa_tipo","caixa"),registro.get("ponto_caixa",[])])
-	var atual := str(hash(estados))
-	var atual_moveis := str(hash(variacoes))
+	var atual:=str(hash(estados))
+	var atual_moveis:=str(hash(variacoes))
 	if assinatura==atual and assinatura_portas==atual_moveis: return
-	var buffer := PackedFloat32Array()
-	if assinatura!=atual:
-		assinatura = atual
+	var contexto:=str(hash([nivel,cortar_frente,GradePlex.visao]))
+	var completa:=fundo==null or contexto_fundo!=contexto or assinatura.is_empty()
+	var mudou_fundo:=assinatura!=atual or completa
+	var estatica:=Rect2i()
+	if mudou_fundo:
 		recorte.calcular(planta,nivel,cortar_frente)
-		imagem.fill(Color.TRANSPARENT)
-		mapa_superficies.fill(Color.TRANSPARENT)
-		buffer.resize(TAMANHO.x*TAMANHO.y)
-		buffer.fill(-10000.0)
-		for registro in fixos:
-			var p := ApoiosPlex.posicao(planta,registro)
-			compor(GeometriaPlex.objeto(registro,planta,recorte.nivel_para(registro,nivel),recorte.niveis),Vector2(p.x,p.y),p.z,buffer)
-		fundo = imagem.duplicate() as Image
-		fundo_superficies = mapa_superficies.duplicate() as Image
-		distancias = buffer.duplicate()
-	else:
-		imagem = fundo.duplicate() as Image
-		mapa_superficies = fundo_superficies.duplicate() as Image
-		buffer = distancias.duplicate()
-	assinatura_portas = atual_moveis
-	for registro in moveis:
-		var p := ApoiosPlex.posicao(planta,registro)
-		compor(GeometriaPlex.objeto(registro,planta,recorte.nivel_para(registro,nivel),recorte.niveis),Vector2(p.x,p.y),p.z,buffer)
+		var desenhos_fixos: Array=[]
+		for r in fixos: desenhos_fixos.append(desenho(r,planta,nivel))
+		var diferenca:=alteracoes(desenhos_fixos,fixos_anteriores)
+		fixos_anteriores=diferenca.registros
+		estatica=diferenca.area
+		if completa:
+			regiao=Rect2i(Vector2i.ZERO,TAMANHO)
+			imagem.fill(Color.TRANSPARENT)
+			mapa_superficies.fill(Color.TRANSPARENT)
+			buffer_atual.resize(TAMANHO.x*TAMANHO.y)
+			buffer_atual.fill(-10000.0)
+			for d in desenhos_fixos: compor(d.volume,d.posicao,d.altura,buffer_atual)
+			conectar_topos(planta,nivel,buffer_atual)
+			fundo=imagem.duplicate() as Image
+			fundo_superficies=mapa_superficies.duplicate() as Image
+			distancias=buffer_atual.duplicate()
+			anteriores.clear()
+		elif estatica.has_area(): atualizar_fundo(desenhos_fixos,estatica,planta,nivel)
+		contexto_fundo=contexto
+	var desenhos: Array=[]
+	for r in moveis: desenhos.append(desenho(r,planta,nivel))
 	for registro in fixos+moveis:
 		if registro.tipo=="bancada" and registro.caixa:
-			var caixa := planta.ponto_caixa(registro.id)
-			compor(GeometriaPlex.obter(registro.get("caixa_tipo","caixa"),GradePlex.rotacao_visual(0),4,0,false,"aberta"),Vector2(caixa.x,caixa.y),caixa.z,buffer)
-	conectar_topos(planta,nivel,buffer)
-	mapa = Image.create_from_data(TAMANHO.x,TAMANHO.y,false,Image.FORMAT_RF,buffer.to_byte_array())
+			var p:=planta.ponto_caixa(registro.id)
+			var v:=GeometriaPlex.obter(registro.get("caixa_tipo","caixa"),GradePlex.rotacao_visual(0),4,0,false,"aberta")
+			var base:=Vector2i(GradePlex.projetar(Vector2(p.x,p.y),p.z).round())-ORIGEM
+			desenhos.append({"id":-registro.id,"volume":v,"posicao":Vector2(p.x,p.y),"altura":p.z,"limites":Rect2i(base+Vector2i(v.origin[0],v.origin[1]),v.textura.get_size()),"chave":hash([p,registro.get("caixa_tipo","caixa")])})
+	var diferenca:=alteracoes(desenhos,anteriores)
+	anteriores=diferenca.registros
+	assinatura=atual
+	assinatura_portas=atual_moveis
+	if completa: regiao=Rect2i(Vector2i.ZERO,TAMANHO)
+	else:
+		regiao=unir(estatica,diferenca.area).grow(3).intersection(Rect2i(Vector2i.ZERO,TAMANHO))
+		if not regiao.has_area(): return
+		imagem.blit_rect(fundo,regiao,regiao.position)
+		mapa_superficies.blit_rect(fundo_superficies,regiao,regiao.position)
+		for y in range(regiao.position.y,regiao.end.y):
+			for x in range(regiao.position.x,regiao.end.x): buffer_atual[y*TAMANHO.x+x]=distancias[y*TAMANHO.x+x]
+	for d in desenhos:
+		if d.limites.intersects(regiao): compor(d.volume,d.posicao,d.altura,buffer_atual)
+	if completa: mapa=Image.create_from_data(TAMANHO.x,TAMANHO.y,false,Image.FORMAT_RF,buffer_atual.to_byte_array())
+	else:
+		for y in range(regiao.position.y,regiao.end.y):
+			for x in range(regiao.position.x,regiao.end.x): mapa.set_pixel(x,y,Color(buffer_atual[y*TAMANHO.x+x],0,0))
 	textura.update(imagem)
 	profundidade.update(mapa)
 	superficies.update(mapa_superficies)
 
 func conectar_topos(planta: PlantaPlex, nivel: int, buffer: PackedFloat32Array) -> void:
-	var tipos: Array[String] = ["parede", "porta", "porta_dupla"]
+	var tipos: Array = SalasPlex.ESTRUTURA
 	for celula in planta.ocupacao:
 		var primeiro := planta.em(celula)
 		if primeiro.tipo not in tipos:
@@ -132,7 +200,7 @@ func conectar_topos(planta: PlantaPlex, nivel: int, buffer: PackedFloat32Array) 
 			var continua: bool = true
 			if nivel_local < 4:
 				for item in [primeiro, segundo]:
-					if item.tipo != "parede" and Vector2(deslocamento).dot(Vector2(GradePlex.frente(item.rotacao))) != 0.0:
+					if CatalogoPlex.base(item.tipo) != "parede" and Vector2(deslocamento).dot(Vector2(GradePlex.frente(item.rotacao))) != 0.0:
 						continua = false
 			if not continua:
 				continue
@@ -143,7 +211,7 @@ func conectar_topos(planta: PlantaPlex, nivel: int, buffer: PackedFloat32Array) 
 			var segmento := b - a
 			for y in range(floori(minf(a.y, b.y)) - 1, ceili(maxf(a.y, b.y)) + 2):
 				for x in range(floori(minf(a.x, b.x)) - 1, ceili(maxf(a.x, b.x)) + 2):
-					if x < 0 or y < 0 or x >= TAMANHO.x or y >= TAMANHO.y:
+					if x < 0 or y < 0 or x >= TAMANHO.x or y >= TAMANHO.y or not regiao.has_point(Vector2i(x,y)):
 						continue
 					var ponto := Vector2(x + 0.5, y + 0.5)
 					var t: float = (ponto - a).dot(segmento) / segmento.length_squared()
@@ -201,9 +269,9 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 	material_atual.set_shader_parameter("quadro_nativo",Vector2(personagem.animacao.definicao.width,personagem.animacao.definicao.height))
 	var ponto_visual := personagem.ponto_visual()
 	material_atual.set_shader_parameter("plano", GradePlex.projetar(Vector2(ponto_visual.x, ponto_visual.y)).y * 3.0)
-	material_atual.set_shader_parameter("apoiar_solas", not personagem.em_degraus and not PosturaPlex.sentada(personagem) and personagem.assento < 0)
+	material_atual.set_shader_parameter("apoiar_solas", not personagem.em_degraus and (personagem.assento<0 or PosturaPlex.sentada(personagem)))
 	material_atual.set_shader_parameter("apoiar_degraus", personagem.em_degraus)
-	material_atual.set_shader_parameter("altura_apoio", ponto_visual.z)
+	material_atual.set_shader_parameter("altura_apoio", personagem.altura if PosturaPlex.sentada(personagem) else ponto_visual.z)
 	var cabeca: float = 49.0 if personagem.robo or personagem.modelo.begins_with("fantasia_") else 33.0 if personagem.modelo == "crianca" else 29.0
 	if personagem.robo: cabeca=float(ClipesPlex.modelos.get(personagem.modelo,{}).get("cabeca_y",cabeca))
 	var pivo: float = personagem.animacao.definicao.pivot[1]
@@ -231,5 +299,6 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 	while pernas.size() < 6:
 		pernas.append(Vector4(-10000, -10000, 0, 0))
 	material_atual.set_shader_parameter("pernas", pernas)
-	material_atual.set_shader_parameter("raio", 3.8 if personagem.robo else 3.5)
+	material_atual.set_shader_parameter("raio", (3.8 if personagem.robo else 3.5)*personagem.animacao.scale.x/1.25)
 	material_atual.set_shader_parameter("em_escada", personagem.em_degraus or PosturaPlex.sentada(personagem))
+

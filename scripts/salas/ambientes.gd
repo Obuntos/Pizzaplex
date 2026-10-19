@@ -9,6 +9,7 @@ var ambientes: Array[Dictionary] = []
 var por_celula: Dictionary = {}
 var sujo := true
 var assinatura_estrutura := -1
+var assinatura_requisitos := -1
 var requisitos: Dictionary = {}
 
 func _init(p: PlantaPlex, r: RotasPlex) -> void:
@@ -25,11 +26,16 @@ func invalidar() -> void:
 func atualizar() -> void:
 	if not sujo: return
 	sujo = false
-	var estrutura: Array = [planta.ocupacao,planta.reservas_abertura.keys(),planta.funcoes_salas]
+	var estrutura: Array = [planta.funcoes_salas]
+	var equipamentos: Array = [planta.ocupacao,planta.reservas_abertura.keys()]
 	for item in planta.objetos.values():
-		if requisitos.has(item.tipo): estrutura.append([item.id,item.tipo,item.celula,item.rotacao,item.get("sobre",-1),item.get("carregada_por",0)])
+		if item.tipo in SalasPlex.ESTRUTURA: estrutura.append([item.id,item.tipo,item.celula,item.rotacao])
+		if requisitos.has(CatalogoPlex.base(item.tipo)): equipamentos.append([item.id,item.tipo,item.celula,item.rotacao,item.get("sobre",-1),item.get("carregada_por",0)])
 	var assinatura := hash(estrutura)
 	var reconstruir := assinatura!=assinatura_estrutura
+	var requisitos_atuais := hash(equipamentos)
+	var revalidar := requisitos_atuais!=assinatura_requisitos
+	assinatura_requisitos=requisitos_atuais
 	if reconstruir:
 		assinatura_estrutura = assinatura
 		ambientes.clear()
@@ -67,7 +73,7 @@ func atualizar() -> void:
 		if raiz >= 0:
 			var base: Dictionary = planta.objetos[raiz]
 			if por_celula.has(base.celula): ambientes[por_celula[base.celula]].objetos.append(item.id)
-	if not reconstruir: return
+	if not reconstruir and not revalidar: return
 	for ambiente in ambientes:
 		FuncoesSalaPlex.classificar(planta, ambiente, definicoes)
 		validar(ambiente)
@@ -92,7 +98,7 @@ func definir(celula: Vector2i, tipo: String) -> bool:
 	return true
 
 func objetos(ambiente: Dictionary, tipo: String) -> Array:
-	return ambiente.get("objetos", []).filter(func(id): return planta.objetos.has(id) and planta.objetos[id].tipo == tipo)
+	return ambiente.get("objetos", []).filter(func(id): return planta.objetos.has(id) and CatalogoPlex.base(planta.objetos[id].tipo) == tipo)
 
 func validar(ambiente: Dictionary) -> void:
 	var faltas: Array[String] = []
@@ -103,7 +109,7 @@ func validar(ambiente: Dictionary) -> void:
 	if ambiente.conflito: faltas.append("Áreas unidas têm funções diferentes. Escolha a função novamente.")
 	var entradas: Array[Vector2i] = []
 	for item in planta.objetos.values():
-		if item.tipo not in ["porta", "porta_dupla"]: continue
+		if item.tipo not in CatalogoPlex.PORTAS: continue
 		var frente := GradePlex.frente(item.rotacao)
 		for c in planta.celulas(item.tipo, item.celula, item.rotacao):
 			for d in [frente, -frente]:
@@ -128,7 +134,9 @@ func validar(ambiente: Dictionary) -> void:
 						if not GradePlex.dentro(c) or not planta.em(c).is_empty(): faltas.append(CatalogoPlex.objetos[tipo].nome+": deixe espaço para abrir a porta.")
 				var acessivel := false
 				for entrada in entradas:
-					if not rotas.aproximar(entrada, id).is_empty(): acessivel = true
+					if not rotas.aproximar(entrada, id).is_empty():
+						acessivel = true
+						break
 				if not acessivel: faltas.append(CatalogoPlex.objetos[tipo].nome + ": acesso obstruído.")
 	if "salao" in ambiente.funcoes:
 		var ligadas := false
@@ -152,3 +160,4 @@ func equipamentos(tipo: String, salas: Array = []) -> Array:
 		if ambiente.operacional and FuncoesSalaPlex.aceita(ambiente, salas):
 			for id in objetos(ambiente, tipo): resultado.append(id)
 	return resultado
+

@@ -1,7 +1,7 @@
 class_name RecorteParedesPlex
 extends RefCounted
 
-const ESTRUTURA = ["parede", "porta", "porta_dupla"]
+const ESTRUTURA = SalasPlex.ESTRUTURA
 var niveis: Dictionary = {}
 
 func estrutura(planta: PlantaPlex, celula: Vector2i) -> bool:
@@ -29,7 +29,7 @@ func calcular(planta: PlantaPlex, nivel: int, automatico: bool) -> void:
 		for celula in ocupadas:
 			var eixo_x := estrutura(planta, celula + Vector2i(1, 0)) or estrutura(planta, celula - Vector2i(1, 0))
 			var eixo_y := estrutura(planta, celula + Vector2i(0, 1)) or estrutura(planta, celula - Vector2i(0, 1))
-			if item.tipo in ["porta", "porta_dupla"]:
+			if item.tipo in CatalogoPlex.PORTAS:
 				eixo_x = item.rotacao % 2 == 0
 				eixo_y = not eixo_x
 			if GradePlex.visao % 2 == 1:
@@ -46,3 +46,4 @@ func calcular(planta: PlantaPlex, nivel: int, automatico: bool) -> void:
 
 func nivel_para(item: Dictionary, padrao: int) -> int:
 	return int(niveis.get(item.id, padrao))
+

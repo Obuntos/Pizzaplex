@@ -20,13 +20,14 @@ static func pontos(servico: ServicosPlex, a: PersonagemPlex) -> Array[Vector2i]:
 	for d in GradePlex.VIZINHOS:
 		var c: Vector2i = a.celula+d
 		if not servico.planta.transitavel(c) or not is_equal_approx(servico.planta.altura(c),servico.planta.altura(a.celula)): continue
-		if servico.planta.em(c).get("tipo","") in ["porta","porta_dupla","escada"]: continue
+		if servico.planta.em(c).get("tipo","") in (CatalogoPlex.PORTAS + ["escada"]): continue
 		if servico.personagens.any(func(outro): return outro != a and outro.robo and outro.celula == c): continue
 		resultado.append(c)
 	return resultado
 
 static func iniciar(servico: ServicosPlex, mecanico: PersonagemPlex) -> bool:
 	if not EquipePlex.permite(mecanico,"manutencao") or mecanico.carga_item>=0 or servico.trabalhos.has(mecanico.identificador) or servico.montagem.trabalhos.has(mecanico.identificador): return false
+	if servico.salas.em(mecanico.celula).get("tipo", "") == "oficina": mecanico.visita.posto_oficina = [mecanico.celula.x,mecanico.celula.y]
 	for a in servico.personagens:
 		if a.robo: AnimatronicosPlex.garantir(a)
 	var robos: Array = servico.personagens.filter(func(a): return danificado(a) and desligado(a) and int(a.robotica.get("reparo_por",0)) == 0)
@@ -86,6 +87,7 @@ static func concluir(servico: ServicosPlex, mecanico: PersonagemPlex, passo: Dic
 	if servico.planta.objetos.has(id):
 		mecanico.carga_item = id
 		servico.inventario.devolver(mecanico)
+	mecanico.visita.retornar_oficina = true
 	return true
 
 static func liberar(servico: ServicosPlex, mecanico: PersonagemPlex, trabalho: Dictionary) -> void:
@@ -107,3 +109,35 @@ static func resumo(servico: ServicosPlex) -> String:
 		var situacao := "Em reparo" if int(a.robotica.get("reparo_por",0)) > 0 else "Aguardando desligar" if not desligado(a) else "Aguardando mecânico" if pecas else "Aguardando peças"
 		linhas.append(IdentidadesPlex.completo(a)+" · "+str(roundi(float(a.robotica.get("desgaste",0.0))*50))+"% · "+situacao)
 	return "Nenhum animatrônico precisa de reparo." if linhas.is_empty() else "\n".join(linhas)
+
+
+static func voltar_oficina(servico: ServicosPlex, mecanico: PersonagemPlex) -> bool:
+	if not mecanico.visita.get("retornar_oficina", false): return false
+	if mecanico.ocupado(): return true
+	var candidatos: Array[Vector2i] = []
+	for sala in servico.salas.ambientes:
+		if sala.tipo != "oficina" or not sala.operacional: continue
+		for c in sala.celulas:
+			if servico.planta.transitavel(c) and is_zero_approx(servico.planta.altura(c)) and servico.planta.em(c).get("tipo", "") not in (CatalogoPlex.PORTAS + ["escada"]) and not servico.personagens.any(func(a): return a != mecanico and a.celula == c): candidatos.append(c)
+	candidatos.sort_custom(func(a,b): return a.distance_squared_to(mecanico.celula) < b.distance_squared_to(mecanico.celula))
+	var posto: Array = mecanico.visita.get("posto_oficina", [])
+	if posto.size() == 2:
+		var c := Vector2i(posto[0],posto[1])
+		if candidatos.has(c):
+			candidatos.erase(c)
+			candidatos.push_front(c)
+	for c in candidatos:
+		if c == mecanico.celula:
+			mecanico.visita.retornar_oficina = false
+			mecanico.trabalho = ""
+			return false
+		var rota := servico.rotas.caminho(mecanico.origem_rota(),c)
+		if rota.is_empty(): continue
+		mecanico.trabalho = "retornar_oficina"
+		mecanico.andar(rota)
+		return true
+	if candidatos.is_empty() and is_zero_approx(servico.planta.altura(mecanico.celula)):
+		mecanico.visita.retornar_oficina = false
+		return false
+	mecanico.trabalho = "aguardar_saida_palco"
+	return true

@@ -12,7 +12,7 @@ static func iniciar(servico: ServicosPlex, ator: PersonagemPlex, delta: float) -
 		for c in ambiente.celulas:
 			var distancia: float = ator.local.distance_to(Vector2(c))
 			if distancia < 2.0 or distancia > 7.0 or not servico.planta.transitavel(c) or not servico.planta.em(c).is_empty(): continue
-			if GradePlex.VIZINHOS.any(func(d): return servico.planta.em(c+d).get("tipo","") in ["porta","porta_dupla"]): continue
+			if GradePlex.VIZINHOS.any(func(d): return servico.planta.em(c+d).get("tipo","") in CatalogoPlex.PORTAS): continue
 			if servico.personagens.any(func(a): return a != ator and (a.celula == c or (not a.movimento.rota.is_empty() and a.movimento.rota[-1] == c))): continue
 			candidatos.append(c)
 	var ciclo := int(ator.visita.get("passeio_ciclo",0))
@@ -26,3 +26,4 @@ static func iniciar(servico: ServicosPlex, ator: PersonagemPlex, delta: float) -
 		ator.trabalho = "circular_salao"
 		ator.andar(rota)
 		return
+

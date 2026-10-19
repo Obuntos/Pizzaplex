@@ -4,10 +4,10 @@ extends RefCounted
 static func mapa_portas(planta: PlantaPlex) -> Image:
 	var imagem := Image.create_empty(GradePlex.TAMANHO.x, GradePlex.TAMANHO.y, false, Image.FORMAT_RGBAF)
 	for objeto in planta.objetos.values():
-		if objeto.tipo not in ["porta", "porta_dupla"]: continue
+		if objeto.tipo not in CatalogoPlex.PORTAS: continue
 		var dimensao := CatalogoPlex.dimensoes(objeto.tipo, objeto.rotacao)
 		var centro := Vector2(objeto.celula) + Vector2(dimensao - Vector2i.ONE) * .5
-		var largura := (2.0 if objeto.tipo == "porta_dupla" else 1.0) * (-1.0 if objeto.aberta else 1.0)
+		var largura := (2.0 if CatalogoPlex.base(objeto.tipo) == "porta_dupla" else 1.0) * (-1.0 if objeto.aberta else 1.0)
 		for celula in planta.celulas(objeto.tipo, objeto.celula, objeto.rotacao):
 			imagem.set_pixel(celula.x, celula.y, Color(centro.x, centro.y, objeto.rotacao, largura))
 	return imagem
@@ -44,21 +44,21 @@ static func local_porta(ponto: Vector3, objeto: Dictionary) -> Vector3:
 
 static func trecho_bloqueado(planta: PlantaPlex, celula: Vector2i, ponto: Vector3, luz: Vector3, entrada: float, saida: float) -> bool:
 	var objeto := planta.em(celula)
-	if objeto.get("tipo", "") not in ["porta", "porta_dupla"]:
+	if objeto.get("tipo", "") not in CatalogoPlex.PORTAS:
 		var z := minf(lerpf(ponto.z, luz.z, entrada), lerpf(ponto.z, luz.z, saida))
 		return altura(planta, celula) > z + 1.0
 	var a := local_porta(ponto, objeto)
 	var b := local_porta(luz, objeto)
-	var meio := 1.0 if objeto.tipo == "porta_dupla" else .5
-	var passagem := meio - (.14 if objeto.tipo == "porta_dupla" else .12)
+	var meio := 1.0 if CatalogoPlex.base(objeto.tipo) == "porta_dupla" else .5
+	var passagem := meio - (.14 if CatalogoPlex.base(objeto.tipo) == "porta_dupla" else .12)
 	if raio_caixa(a, b, Vector3(-meio + .005, -.495, 0), Vector3(-meio + .115, .495, 160), entrada, saida): return true
 	if raio_caixa(a, b, Vector3(meio - .115, -.495, 0), Vector3(meio - .005, .495, 160), entrada, saida): return true
 	if raio_caixa(a, b, Vector3(-meio, -.495, 98), Vector3(meio, .495, 160), entrada, saida): return true
 	if not objeto.aberta:
 		return raio_caixa(a, b, Vector3(-passagem, -.0325, 0), Vector3(passagem, .0325, 98), entrada, saida)
-	var folha := passagem if objeto.tipo == "porta_dupla" else passagem * 2.0
+	var folha := passagem if CatalogoPlex.base(objeto.tipo) == "porta_dupla" else passagem * 2.0
 	if raio_caixa(a, b, Vector3(-passagem - .0325, -folha, 1), Vector3(-passagem + .0325, 0, 97), entrada, saida): return true
-	return objeto.tipo == "porta_dupla" and raio_caixa(a, b, Vector3(passagem - .0325, -folha, 1), Vector3(passagem + .0325, 0, 97), entrada, saida)
+	return CatalogoPlex.base(objeto.tipo) == "porta_dupla" and raio_caixa(a, b, Vector3(passagem - .0325, -folha, 1), Vector3(passagem + .0325, 0, 97), entrada, saida)
 
 static func visibilidade(planta: PlantaPlex, ponto: Vector3, luz: Vector3) -> float:
 	var a := grade(ponto)
@@ -87,3 +87,4 @@ static func visibilidade(planta: PlantaPlex, ponto: Vector3, luz: Vector3) -> fl
 			proximos.y += incremento.y
 		entrada = saida
 	return 0.0
+

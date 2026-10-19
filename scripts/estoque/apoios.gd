@@ -6,6 +6,7 @@ static var definicoes: Dictionary = {}
 static func carregar() -> void:
 	if definicoes.is_empty():
 		definicoes = JSON.parse_string(FileAccess.get_file_as_string("res://dados/funcoes_objetos.json"))
+		definicoes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/funcoes_fachada.json")), true)
 
 static func superficie(tipo: String) -> bool:
 	return bool(CatalogoPlex.objetos.get(tipo, {}).get("apoio", false))
@@ -18,14 +19,27 @@ static func categoria(tipo: String) -> String:
 static func pontos(objeto: Dictionary, planta: PlantaPlex = null) -> Array:
 	carregar()
 	if objeto.tipo == "ponto_recebimento": return PilhasPlex.pontos(objeto,planta)
-	if objeto.tipo=="mesa":
+	if LugaresPlex.mesa(objeto.tipo):
 		var resultado: Array = []
-		var assentos := LugaresPlex.cadeiras(planta,objeto)
-		for i in 4:
-			var lado: Vector2i = GradePlex.VIZINHOS[i]
-			resultado.append({"u":lado.x*.22,"v":lado.y*.22,"z":30.0,"cadeira":assentos[i],"accepts":["prato","pizza","fatia-pizza","copo-bebida","restos-mesa","bandeja"],"capacity":1})
-		resultado.append({"u":0.0,"v":0.0,"z":30.8,"accepts":["dinheiro"],"capacity":1})
-		resultado.append({"u":0.0,"v":0.0,"z":30.0,"accepts":["terminal-ibm"],"capacity":1})
+		var assentos := LugaresPlex.cadeiras(planta, objeto)
+		var posicoes := LugaresPlex.posicoes(objeto)
+		var dimensao := CatalogoPlex.dimensoes(objeto.tipo, objeto.rotacao)
+		var centro := Vector2(objeto.celula) + Vector2(dimensao - Vector2i.ONE) * .5
+		var altura := 30.0 if objeto.tipo == "mesa" else 29.0
+		for i in assentos.size():
+			var p: Dictionary = posicoes[i]
+			var local: Vector2 = Vector2(p.celula) - centro + Vector2(p.frente) * .8
+			if objeto.tipo == "mesa": local = (Vector2(p.celula) - centro) * .22
+			resultado.append({"u":local.x,"v":local.y,"z":altura,"cadeira":assentos[i],"accepts":["prato","pizza","fatia-pizza","restos-mesa","bandeja"],"capacity":1})
+		resultado.append({"u":0.0,"v":0.0,"z":altura+.8,"accepts":["dinheiro"],"capacity":1})
+		resultado.append({"u":0.0,"v":0.0,"z":altura,"accepts":["terminal-ibm"],"capacity":1})
+		for i in assentos.size():
+			var p: Dictionary = resultado[i].duplicate(true)
+			var frente: Vector2i = posicoes[i].frente
+			p.u += frente.y * .15
+			p.v -= frente.x * .15
+			p.accepts = ["copo-bebida","guarana-copo","guarana-tampa"]
+			resultado.append(p)
 		return resultado
 	if objeto.tipo == "forno":
 		return FornoPlex.pontos(objeto)
@@ -62,14 +76,19 @@ static func filhos(planta: PlantaPlex, pai: int, slot: int = -1) -> Array:
 static func aceita(planta: PlantaPlex, pai: int, tipo: String, slot: int) -> bool:
 	if not planta.objetos.has(pai): return false
 	var filhos_atuais := filhos(planta,pai)
-	if planta.objetos[pai].tipo == "mesa":
+	if LugaresPlex.mesa(planta.objetos[pai].tipo):
 		if tipo == "terminal_ibm" and not filhos_atuais.is_empty(): return false
 		if tipo != "terminal_ibm" and filhos_atuais.any(func(f): return f.tipo == "terminal_ibm"): return false
 	var apoios := pontos(planta.objetos[pai],planta)
 	if slot < 0 or slot >= apoios.size(): return false
 	if planta.objetos[pai].tipo == "ponto_recebimento" and not PilhasPlex.aceita(planta,pai,slot): return false
-	if planta.objetos[pai].tipo=="mesa" and tipo not in ["dinheiro","terminal_ibm"] and not LugaresPlex.ativo(planta,pai,slot): return false
+	if LugaresPlex.mesa(planta.objetos[pai].tipo) and tipo not in ["dinheiro","terminal_ibm"]:
+		var n := LugaresPlex.cadeiras(planta,planta.objetos[pai]).size()
+		var lugar := slot if slot < n else slot - n - 2
+		if not LugaresPlex.ativo(planta,pai,lugar): return false
 	var permitidos: Array = apoios[slot].accepts
+	if tipo == "terminal_ibm" and filhos_atuais.any(func(f): return str(f.tipo).begins_with("presente_")): return false
+	if tipo.begins_with("presente_"): return planta.objetos[pai].tipo in ["balcao","bancada","estante"] and not filhos_atuais.any(func(f): return f.tipo in ["terminal_ibm","registradora"]) and filhos(planta,pai,slot).is_empty()
 	if tipo.begins_with("caixa_pecas_") or tipo == "pecas_manutencao":
 		return planta.objetos[pai].tipo in ["armario_ferramentas", "ponto_recebimento"] and filhos(planta, pai, slot).size() < int(apoios[slot].get("capacity", 1))
 	return (permitidos.has(categoria(tipo)) or (tipo == "copo_bebida" and permitidos.has("copo")) or (tipo == "restos_mesa" and planta.objetos[pai].tipo == "prato")) and filhos(planta, pai, slot).size() < int(apoios[slot].get("capacity", 1))
@@ -142,7 +161,8 @@ static func fixar(planta: PlantaPlex, id: int, pai: int, slot: int) -> bool:
 	objeto.slot = slot
 	objeto.celula = planta.objetos[pai].celula
 	objeto.carregada_por = 0
-	if planta.objetos[pai].tipo=="mesa" and slot < 4: objeto.cadeira=LugaresPlex.cadeiras(planta,planta.objetos[pai])[slot]
+	if LugaresPlex.mesa(planta.objetos[pai].tipo) and slot < LugaresPlex.cadeiras(planta,planta.objetos[pai]).size(): objeto.cadeira=LugaresPlex.cadeiras(planta,planta.objetos[pai])[slot]
 	planta.reindexar()
 	planta.alterada.emit()
 	return true
+

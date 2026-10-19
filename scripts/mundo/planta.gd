@@ -45,7 +45,7 @@ func atualizar_reservas() -> void:
 		if not ApoiosPlex.definicoes.has(objeto.tipo) or objeto.get("carregada_por",0)>0: continue
 		var definicao: Dictionary = ApoiosPlex.definicoes[objeto.tipo]
 		var estado: String = objeto.get("estado",CatalogoPlex.objetos[objeto.tipo].estado_padrao)
-		var pontos: Array = definicao.estados[estado][objeto.rotacao].reserva
+		var pontos: Array = definicao.estados.get(estado,definicao.estados.values()[0])[objeto.rotacao].reserva
 		var centro := ApoiosPlex.posicao(self,objeto)
 		for ponto in pontos:
 			reservas_abertura[Vector2i(roundi(centro.x+ponto.u),roundi(centro.y+ponto.v))] = objeto.id
@@ -75,7 +75,7 @@ func sobre(celula: Vector2i, tipo: String = "") -> Array[Dictionary]:
 	return resultado
 
 func pode_colocar(tipo: String, celula: Vector2i, rotacao: int) -> bool:
-	if tipo in ["porta", "porta_dupla"]:
+	if tipo in CatalogoPlex.PORTAS:
 		rotacao = PortasPlex.rotacao_para(self, tipo, celula, rotacao)
 	if not GradePlex.dentro(celula):
 		return false
@@ -94,7 +94,7 @@ func pode_colocar(tipo: String, celula: Vector2i, rotacao: int) -> bool:
 		return true
 	if ApoiosPlex.superficie(tipo):
 		var apoio := ApoiosPlex.encontrar(self, celula, tipo)
-		if tipo == "prato" and objetos.get(apoio.get("pai", -1), {}).get("tipo", "") == "mesa": return false
+		if tipo == "prato" and LugaresPlex.mesa(objetos.get(apoio.get("pai", -1), {}).get("tipo", "")): return false
 		return not apoio.is_empty()
 	if sobreposto(tipo):
 		if tipo.begins_with("luz_") and objetos.values().filter(func(item): return item.tipo.begins_with("luz_")).size() >= 32:
@@ -105,11 +105,13 @@ func pode_colocar(tipo: String, celula: Vector2i, rotacao: int) -> bool:
 		if tipo == "pose_quebrado": return base==""
 		if tipo == "pose":
 			return base == "palco"
+		if CatalogoPlex.objetos[tipo].get("parede_requerida",false):
+			return CatalogoPlex.base(base) == "parede"
 		if tipo == "luz_parede":
-			return base == "parede"
+			return CatalogoPlex.base(base) == "parede"
 		if tipo == "luz_chao":
 			return base in ["", "palco"]
-		return base not in ["parede", "porta", "porta_dupla"]
+		return base not in SalasPlex.ESTRUTURA
 	for local in celulas(tipo, celula, rotacao):
 		var cabine := CabinesPlex.em(self, local)
 		if not cabine.is_empty() and (tipo != "vaso_sanitario" or rotacao != cabine.rotacao or local != CabinesPlex.fundo(self, cabine)): return false
@@ -121,7 +123,7 @@ func pode_colocar(tipo: String, celula: Vector2i, rotacao: int) -> bool:
 	return true
 
 func colocar(tipo: String, celula: Vector2i, rotacao: int = 0) -> int:
-	if tipo in ["porta", "porta_dupla"]:
+	if tipo in CatalogoPlex.PORTAS:
 		rotacao = PortasPlex.rotacao_para(self, tipo, celula, rotacao)
 	if not pode_colocar(tipo, celula, rotacao):
 		return -1
@@ -164,7 +166,7 @@ func remover(id: int) -> void:
 		for local in celulas(objeto.tipo, objeto.celula, objeto.rotacao):
 			if ocupacao.get(local, -1) == id: ocupacao.erase(local)
 			for adicional in sobre(local):
-				if adicional.tipo in ["pose", "pose_quebrado", "luz_parede"]:
+				if adicional.tipo in ["pose", "pose_quebrado", "luz_parede"] or CatalogoPlex.objetos[adicional.tipo].get("parede_requerida",false):
 					objetos.erase(adicional.id)
 	objetos.erase(id)
 	PilhasPlex.compactar(self,int(objeto.get("sobre",-1)))
@@ -196,7 +198,7 @@ func transitavel(celula: Vector2i) -> bool:
 	if not GradePlex.dentro(celula) or reservas_abertura.has(celula):
 		return false
 	var objeto := em(celula)
-	return objeto.is_empty() or objeto.tipo in ["porta", "porta_dupla", "palco", "escada"]
+	return objeto.is_empty() or objeto.tipo in (CatalogoPlex.PORTAS + ["palco", "escada"])
 
 func interacoes(id: int) -> Array[Vector2i]:
 	var resultado: Array[Vector2i] = []
@@ -205,6 +207,7 @@ func interacoes(id: int) -> Array[Vector2i]:
 	var objeto: Dictionary = objetos[id]
 	if objeto.get("sobre", -1) >= 0:
 		return interacoes(ApoiosPlex.raiz(self, id))
+	if LugaresPlex.mesa(objeto.tipo): return LugaresPlex.acessos(self,objeto)
 	ApoiosPlex.carregar()
 	if ApoiosPlex.definicoes.has(objeto.tipo) and not sobreposto(objeto.tipo):
 		return interacoes_estado(id,objeto.get("estado",CatalogoPlex.objetos[objeto.tipo].estado_padrao))
@@ -271,3 +274,4 @@ func bancada_para(suporte: int) -> int:
 
 func ponto_caixa(bancada: int) -> Vector3:
 	return PontosUsoPlex.caixa(objetos[bancada])
+

@@ -19,9 +19,12 @@ func pintar(celula: Vector2i, editor: EditorPlex) -> void:
 		editor.aplicar(celula)
 
 func estender(celula: Vector2i, editor: EditorPlex) -> void:
-	if not ativo or editor.ferramenta != "parede" or not GradePlex.dentro(celula):
+	if not ativo or CatalogoPlex.base(editor.ferramenta) != "parede" or editor.ferramenta.begins_with("janela") or not GradePlex.dentro(celula):
 		return
 	var inicio := anterior
+	var bloqueados := editor.planta.is_blocking_signals()
+	var quantidade := editor.planta.objetos.size()
+	editor.planta.set_block_signals(true)
 	var diferenca := celula - inicio
 	var dx := absi(diferenca.x)
 	var dy := absi(diferenca.y)
@@ -37,7 +40,11 @@ func estender(celula: Vector2i, editor: EditorPlex) -> void:
 			y += 1
 		pintar(ponto, editor)
 	anterior = celula
+	editor.planta.set_block_signals(bloqueados)
+	if not bloqueados and editor.planta.objetos.size()!=quantidade:
+		editor.planta.alterada.emit()
 
 func encerrar() -> void:
 	ativo = false
 	visitadas.clear()
+

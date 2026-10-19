@@ -5,6 +5,7 @@ static var objetos: Dictionary = {}
 static var personagens: Dictionary = {}
 static var texturas: Dictionary = {}
 static var imagens: Dictionary = {}
+const PORTAS = ["porta", "porta_dupla", "porta_principal", "porta_servico"]
 const DIRECOES = ["frente", "direita", "costas", "esquerda"]
 
 static func carregar() -> void:
@@ -12,7 +13,11 @@ static func carregar() -> void:
 		return
 	objetos = JSON.parse_string(FileAccess.get_file_as_string("res://dados/objetos.json"))
 	objetos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_salas.json")), true)
+	objetos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_fachada.json")), true)
 	personagens = JSON.parse_string(FileAccess.get_file_as_string("res://dados/personagens.json"))
+
+static func base(tipo: String) -> String:
+	return str(objetos.get(tipo, {}).get("familia", tipo))
 
 static func textura(caminho: String) -> Texture2D:
 	if not texturas.has(caminho):
@@ -65,6 +70,7 @@ static func porta_recortada(caminho: String, fechado: String, nivel: int) -> Tex
 
 static func sprite(tipo: String, rotacao: int, estado: String = "", nivel: int = 4, mascara: int = 0) -> Texture2D:
 	carregar()
+	if tipo == "parede_fachada": return sprite("parede",rotacao,"",nivel,mascara)
 	if ItensPlex.personalizado(tipo): return ItensPlex.sprite(tipo,rotacao,estado)
 	if objetos[tipo].has("estados"):
 		var atual: String = estado if objetos[tipo].estados.has(estado) else objetos[tipo].estado_padrao
@@ -190,3 +196,4 @@ static func dimensoes(tipo: String, rotacao: int) -> Vector2i:
 	if rotacao % 2 == 1:
 		return Vector2i(item.profundidade, item.largura)
 	return Vector2i(item.largura, item.profundidade)
+

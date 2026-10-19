@@ -9,6 +9,8 @@ var cache: Dictionary = {}
 var consultas := 0
 var calculadas := 0
 var reconstrucoes := 0
+var bloqueios_ativos: Dictionary = {}
+var assinatura_bloqueios := -1
 
 func _init(valor: PlantaPlex) -> void:
 	planta = valor
@@ -28,13 +30,13 @@ func escada_ligada(a: Vector2i, b: Vector2i) -> bool:
 	var frente := GradePlex.frente(escada.rotacao)
 	var entrada: Vector2i = a + frente
 	var saida: Vector2i = a - frente
-	if not EscadasPlex.acessivel(a, planta):
-		return false
+	var conectada := EscadasPlex.faixa(a,planta).any(func(c): return planta.em(c-frente).get("tipo","")=="palco")
+	if not conectada: return false
 	var vizinho := planta.em(b)
 	if vizinho.get("tipo", "") == "escada":
 		return vizinho.rotacao == escada.rotacao and Vector2(b - a).dot(Vector2(frente)) == 0.0
 	if b == entrada:
-		return planta.transitavel(b) and is_zero_approx(planta.altura(b))
+		return GradePlex.dentro(b) and is_zero_approx(planta.altura(b))
 	return b == saida and vizinho.get("tipo", "") == "palco"
 
 func conectavel(a: Vector2i, b: Vector2i) -> bool:
@@ -46,34 +48,50 @@ func conectavel(a: Vector2i, b: Vector2i) -> bool:
 	if segundo.get("tipo", "") == "escada":
 		return escada_ligada(b, a)
 	for item in [primeiro, segundo]:
-		if item.get("tipo", "") in ["porta", "porta_dupla"]:
+		if item.get("tipo", "") in CatalogoPlex.PORTAS:
 			var normal := GradePlex.frente(item.rotacao)
 			if a - b != normal and b - a != normal:
 				return false
 	return is_equal_approx(planta.altura(a), planta.altura(b))
 
 func reconstruir() -> void:
-	var estrutura: Array = [planta.ocupacao,planta.reservas_abertura.keys()]
+	var estrutura: Array = []
 	for item in planta.objetos.values():
-		if planta.ocupa(item) or item.tipo=="divisoria_porta": estrutura.append([item.tipo,item.celula,item.rotacao])
+		if item.tipo in (CatalogoPlex.PORTAS + ["palco","escada","divisoria_porta"]): estrutura.append([item.tipo,item.celula,item.rotacao])
 	var atual := hash(estrutura)
-	if assinatura==atual: return
-	assinatura = atual
+	if assinatura != atual:
+		assinatura = atual
+		reconstrucoes += 1
+		grafo.clear()
+		bloqueios_ativos.clear()
+		assinatura_bloqueios = -1
+		for y in GradePlex.TAMANHO.y:
+			for x in GradePlex.TAMANHO.x:
+				var local := Vector2i(x,y)
+				grafo.add_point(indice(local),Vector2(local))
+		for id in grafo.get_point_ids():
+			var a := celula(id)
+			for d in [Vector2i(1,0),Vector2i(0,1)]:
+				var b: Vector2i = a+d
+				if GradePlex.dentro(b) and conectavel(a,b): grafo.connect_points(id,indice(b))
+	atualizar_bloqueios()
+
+func atualizar_bloqueios() -> void:
+	var novos: Dictionary = {}
+	for c in planta.ocupacao:
+		var item := planta.em(c)
+		if item.get("tipo","") not in (CatalogoPlex.PORTAS + ["palco","escada"]): novos[c]=true
+	for c in planta.reservas_abertura: novos[c]=true
+	var atual := hash(novos)
+	if atual == assinatura_bloqueios: return
+	assinatura_bloqueios = atual
+	for c in bloqueios_ativos:
+		if not novos.has(c) and grafo.has_point(indice(c)): grafo.set_point_disabled(indice(c),false)
+	for c in novos:
+		if not bloqueios_ativos.has(c) and grafo.has_point(indice(c)): grafo.set_point_disabled(indice(c),true)
+	bloqueios_ativos = novos
 	revisao += 1
-	reconstrucoes += 1
 	cache.clear()
-	grafo.clear()
-	for y in GradePlex.TAMANHO.y:
-		for x in GradePlex.TAMANHO.x:
-			var local := Vector2i(x, y)
-			if planta.transitavel(local):
-				grafo.add_point(indice(local), Vector2(local))
-	for id in grafo.get_point_ids():
-		var a := celula(id)
-		for deslocamento in GradePlex.VIZINHOS:
-			var b: Vector2i = a + deslocamento
-			if GradePlex.dentro(b) and grafo.has_point(indice(b)) and conectavel(a, b):
-				grafo.connect_points(id, indice(b))
 
 func caminho(origem: Vector2i, destino: Vector2i, bloqueados: Array[Vector2i] = []) -> Array[Vector2i]:
 	consultas += 1
@@ -87,9 +105,12 @@ func caminho(origem: Vector2i, destino: Vector2i, bloqueados: Array[Vector2i] = 
 		return resultado
 	if not grafo.has_point(indice(origem)) or not grafo.has_point(indice(destino)):
 		return resultado
+	if grafo.is_point_disabled(indice(destino)) and destino != origem: return resultado
+	var origem_bloqueada := grafo.is_point_disabled(indice(origem))
+	if origem_bloqueada: grafo.set_point_disabled(indice(origem),false)
 	var desativados: Array[int] = []
 	for local in bloqueados:
-		if local != origem and GradePlex.dentro(local) and grafo.has_point(indice(local)):
+		if local != origem and GradePlex.dentro(local) and grafo.has_point(indice(local)) and not grafo.is_point_disabled(indice(local)):
 			grafo.set_point_disabled(indice(local), true)
 			desativados.append(indice(local))
 	calculadas += 1
@@ -97,6 +118,7 @@ func caminho(origem: Vector2i, destino: Vector2i, bloqueados: Array[Vector2i] = 
 		resultado.append(celula(id))
 	for id in desativados:
 		grafo.set_point_disabled(id, false)
+	if origem_bloqueada: grafo.set_point_disabled(indice(origem),true)
 	if bloqueados.is_empty():
 		if cache.size()>=4096: cache.clear()
 		cache[chave] = resultado.duplicate()
@@ -133,3 +155,4 @@ func aproximar_montagem(origem: Vector2i, suporte: int) -> Array[Vector2i]:
 		if not rota.is_empty():
 			return rota
 	return []
+
