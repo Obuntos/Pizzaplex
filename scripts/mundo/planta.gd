@@ -5,6 +5,7 @@ signal alterada
 var objetos: Dictionary = {}
 var ocupacao: Dictionary = {}
 var cores: Dictionary = {}
+var pisos: Dictionary = {}
 var proximo_id: int = 1
 var funcoes_salas: Dictionary = {}
 var reservas_abertura: Dictionary = {}
@@ -38,6 +39,12 @@ func atualizar_reservas() -> void:
 	for item in objetos.values():
 		if item.tipo == "divisoria_porta":
 			for local in celulas(item.tipo, item.celula, item.rotacao): cabines_por_celula[local] = item.id
+	for porta in objetos.values():
+		if porta.tipo not in CatalogoPlex.PORTAS: continue
+		for c in celulas(porta.tipo,porta.celula,porta.rotacao):
+			if pisos.has(c): continue
+			for d in [GradePlex.frente(porta.rotacao),-GradePlex.frente(porta.rotacao)]:
+				if pisos.has(c+d): pisos[c]=pisos[c+d]; break
 	LugaresPlex.sincronizar(self)
 	reservas_abertura.clear()
 	ApoiosPlex.carregar()
@@ -143,6 +150,7 @@ func colocar(tipo: String, celula: Vector2i, rotacao: int = 0) -> int:
 	registro.carregada_por = 0
 	registro.ingredientes = 0
 	registro.lixo = 0
+	MobiliaPlex.preparar(registro, tipo)
 	if tipo.begins_with("caixa"):
 		registro.recurso = CatalogoPlex.objetos[tipo].get("recurso", "pecas")
 		registro.quantidade = CatalogoPlex.objetos[tipo].get("quantidade", 1)

@@ -49,6 +49,15 @@ var interface_gestao := InterfaceGestaoPlex.new()
 var desenho_salas := DesenhoSalasPlex.new()
 var visor := VisorPlex.new()
 var velocidade_tempo := 1.0
+var calendario := CalendarioPlex.new()
+var conforto: ConfortoPlex
+var campanha := false
+var compras_construcao := 0
+var ultimo_minuto := -1
+var operacao: OperacaoRestaurantePlex
+var mapa_conforto: MapaConfortoPlex
+var fantasias: FantasiasRestaurantePlex
+var vestiario_ui:=UIVestiarioPlex.new()
 
 func _ready() -> void:
 	CatalogoPlex.carregar()
@@ -57,6 +66,7 @@ func _ready() -> void:
 	rotas = RotasPlex.new(planta)
 	editor = EditorPlex.new(planta)
 	editor.personagens = personagens
+	editor.jogo = self
 	poses = PosesPlex.new(planta, rotas, personagens)
 	saida_montagem = SaidaMontagemPlex.new(planta, rotas, poses, personagens)
 	iluminacao = IluminacaoPlex.new(planta)
@@ -64,6 +74,7 @@ func _ready() -> void:
 	tarefas.personagens = personagens
 	ambientes = AmbientesPlex.new(planta, rotas)
 	servicos = ServicosPlex.new(planta, rotas, ambientes, tarefas, personagens)
+	conforto = ConfortoPlex.new(self)
 	clientes = ClientesPlex.new(self)
 	atendimento = CaixaPlex.new(self)
 	rondas = RondasPlex.new(self)
@@ -71,9 +82,15 @@ func _ready() -> void:
 	cortinas = CortinasPalcoPlex.new(self)
 	lazer = LazerPlex.new(self)
 	compras = ComprasPlex.new(self)
+	operacao = OperacaoRestaurantePlex.new(self)
+	fantasias = FantasiasRestaurantePlex.new(self)
 	quebrados = DestinosQuebradosPlex.new(self)
 	projetos_endo = ProjetosEndoPlex.new(self)
 	projetos_endo.aviso.connect(painel.mensagem)
+	mapa_conforto = MapaConfortoPlex.new()
+	mapa_conforto.jogo = self
+	mapa_conforto.z_index = 120
+	add_child(mapa_conforto)
 	desenho_salas.salas = ambientes
 	desenho_salas.z_index = -2
 	chao.planta = planta
@@ -94,6 +111,9 @@ func _ready() -> void:
 	cursor.z_index = 100
 	add_child(cursor)
 	add_child(painel)
+	painel.configurar_hud(self)
+	vestiario_ui.configurar(self)
+	add_child(vestiario_ui)
 	interface_gestao.configurar(self)
 	visor.configurar(self)
 	terminal_ui.configurar(self)
@@ -134,6 +154,7 @@ func _ready() -> void:
 
 func escolher_ferramenta(valor: String) -> void:
 	traco_parede.encerrar()
+	if editor.ferramenta!=valor: editor.estado_visual=str(CatalogoPlex.objetos.get(valor,{}).get("estado_padrao",""))
 	editor.ferramenta = valor
 	if valor != "editar_luz":
 		luz_selecionada = -1
@@ -145,6 +166,8 @@ func spawn(modelo: String, celula: Vector2i, cargo: String = "funcionario") -> P
 	if not oficio.is_empty(): modelo="humano"
 	var ator: PersonagemPlex = CENA_PERSONAGEM.instantiate()
 	var robo: bool = CatalogoMontagemPlex.robotico(modelo)
+	ator.equipe = personagens
+	ator.set_meta("cabelo_reservado",str(operacao.criacao.get("cabelo","nenhum")))
 	ator.cargo = cargo
 	ator.configurar(proximo_personagem, modelo, celula, robo)
 	if not oficio.is_empty():
@@ -291,7 +314,7 @@ func apontada() -> Vector2i:
 
 func _process(delta: float) -> void:
 	var comando_camera := Vector2(float(Input.is_physical_key_pressed(KEY_D)) - float(Input.is_physical_key_pressed(KEY_A)), float(Input.is_physical_key_pressed(KEY_S)) - float(Input.is_physical_key_pressed(KEY_W)))
-	if not carteira.aberto() and not terminal_ui.aberto() and not catalogo_modelos.aberto() and not comando_camera.is_zero_approx():
+	if not carteira.aberto() and not terminal_ui.aberto() and not catalogo_modelos.aberto() and not painel.hud.menu_aberto() and not (get_viewport().gui_get_focus_owner() is LineEdit) and not comando_camera.is_zero_approx():
 		visor.automatico = false
 		camera.position += comando_camera.normalized() * 400.0 * minf(delta, 0.05) / camera.zoom.x
 		camera.force_update_scroll()
@@ -308,6 +331,7 @@ func _process(delta: float) -> void:
 			visuais[id].atualizar(planta.objetos[id], planta, nivel_paredes, composicao.recorte.niveis, iluminacao.salas)
 	ambientes.atualizar()
 	interface_gestao.atualizar(delta)
+	painel.hud.atualizar(delta)
 	desenho_salas.queue_redraw()
 	var local := apontada()
 	cursor.celula = local
@@ -315,6 +339,10 @@ func _process(delta: float) -> void:
 	cursor.valido = GradePlex.dentro(local)
 	if CatalogoPlex.objetos.has(editor.ferramenta) and editor.ferramenta != "chao":
 		cursor.valido = planta.pode_colocar(editor.ferramenta, local, editor.rotacao) and (planta.sobreposto(editor.ferramenta) or editor.livre(local))
+	if CatalogoPlex.objetos.get(editor.ferramenta,{}).get("piso",false): cursor.valido=GradePlex.dentro(local)
+	if CatalogoPlex.objetos.get(editor.ferramenta,{}).has("pacote"):
+		for c in MobiliaPlex.modulos(editor.ferramenta,local,editor.rotacao):
+			if not planta.pode_colocar(editor.ferramenta,c,editor.rotacao) or not editor.livre(c): cursor.valido=false
 	if editor.ferramenta=="pose_quebrado": cursor.valido=quebrados.livre(local,editor.marca_quebrado)
 	cursor.visible = not carteira.aberto() and not catalogo_modelos.aberto() and not terminal_ui.aberto() and not painel.bloqueia_mouse(get_viewport().get_mouse_position())
 	cursor.niveis = composicao.recorte.niveis
@@ -324,10 +352,20 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	delta *= velocidade_tempo
 	if delta <= 0: return
+	operacao.atualizar(delta)
+	calendario.atualizar(delta)
+	conforto.atualizar(delta)
+	if ultimo_minuto != calendario.minuto_do_dia():
+		ultimo_minuto = calendario.minuto_do_dia()
+		iluminacao.ambiente_diurno = calendario.luz_ambiente()
+		for ref in iluminacao.materiais:
+			var mat: ShaderMaterial = ref.get_ref()
+			if mat != null: mat.set_shader_parameter("ambiente", iluminacao.ambiente_diurno)
 	compras.atualizar(delta)
 	projetos_endo.atualizar(delta)
 	atendimento.atualizar(delta)
 	rondas.atualizar(delta)
+	fantasias.atualizar(delta)
 	servicos.atualizar(delta)
 	clientes.atualizar(delta)
 	lazer.atualizar(delta)
@@ -337,7 +375,7 @@ func _physics_process(delta: float) -> void:
 	animatronicos.atualizar(delta)
 	cortinas.atualizar(delta)
 	for ator in personagens:
-		ator.set_meta("tarefa_ativa", servicos.trabalhos.has(ator.identificador) or tarefas.trabalhos.has(ator.identificador) or ator.pose >= 0 or ator.trabalho == "liberar_saida" or ator.cargo in ["cliente", "crianca"] or ator.funcao in ["caixa","seguranca"])
+		ator.set_meta("tarefa_ativa", servicos.trabalhos.has(ator.identificador) or tarefas.trabalhos.has(ator.identificador) or FantasiasRestaurantePlex.ocupando(ator) or ator.pose >= 0 or ator.trabalho in ["liberar_saida","caixa","ir_caixa","usar_caixa"] or ator.cargo in ["cliente", "crianca"] or ator.funcao in ["caixa","seguranca"])
 		ator.atualizar(delta, planta, rotas, personagens)
 		composicao.atualizar_personagem(ator)
 	for sombra in sombras_luzes.get_children():
@@ -375,6 +413,26 @@ func personagem_apontado() -> PersonagemPlex:
 	return null
 
 func _input(evento: InputEvent) -> void:
+	if evento is InputEventKey and evento.pressed and not evento.echo and evento.keycode==KEY_ESCAPE and painel.hud!=null:
+		if vestiario_ui.aberto(): vestiario_ui.adiar()
+		elif carteira.aberto(): carteira.fechar()
+		elif terminal_ui.aberto(): terminal_ui.fechar()
+		elif catalogo_modelos.aberto(): catalogo_modelos.fechar()
+		elif painel.hud.agenda.visible: painel.hud.agenda.hide()
+		else:
+			escolher_ferramenta("selecionar")
+			traco_parede.encerrar()
+			arrastando=false
+			painel.hud.alternar_menu()
+		get_viewport().set_input_as_handled()
+		return
+	if painel.hud != null and painel.hud.menu_aberto():
+		if evento is InputEventKey and evento.pressed and evento.keycode==KEY_ESCAPE:
+			if painel.hud.agenda.visible: painel.hud.agenda.hide()
+			else: painel.hud.alternar_menu()
+			get_viewport().set_input_as_handled()
+		return
+	if vestiario_ui.aberto(): return
 	if carteira.aberto():
 		if evento is InputEventKey and evento.pressed and evento.keycode==KEY_ESCAPE:
 			carteira.fechar()
@@ -392,6 +450,9 @@ func _input(evento: InputEvent) -> void:
 		elif clique_terminal >= 0 and evento.position.distance_to(inicio_direito) <= 6 and not terminal_ui.aberto():
 			terminal_ui.abrir(clique_terminal)
 			get_viewport().set_input_as_handled()
+		elif evento.position.distance_to(inicio_direito)<=6 and editor.ferramenta!="selecionar":
+			escolher_ferramenta("selecionar")
+			painel.hud.catalogo.preencher()
 		clique_terminal = -1
 		clique_personagem = null
 	if evento is InputEventMouseButton and not evento.pressed and evento.button_index == MOUSE_BUTTON_LEFT:
@@ -400,7 +461,7 @@ func _input(evento: InputEvent) -> void:
 		arrastando = false
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if carteira.aberto() or catalogo_modelos.aberto() or terminal_ui.aberto(): return
+	if vestiario_ui.aberto() or carteira.aberto() or catalogo_modelos.aberto() or terminal_ui.aberto() or painel.hud.menu_aberto(): return
 	if evento is InputEventMouse and painel.bloqueia_mouse(evento.position):
 		return
 	if evento is InputEventKey and evento.pressed and not evento.echo:
@@ -418,6 +479,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 			escolher_ferramenta(editor.ferramenta)
 		elif evento.keycode == KEY_ESCAPE:
 			escolher_ferramenta("selecionar")
+			traco_parede.encerrar()
+			arrastando=false
+			painel.hud.alternar_menu()
+			get_viewport().set_input_as_handled()
 	if evento is InputEventMouseButton:
 		if evento.button_index in [MOUSE_BUTTON_MIDDLE, MOUSE_BUTTON_RIGHT]:
 			arrastando = evento.pressed
@@ -521,7 +586,7 @@ func comandar(celula: Vector2i) -> void:
 	painel.mensagem("Destino atualizado. As tarefas automáticas continuam ativas.")
 
 func salvar() -> void:
-	ArquivoPlex.salvar(planta, personagens, servicos.gravar(), clientes.gravar(), compras.gravar())
+	ArquivoPlex.salvar(planta, personagens, servicos.gravar(), clientes.gravar(), compras.gravar(), {"ativa":campanha,"calendario":calendario.gravar(),"gastos_construcao":compras_construcao,"visao":GradePlex.visao,"paredes":nivel_paredes,"cortar_frente":cortar_frente,"operacao":operacao.gravar()})
 	painel.mensagem("Construção e personagens salvos.")
 
 func carregar() -> void:
@@ -544,6 +609,7 @@ func carregar() -> void:
 	planta.objetos.clear()
 	planta.ocupacao.clear()
 	planta.cores.clear()
+	planta.pisos.clear()
 	planta.funcoes_salas.clear()
 	servicos.trabalhos.clear()
 	planta.proximo_id = 1
@@ -562,6 +628,18 @@ func carregar() -> void:
 		planta.funcoes_salas[Vector2i(marca[0], marca[1])] = str(marca[2])
 	for cor in dados.cores:
 		planta.cores[Vector2i(cor[0], cor[1])] = int(cor[2])
+	for piso in dados.get("pisos",[]):
+		planta.pisos[Vector2i(piso[0],piso[1])] = str(piso[2])
+	var progresso: Dictionary = dados.get("campanha",{})
+	campanha = bool(progresso.get("ativa",false))
+	operacao.restaurar(progresso.get("operacao",{}))
+	compras_construcao = int(progresso.get("gastos_construcao",0))
+	calendario.restaurar(progresso.get("calendario",{}))
+	GradePlex.visao = posmod(int(progresso.get("visao",GradePlex.visao)),4)
+	nivel_paredes = clampi(int(progresso.get("paredes",nivel_paredes)),1,4)
+	cortar_frente = bool(progresso.get("cortar_frente",cortar_frente))
+	painel.recorte.set_pressed_no_signal(cortar_frente)
+	iluminacao.invalidar()
 	var suportes_antigos: Array = []
 	for item in planta.objetos.values():
 		if item.tipo=="suporte" and item.get("endo",false) and not item.get("montado",false) and not item.has("componentes_endo"):
@@ -573,6 +651,7 @@ func carregar() -> void:
 		if registro.modelo=="endo" and suportes_antigos.has(int(registro.get("suporte",-1))): continue
 		var ator := spawn(registro.modelo, Vector2i(registro.celula[0], registro.celula[1]))
 		ator.identificador = int(registro.id)
+		ator.relogio = float(registro.get("relogio",0.0))
 		proximo_personagem = maxi(proximo_personagem, ator.identificador + 1)
 		ator.cargo = str(registro.get("cargo", "funcionario"))
 		ator.identidade = registro.get("identidade",{}).duplicate(true)
@@ -605,8 +684,10 @@ func carregar() -> void:
 	planta.reindexar()
 	clientes.restaurar(dados.get("clientes", {}))
 	compras.restaurar(dados.get("compras",{}))
+	AdministradorPlex.reservar_cabelo(self)
 	FachadaPlex.corrigir_decoracao(planta)
 	planta.alterada.emit()
+	painel.hud.atualizar(1.0)
 	painel.mensagem("Construção carregada. As tarefas são recalculadas pelos objetos disponíveis.")
 
 func enquadrar() -> void:
@@ -615,3 +696,6 @@ func enquadrar() -> void:
 func alternar_tela_cheia() -> void:
 	visor.alternar_tela_cheia()
 
+
+func preco_construcao(tipo: String) -> int:
+	return 0 if operacao.debug else MobiliaPlex.preco(tipo)

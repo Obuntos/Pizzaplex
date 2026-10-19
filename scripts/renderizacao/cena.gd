@@ -74,7 +74,7 @@ func desenho(registro: Dictionary, planta: PlantaPlex, nivel: int) -> Dictionary
 	var volume := GeometriaPlex.objeto(registro,planta,recorte.nivel_para(registro,nivel),recorte.niveis)
 	var origem := Vector2i(GradePlex.projetar(Vector2(p.x,p.y),p.z).round())-ORIGEM
 	var limites := Rect2i(origem+Vector2i(volume.origin[0],volume.origin[1]),volume.textura.get_size())
-	return {"id":registro.id,"volume":volume,"posicao":Vector2(p.x,p.y),"altura":p.z,"limites":limites,"chave":hash([registro.tipo,registro.rotacao,FachadaPlex.estado(planta,registro),registro.get("aberta",false),p,nivel,recorte.nivel_para(registro,nivel),GeometriaPlex.mascara(registro,planta,recorte.niveis),GradePlex.visao])}
+	return {"id":registro.id,"volume":volume,"posicao":Vector2(p.x,p.y),"altura":p.z,"limites":limites,"chave":hash([registro.tipo,registro.get("variante",""),MobiliaPlex.estado(registro),registro.rotacao,FachadaPlex.estado(planta,registro),registro.get("aberta",false),p,nivel,recorte.nivel_para(registro,nivel),GeometriaPlex.mascara(registro,planta,recorte.niveis),GradePlex.visao])}
 
 func unir(a: Rect2i, b: Rect2i) -> Rect2i:
 	if not b.has_area(): return a
@@ -116,7 +116,7 @@ func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> v
 	var variacoes: Array=[]
 	for registro in planta.objetos.values():
 		if registro.tipo in ["luz_teto","luz_parede","luz_chao","pose","pose_quebrado"] or ApoiosPlex.portador(planta,registro.id)>0: continue
-		var dados: Array=[registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1)]
+		var dados: Array=[registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1),registro.get("variante",""),MobiliaPlex.estado(registro)]
 		if registro.tipo in SalasPlex.ESTRUTURA: estados.append(dados.slice(0,4))
 		if dinamico(registro):
 			moveis.append(registro)
@@ -221,8 +221,8 @@ func conectar_topos(planta: PlantaPlex, nivel: int, buffer: PackedFloat32Array) 
 					var distancia: float = (ponto.y + ORIGEM.y) * 2.0 + altura * 3.0
 					if distancia >= buffer[indice] - 1.25:
 						buffer[indice] = maxf(buffer[indice], distancia)
-						imagem.set_pixel(x, y, Color("818783"))
-						mapa_superficies.set_pixel(x, y, Color(.5, .5, 1, 1))
+						imagem.set_pixel(x, y, Color("ded9c5") if nivel_local<4 and MobiliaPlex.dados(primeiro).get("mobilia",false) else Color("818783"))
+						mapa_superficies.set_pixel(x, y, Color(.5, .5, 1, .5 if MobiliaPlex.dados(primeiro).get("mobilia",false) else 1.0))
 
 func vincular(personagem: PersonagemPlex) -> void:
 	var material_novo := ShaderMaterial.new()

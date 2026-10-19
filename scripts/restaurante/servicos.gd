@@ -244,11 +244,12 @@ func servir(ator: PersonagemPlex) -> bool:
 
 func limpar(ator: PersonagemPlex) -> bool:
 	for item in planta.objetos.values():
-		if item.tipo not in ["mancha_chao","bebida_derramada"] or item.get("sobre",-1)>=0 or not livre(item.id): continue
-		var ferramentas := encontrar("balde" if item.tipo=="bebida_derramada" else "vassoura")
+		if (item.tipo not in ["mancha_chao","bebida_derramada"] and not MobiliaPlex.dados(item).get("entulho",false)) or item.get("sobre",-1)>=0 or not livre(item.id): continue
+		var ferramentas := planta.objetos.values().filter(func(o): return o.tipo == ("balde" if item.tipo=="bebida_derramada" else "vassoura") and livre(o.id)).map(func(o): return o.id)
 		var ambiente := salas.do_objeto(item.id)
-		if ambiente.is_empty() or not ambiente.operacional: continue
-		for lixeira in encontrar("lixeira"):
+		if ambiente.is_empty() or not ambiente.fechada: continue
+		var lixeiras: Array = planta.objetos.values().filter(func(o): return o.tipo=="lixeira" and livre(o.id)).map(func(o): return o.id)
+		for lixeira in lixeiras:
 			if planta.objetos[lixeira].get("lixo",0) >= 6: continue
 			for ferramenta in ferramentas:
 				var passos := [etapa(ferramenta,"pegar"),etapa(item.id,"limpar",2.5),etapa(lixeira,"lixo",.7),etapa(ferramenta,"devolver",.5)]
@@ -299,6 +300,10 @@ func descansar(ator: PersonagemPlex) -> bool:
 
 func cancelar(ator: PersonagemPlex) -> void:
 	var trabalho: Dictionary = trabalhos.get(ator.identificador,{})
+	for passo in trabalho.get("passos",[]):
+		if passo.acao=="aquecer" and planta.objetos.has(passo.alvo):
+			planta.objetos[passo.alvo].estado="apagado"
+			planta.alterada.emit()
 	BebidasPlex.cancelar(self,ator,trabalho)
 	ReparosPlex.liberar(self,ator,trabalho)
 	ArmariosPlex.fechar_reservas(planta, trabalho)
@@ -406,6 +411,9 @@ func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> 
 			pedido.estado = "entregue"
 			pedido.tempo = 10.0
 			entregas += 1
+		"aquecer":
+			objeto.estado = "apagado"
+			planta.alterada.emit()
 		"limpar":
 			planta.remover(alvo)
 			limpezas += 1
@@ -478,7 +486,7 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 		trabalho.tempo = 0.0
 		ator.trabalho = ""
 		return
-	if passo.acao in ["limpar","lavar","preparar","reparar"] and trabalho.get("acomodado",-1)!=trabalho.indice:
+	if passo.acao in ["limpar","lavar","preparar","reparar","aquecer"] and trabalho.get("acomodado",-1)!=trabalho.indice:
 		trabalho.acomodado = trabalho.indice
 		var destino := ponto_trabalho(passo)
 		var ponto := PosicaoTrabalhoPlex.aproximacao(ator, planta, destino, .25 if passo.acao=="reparar" else .6 if passo.acao=="preparar" else .42 if passo.acao=="lavar" else .28)
@@ -486,7 +494,7 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 		return
 	if passo.alvo >= 0:
 		montagem.orientar(ator,ponto_trabalho(passo))
-	ator.trabalho = "preparar" if passo.acao == "preparar" else "lavar" if passo.acao == "lavar" else "descansar" if passo.acao == "descansar" else "servico"
+	ator.trabalho = "preparar" if passo.acao in ["preparar","aquecer"] else "lavar" if passo.acao == "lavar" else "descansar" if passo.acao == "descansar" else "servico"
 	if passo.acao == "limpar": ator.trabalho = "varrer" if planta.objetos.get(ator.carga_item,{}).get("tipo","")=="vassoura" else "esfregar"
 	if passo.alvo >= 0 and planta.objetos[passo.alvo].tipo in ["geladeira","forno"]:
 		var item: Dictionary = planta.objetos[passo.alvo]
@@ -541,15 +549,15 @@ func atualizar(delta: float) -> void:
 	atualizar_pedidos(delta)
 	espera += delta
 	for ator in personagens:
-		if ator.robo or (ator.cargo=="funcionario" and ator.funcao in ["caixa","seguranca"]): continue
+		if FantasiasRestaurantePlex.ocupando(ator) or ator.robo or (ator.cargo=="funcionario" and ator.funcao in ["caixa","seguranca"]) or (AdministradorPlex.eh(ator) and ator.trabalho in ["caixa","ir_caixa","usar_caixa"]): continue
 		RotinasPlex.atualizar(ator, delta)
 		if trabalhos.has(ator.identificador):
 			ator.energia = maxf(0,ator.energia-delta*.15)
 			atualizar_trabalho(ator,trabalhos[ator.identificador],delta)
-		elif espera >= .5 and ator.cargo == "funcionario" and ator.automatico and (not ator.ocupado() or ator.trabalho=="circular_salao") and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
+		elif str(ator.visita.get("fantasia_etapa",""))!="esperando" and espera >= .5 and ator.cargo == "funcionario" and ator.automatico and (not ator.ocupado() or ator.trabalho=="circular_salao") and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
 			if ReparosPlex.voltar_oficina(self,ator): continue
 			if ator.carregando: continue
-			if EquipePlex.permite(ator,"manutencao") and ator.funcao in ["geral","manutencao"] and not montagem.alvos(ator).is_empty() and not montagem.caixas(ator).is_empty():
+			if EquipePlex.permite(ator,"manutencao") and ator.funcao in ["geral","manutencao","administrador"] and not montagem.alvos(ator).is_empty() and not montagem.caixas(ator).is_empty():
 				ReparosPlex.iniciar(self,ator)
 				continue
 			if ator.carga_item >= 0:

@@ -20,8 +20,9 @@ func enquadrar() -> void:
 	if not is_instance_valid(jogo) or not jogo.is_inside_tree(): return
 	automatico = true
 	var tamanho := jogo.get_viewport_rect().size
-	var esquerda: float = jogo.painel.painel.get_global_rect().end.x + 24.0
-	var area := Rect2(Vector2(esquerda, 28), tamanho - Vector2(esquerda + 24.0, 110.0))
+	var esquerda: float = jogo.painel.painel.get_global_rect().end.x + 24.0 if jogo.painel.painel.visible else 24.0
+	var baixo := 330.0 if jogo.painel.hud != null and jogo.painel.hud.catalogo.painel.visible else 120.0
+	var area := Rect2(Vector2(esquerda, 90), tamanho - Vector2(esquerda + 24.0, baixo+90.0))
 	if area.size.x < 100.0 or area.size.y < 100.0: return
 	var pontos := PackedVector2Array()
 	var minimo := Vector2(-.5,-.5)
@@ -50,3 +51,6 @@ func alternar_tela_cheia() -> void:
 	var janela := jogo.get_window()
 	janela.mode = Window.MODE_MAXIMIZED if janela.mode in [Window.MODE_FULLSCREEN, Window.MODE_EXCLUSIVE_FULLSCREEN] else Window.MODE_FULLSCREEN
 
+
+func enquadrar_se_automatico() -> void:
+	if automatico: enquadrar()

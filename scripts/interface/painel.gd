@@ -30,9 +30,10 @@ var painel: PanelContainer
 var rodape: PanelContainer
 var abas := TabContainer.new()
 var navegacao := OptionButton.new()
+var hud: HudPlex
 
 func _ready() -> void:
-	var tema := Theme.new()
+	var tema := TemaHudPlex.criar()
 	tema.default_font_size = 14
 	var fundo := StyleBoxFlat.new()
 	fundo.bg_color = Color("243138")
@@ -48,12 +49,20 @@ func _ready() -> void:
 	add_child(raiz)
 	painel = PanelContainer.new()
 	painel.set_anchors_and_offsets_preset(Control.PRESET_LEFT_WIDE)
-	painel.offset_right = 248
+	painel.offset_right = 310
+	painel.offset_top = 84
+	painel.offset_bottom = -110
+	painel.hide()
 	painel.mouse_force_pass_scroll_events = false
 	raiz.add_child(painel)
 	var coluna := VBoxContainer.new()
 	coluna.add_theme_constant_override("separation", 10)
-	painel.add_child(coluna)
+	var scroll_painel := ScrollContainer.new()
+	scroll_painel.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll_painel.mouse_force_pass_scroll_events = false
+	painel.add_child(scroll_painel)
+	coluna.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll_painel.add_child(coluna)
 	var titulo := Label.new()
 	titulo.text = "PIZZAPLEX"
 	titulo.add_theme_font_size_override("font_size", 25)
@@ -67,6 +76,7 @@ func _ready() -> void:
 	coluna.add_child(navegacao)
 	navegacao.item_selected.connect(func(indice): abas.current_tab = indice)
 	abas.tabs_visible = false
+	abas.custom_minimum_size.y = 260
 	abas.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	coluna.add_child(abas)
 	var construir := VBoxContainer.new()
@@ -131,7 +141,7 @@ func _ready() -> void:
 	var lista_atores := VBoxContainer.new()
 	lista_atores.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rolagem_atores.add_child(lista_atores)
-	for item in [["humano", "Dummy homem"], ["humana", "Dummy mulher"], ["faxineiro", "Faxineiro"], ["entregador", "Entregador"], ["caixista", "Caixista"], ["seguranca", "Segurança"], ["fantasia_coelho", "Fantasia de coelho"], ["fantasia_ovelha", "Fantasia de ovelha"], ["fantasia_raposa", "Fantasia de raposa"], ["coelho", "Animatrônico coelho"], ["ovelha", "Animatrônico ovelha"], ["raposa", "Animatrônico raposa"]]:
+	for item in [["humano", "Dummy homem"], ["humana", "Dummy mulher"], ["faxineiro", "Faxineiro"], ["entregador", "Entregador"], ["caixista", "Caixista"], ["seguranca", "Segurança"], ["fantasia_coelho", "Fantasia de coelho"], ["fantasia_ovelha", "Fantasia de ovelha"], ["fantasia_raposa", "Fantasia de raposa"]]:
 		botao(lista_atores, item[1], "spawn:" + item[0])
 	retrato.custom_minimum_size=Vector2(64,64)
 	retrato.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
@@ -204,13 +214,16 @@ func _ready() -> void:
 	coluna.add_child(dicas)
 	rodape = PanelContainer.new()
 	rodape.mouse_force_pass_scroll_events = false
+	rodape.add_theme_stylebox_override("panel",TemaHudPlex.caixa(TemaHudPlex.FUNDO,TemaHudPlex.LINHA,4))
 	rodape.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	rodape.offset_left = 260
-	rodape.offset_right = -12
-	rodape.offset_top = -64
-	rodape.offset_bottom = -12
+	rodape.offset_left = 16
+	rodape.offset_right = -16
+	rodape.offset_top = -36
+	rodape.offset_bottom = -8
 	raiz.add_child(rodape)
-	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	status.autowrap_mode = TextServer.AUTOWRAP_OFF
+	status.clip_text = true
+	status.add_theme_font_size_override("font_size",12)
 	status.text = "Construa terminal, recebimento, suporte e bancada. Abra Endo no computador para encomendar os componentes."
 	rodape.add_child(status)
 	atualizar_abas()
@@ -226,11 +239,12 @@ func botao(lista: VBoxContainer, nome: String, valor: String) -> void:
 
 func mensagem(texto: String) -> void:
 	status.text = texto
+	status.tooltip_text = texto
 
 func bloqueia_mouse(ponto: Vector2) -> bool:
-	if not is_instance_valid(painel) or not painel.is_visible_in_tree():
-		return false
-	if painel.get_global_rect().has_point(ponto) or (is_instance_valid(rodape) and rodape.get_global_rect().has_point(ponto)):
+	if hud != null and hud.menu_aberto(): return true
+	if not is_instance_valid(painel): return false
+	if (painel.is_visible_in_tree() and painel.get_global_rect().has_point(ponto)) or (is_instance_valid(rodape) and rodape.get_global_rect().has_point(ponto)):
 		return true
 	return get_viewport().gui_get_hovered_control() != null
 
@@ -258,3 +272,10 @@ func mostrar_aparencia(ator: PersonagemPlex) -> void:
 		var valor: String = ator.cabelo if controle == cabelo else ator.uniforme
 		for i in controle.item_count:
 			if controle.get_item_metadata(i) == valor: controle.select(i)
+			if controle==cabelo: controle.set_item_disabled(i,not AdministradorPlex.eh(ator) and controle.get_item_metadata(i)==ator.get_meta("cabelo_reservado","nenhum") and controle.get_item_metadata(i)!="nenhum")
+
+
+func configurar_hud(jogo: Node) -> void:
+	hud = HudPlex.new()
+	add_child(hud)
+	hud.configurar(jogo)

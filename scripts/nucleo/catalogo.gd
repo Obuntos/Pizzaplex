@@ -14,6 +14,8 @@ static func carregar() -> void:
 	objetos = JSON.parse_string(FileAccess.get_file_as_string("res://dados/objetos.json"))
 	objetos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_salas.json")), true)
 	objetos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_fachada.json")), true)
+	objetos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_antigos.json")), true)
+	ConfortoPlex.catalogar(objetos)
 	personagens = JSON.parse_string(FileAccess.get_file_as_string("res://dados/personagens.json"))
 
 static func base(tipo: String) -> String:

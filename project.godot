@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pizzaplex"
-run/main_scene="res://cenas/mundo/principal.tscn"
+run/main_scene="res://cenas/interface/inicio.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,13 +19,9 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
-window/size/mode=2
-window/size/window_width_override=1600
-window/size/window_height_override=900
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/pizzaplex_janela/plugin.cfg")
+window/size/window_width_override=1366
+window/size/window_height_override=768
+window/stretch/mode="canvas_items"
 
 [rendering]
 

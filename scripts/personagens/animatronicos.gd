@@ -16,7 +16,7 @@ static func garantir(a: PersonagemPlex) -> void:
 	var qualidade:=a.caixa_qualidade
 	if qualidade in ["perfeita","perfeito","otimo"]: qualidade="otima"
 	if not INCREMENTOS.has(qualidade): qualidade="boa"
-	var padrao: Dictionary={"modo":"automatico","estado":"desligado","tempo_estado":0.0,"segundos_uso":0.0,"minutos_uso":0,"desgaste":desgaste,"qualidade":qualidade,"avariado":desgaste>=2.0,"reparo_por":0,"manutencao_solicitada":false,"desligado_manual":false,"reparos":0}
+	var padrao: Dictionary={"apresentacao":"cantar","modo":"automatico","estado":"desligado","tempo_estado":0.0,"segundos_uso":0.0,"minutos_uso":0,"desgaste":desgaste,"qualidade":qualidade,"avariado":desgaste>=2.0,"reparo_por":0,"manutencao_solicitada":false,"desligado_manual":false,"reparos":0}
 	for chave in padrao:
 		if not a.robotica.has(chave): a.robotica[chave]=padrao[chave]
 static func pausado(a: PersonagemPlex) -> bool:

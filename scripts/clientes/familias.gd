@@ -27,6 +27,9 @@ static func membros(grupo: Dictionary) -> Array[int]:
 	return ids
 
 static func criar(clientes: ClientesPlex, local: Vector2i, total_adultos: int, total_criancas: int, total_jovens: int, modelo: String = "") -> bool:
+	if "operacao" in clientes.jogo and not clientes.jogo.operacao.aberto:
+		clientes.jogo.painel.mensagem("Abra o restaurante para receber novas visitas.")
+		return false
 	var total:=total_adultos+total_criancas+total_jovens
 	if total_adultos<1 or total_adultos>2 or total_criancas<0 or total_criancas>2 or total_jovens<0 or total_jovens>2 or total>6 or not clientes.chao(local):
 		clientes.jogo.painel.mensagem("Escolha um tile de chão livre para a família.")

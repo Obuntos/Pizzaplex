@@ -3,6 +3,7 @@ extends Node2D
 
 var identificador: int = 0
 var identidade: Dictionary = {}
+var equipe: Array = []
 var modelo: String = "humano"
 var robo: bool = false
 var celula := Vector2i.ZERO
@@ -117,7 +118,11 @@ func atualizar_visual(andando: bool) -> void:
 	var acao: String = "parado"
 	var tempo_visual:=relogio
 	animacao.desgaste=float(robotica.get("desgaste",0.0))
-	if trabalho in ["montar", "colocar", "reparar"]:
+	if trabalho=="assistir_mascote" and (modelo=="crianca" or modelo.begins_with("adolescente")):
+		acao="assistir"
+	elif trabalho=="animar_visitantes" and modelo.begins_with("fantasia_"):
+		acao="montar"
+	elif trabalho in ["montar", "colocar", "reparar"]:
 		acao = "montar" if trabalho=="reparar" else trabalho
 	elif trabalho in ["preparar", "lavar", "usar_caixa"] and not ocupado():
 		acao = "parado"
@@ -129,7 +134,7 @@ func atualizar_visual(andando: bool) -> void:
 		acao = "carregar" if carregando else "andar"
 	elif robo and pronto_para_destino() and not ocupado():
 		var estado:=str(robotica.get("estado","desligado"))
-		acao=("cantar" if trabalho=="apresentar" else "parado") if estado=="ligado" else "ativando" if estado in ["ativando","desligando"] else "desligado"
+		acao=(str(robotica.get("apresentacao","cantar")) if trabalho=="apresentar" else "parado") if estado=="ligado" else "ativando" if estado in ["ativando","desligando"] else "desligado"
 		tempo_visual=float(robotica.get("tempo_estado",0.0))
 		if estado=="desligando": tempo_visual=(1.0-clampf(tempo_visual/1.6,0.0,1.0))*AnimatronicosPlex.duracao_partida(self)
 		if not ClipesPlex.possui(modelo,acao):

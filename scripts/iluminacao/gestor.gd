@@ -10,6 +10,7 @@ var direcoes := PackedVector4Array()
 var posicoes_mundo := PackedVector4Array()
 var direcoes_mundo := PackedVector4Array()
 var quantidade: int = 0
+var ambiente_diurno := 0.55
 var assinatura: String = ""
 var portas_anteriores: String = ""
 var bloqueios: ImageTexture
@@ -52,6 +53,7 @@ func vincular(material_novo: ShaderMaterial) -> void:
 
 func aplicar(mat: ShaderMaterial) -> void:
 	var eixos: Vector4 = [Vector4(1, 0, 0, 1), Vector4(0, 1, -1, 0), Vector4(-1, 0, 0, -1), Vector4(0, -1, 1, 0)][posmod(GradePlex.visao, 4)]
+	mat.set_shader_parameter("ambiente", ambiente_diurno)
 	mat.set_shader_parameter("eixos_visao", eixos)
 	mat.set_shader_parameter("tamanho_grade", Vector2(GradePlex.TAMANHO))
 	var centro := GradePlex.projetar_local(GradePlex.CENTRO)

@@ -10,7 +10,7 @@ static func carregar() -> void:
 
 static func possui(modelo: String, acao: String) -> bool:
 	carregar()
-	return modelos.get(modelo,{}).get("clipes",{}).has(acao)
+	return modelos.get(modelo,{}).get("clipes",{}).has("cantar" if acao=="falar" else acao)
 
 static func tempo_mecanico(tempo: float, m: Dictionary) -> float:
 	var local := fposmod(tempo,float(m.get("period",10.4)))
@@ -22,6 +22,8 @@ static func tempo_mecanico(tempo: float, m: Dictionary) -> float:
 
 static func quadro(modelo: String, acao: String, direcao: int, fase: float, tempo: float, desgaste: float = 0.0) -> Dictionary:
 	carregar()
+	var falando := acao=="falar"
+	if falando: acao="cantar"
 	var d: Dictionary=modelos[modelo]
 	var c: Dictionary=d.clipes[acao]
 	var familia:=AnimatronicosPlex.base(modelo)
@@ -38,4 +40,8 @@ static func quadro(modelo: String, acao: String, direcao: int, fase: float, temp
 		var relogio:=tempo if c.get("linear",false) else tempo_mecanico(tempo,d.get("mecanica",{}))
 		instante=fposmod(relogio/float(c.duracao),1.0)
 	var indice:=mini(int(c.frames)-1,int(floor(instante*int(c.frames))))
+	if falando:
+		var fala: Array=[0,1,2,3,2,1,0,0]
+		indice=mini(int(c.frames)-1,int(fala[int(floor(tempo*4.0))%fala.size()]))
 	return {"arquivo":c.pasta+"/"+str(posmod(direcao,8))+".png","regiao":Rect2((indice%int(c.columns))*int(d.width),(indice/int(c.columns))*int(d.height),int(d.width),int(d.height)),"indice":indice,"deslocamento":Vector2(0,float(c.get("deslocamentos",[])[indice]) if c.get("deslocamentos",[]).size()>indice else 0.0)}
+

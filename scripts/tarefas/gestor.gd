@@ -182,7 +182,8 @@ func atualizar_trabalho(personagem: PersonagemPlex, trabalho: Dictionary, delta:
 func atualizar(delta: float) -> void:
 	espera += delta
 	for personagem in personagens:
-		if personagem.robo or personagem.cargo!="funcionario" or externos.has(personagem.identificador): continue
+		if FantasiasRestaurantePlex.ocupando(personagem) or personagem.robo or personagem.cargo!="funcionario" or externos.has(personagem.identificador) or personagem.trabalho in ["caixa","ir_caixa","usar_caixa","aguardar_caixa"]: continue
 		if trabalhos.has(personagem.identificador): atualizar_trabalho(personagem,trabalhos[personagem.identificador],delta)
-		elif EquipePlex.permite(personagem,"manutencao") and espera>=.5 and personagem.automatico and not personagem.ocupado() and personagem.trabalho!="liberar_saida": atribuir(personagem)
+		elif str(personagem.visita.get("fantasia_etapa",""))!="esperando" and EquipePlex.permite(personagem,"manutencao") and espera>=.5 and personagem.automatico and not personagem.ocupado() and personagem.trabalho!="liberar_saida": atribuir(personagem)
 	if espera>=.5: espera = 0.0
+

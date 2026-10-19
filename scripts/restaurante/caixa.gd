@@ -9,7 +9,7 @@ func _init(cena: Node) -> void:
 
 func funcionario(id: int) -> PersonagemPlex:
 	for a in jogo.personagens:
-		if not a.robo and a.cargo=="funcionario" and a.funcao=="caixa" and a.automatico and int(a.visita.get("registradora",-1))==id: return a
+		if not a.robo and a.cargo=="funcionario" and (a.funcao=="caixa" or (AdministradorPlex.eh(a) and EquipePlex.permite(a,"caixa"))) and a.automatico and int(a.visita.get("registradora",-1))==id: return a
 	return null
 
 func ponto(id: int, operador: bool, fila: int = 0) -> Vector2i:
@@ -61,8 +61,18 @@ func atualizar(delta: float) -> void:
 	var tempo:=espera
 	espera=0.0
 	var caixas: Array=jogo.planta.objetos.values().filter(func(o): return o.tipo=="registradora" and int(o.get("carregada_por",0))==0)
+	var pagamento_pendente: bool=jogo.clientes.grupos.values().any(func(g): return g.get("estado","")=="pagamento")
 	for a in jogo.personagens:
-		if a.robo or a.cargo!="funcionario" or a.funcao!="caixa" or not a.automatico: continue
+		if FantasiasRestaurantePlex.ocupando(a) or a.robo or a.cargo!="funcionario" or not a.automatico: continue
+		if AdministradorPlex.eh(a):
+			if not EquipePlex.permite(a,"caixa") or not pagamento_pendente:
+				if a.trabalho in ["caixa","ir_caixa","usar_caixa","aguardar_caixa"]:
+					a.visita.registradora=-1
+					a.movimento.cancelar()
+					a.trabalho=""
+				continue
+			if jogo.servicos.trabalhos.has(a.identificador) or jogo.tarefas.trabalhos.has(a.identificador): continue
+		elif a.funcao!="caixa": continue
 		if jogo.servicos.trabalhos.has(a.identificador): jogo.servicos.cancelar(a)
 		if jogo.tarefas.trabalhos.has(a.identificador): jogo.tarefas.liberar(a)
 		if a.carga_item>=0: jogo.servicos.inventario.devolver(a)

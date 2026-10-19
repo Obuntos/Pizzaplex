@@ -36,13 +36,14 @@ static func mascara(objeto: Dictionary, planta: PlantaPlex, niveis: Dictionary =
 					valor |= 1 << i
 	return valor
 
-static func obter(tipo: String, rotacao: int, nivel: int = 4, ligacoes: int = 0, aberta: bool = false, estado: String = "") -> Dictionary:
+static func obter(tipo: String, rotacao: int, nivel: int = 4, ligacoes: int = 0, aberta: bool = false, estado: String = "", variedade: int = 0) -> Dictionary:
 	var tipo_logico := tipo
 	if CatalogoPlex.objetos.get(tipo, {}).has("origem_volume"):
 		tipo = CatalogoPlex.objetos[tipo].origem_volume
 	if definicoes.is_empty():
 		definicoes = JSON.parse_string(FileAccess.get_file_as_string("res://dados/volumes.json"))
 		definicoes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/volumes_fachada.json")), true)
+		definicoes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/volumes_antigos.json")), true)
 	if tipo == "parede": estado = ""
 	var chave := ":".join([tipo, str(0 if tipo in ["parede", "palco"] else rotacao), str(nivel if tipo in SalasPlex.ESTRUTURA else 4), str(ligacoes), str(int(aberta)), estado])
 	var fachada := bool(CatalogoPlex.objetos.get(tipo_logico, {}).get("fachada", false))
@@ -50,6 +51,11 @@ static func obter(tipo: String, rotacao: int, nivel: int = 4, ligacoes: int = 0,
 		if estado.is_empty(): estado = CatalogoPlex.objetos[tipo_logico].estado_padrao
 		if tipo_logico in CatalogoPlex.PORTAS: estado = "aberta" if aberta else "fechada"
 		chave = ":".join([tipo_logico, str(rotacao), str(nivel if tipo_logico in SalasPlex.ESTRUTURA else 4), "0", "0", estado])
+	if CatalogoPlex.objetos.get(tipo_logico, {}).get("mobilia", false):
+		var item: Dictionary = CatalogoPlex.objetos[tipo_logico]
+		if estado.is_empty() or not item.estados.has(estado): estado = item.estado_padrao
+		chave = ":".join([tipo_logico, str(0 if item.get("conectavel", false) else rotacao), str(nivel if item.get("estrutura", false) else 4), str(ligacoes if item.get("conectavel", false) else 0), "0", estado])
+	if variedade>0 and definicoes.has(chave+":v"+str(variedade)): chave+=":v"+str(variedade)
 	var chave_cache := tipo_logico+":"+chave
 	if cache.has(chave_cache):
 		return cache[chave_cache]
@@ -87,7 +93,7 @@ static func obter(tipo: String, rotacao: int, nivel: int = 4, ligacoes: int = 0,
 	if not fachada and tipo in SalasPlex.ESTRUTURA:
 		dados.cores = SuperficiesPlex.cores_continuas(pontos, cores, dados.superficies)
 	if dados.superficies.is_empty(): dados.superficies=SuperficiesPlex.normais_volume(pontos)
-	if tipo_logico not in SalasPlex.ESTRUTURA:
+	if tipo_logico not in SalasPlex.ESTRUTURA and not CatalogoPlex.objetos.get(tipo_logico,{}).get("estrutura",false):
 		for i in dados.superficies.size():
 			if dados.superficies[i].a<.75: dados.superficies[i].a=.2
 	if ItensPlex.personalizado(tipo_logico):
@@ -101,5 +107,9 @@ static func obter(tipo: String, rotacao: int, nivel: int = 4, ligacoes: int = 0,
 static func objeto(registro: Dictionary, planta: PlantaPlex, nivel: int, niveis: Dictionary = {}) -> Dictionary:
 	var ligacoes := mascara(registro, planta, niveis)
 	if registro.tipo in ["parede", "parede_fachada", "palco"]: ligacoes = GradePlex.mascara_visual(ligacoes)
+	var visual := MobiliaPlex.visual(registro)
+	if CatalogoPlex.objetos.get(visual, {}).get("mobilia", false):
+		var variedade:=posmod(hash(registro.celula),4) if visual=="antigo_parede_quebrada_modulo" and MobiliaPlex.estado(registro)=="rachada" else 0
+		return obter(visual, GradePlex.rotacao_visual(registro.rotacao), nivel, ligacoes, registro.get("aberta",false), MobiliaPlex.estado(registro),variedade)
 	return obter(registro.tipo, GradePlex.rotacao_visual(registro.rotacao), nivel, ligacoes, registro.aberta if registro.tipo in CatalogoPlex.PORTAS else false, FachadaPlex.estado(planta, registro))
 

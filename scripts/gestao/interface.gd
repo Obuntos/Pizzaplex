@@ -304,6 +304,15 @@ func confirmar() -> void:
 func montar_equipe() -> void:
 	titulo.text = "Cada pessoa, uma função"
 	subtitulo.text = "A função principal tem prioridade. Autorize apoio em outras áreas quando necessário."
+	var contratacao := HBoxContainer.new()
+	catalogo_area.add_child(contratacao)
+	var oficio := OptionButton.new()
+	for funcao in EquipePlex.NOMES:
+		if funcao in ["administrador","geral"]: continue
+		oficio.add_item(EquipePlex.NOMES[funcao])
+		oficio.set_item_metadata(oficio.item_count-1,funcao)
+	contratacao.add_child(oficio)
+	T.botao(contratacao,"Contratar",func(): AdministradorPlex.contratar(jogo,str(oficio.get_selected_metadata())); montar_pagina())
 	var lista: Array = jogo.personagens.filter(func(a): return a.cargo=="funcionario" and not a.robo)
 	if not lista.any(func(a): return a.identificador==funcionario): funcionario = lista[0].identificador if not lista.is_empty() else -1
 	for ator in lista:
@@ -338,10 +347,15 @@ func montar_equipe() -> void:
 	T.texto(c,"ATRIBUIÇÃO",10,T.VERDE,true)
 	T.texto(c,IdentidadesPlex.completo(atual),20)
 	T.botao(c,"Localizar no restaurante",func(): jogo.selecionar(atual); jogo.camera.position=atual.position; fechar())
+	if AdministradorPlex.eh(atual):
+		T.texto(c,"Cobre automaticamente as funções sem funcionário contratado. O uniforme e o cabelo são exclusivos do administrador.",15,T.SUAVE).autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		T.texto(c,"Apoio atual: "+", ".join(EquipePlex.prioridades(atual).map(func(f): return EquipePlex.NOMES[f])),14,T.VERDE).autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		return
 	T.texto(c,"Função principal",12,T.SUAVE)
 	var seletor := OptionButton.new()
 	seletor.custom_minimum_size.y = 40
 	for funcao in EquipePlex.NOMES:
+		if funcao=="administrador": continue
 		seletor.add_item(EquipePlex.NOMES[funcao])
 		seletor.set_item_metadata(seletor.item_count-1,funcao)
 		if atual.funcao==funcao: seletor.select(seletor.item_count-1)

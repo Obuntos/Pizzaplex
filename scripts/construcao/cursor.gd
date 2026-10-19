@@ -33,5 +33,8 @@ func _draw() -> void:
 			var base := ApoiosPlex.posicao(editor.planta, editor.planta.objetos[apoio.pai])
 			var slot: Dictionary = ApoiosPlex.pontos(editor.planta.objetos[apoio.pai],editor.planta)[apoio.slot]
 			ponto = GradePlex.projetar(Vector2(base.x + slot.u, base.y + slot.v), base.z + slot.z)
-		draw_texture(CatalogoPlex.sprite(editor.ferramenta, GradePlex.rotacao_visual(rotacao)), ponto - Vector2(96, 144), Color(1, 1, 1, 0.45))
+		if CatalogoPlex.objetos[editor.ferramenta].has("pacote"):
+			for c in MobiliaPlex.modulos(editor.ferramenta,celula,rotacao):
+				draw_texture(CatalogoPlex.sprite(editor.ferramenta,GradePlex.rotacao_visual(rotacao),editor.estado_visual),GradePlex.projetar(Vector2(c))-Vector2(96,144),Color(1,1,1,.45))
+		else: draw_texture(CatalogoPlex.sprite(editor.ferramenta, GradePlex.rotacao_visual(rotacao),editor.estado_visual), ponto - Vector2(96, 144), Color(1, 1, 1, 0.45))
 

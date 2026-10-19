@@ -2,6 +2,14 @@ class_name CabeloChapeuPlex
 extends RefCounted
 
 static var cache: Dictionary = {}
+static var chapeus: Dictionary = {}
+
+static func possui(uniforme: String) -> bool:
+	if uniforme in ["nenhum", "automatico"]: return false
+	if not chapeus.has(uniforme):
+		var arquivo := "res://assets/aparencias/uniformes/"+uniforme+"/chapeu.png"
+		chapeus[uniforme] = ResourceLoader.exists(arquivo) and CatalogoPlex.imagem(arquivo).get_used_rect().has_area()
+	return bool(chapeus[uniforme])
 
 static func imagem(arquivo: String, uniforme: String) -> Image:
 	return textura(arquivo,uniforme).diffuse_texture.get_image()
@@ -10,7 +18,7 @@ static func textura(arquivo: String, uniforme: String) -> CanvasTexture:
 	var chave := arquivo+":"+uniforme
 	if cache.has(chave): return cache[chave]
 	var original := CatalogoPlex.textura_iluminada(arquivo) as CanvasTexture
-	if uniforme=="nenhum": return original
+	if not possui(uniforme): return original
 	var cor := original.diffuse_texture.get_image().duplicate() as Image
 	cor.convert(Image.FORMAT_RGBA8)
 	var normal := original.normal_texture.get_image().duplicate() as Image
@@ -43,3 +51,4 @@ static func textura(arquivo: String, uniforme: String) -> CanvasTexture:
 	resultado.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	cache[chave] = resultado
 	return resultado
+

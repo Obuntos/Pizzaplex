@@ -4,12 +4,14 @@ extends RefCounted
 signal aviso(texto: String)
 signal destino_quebrado_escolhido(id: int, celula: Vector2i, rotacao: int)
 signal spawn_solicitado(modelo: String, celula: Vector2i)
+var jogo: Node
 var planta: PlantaPlex
 var personagens: Array = []
 var marca_quebrado := -1
 var ferramenta: String = "selecionar"
 var rotacao: int = 0
 var cor: int = 0
+var estado_visual := ""
 var luz_padrao: Dictionary = {"cor_luz":"#fff0d5","energia":1.2,"ligada":true}
 
 func _init(valor: PlantaPlex) -> void:
@@ -52,7 +54,15 @@ func aplicar(celula: Vector2i) -> void:
 					return
 			planta.remover(objeto.id)
 		return
+	if CatalogoPlex.objetos.get(ferramenta,{}).get("piso",false):
+		if planta.pisos.get(celula,"") == ferramenta: return
+		if not cobrar(MobiliaPlex.preco(ferramenta)): return
+		planta.pisos[celula] = ferramenta
+		planta.alterada.emit()
+		return
 	if ferramenta == "chao":
+		if not cobrar(2): return
+		planta.pisos.erase(celula)
 		planta.cores[celula] = cor
 		planta.alterada.emit()
 		return
@@ -63,7 +73,26 @@ func aplicar(celula: Vector2i) -> void:
 		if not planta.sobreposto(ferramenta) and not livre(local):
 			aviso.emit("Este tile está ocupado por um personagem.")
 			return
-	var id := planta.colocar(ferramenta, celula, rotacao)
+	var modulos := MobiliaPlex.modulos(ferramenta,celula,rotacao)
+	for c in modulos:
+		if not planta.pode_colocar(ferramenta,c,rotacao) or (not planta.sobreposto(ferramenta) and not livre(c)):
+			aviso.emit("O objeto não cabe ou o acesso está ocupado.")
+			return
+	var custo := MobiliaPlex.preco(ferramenta)*modulos.size()
+	if not cobrar(custo): return
+	var id := -1
+	var bloqueado := planta.is_blocking_signals()
+	planta.set_block_signals(true)
+	for c in modulos:
+		var colocado := planta.colocar(ferramenta,c,rotacao)
+		if colocado >= 0:
+			id = colocado
+			planta.objetos[id].valor_pago = MobiliaPlex.preco(ferramenta)
+			if CatalogoPlex.objetos[ferramenta].get("estados",[]).has(estado_visual):
+				if planta.objetos[id].has("variante"): planta.objetos[id].estado_visual=estado_visual
+				else: planta.objetos[id].estado=estado_visual
+	planta.set_block_signals(bloqueado)
+	planta.alterada.emit()
 	if id == -1:
 		aviso.emit("Pose precisa de palco." if ferramenta == "pose" else "Luz de parede precisa de uma parede livre." if ferramenta == "luz_parede" else "O objeto não cabe ou o tile já está ocupado.")
 	else:
@@ -72,3 +101,12 @@ func aplicar(celula: Vector2i) -> void:
 			planta.alterada.emit()
 		aviso.emit(CatalogoPlex.objetos[ferramenta].nome + " colocado. R gira o próximo objeto.")
 
+
+func cobrar(valor: int) -> bool:
+	if jogo == null or not jogo.campanha or jogo.operacao.debug: return true
+	if jogo.servicos.saldo < valor:
+		aviso.emit("Dinheiro insuficiente. Custo: $ "+str(valor)+".")
+		return false
+	jogo.servicos.saldo -= valor
+	jogo.compras_construcao += valor
+	return true

@@ -13,6 +13,8 @@ static func reservas(servico: ServicosPlex, alvos: Array) -> Array:
 static func iniciar(servico: ServicosPlex, ator: PersonagemPlex, alvo: int) -> bool:
 	var item: Dictionary = servico.planta.objetos.get(alvo, {})
 	if item.is_empty() or not servico.livre(alvo): return false
+	if MobiliaPlex.dados(item).get("uso","")=="aquecer":
+		return servico.iniciar(ator,"Usar fogão antigo",[servico.etapa(alvo,"aquecer",4.0)],[alvo])
 	var passos: Array = []
 	var alvos: Array = [alvo]
 	var titulo := ""
@@ -92,6 +94,9 @@ static func organizar(servico: ServicosPlex, ator: PersonagemPlex) -> bool:
 	return false
 
 static func preparar(servico: ServicosPlex, ator: PersonagemPlex, passo: Dictionary) -> void:
+	if passo.acao=="aquecer" and servico.planta.objetos.has(passo.alvo) and servico.planta.objetos[passo.alvo].estado!="aceso":
+		servico.planta.objetos[passo.alvo].estado="aceso"
+		servico.planta.alterada.emit()
 	var raiz := ArmariosPlex.raiz(servico.planta, passo.alvo)
 	if passo.acao == "devolver":
 		var origem: int = servico.planta.objetos.get(passo.alvo, {}).get("origem_sobre", -1)

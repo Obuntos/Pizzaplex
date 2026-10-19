@@ -196,6 +196,7 @@ func ponto_show(a: PersonagemPlex) -> Dictionary:
 func crianca(a: PersonagemPlex, grupo: Dictionary, delta: float) -> void:
 	a.visita.tempo = float(a.visita.get("tempo",0.0))+delta
 	if jogo.servicos.trabalhos.has(a.identificador): return
+	if jogo.fantasias.entreter(a,grupo,delta): return
 	if LazerPlex.brincar(jogo,a,grupo,delta): return
 	if a.ocupado(): return
 	match str(a.visita.get("etapa","jogar")):
@@ -435,7 +436,7 @@ func atualizar(delta: float) -> void:
 			if is_instance_valid(filho): crianca(filho,grupo,tempo)
 		var filhos_prontos: bool=grupo.criancas.all(func(f): return is_instance_valid(ator(int(f))) and (ator(int(f)).visita.get("assistiu",false) or ator(int(f)).visita.get("etapa","")=="aguardar"))
 		if grupo.pago and filhos_prontos and acompanhantes_servidos(grupo): sair(grupo)
-		elif grupo.tempo>900 and not acompanhantes_servidos(grupo):
+		elif grupo.tempo>720.0+45.0*float(lider.visita.get("conforto",5.0)) and not acompanhantes_servidos(grupo):
 			grupo.irritado=true
 			sair(grupo)
 

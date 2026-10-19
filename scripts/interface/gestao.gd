@@ -79,7 +79,7 @@ func configurar(cena: Node) -> void:
 	texto(gestao,"O pedido de teste simula consumo. Para clientes reais, adicione uma família na aba Clientes.")
 	gestao.add_child(pedidos)
 	pedidos.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	botao(gestao,"Montar exemplo",func(): ExemploSalasPlex.montar(jogo))
+	if jogo.operacao.debug: botao(gestao,"Montar exemplo",func(): ExemploSalasPlex.montar(jogo))
 	texto(gestao,"64 × 48 tiles: salão com palco, recepção, cozinha, depósito, oficina, jogos, banheiro, vestiário e limpeza.")
 	for velocidade in [0.0,1.0,2.0]:
 		botao(gestao,"Pausar" if velocidade==0 else "Simulação · "+str(int(velocidade))+"×",func(): jogo.velocidade_tempo=velocidade)
@@ -121,17 +121,21 @@ func inspecionar(celula: Vector2i) -> bool:
 func alterar_estado() -> void:
 	if not jogo.planta.objetos.has(selecionado): return
 	var objeto: Dictionary = jogo.planta.objetos[selecionado]
-	var definicao: Dictionary = CatalogoPlex.objetos[objeto.tipo]
+	var definicao: Dictionary = MobiliaPlex.dados(objeto)
 	if objeto.get("tempo_assar",0)>0 or objeto.reserva != 0:
 		jogo.painel.mensagem("O equipamento está sendo usado por uma tarefa.")
 		return
 	if not definicao.has("estados"): return
-	var indice: int = definicao.estados.find(objeto.estado)
-	objeto.estado = definicao.estados[(indice+1)%definicao.estados.size()]
+	var indice: int = definicao.estados.find(MobiliaPlex.estado(objeto))
+	var proximo: String = definicao.estados[(indice+1)%definicao.estados.size()]
+	if objeto.has("variante") and not CatalogoPlex.objetos[objeto.tipo].get("estados",[]).has(proximo):
+		objeto.estado_visual = proximo
+	else: objeto.estado = proximo
 	jogo.planta.alterada.emit()
 	atualizar(1)
 
 func atualizar(delta: float) -> void:
+	if not jogo.painel.painel.visible: return
 	espera += delta
 	if espera < .3: return
 	espera = 0
@@ -146,12 +150,16 @@ func atualizar(delta: float) -> void:
 	if not ambiente.is_empty():
 		detalhe.text = str(ambiente.celulas.size())+" tiles · "+("fechada" if ambiente.fechada else "aberta")+"\n"+"\n".join(ambiente.faltas)
 		detalhe.text += "\nFunções: " + ", ".join(ambiente.funcoes.map(func(tipo): return jogo.ambientes.definicoes.get(tipo, {"nome":"Livre"}).nome))
+	if not ambiente.is_empty() and ambiente.fechada:
+		var conforto: Dictionary = jogo.conforto.em(celula_sala)
+		detalhe.text += "\nConforto: %.1f / 10 · %s\nEntulho e sujeira: %d" % [conforto.nota,conforto.titulo,conforto.sujeira]
 	inspecao.text = "Clique no tile de um objeto para ver seu estado."
 	estado.disabled = true
 	if jogo.planta.objetos.has(selecionado):
 		var item: Dictionary = jogo.planta.objetos[selecionado]
-		var info: Dictionary = CatalogoPlex.objetos[item.tipo]
-		inspecao.text = info.nome + "\nEstado: " + str(item.get("estado","padrão"))
+		var info: Dictionary = MobiliaPlex.dados(item)
+		inspecao.text = info.nome + "\nEstado: " + MobiliaPlex.estado(item)
+		inspecao.text += "\nConforto do item: "+str(MobiliaPlex.nota(item))+" / 10 · "+ConfortoPlex.titulo(MobiliaPlex.nota(item))
 		if item.tipo == "geladeira":
 			SuprimentosPlex.preparar(item)
 			inspecao.text += "\nMassa: "+str(item.estoque.massa)+" · Molho: "+str(item.estoque.molho)+" · Queijo: "+str(item.estoque.queijo)
@@ -168,7 +176,7 @@ func atualizar(delta: float) -> void:
 		if item.tipo == "terminal_ibm": inspecao.text += "\nClique direito curto: abrir central. Arraste para mover a câmera."
 		if item.tipo == "registradora": inspecao.text += "\nRecebido: $ " + str(item.get("saldo",0))
 		if LugaresPlex.mesa(item.tipo): inspecao.text += "\nLugares ativos: "+str(LugaresPlex.total(jogo.planta,item.id))+" / "+str(LugaresPlex.cadeiras(jogo.planta,item).size())
-		estado.disabled = not info.has("estados") or info.get("estados",[]).size()<2
+		estado.disabled = not info.has("estados") or info.get("estados",[]).size()<2 or item.tipo in CatalogoPlex.PORTAS
 	var ativos: Array[String] = []
 	for pedido in jogo.servicos.pedidos.slice(maxi(0,jogo.servicos.pedidos.size()-5)):
 		ativos.append("Pedido "+str(pedido.id)+": "+pedido.estado)

@@ -90,6 +90,7 @@ func abrir(entrada: PersonagemPlex) -> void:
 	T.texto(dados,("PASSE " if visitante else "REGISTRO ")+str(ator.identificador).pad_zeros(4),12,destaque,true)
 	conteudo.add_child(HSeparator.new())
 	if visitante:
+		T.texto(conteudo,"Conforto: %.1f / 10 · Satisfação: %d%%" % [float(ator.visita.get("conforto",5.0)),roundi(float(ator.visita.get("satisfacao",70.0)))],13,T.SUAVE)
 		T.texto(conteudo,"ACOMPANHAMENTO",10,destaque,true)
 		var acompanhantes: Array = jogo.personagens.filter(func(pessoa): return pessoa!=ator and pessoa.cargo in ["cliente","crianca","adolescente"] and ator.familia>=0 and pessoa.familia==ator.familia)
 		var adultos := acompanhantes.filter(func(pessoa): return pessoa.cargo=="cliente").size()
@@ -106,6 +107,7 @@ func abrir(entrada: PersonagemPlex) -> void:
 		for funcao in ator.funcoes_secundarias: apoios.append(EquipePlex.NOMES.get(funcao,funcao))
 		if not apoios.is_empty(): T.texto(conteudo,"Apoio: "+", ".join(apoios),13,T.SUAVE).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	else:
+		T.texto(conteudo,"Conforto do animatrônico: "+str(ConfortoPlex.robo(ator))+" / 10",13,T.SUAVE)
 		T.texto(conteudo,"MODELO",10,destaque,true)
 		T.texto(conteudo,ator.modelo.replace("_"," ").capitalize(),18)
 		var linha_nome := HBoxContainer.new()
@@ -125,6 +127,15 @@ func abrir(entrada: PersonagemPlex) -> void:
 		campo.text_submitted.connect(func(_valor): salvar.call())
 	if ator.robo:
 		AnimatronicosPlex.garantir(ator)
+		T.texto(conteudo,"TIPO DE APRESENTAÇÃO",11,destaque,true)
+		var apresentacao := OptionButton.new()
+		apresentacao.custom_minimum_size.y=40
+		for tipo in [["cantar","Cantar"],["falar","Falar"],["dancar","Dançar"]]:
+			apresentacao.add_item(tipo[1])
+			apresentacao.set_item_metadata(apresentacao.item_count-1,tipo[0])
+			if ator.robotica.apresentacao==tipo[0]: apresentacao.select(apresentacao.item_count-1)
+		apresentacao.item_selected.connect(func(i): ator.robotica.apresentacao=str(apresentacao.get_item_metadata(i)); ator.relogio=0.0)
+		conteudo.add_child(apresentacao)
 		botao_energia=T.botao(conteudo,"",func():
 			AnimatronicosPlex.comandar_energia(ator,bool(ator.robotica.get("desligado_manual",false)))
 			atualizar_atividade())

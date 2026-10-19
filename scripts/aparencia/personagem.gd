@@ -18,7 +18,9 @@ static func roupa(ator: PersonagemPlex) -> String:
 
 static func cabelo(ator: PersonagemPlex) -> String:
 	if not permitida(ator): return "nenhum"
-	return ("curto" if ator.modelo == "humano" else "camadas") if ator.cabelo == "automatico" else ator.cabelo
+	var valor := ("curto" if ator.modelo == "humano" else "camadas") if ator.cabelo == "automatico" else ator.cabelo
+	var reservado := str(ator.get_meta("cabelo_reservado","nenhum"))
+	return AdministradorPlex.alternativa(ator,reservado) if not AdministradorPlex.eh(ator) and valor!="nenhum" and valor==reservado else valor
 
 static func vestir(ator: PersonagemPlex, arquivo: String) -> String:
 	if ator.cargo=="cliente": return RoupasVisitantesPlex.arquivo(ator,arquivo)

@@ -20,6 +20,9 @@ func vincular(a: PersonagemPlex, responsavel: int) -> void:
 	if not grupo.adolescentes.has(a.identificador): grupo.adolescentes.append(a.identificador)
 
 func criar(local: Vector2i, feminino: bool = false, responsavel: int = -1) -> bool:
+	if "operacao" in jogo and not jogo.operacao.aberto:
+		jogo.painel.mensagem("Abra o restaurante para receber visitantes.")
+		return false
 	if not jogo.clientes.chao(local): return false
 	var vagas: Array[Vector2i]=jogo.clientes.vagas(local,1,1)
 	if vagas.is_empty(): return false
@@ -144,6 +147,7 @@ func atualizar(delta: float) -> void:
 	espera=0.0
 	for a in jogo.personagens.duplicate():
 		if not is_instance_valid(a) or a.cargo!="adolescente" or a.ocupado() or jogo.servicos.trabalhos.has(a.identificador): continue
+		if str(a.visita.get("etapa","")) not in ["sair","refeicao"] and jogo.fantasias.entreter(a,jogo.clientes.grupos.get(a.familia,{}),tempo): continue
 		if a.familia<0:
 			a.visita.solo=true
 			sozinho(a,tempo)
