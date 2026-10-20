@@ -70,11 +70,13 @@ func ponto_trabalho(passo: Dictionary) -> Vector2:
 			centro += Vector3(apoios[slot].u,apoios[slot].v,apoios[slot].z)
 	return Vector2(centro.x,centro.y)
 
-func rota_passo(origem: Vector2i, passo: Dictionary) -> Array[Vector2i]:
-	if passo.alvo < 0: return rotas.caminho(origem,Vector2i(passo.dados.celula[0],passo.dados.celula[1]))
+func rota_passo(origem: Vector2i, passo: Dictionary, ator: PersonagemPlex = null) -> Array[Vector2i]:
+	var bloqueios := CirculacaoEquipePlex.bloqueios(self,ator,origem)
+	if is_instance_valid(ator): ator.set_meta("limites_rota",bloqueios)
+	if passo.alvo < 0: return rotas.caminho(origem,Vector2i(passo.dados.celula[0],passo.dados.celula[1]),bloqueios)
 	var melhor: Array[Vector2i] = []
 	for alvo in alvos_passo(passo):
-		var rota := rotas.caminho(origem,alvo)
+		var rota := rotas.caminho(origem,alvo,bloqueios)
 		if not rota.is_empty() and (melhor.is_empty() or rota.size()<melhor.size()): melhor = rota
 	return melhor
 
@@ -92,7 +94,7 @@ func iniciar(ator: PersonagemPlex, tipo: String, passos: Array, reservas: Array,
 	reservas = RotinasPlex.reservas(self, reservas)
 	var origem := ator.origem_rota()
 	for passo in passos:
-		var rota := rota_passo(origem,passo)
+		var rota := rota_passo(origem,passo,ator)
 		if rota.is_empty(): return false
 		origem = rota[-1]
 	for id in reservas:
@@ -420,6 +422,7 @@ func executar(ator: PersonagemPlex, passo: Dictionary, trabalho: Dictionary) -> 
 		"lixo":
 			objeto.lixo = mini(6,int(objeto.lixo)+1)
 			objeto.estado = "cheia" if objeto.lixo >= 6 else "vazia"
+			LimpezaContinuaPlex.proxima(self,ator,trabalho)
 		"lavar":
 			var prato_id: int = passo.dados.get("prato",ator.carga_item)
 			if not planta.objetos.has(prato_id): return false
@@ -465,11 +468,11 @@ func atualizar_trabalho(ator: PersonagemPlex, trabalho: Dictionary, delta: float
 	var chegou := false
 	if passo.alvo >= 0:
 		chegou = alvos_passo(passo).has(ator.celula)
-		if not chegou: rota = rota_passo(ator.origem_rota(),passo)
+		if not chegou: rota = rota_passo(ator.origem_rota(),passo,ator)
 	else:
 		var local := Vector2i(passo.dados.celula[0],passo.dados.celula[1])
 		chegou = ator.celula == local
-		if not chegou: rota = rotas.caminho(ator.origem_rota(),local)
+		if not chegou: rota = rota_passo(ator.origem_rota(),passo,ator)
 	if not chegou:
 		if rota.is_empty():
 			motivo = "Tarefa interrompida: o acesso ao equipamento foi bloqueado."
@@ -554,7 +557,7 @@ func atualizar(delta: float) -> void:
 		if trabalhos.has(ator.identificador):
 			ator.energia = maxf(0,ator.energia-delta*.15)
 			atualizar_trabalho(ator,trabalhos[ator.identificador],delta)
-		elif str(ator.visita.get("fantasia_etapa",""))!="esperando" and espera >= .5 and ator.cargo == "funcionario" and ator.automatico and (not ator.ocupado() or ator.trabalho=="circular_salao") and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
+		elif not EquipePlex.em_comando(ator) and str(ator.visita.get("fantasia_etapa",""))!="esperando" and espera >= .5 and ator.cargo == "funcionario" and ator.automatico and (not ator.ocupado() or ator.trabalho=="circular_salao") and ator.trabalho != "liberar_saida" and not montagem.trabalhos.has(ator.identificador):
 			if ReparosPlex.voltar_oficina(self,ator): continue
 			if ator.carregando: continue
 			if EquipePlex.permite(ator,"manutencao") and ator.funcao in ["geral","manutencao","administrador"] and not montagem.alvos(ator).is_empty() and not montagem.caixas(ator).is_empty():
@@ -564,6 +567,7 @@ func atualizar(delta: float) -> void:
 				if DevolucaoPlex.guardar_carga(self, ator): continue
 				inventario.devolver(ator)
 			if RotinasPlex.prioritaria(self, ator) or descansar(ator) or atribuir_funcao(ator) or RotinasPlex.entre_tarefas(self, ator): continue
+			if CirculacaoEquipePlex.retornar(self,ator): continue
 			PasseioAtendimentoPlex.iniciar(self,ator,espera)
 	if espera >= .5: espera = 0
 

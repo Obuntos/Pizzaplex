@@ -65,7 +65,12 @@ func _ready() -> void:
 		cabelo.add_item(item.nome)
 		cabelo.set_item_metadata(cabelo.item_count-1,item.id)
 		if item.id=="curto": cabelo.select(cabelo.item_count-1)
-	formulario.add_child(cabelo)
+	var linha_cabelo := HBoxContainer.new()
+	formulario.add_child(linha_cabelo)
+	T.botao(linha_cabelo,"←",func(): trocar_cabelo(-1)).tooltip_text="Cabelo anterior"
+	cabelo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	linha_cabelo.add_child(cabelo)
+	T.botao(linha_cabelo,"→",func(): trocar_cabelo(1)).tooltip_text="Próximo cabelo"
 	var regra := T.texto(formulario,"Seu administrador ajuda nas áreas sem funcionários. O cabelo escolhido não será usado pelos outros NPCs.",15,T.SUAVE)
 	regra.custom_minimum_size.x=330
 	regra.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -79,8 +84,8 @@ func _ready() -> void:
 	giros.alignment=BoxContainer.ALIGNMENT_CENTER
 	giros.add_theme_constant_override("separation",24)
 	previa.add_child(giros)
-	T.botao(giros,"←",func(): direcao=posmod(direcao+1,8); atualizar_previa()).custom_minimum_size=Vector2(54,38)
-	T.botao(giros,"→",func(): direcao=posmod(direcao-1,8); atualizar_previa()).custom_minimum_size=Vector2(54,38)
+	T.botao(giros,"←",func(): girar(-1)).custom_minimum_size=Vector2(54,38)
+	T.botao(giros,"→",func(): girar(1)).custom_minimum_size=Vector2(54,38)
 	var acoes := HBoxContainer.new()
 	coluna.add_child(acoes)
 	T.botao(acoes,"Voltar",func(): hide(); cancelada.emit())
@@ -170,3 +175,12 @@ func _process(delta: float) -> void:
 	ator.atualizar_visual(false)
 	ator.position=posicao_previa
 	ator.identificacao.hide()
+
+func girar(passo: int) -> void:
+	direcao=posmod(direcao+passo,8)
+	atualizar_previa()
+
+func trocar_cabelo(passo: int) -> void:
+	if cabelo.item_count==0: return
+	cabelo.select(posmod(cabelo.selected+passo,cabelo.item_count))
+	atualizar_previa()

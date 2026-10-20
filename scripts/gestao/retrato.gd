@@ -47,6 +47,7 @@ static func icone(id: String) -> Texture2D:
 	var tamanho := Vector2(imagem.get_size())
 	var fator := 28.0/maxf(tamanho.x,tamanho.y)
 	imagem.resize(maxi(1,roundi(tamanho.x*fator)),maxi(1,roundi(tamanho.y*fator)),Image.INTERPOLATE_NEAREST)
-	var icone := Image.create_empty(28,28,false,Image.FORMAT_RGBA8)
-	icone.blit_rect(imagem,Rect2i(Vector2i.ZERO,imagem.get_size()),(Vector2i(28,28)-imagem.get_size())/2)
-	return ImageTexture.create_from_image(icone)
+	var icone_local := Image.create_empty(28,28,false,Image.FORMAT_RGBA8)
+	icone_local.blit_rect(imagem,Rect2i(Vector2i.ZERO,imagem.get_size()),Vector2i((Vector2(28,28)-Vector2(imagem.get_size()))*.5))
+	return ImageTexture.create_from_image(icone_local)
+

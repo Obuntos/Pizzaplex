@@ -136,9 +136,9 @@ func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> v
 		recorte.calcular(planta,nivel,cortar_frente)
 		var desenhos_fixos: Array=[]
 		for r in fixos: desenhos_fixos.append(desenho(r,planta,nivel))
-		var diferenca:=alteracoes(desenhos_fixos,fixos_anteriores)
-		fixos_anteriores=diferenca.registros
-		estatica=diferenca.area
+		var diferenca_local:=alteracoes(desenhos_fixos,fixos_anteriores)
+		fixos_anteriores=diferenca_local.registros
+		estatica=diferenca_local.area
 		if completa:
 			regiao=Rect2i(Vector2i.ZERO,TAMANHO)
 			imagem.fill(Color.TRANSPARENT)
@@ -265,6 +265,7 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 	var fonte: Texture2D=atlas.atlas if atlas!=null else null
 	var possui_normal: bool=fonte is CanvasTexture and fonte.normal_texture!=null and fonte.normal_texture.get_size()==fonte.diffuse_texture.get_size()
 	material_atual.set_shader_parameter("normal_automatica",personagem.robo and not possui_normal)
+	material_atual.set_shader_parameter("volume_fantasia",personagem.modelo.begins_with("fantasia_"))
 	material_atual.set_shader_parameter("desgaste_plex",float(personagem.robotica.get("desgaste",0.0))*.5 if personagem.robo and AnimatronicosPlex.base(personagem.modelo).is_empty() and not CatalogoMontagemPlex.quebrado(personagem.modelo) else 0.0)
 	material_atual.set_shader_parameter("quadro_nativo",Vector2(personagem.animacao.definicao.width,personagem.animacao.definicao.height))
 	var ponto_visual := personagem.ponto_visual()

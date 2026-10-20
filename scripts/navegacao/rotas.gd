@@ -17,35 +17,35 @@ func _init(valor: PlantaPlex) -> void:
 	planta.alterada.connect(reconstruir)
 	reconstruir()
 
-func indice(celula: Vector2i) -> int:
-	return celula.y * GradePlex.TAMANHO.x + celula.x
+func indice(celula_local: Vector2i) -> int:
+	return celula_local.y * GradePlex.TAMANHO.x + celula_local.x
 
 func celula(id: int) -> Vector2i:
-	return Vector2i(id % GradePlex.TAMANHO.x, id / GradePlex.TAMANHO.x)
+	return Vector2i(id % GradePlex.TAMANHO.x, floori(float(id) / GradePlex.TAMANHO.x))
 
 func escada_ligada(a: Vector2i, b: Vector2i) -> bool:
 	var escada := planta.em(a)
-	if escada.get("tipo", "") != "escada":
+	if not EscadasPlex.eh(escada):
 		return false
 	var frente := GradePlex.frente(escada.rotacao)
 	var entrada: Vector2i = a + frente
 	var saida: Vector2i = a - frente
-	var conectada := EscadasPlex.faixa(a,planta).any(func(c): return planta.em(c-frente).get("tipo","")=="palco")
+	var conectada := EscadasPlex.faixa(a,planta).any(func(c): return EscadasPlex.palco(planta.em(c-frente)))
 	if not conectada: return false
 	var vizinho := planta.em(b)
-	if vizinho.get("tipo", "") == "escada":
+	if EscadasPlex.eh(vizinho):
 		return vizinho.rotacao == escada.rotacao and Vector2(b - a).dot(Vector2(frente)) == 0.0
 	if b == entrada:
 		return GradePlex.dentro(b) and is_zero_approx(planta.altura(b))
-	return b == saida and vizinho.get("tipo", "") == "palco"
+	return b == saida and EscadasPlex.palco(vizinho)
 
 func conectavel(a: Vector2i, b: Vector2i) -> bool:
 	if not CabinesPlex.permite(planta, a, b): return false
 	var primeiro := planta.em(a)
 	var segundo := planta.em(b)
-	if primeiro.get("tipo", "") == "escada":
+	if EscadasPlex.eh(primeiro):
 		return escada_ligada(a, b)
-	if segundo.get("tipo", "") == "escada":
+	if EscadasPlex.eh(segundo):
 		return escada_ligada(b, a)
 	for item in [primeiro, segundo]:
 		if item.get("tipo", "") in CatalogoPlex.PORTAS:
@@ -57,7 +57,7 @@ func conectavel(a: Vector2i, b: Vector2i) -> bool:
 func reconstruir() -> void:
 	var estrutura: Array = []
 	for item in planta.objetos.values():
-		if item.tipo in (CatalogoPlex.PORTAS + ["palco","escada","divisoria_porta"]): estrutura.append([item.tipo,item.celula,item.rotacao])
+		if item.tipo in (CatalogoPlex.PORTAS + ["divisoria_porta"]) or EscadasPlex.tipo(item) in ["palco","escada"]: estrutura.append([item.tipo,item.celula,item.rotacao])
 	var atual := hash(estrutura)
 	if assinatura != atual:
 		assinatura = atual
@@ -80,7 +80,7 @@ func atualizar_bloqueios() -> void:
 	var novos: Dictionary = {}
 	for c in planta.ocupacao:
 		var item := planta.em(c)
-		if item.get("tipo","") not in (CatalogoPlex.PORTAS + ["palco","escada"]): novos[c]=true
+		if item.get("tipo","") not in CatalogoPlex.PORTAS and EscadasPlex.tipo(item) not in ["palco","escada"]: novos[c]=true
 	for c in planta.reservas_abertura: novos[c]=true
 	var atual := hash(novos)
 	if atual == assinatura_bloqueios: return

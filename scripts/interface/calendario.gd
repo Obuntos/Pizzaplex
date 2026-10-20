@@ -66,16 +66,16 @@ func preencher() -> void:
 	var inicio: int = mes_base-int(data.semana)
 	for i in 42:
 		var offset := inicio+i
-		var d: Dictionary = jogo.calendario.data(offset)
+		var d_local: Dictionary = jogo.calendario.data(offset)
 		var celula := Button.new()
 		celula.custom_minimum_size = Vector2(66,65)
-		celula.disabled = d.mes!=data.mes
+		celula.disabled = d_local.mes!=data.mes
 		if celula.disabled: celula.modulate=Color(.5,.55,.55)
 		if offset==escolhido: celula.add_theme_stylebox_override("normal",T.caixa(T.AZUL,T.AMBAR,3))
-		celula.tooltip_text = "%02d/%02d · %s · %d °C" % [d.dia,d.mes,jogo.calendario.previsao(offset),jogo.calendario.temperatura(offset)]
+		celula.tooltip_text = "%02d/%02d · %s · %d °C" % [d_local.dia,d_local.mes,jogo.calendario.previsao(offset),jogo.calendario.temperatura(offset)]
 		celula.pressed.connect(func(): escolhido=offset; preencher())
 		grade.add_child(celula)
-		var numero := T.texto(celula,str(d.dia),16,T.AMBAR if offset==0 else T.PAPEL)
+		var numero := T.texto(celula,str(d_local.dia),16,T.AMBAR if offset==0 else T.PAPEL)
 		numero.position = Vector2(6,3)
 		var icone := IconeHudPlex.new(jogo.calendario.previsao(offset))
 		icone.scale = Vector2(.7,.7)

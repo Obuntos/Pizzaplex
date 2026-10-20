@@ -12,12 +12,12 @@ func ret(x: float, y: float, w: float, h: float, cor: Color) -> void:
 	draw_rect(Rect2(Vector2(x,y)*2,Vector2(w,h)*2),cor)
 
 func _draw() -> void:
-	var amarelo := Color("edc669")
+	var amarelo := Color("f0a05c") if tipo=="entardecer" else Color("edc669")
 	var claro := Color("e4e2cc")
 	var azul := Color("7eb5bd")
 	match tipo:
 		"sol","Ensolarado","Calor","entardecer":
-			var borda:=Color("d69d45")
+			var borda:=Color("b76e42") if tipo=="entardecer" else Color("d69d45")
 			ret(7,4,10,16,borda)
 			ret(4,7,16,10,borda)
 			ret(6,6,12,12,amarelo)
@@ -33,14 +33,25 @@ func _draw() -> void:
 			ret(14,14,1,1,rosto)
 			ret(7,12,1,1,Color("f7c19a"))
 			ret(16,12,1,1,Color("f7c19a"))
-			if tipo=="entardecer": ret(2,20,20,2,Color("bd8055"))
+			if tipo=="entardecer":
+				ret(0,16,24,8,TemaHudPlex.FUNDO)
+				ret(2,16,20,1,Color("b97b5b"))
+				ret(5,18,14,1,Color("805b52"))
+				ret(9,20,6,1,Color("5a4950"))
 			if tipo=="Calor": ret(20,15,2,7,Color("cf7656"))
 		"noite":
-			ret(7,4,9,15,claro)
-			ret(5,7,12,9,claro)
-			ret(12,3,8,11,TemaHudPlex.FUNDO)
-			ret(19,4,2,2,amarelo)
-			ret(3,20,1,1,claro)
+			var luar := Color("d7dcee")
+			ret(8,3,7,18,Color("919cbe"))
+			ret(5,6,12,12,luar)
+			ret(7,4,8,16,luar)
+			ret(11,2,8,13,TemaHudPlex.FUNDO)
+			ret(15,12,4,5,TemaHudPlex.FUNDO)
+			ret(7,12,1,2,Color("69758e"))
+			ret(9,15,2,1,Color("69758e"))
+			ret(6,15,2,1,Color("b9b6d4"))
+			for p in [Vector2(20,4),Vector2(3,3),Vector2(19,19)]:
+				ret(p.x,p.y,1,3,amarelo)
+				ret(p.x-1,p.y+1,3,1,amarelo)
 		"Chuva","Nublado","Neve":
 			ret(5,8,14,7,claro)
 			ret(8,5,8,9,claro)

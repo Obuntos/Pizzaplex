@@ -11,7 +11,7 @@ static func borda(tipo: String, rotacao: int) -> float:
 	var chave := tipo+":"+str(rotacao)
 	if not bordas.has(chave):
 		var inferior := 0.0
-		for ponto in GeometriaPlex.obter(tipo,rotacao).pontos: inferior = maxf(inferior,ponto.y)
+		for ponto_local in GeometriaPlex.obter(tipo,rotacao).pontos: inferior = maxf(inferior,ponto_local.y)
 		bordas[chave] = maxf(.5,inferior-.5)
 	return float(bordas[chave])
 

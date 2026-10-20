@@ -15,6 +15,7 @@ uniform float altura_apoio = 0.0;
 uniform float raio = 3.5;
 uniform vec4 pernas[6];
 uniform bool normal_automatica=false;
+uniform bool volume_fantasia=false;
 uniform vec2 quadro_nativo=vec2(64.0,100.0);
 uniform bool usar_bracos=false;
 uniform vec4 bracos[6];
@@ -80,6 +81,16 @@ void fragment() {
 	n = normalize(vec3(n.xy * 1.35, max(0.05, n.z)));
 	vec3 normal = vec3(n.x, -0.447214 * n.y + 0.894427 * n.z, 0.894427 * n.y + 0.447214 * n.z);
 	vec3 dados = texture(SPECULAR_SHININESS_TEXTURE, UV).rgb;
+	if (volume_fantasia) {
+		vec2 pixel = mod(UV / TEXTURE_PIXEL_SIZE, quadro_nativo);
+		vec2 esfera = (pixel - vec2(23.5, 34.5)) / vec2(12.0, 12.5);
+		float mascara = 1.0 - smoothstep(0.88, 1.15, length(esfera));
+		vec2 curva = clamp(vec2(esfera.x, -esfera.y) * 0.65, vec2(-0.72), vec2(0.72));
+		vec3 cabeca = normalize(vec3(curva, sqrt(max(0.12, 1.0-dot(curva,curva)))));
+		n = normalize(mix(n,cabeca,mascara));
+		dados = mix(dados,vec3(0.82,0.025,0.0),mascara);
+		normal = vec3(n.x,-0.447214*n.y+0.894427*n.z,0.894427*n.y+0.447214*n.z);
+	}
 	if (normal_automatica) {
 		vec2 pixel=mod(UV/TEXTURE_PIXEL_SIZE,quadro_nativo);
 		float nx=clamp((pixel.x-quadro_nativo.x*.5)/(quadro_nativo.x*.23),-.7,.7);
@@ -97,3 +108,4 @@ void fragment() {
 	COLOR.rgb = iluminar_plex(COLOR.rgb, vec3(mundo.x, distancia - z, z), normal, dados, 1.0, false);
 
 }
+

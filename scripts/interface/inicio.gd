@@ -13,6 +13,8 @@ var carregando := false
 var modo := "novo"
 var criacao := CriacaoPartidaPlex.new()
 var config_partida: Dictionary = {}
+var arquivos := UISavesPlex.new()
+var save_escolhido := ArquivoPlex.CAMINHO
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -37,8 +39,7 @@ func _ready() -> void:
 	coluna.add_child(botoes)
 	T.botao(botoes,"Novo jogo",func(): iniciar("novo"),T.MARROM)
 	T.botao(botoes,"Modo debug · Grátis",func(): iniciar("debug"),T.AZUL)
-	var continuar := T.botao(botoes,"Carregar",func(): iniciar("carregar"))
-	continuar.disabled = not FileAccess.file_exists(ArquivoPlex.CAMINHO)
+	T.botao(botoes,"Carregar",func(): arquivos.abrir())
 	T.botao(botoes,"Opções",mostrar_opcoes)
 	T.botao(botoes,"Créditos",func(): informacao.text="Pizzaplex / Projeto independente.\nMóveis e personagens do repertório do projeto.")
 	T.botao(botoes,"Sair",func(): get_tree().quit())
@@ -47,6 +48,8 @@ func _ready() -> void:
 	informacao.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	criar_opcoes()
 	criar_carregamento()
+	add_child(arquivos)
+	arquivos.escolhido.connect(func(caminho): save_escolhido=caminho; comecar_carga("carregar"))
 	add_child(criacao)
 	criacao.confirmada.connect(func(dados,modo_debug): config_partida=dados; comecar_carga("debug" if modo_debug else "novo"))
 	set_process(false)
@@ -107,7 +110,7 @@ func iniciar(destino: String) -> void:
 
 func comecar_carga(destino: String) -> void:
 	if carregando: return
-	if destino=="carregar" and ArquivoPlex.ler().is_empty():
+	if destino=="carregar" and ArquivoPlex.ler(save_escolhido).is_empty():
 		informacao.text="Não foi possível ler a partida salva."
 		return
 	modo = destino
@@ -149,7 +152,7 @@ func _process(_delta: float) -> void:
 			if modo=="debug": ExemploSalasPlex.montar(jogo)
 			else: PizzariaAbandonadaPlex.montar(jogo)
 			AdministradorPlex.criar(jogo)
-		elif modo=="carregar": jogo.carregar()
+		elif modo=="carregar": jogo.carregar(save_escolhido)
 		jogo.painel.hud.catalogo.painel.hide()
 		jogo.painel.painel.hide()
 		jogo.painel.hud.atualizar(1.0)
@@ -161,6 +164,7 @@ func _process(_delta: float) -> void:
 
 func _input(evento: InputEvent) -> void:
 	if evento is InputEventKey and evento.pressed and evento.keycode==KEY_ESCAPE and not carregando:
-		if criacao.visible: criacao.hide()
+		if arquivos.visible: arquivos.fechar()
+		elif criacao.visible: criacao.hide()
 		elif painel_opcoes.visible: painel_opcoes.hide()
 		get_viewport().set_input_as_handled()

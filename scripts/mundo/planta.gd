@@ -196,9 +196,9 @@ func reindexar() -> void:
 
 func altura(celula: Vector2i) -> float:
 	var objeto := em(celula)
-	if objeto.get("tipo", "") == "palco":
+	if EscadasPlex.palco(objeto):
 		return GradePlex.ALTURA_PALCO
-	if objeto.get("tipo", "") == "escada":
+	if EscadasPlex.eh(objeto):
 		return GradePlex.ALTURA_PALCO * 0.5
 	return 0.0
 
@@ -206,7 +206,7 @@ func transitavel(celula: Vector2i) -> bool:
 	if not GradePlex.dentro(celula) or reservas_abertura.has(celula):
 		return false
 	var objeto := em(celula)
-	return objeto.is_empty() or objeto.tipo in (CatalogoPlex.PORTAS + ["palco", "escada"])
+	return objeto.is_empty() or objeto.tipo in CatalogoPlex.PORTAS or EscadasPlex.tipo(objeto) in ["palco","escada"]
 
 func interacoes(id: int) -> Array[Vector2i]:
 	var resultado: Array[Vector2i] = []

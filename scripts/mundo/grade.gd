@@ -64,8 +64,8 @@ static func frente(rotacao: int) -> Vector2i:
 	return [Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1), Vector2i(1, 0)][posmod(rotacao, 4)]
 
 static func direcao_suporte(rotacao: int) -> int:
-	var frente := frente(rotacao)
-	var tela := projetar_local(Vector2(frente))
+	var frente_local := frente(rotacao)
+	var tela := projetar_local(Vector2(frente_local))
 	return posmod(int(round(atan2(tela.x, tela.y * 2.0) / (PI / 4.0))), 8)
 
 static func poligono(centro: Vector2) -> PackedVector2Array:

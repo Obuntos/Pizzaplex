@@ -4,35 +4,35 @@ extends RefCounted
 static var definicoes: Dictionary = {}
 static var cache: Dictionary = {}
 
-static func conecta(outro: Dictionary, objeto: Dictionary, niveis: Dictionary) -> bool:
-	return outro.get("tipo", "") in SalasPlex.ESTRUTURA and int(niveis.get(outro.id, 4)) >= int(niveis.get(objeto.id, 4))
+static func conecta(outro: Dictionary, objeto_local: Dictionary, niveis: Dictionary) -> bool:
+	return outro.get("tipo", "") in SalasPlex.ESTRUTURA and int(niveis.get(outro.id, 4)) >= int(niveis.get(objeto_local.id, 4))
 
-static func mascara(objeto: Dictionary, planta: PlantaPlex, niveis: Dictionary = {}) -> int:
+static func mascara(objeto_local: Dictionary, planta: PlantaPlex, niveis: Dictionary = {}) -> int:
 	var valor: int = 0
-	if objeto.tipo in ["parede", "parede_fachada"]:
+	if objeto_local.tipo in ["parede", "parede_fachada"]:
 		var direcoes := [Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0)]
 		for i in 4:
-			if conecta(planta.em(objeto.celula + direcoes[i]), objeto, niveis):
+			if conecta(planta.em(objeto_local.celula + direcoes[i]), objeto_local, niveis):
 				valor |= 1 << i
-	elif objeto.tipo == "palco":
+	elif objeto_local.tipo == "palco":
 		for i in 4:
-			if planta.em(objeto.celula + GradePlex.VIZINHOS[i]).get("tipo", "") == "palco":
+			if planta.em(objeto_local.celula + GradePlex.VIZINHOS[i]).get("tipo", "") == "palco":
 				valor |= 1 << i
-	elif objeto.tipo == "escada":
-		var frente := GradePlex.frente(objeto.rotacao)
+	elif objeto_local.tipo == "escada":
+		var frente := GradePlex.frente(objeto_local.rotacao)
 		var lado := Vector2i(frente.y, -frente.x)
 		for i in 2:
-			var outro := planta.em(objeto.celula + lado * (-1 if i == 0 else 1))
-			if outro.get("tipo", "") == "escada" and outro.rotacao == objeto.rotacao:
+			var outro := planta.em(objeto_local.celula + lado * (-1 if i == 0 else 1))
+			if outro.get("tipo", "") == "escada" and outro.rotacao == objeto_local.rotacao:
 				valor |= 1 << i
-	elif objeto.tipo in CatalogoPlex.PORTAS:
-		var frente := GradePlex.frente(objeto.rotacao)
+	elif objeto_local.tipo in CatalogoPlex.PORTAS:
+		var frente := GradePlex.frente(objeto_local.rotacao)
 		var lado := Vector2i(frente.y, -frente.x)
-		var ocupadas := planta.celulas(objeto.tipo, objeto.celula, objeto.rotacao)
+		var ocupadas := planta.celulas(objeto_local.tipo, objeto_local.celula, objeto_local.rotacao)
 		for i in 2:
 			for celula in ocupadas:
 				var vizinha: Vector2i = celula + lado * (-1 if i == 0 else 1)
-				if not ocupadas.has(vizinha) and conecta(planta.em(vizinha), objeto, niveis):
+				if not ocupadas.has(vizinha) and conecta(planta.em(vizinha), objeto_local, niveis):
 					valor |= 1 << i
 	return valor
 

@@ -39,7 +39,7 @@ static func textura(arquivo: String, uniforme: String) -> CanvasTexture:
 				var fora := x<esquerda or x>direita
 				var coberto := chapeu.get_pixel(x,d*80+y+20).a>.8
 				if not fora and not coberto: continue
-				for f in cor.get_width()/48:
+				for f in floori(float(cor.get_width())/48.0):
 					var ponto := Vector2i(f*48+x,d*68+y+8)
 					cor.set_pixelv(ponto,Color.TRANSPARENT)
 					normal.set_pixelv(ponto,Color.TRANSPARENT)

@@ -68,14 +68,14 @@ func cancelar() -> void:
 func travessia(personagem: Node2D, planta: PlantaPlex) -> Dictionary:
 	var proxima := planta.em(rota[0])
 	var atual := planta.em(personagem.celula)
-	if proxima.get("tipo", "") == "escada":
+	if EscadasPlex.eh(proxima):
 		var frente := GradePlex.frente(proxima.rotacao)
 		if personagem.celula == proxima.celula + frente:
 			var completa: bool = rota.size() > 1 and rota[1] == proxima.celula - frente
 			return {"escada": proxima.celula, "modo": "subir" if completa else "subir_alto", "fim": rota[1] if completa else rota[0], "consumir": 1 if completa else 0}
 		if personagem.celula == proxima.celula - frente and rota.size() > 1 and rota[1] == proxima.celula + frente:
 			return {"escada": proxima.celula, "modo": "descer", "fim": rota[1], "consumir": 1}
-	if atual.get("tipo", "") == "escada" and rota[0] == personagem.celula + GradePlex.frente(atual.rotacao):
+	if EscadasPlex.eh(atual) and rota[0] == personagem.celula + GradePlex.frente(atual.rotacao):
 		return {"escada": personagem.celula, "modo": "descer_alto", "fim": rota[0], "consumir": 0}
 	return {}
 
@@ -87,7 +87,7 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 	if rota.is_empty():
 		return 0.0
 	if escala.ativo:
-		var anterior := personagem.local as Vector2
+		var anterior_local := personagem.local as Vector2
 		var terminou := escala.atualizar(personagem, delta)
 		progresso = escala.relogio / float(escala.percurso.duration)
 		if terminou:
@@ -97,7 +97,7 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 			escala.ativo = false
 			if not rota.is_empty():
 				personagem.fase += 0.25
-		return anterior.distance_to(personagem.local)
+		return anterior_local.distance_to(personagem.local)
 	if not atravessando:
 		inicio = personagem.celula
 		var primeiro: Vector2i = rota[0]
@@ -122,12 +122,12 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 				rota.pop_front()
 			return 0.0
 		var objeto := planta.em(destino)
-		if objeto.get("tipo", "") == "escada":
+		if EscadasPlex.eh(objeto):
 			ponto_destino -= Vector2(GradePlex.frente(objeto.rotacao)) / 3.0
 	var caixa: bool = personagem.carregando or planta.objetos.get(personagem.carga_item,{}).get("tipo","").begins_with("caixa")
 	var velocidade: float = 0.425 if personagem.robo else (0.475 if caixa else 0.55)
 	if personagem.cargo == "crianca" and personagem.visita.get("correndo",false): velocidade *= 1.6
-	if planta.em(inicio).get("tipo", "") == "escada" or planta.em(destino).get("tipo", "") == "escada":
+	if EscadasPlex.eh(planta.em(inicio)) or EscadasPlex.eh(planta.em(destino)):
 		velocidade *= 0.62
 	var anterior := progresso
 	var comprimento := maxf(0.001, ponto_inicio.distance_to(ponto_destino))

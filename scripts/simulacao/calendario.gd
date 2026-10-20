@@ -22,10 +22,10 @@ func data(deslocamento: int = 0) -> Dictionary:
 	return {"dia":int(valor.day),"mes":int(valor.month),"ano":int(valor.year),"semana":int(valor.weekday)}
 
 func hora() -> String:
-	return "%02d:%02d" % [int(minutos) / 60, int(minutos) % 60]
+	return "%02d:%02d" % [floori(minutos / 60.0), int(minutos) % 60]
 
 func periodo() -> String:
-	return "noite" if minutos < 360 or minutos >= 1140 else "entardecer" if minutos >= 1020 else "sol"
+	return "noite" if minutos < 330 or minutos >= 1170 else "entardecer" if minutos >= 960 else "sol"
 
 func previsao(deslocamento: int = 0) -> String:
 	var d := data(deslocamento)
@@ -40,12 +40,10 @@ func temperatura(deslocamento: int = 0) -> int:
 	return {"Neve":-2,"Chuva":18,"Nublado":21,"Calor":33,"Ensolarado":26}.get(previsao(deslocamento),22) + posmod(dias+deslocamento,3)
 
 func luz_ambiente() -> float:
-	var valor := .55
-	if minutos < 360 or minutos >= 1200: valor = .27
-	elif minutos < 480: valor = lerpf(.27,.55,(minutos-360.0)/120.0)
-	elif minutos > 1020: valor = lerpf(.55,.27,(minutos-1020.0)/180.0)
-	if previsao() in ["Chuva","Neve"]: valor *= .88
-	return valor
+	return float(estado_solar().ambiente)
+
+func estado_solar() -> Dictionary:
+	return CicloSolarPlex.estado(minutos,previsao())
 
 func chave(dia: int, palco: int) -> String:
 	return str(dia)+":"+str(palco)

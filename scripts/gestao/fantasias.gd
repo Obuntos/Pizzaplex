@@ -149,6 +149,7 @@ func atualizar(delta: float) -> void:
 	espera=0
 	var a:=administrador()
 	if not is_instance_valid(a): return
+	if EquipePlex.em_comando(a): return
 	var fase:=str(a.visita.get("fantasia_etapa",""))
 	var precisa: bool=jogo.operacao.aberto and not tem_animatronico() and not adiou and not urgente(a)
 	if fase.is_empty():

@@ -8,6 +8,10 @@ uniform vec4 luzes_direcao[32];
 uniform sampler2D bloqueios : filter_nearest, repeat_disable;
 uniform sampler2D passagens : filter_nearest, repeat_disable;
 uniform float ambiente = 0.55;
+uniform vec3 direcao_solar = vec3(0.7,0.0,0.7);
+uniform float energia_solar = 0.0;
+uniform vec3 cor_solar = vec3(1.0,0.95,0.80);
+uniform vec3 cor_ambiente = vec3(1.0);
 uniform float contraste = 0.6;
 uniform float influencia_cor = 0.25;
 
@@ -167,8 +171,23 @@ vec3 iluminar_plex(vec3 base, vec3 p, vec3 normal, vec3 material_pixel, float vo
 		vec4 recinto = texture(bloqueios, (celula + 0.5) / tamanho_grade);
 		fechada = estrutura ? recinto.b : recinto.g;
 	}
-	float ambiente_local = ambiente - fechada * 0.13;
-	vec3 ganho = clamp(vec3(1.0) + (vec3(ambiente_local) + acumulada * material_pixel.r * 0.65 - vec3(1.0)) * contraste, vec3(0.45), vec3(1.12));
-	ganho = mix(ganho, vec3(1.0), protecao * 0.6);
+	float ambiente_local = mix(ambiente, max(0.006, ambiente * 0.32), fechada);
+	vec3 iluminacao_ambiente = cor_ambiente * ambiente_local;
+	vec3 solar = vec3(0.0);
+	if (energia_solar > 0.001) {
+		vec3 receptor = p + normal * 2.0;
+		vec2 celula_sol = celula_luz(receptor);
+		float interior = 0.0;
+		if (all(greaterThanEqual(celula_sol, vec2(0.0))) && all(lessThan(celula_sol, tamanho_grade))) {
+			interior = texture(bloqueios, (celula_sol + 0.5) / tamanho_grade).g;
+		}
+		float difusa_solar = max(0.0, dot(normal, normalize(direcao_solar)));
+		if (interior < 0.5 && difusa_solar > 0.0) {
+			float visivel = visibilidade_luz(receptor, receptor + direcao_solar * 1200.0);
+			solar = cor_solar * energia_solar * difusa_solar * visivel;
+		}
+	}
+	vec3 ganho = clamp(iluminacao_ambiente + solar + acumulada * material_pixel.r * 0.95, vec3(0.002), vec3(1.14));
+	ganho = mix(ganho, vec3(dot(ganho, vec3(0.2126, 0.7152, 0.0722))), protecao * 0.3);
 	return clamp(base * ganho + min(vec3(0.08), reflexo) * (1.0 - protecao), vec3(0.0), vec3(1.0));
 }

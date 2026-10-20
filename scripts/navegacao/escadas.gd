@@ -1,10 +1,20 @@
 class_name EscadasPlex
 extends RefCounted
 
+static func tipo(objeto: Dictionary) -> String:
+	var nome := str(objeto.get("tipo",""))
+	return MobiliaPlex.logico(nome)
+
+static func eh(objeto: Dictionary) -> bool:
+	return tipo(objeto)=="escada"
+
+static func palco(objeto: Dictionary) -> bool:
+	return tipo(objeto)=="palco"
+
 static func faixa(celula: Vector2i, planta: PlantaPlex) -> Array[Vector2i]:
 	var resultado: Array[Vector2i] = []
 	var objeto := planta.em(celula)
-	if objeto.get("tipo", "") != "escada":
+	if not eh(objeto):
 		return resultado
 	var frente := GradePlex.frente(objeto.rotacao)
 	var lado := Vector2i(frente.y, -frente.x)
@@ -17,7 +27,7 @@ static func faixa(celula: Vector2i, planta: PlantaPlex) -> Array[Vector2i]:
 		for deslocamento in [lado, -lado]:
 			var vizinho: Vector2i = local + deslocamento
 			var outro := planta.em(vizinho)
-			if outro.get("tipo", "") == "escada" and outro.rotacao == objeto.rotacao and not resultado.has(vizinho):
+			if eh(outro) and outro.rotacao == objeto.rotacao and not resultado.has(vizinho):
 				fila.append(vizinho)
 	return resultado
 
@@ -25,21 +35,21 @@ static func acessivel(celula: Vector2i, planta: PlantaPlex) -> bool:
 	var entrada: bool = false
 	var saida: bool = false
 	var objeto := planta.em(celula)
-	if objeto.get("tipo", "") != "escada":
+	if not eh(objeto):
 		return false
 	var frente := GradePlex.frente(objeto.rotacao)
 	for local in faixa(celula, planta):
 		var antes: Vector2i = local + frente
 		var depois: Vector2i = local - frente
 		entrada = entrada or (planta.transitavel(antes) and is_zero_approx(planta.altura(antes)))
-		saida = saida or planta.em(depois).get("tipo", "") == "palco"
+		saida = saida or palco(planta.em(depois))
 	return entrada and saida
 
 
 static func altura(local: Vector2, planta: PlantaPlex) -> float:
 	var celula := Vector2i(local.round())
 	var objeto := planta.em(celula)
-	if objeto.get("tipo", "") != "escada":
+	if not eh(objeto):
 		return planta.altura(celula)
 	var frente := Vector2(GradePlex.frente(objeto.rotacao))
 	var t := clampf(0.5 - (local - Vector2(celula)).dot(frente), 0.0, 1.0)
@@ -48,7 +58,8 @@ static func altura(local: Vector2, planta: PlantaPlex) -> float:
 static func degrau(local: Vector2, planta: PlantaPlex) -> int:
 	var celula := Vector2i(local.round())
 	var objeto := planta.em(celula)
-	if objeto.get("tipo", "") != "escada":
+	if not eh(objeto):
 		return 0
 	var frente := Vector2(GradePlex.frente(objeto.rotacao))
 	return clampi(int(ceil((0.5 - (local - Vector2(celula)).dot(frente)) * 3.0)), 1, 3)
+

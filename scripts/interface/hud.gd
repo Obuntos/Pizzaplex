@@ -17,8 +17,13 @@ var expandir: Button
 var abrir_botao: Button
 var linha_controle := HBoxContainer.new()
 var velocidades: Dictionary = {}
+var mostrar_tempo := true
+var ritmo := PanelContainer.new()
+var linha_tempo := HBoxContainer.new()
+var expandir_tempo: Button
 var painel_conforto: PanelContainer
 var menu := PanelContainer.new()
+var arquivos := UISavesPlex.new()
 var pausa_anterior := 1.0
 var espera := 1.0
 
@@ -100,15 +105,17 @@ func configurar(cena: Node) -> void:
 	T.texto(opcoes,"PIZZAPLEX / PAUSA",22,T.AMBAR)
 	T.botao(opcoes,"Continuar",alternar_menu)
 	T.botao(opcoes,"Salvar partida",func(): jogo.salvar())
-	T.botao(opcoes,"Carregar partida",func(): jogo.carregar(); alternar_menu())
+	T.botao(opcoes,"Carregar partida",abrir_saves)
 	T.botao(opcoes,"Tela cheia / Janela",func(): jogo.alternar_tela_cheia())
 	T.botao(opcoes,"Menu inicial",func(): jogo.get_tree().change_scene_to_file("res://cenas/interface/inicio.tscn"))
 	T.botao(opcoes,"Sair",func(): jogo.get_tree().quit())
 	menu.hide()
+	add_child(arquivos)
+	arquivos.escolhido.connect(func(caminho): jogo.carregar(caminho); alternar_menu())
 	atualizar(1.0)
 
 func menu_aberto() -> bool:
-	return menu.visible or agenda.visible or jogo.vestiario_ui.aberto()
+	return arquivos.visible or menu.visible or agenda.visible or jogo.vestiario_ui.aberto()
 
 func alternar_menu() -> void:
 	menu.visible = not menu.visible
@@ -124,8 +131,12 @@ func atualizar(delta: float) -> void:
 	nome_restaurante.text=jogo.operacao.nome.to_upper()
 	nome_restaurante.tooltip_text=jogo.operacao.nome
 	abrir_botao.text="Fechar restaurante" if jogo.operacao.aberto else "Abrir restaurante"
+	abrir_botao.tooltip_text=jogo.operacao.motivo_chegada
 	linha_controle.visible=jogo.operacao.mostrar_controle
 	expandir.text=("▼ " if jogo.operacao.mostrar_controle else "▶ ")+("ABERTO" if jogo.operacao.aberto else "FECHADO")
+	linha_tempo.visible=mostrar_tempo
+	ritmo.custom_minimum_size.x=0
+	expandir_tempo.text=("▼ TEMPO" if mostrar_tempo else "▶ TEMPO · "+("Ⅱ" if is_zero_approx(jogo.velocidade_tempo) else str(int(jogo.velocidade_tempo))+"×"))
 	for valor in velocidades: velocidades[valor].set_pressed_no_signal(is_equal_approx(jogo.velocidade_tempo,float(valor)))
 	var c: CalendarioPlex = jogo.calendario
 	var d := c.data()
@@ -135,40 +146,58 @@ func atualizar(delta: float) -> void:
 	saldo.text = "$ "+str(jogo.servicos.saldo)
 	if corte != null: corte.text = "CORTE ON" if jogo.cortar_frente else "CORTE OFF"
 
+func compacto(pai: Node, texto: String, acao: Callable, cor: Color = T.FUNDO) -> Button:
+	var botao := T.botao(pai,texto,acao,cor)
+	botao.custom_minimum_size=Vector2(32,28)
+	botao.add_theme_font_size_override("font_size",12)
+	for estado in ["normal","hover","pressed"]:
+		botao.add_theme_stylebox_override(estado,T.caixa(cor.lightened(.14) if estado=="hover" else cor,T.AMBAR if estado=="pressed" else T.LINHA,4))
+	return botao
+
 func configurar_abertura() -> void:
-	var paineis:=HBoxContainer.new()
+	var paineis := HBoxContainer.new()
 	paineis.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	paineis.offset_left=-558
+	paineis.offset_left=-304
 	paineis.offset_right=-16
 	paineis.offset_top=100
-	paineis.offset_bottom=192
+	paineis.offset_bottom=176
 	paineis.alignment=BoxContainer.ALIGNMENT_END
-	paineis.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	paineis.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(paineis)
-	var ritmo:=PanelContainer.new()
+	controle.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	controle.custom_minimum_size.x=0
+	controle.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	controle.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.LINHA,6))
+	paineis.add_child(controle)
+	var coluna := VBoxContainer.new()
+	coluna.add_theme_constant_override("separation",4)
+	controle.add_child(coluna)
+	expandir=compacto(coluna,"▶ FECHADO",func(): jogo.operacao.mostrar_controle=not jogo.operacao.mostrar_controle; atualizar(1.0))
+	coluna.add_child(linha_controle)
+	abrir_botao=compacto(linha_controle,"Abrir restaurante",func(): jogo.operacao.mudar_abertura(not jogo.operacao.aberto),T.VERDE)
+	abrir_botao.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	ritmo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	ritmo.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	ritmo.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.LINHA,6))
 	paineis.add_child(ritmo)
-	var tempos:=VBoxContainer.new()
+	var tempos := VBoxContainer.new()
+	tempos.add_theme_constant_override("separation",4)
 	ritmo.add_child(tempos)
-	T.texto(tempos,"TEMPO",13,T.SUAVE).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	var linha_tempo:=HBoxContainer.new()
+	expandir_tempo=compacto(tempos,"▼ TEMPO",func(): mostrar_tempo=not mostrar_tempo; atualizar(1.0),T.AZUL)
+	expandir_tempo.tooltip_text="Mostrar ou recolher os controles de velocidade"
 	tempos.add_child(linha_tempo)
+	linha_tempo.add_theme_constant_override("separation",2)
 	for valor in [0,1,2,3]:
-		var b:=T.botao(linha_tempo,"Ⅱ" if valor==0 else str(valor)+"×",func(): jogo.velocidade_tempo=float(valor); atualizar(1.0),T.AZUL)
+		var b := compacto(linha_tempo,"Ⅱ" if valor==0 else str(valor)+"×",func(): jogo.velocidade_tempo=float(valor); atualizar(1.0),T.AZUL)
+		b.custom_minimum_size.x=24
 		b.toggle_mode=true
-		b.custom_minimum_size=Vector2(42,36)
+		b.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 		b.tooltip_text="Pausar simulação" if valor==0 else "Velocidade "+str(valor)+"×"
 		velocidades[valor]=b
-	controle.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
-	controle.custom_minimum_size.x=220
-	paineis.add_child(controle)
-	var coluna:=VBoxContainer.new()
-	controle.add_child(coluna)
-	expandir=T.botao(coluna,"▶ FECHADO",func(): jogo.operacao.mostrar_controle=not jogo.operacao.mostrar_controle; atualizar(1.0))
-	expandir.custom_minimum_size.y=28
-	coluna.add_child(linha_controle)
-	abrir_botao=T.botao(linha_controle,"Abrir restaurante",func(): jogo.operacao.mudar_abertura(not jogo.operacao.aberto),T.VERDE)
-	abrir_botao.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 
 func _process(delta: float) -> void:
 	if conforto_ui.jogo!=null: conforto_ui.atualizar(delta)
+
+func abrir_saves() -> void:
+	if not menu.visible: alternar_menu()
+	arquivos.abrir()

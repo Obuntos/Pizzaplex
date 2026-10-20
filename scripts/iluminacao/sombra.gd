@@ -46,23 +46,27 @@ func atualizar(delta: float = .1) -> void:
 		espera = 0.0
 		revisao_luz = iluminacao.revisao
 		for i in iluminacao.quantidade:
-			var p: Vector4 = iluminacao.posicoes[i]
-			if p.z <= origem.z + 25.0 or iluminacao.direcoes[i].z > 0.2:
+			var p_local: Vector4 = iluminacao.posicoes[i]
+			if p_local.z <= origem.z + 25.0 or iluminacao.direcoes[i].z > 0.2:
 				continue
 			var atual := iluminacao.energia_recebida(i, Vector3(ponto.x, ponto.y * 2.0, origem.z + 20.0))
 			if atual > nota:
 				nota = atual
 				melhor = i
+		var solar := iluminacao.sol_recebido(Vector3(ponto.x,ponto.y*2.0,origem.z+20.0))
+		if solar>nota:
+			nota=solar
+			melhor=-2
 		melhor_luz = melhor
 		energia = nota
 	else:
 		melhor = melhor_luz
 		nota = energia
-	visible = melhor >= 0 and nota > 0.015
+	visible = melhor != -1 and nota > 0.015
 	if not visible:
 		return
 	position = ponto
-	var p: Vector4 = iluminacao.posicoes[melhor]
+	var p: Vector4 = iluminacao.posicao_sol(Vector3(ponto.x,ponto.y*2.0,origem.z)) if melhor==-2 else iluminacao.posicoes[melhor]
 	var vetor := Vector2(ponto.x - p.x, ponto.y * 2.0 - p.y) / maxf(90.0, p.z - origem.z)
 	vetor = vetor.limit_length(1.25)
 	var d: Dictionary = ator.animacao.definicao
@@ -91,4 +95,6 @@ func atualizar(delta: float = .1) -> void:
 		mat.set_shader_parameter("direcao", vetor)
 		mat.set_shader_parameter("altura_luz", p.z)
 		mat.set_shader_parameter("indice_luz", melhor)
+		mat.set_shader_parameter("sombra_solar",melhor==-2)
 		mat.set_shader_parameter("opacidade", 0.22)
+

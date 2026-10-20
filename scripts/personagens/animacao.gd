@@ -100,11 +100,11 @@ func atualizar_escada(escala: EscalaPlex, direcao: int, relogio: float) -> void:
 	var nome: String = "corpo" if definicao.layered else "modelo"
 	camadas[nome].position=-Vector2(definicao.pivot[0],definicao.pivot[1])
 	var sufixo: String = "_corpo" if definicao.layered else ""
-	var caixa: String = "_caixa" if escala.carregando else ""
+	var caixa: String = "_caixa" if escala.carregando and definicao.layered else ""
 	var caminho: String = "res://assets/personagens/" + (AnimatronicosPlex.base(modelo) if not AnimatronicosPlex.base(modelo).is_empty() else modelo) + "/escada/" + escala.sentido + caixa + sufixo + "/" + CatalogoPlex.DIRECOES[GradePlex.rotacao_visual(escala.rotacao)] + ".png"
 	atlases[nome].atlas = CatalogoPlex.textura_iluminada(caminho)
 	arquivos[nome] = caminho
 	var coluna: int = escala.quadro % int(escala.definicao.columns)
-	var linha: int = escala.quadro / int(escala.definicao.columns)
+	var linha: int = floori(float(escala.quadro) / int(escala.definicao.columns))
 	atlases[nome].region = Rect2(coluna * int(definicao.width), linha * int(definicao.height), int(definicao.width), int(definicao.height))
 

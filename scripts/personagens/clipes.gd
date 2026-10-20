@@ -43,5 +43,5 @@ static func quadro(modelo: String, acao: String, direcao: int, fase: float, temp
 	if falando:
 		var fala: Array=[0,1,2,3,2,1,0,0]
 		indice=mini(int(c.frames)-1,int(fala[int(floor(tempo*4.0))%fala.size()]))
-	return {"arquivo":c.pasta+"/"+str(posmod(direcao,8))+".png","regiao":Rect2((indice%int(c.columns))*int(d.width),(indice/int(c.columns))*int(d.height),int(d.width),int(d.height)),"indice":indice,"deslocamento":Vector2(0,float(c.get("deslocamentos",[])[indice]) if c.get("deslocamentos",[]).size()>indice else 0.0)}
+	return {"arquivo":c.pasta+"/"+str(posmod(direcao,8))+".png","regiao":Rect2((indice%int(c.columns))*int(d.width),floori(float(indice)/int(c.columns))*int(d.height),int(d.width),int(d.height)),"indice":indice,"deslocamento":Vector2(0,float(c.get("deslocamentos",[])[indice]) if c.get("deslocamentos",[]).size()>indice else 0.0)}
 

@@ -50,7 +50,10 @@ static func permitir(ator: Node2D, primeiro: Vector2i, destino: Vector2i, planta
 	movimento.bloqueado += delta
 	if movimento.bloqueado < .12: return false
 	if planta.em(ator.celula).get("tipo", "") == "suporte": return true
-	var alternativa := rotas.caminho(ator.celula, movimento.rota[-1], bloqueios(ator, personagens))
+	var impedidos := bloqueios(ator,personagens)
+	for limite in ator.get_meta("limites_rota",[]):
+		if not impedidos.has(limite): impedidos.append(limite)
+	var alternativa := rotas.caminho(ator.celula,movimento.rota[-1],impedidos)
 	if alternativa.size() > 1 and alternativa[1] != primeiro and alternativa.size() <= movimento.rota.size() + 4:
 		ator.andar(alternativa)
 		return false

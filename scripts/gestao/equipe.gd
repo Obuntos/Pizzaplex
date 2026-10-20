@@ -27,3 +27,9 @@ static func definir(ator: PersonagemPlex, principal: String, secundarias: Array)
 	ator.funcao = principal
 	ator.funcoes_secundarias = secundarias.filter(func(f): return FUNCOES.has(f) and f != principal)
 
+
+static func em_comando(ator: PersonagemPlex) -> bool:
+	if not ator.visita.has("comando_manual_ate"): return false
+	if ator.ocupado() or ator.relogio<float(ator.visita.comando_manual_ate): return true
+	ator.visita.erase("comando_manual_ate")
+	return false

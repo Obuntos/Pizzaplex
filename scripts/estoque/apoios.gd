@@ -25,14 +25,14 @@ static func pontos(objeto: Dictionary, planta: PlantaPlex = null) -> Array:
 		var posicoes := LugaresPlex.posicoes(objeto)
 		var dimensao := CatalogoPlex.dimensoes(objeto.tipo, objeto.rotacao)
 		var centro := Vector2(objeto.celula) + Vector2(dimensao - Vector2i.ONE) * .5
-		var altura := 30.0 if objeto.tipo == "mesa" else 29.0
+		var altura_local := 30.0 if objeto.tipo == "mesa" else 29.0
 		for i in assentos.size():
 			var p: Dictionary = posicoes[i]
 			var local: Vector2 = Vector2(p.celula) - centro + Vector2(p.frente) * .8
 			if objeto.tipo == "mesa": local = (Vector2(p.celula) - centro) * .22
-			resultado.append({"u":local.x,"v":local.y,"z":altura,"cadeira":assentos[i],"accepts":["prato","pizza","fatia-pizza","restos-mesa","bandeja"],"capacity":1})
-		resultado.append({"u":0.0,"v":0.0,"z":altura+.8,"accepts":["dinheiro"],"capacity":1})
-		resultado.append({"u":0.0,"v":0.0,"z":altura,"accepts":["terminal-ibm"],"capacity":1})
+			resultado.append({"u":local.x,"v":local.y,"z":altura_local,"cadeira":assentos[i],"accepts":["prato","pizza","fatia-pizza","restos-mesa","bandeja"],"capacity":1})
+		resultado.append({"u":0.0,"v":0.0,"z":altura_local+.8,"accepts":["dinheiro"],"capacity":1})
+		resultado.append({"u":0.0,"v":0.0,"z":altura_local,"accepts":["terminal-ibm"],"capacity":1})
 		for i in assentos.size():
 			var p: Dictionary = resultado[i].duplicate(true)
 			var frente: Vector2i = posicoes[i].frente

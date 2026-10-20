@@ -320,21 +320,21 @@ func montar_equipe() -> void:
 		var linha := PanelContainer.new()
 		linha.add_theme_stylebox_override("panel",T.caixa(T.PAPEL,T.VERDE if funcionario==id else T.LINHA,4,16))
 		catalogo_area.add_child(linha)
-		var c := HBoxContainer.new()
-		linha.add_child(c)
+		var c_local := HBoxContainer.new()
+		linha.add_child(c_local)
 		var face := TextureRect.new()
 		face.texture = RetratoEquipePlex.criar(ator)
 		face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		face.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		face.custom_minimum_size = Vector2(50,50)
-		c.add_child(face)
+		c_local.add_child(face)
 		var dados := VBoxContainer.new()
 		dados.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		c.add_child(dados)
+		c_local.add_child(dados)
 		T.texto(dados,IdentidadesPlex.completo(ator),17)
 		T.texto(dados,EquipePlex.NOMES.get(ator.funcao,"Geral")+" · "+("Automático" if ator.automatico else "Pausado"),12,T.SUAVE)
-		T.botao(c,"Gerenciar",func(): funcionario=id; montar_pagina(); atualizar_valores(),funcionario==id)
+		T.botao(c_local,"Gerenciar",func(): funcionario=id; montar_pagina(); atualizar_valores(),funcionario==id)
 	if lista.is_empty():
 		T.texto(catalogo_area,"Coloque um funcionário no restaurante para atribuir funções.",15,T.SUAVE).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		return

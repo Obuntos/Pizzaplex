@@ -27,13 +27,13 @@ func atualizar() -> void:
 	if not sujo: return
 	sujo = false
 	var estrutura: Array = [planta.funcoes_salas]
-	var equipamentos: Array = [planta.ocupacao,planta.reservas_abertura.keys()]
+	var equipamentos_local: Array = [planta.ocupacao,planta.reservas_abertura.keys()]
 	for item in planta.objetos.values():
 		if item.tipo in SalasPlex.ESTRUTURA: estrutura.append([item.id,item.tipo,item.celula,item.rotacao])
-		if requisitos.has(CatalogoPlex.base(item.tipo)): equipamentos.append([item.id,item.tipo,item.celula,item.rotacao,item.get("sobre",-1),item.get("carregada_por",0)])
+		if requisitos.has(CatalogoPlex.base(item.tipo)): equipamentos_local.append([item.id,item.tipo,item.celula,item.rotacao,item.get("sobre",-1),item.get("carregada_por",0)])
 	var assinatura := hash(estrutura)
 	var reconstruir := assinatura!=assinatura_estrutura
-	var requisitos_atuais := hash(equipamentos)
+	var requisitos_atuais := hash(equipamentos_local)
 	var revalidar := requisitos_atuais!=assinatura_requisitos
 	assinatura_requisitos=requisitos_atuais
 	if reconstruir:
@@ -117,10 +117,10 @@ func validar(ambiente: Dictionary) -> void:
 					entradas.append(c)
 					if not ambiente.portas.has(item.id): ambiente.portas.append(item.id)
 	if entradas.is_empty(): faltas.append("Adicione uma porta com passagem livre dos dois lados.")
-	var requisitos: Dictionary = definicoes[ambiente.tipo].requisitos
-	for tipo in requisitos:
+	var requisitos_local: Dictionary = definicoes[ambiente.tipo].requisitos
+	for tipo in requisitos_local:
 		var encontrados := objetos(ambiente, tipo)
-		if encontrados.size() < int(requisitos[tipo]):
+		if encontrados.size() < int(requisitos_local[tipo]):
 			faltas.append("Falta: " + CatalogoPlex.objetos[tipo].nome + ".")
 		elif tipo not in ["palco", "pose", "escada", "registradora", "divisoria_porta"]:
 			for id in encontrados:

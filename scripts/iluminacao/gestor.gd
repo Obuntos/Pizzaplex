@@ -11,6 +11,10 @@ var posicoes_mundo := PackedVector4Array()
 var direcoes_mundo := PackedVector4Array()
 var quantidade: int = 0
 var ambiente_diurno := 0.55
+var direcao_solar := Vector3(0.7,0.0,0.7)
+var energia_solar := 0.0
+var cor_solar := Color(1.0,.96,.87)
+var cor_ambiente := Color.WHITE
 var assinatura: String = ""
 var portas_anteriores: String = ""
 var bloqueios: ImageTexture
@@ -31,6 +35,38 @@ func _init(p: PlantaPlex) -> void:
 
 func invalidar() -> void:
 	sujo = true
+
+func atualizar_sol(calendario: CalendarioPlex) -> void:
+	var estado := calendario.estado_solar()
+	ambiente_diurno=float(estado.ambiente)
+	direcao_solar=estado.direcao
+	energia_solar=float(estado.energia)
+	cor_solar=estado.cor
+	cor_ambiente=estado.cor_ambiente
+	RenderingServer.set_default_clear_color(Color("020407").lerp(Color("263338"),clampf(ambiente_diurno,0.0,1.0)))
+	revisao+=1
+	for referencia in materiais.duplicate():
+		var mat := referencia.get_ref() as ShaderMaterial
+		if mat==null: materiais.erase(referencia)
+		else: aplicar_sol(mat)
+
+func aplicar_sol(mat: ShaderMaterial) -> void:
+	mat.set_shader_parameter("ambiente",ambiente_diurno)
+	mat.set_shader_parameter("direcao_solar",direcao_solar)
+	mat.set_shader_parameter("energia_solar",energia_solar)
+	mat.set_shader_parameter("cor_solar",Vector3(cor_solar.r,cor_solar.g,cor_solar.b))
+	mat.set_shader_parameter("cor_ambiente",Vector3(cor_ambiente.r,cor_ambiente.g,cor_ambiente.b))
+
+func sol_recebido(ponto: Vector3) -> float:
+	if energia_solar<=.001 or salas.has(celula_fisica(ponto)): return 0.0
+	var vetor := Vector2(direcao_solar.x,direcao_solar.y).rotated(GradePlex.visao*PI*.5)
+	var direcao := Vector3(vetor.x,vetor.y,direcao_solar.z)
+	return energia_solar*visibilidade(ponto,ponto+direcao*1200.0)
+
+func posicao_sol(ponto: Vector3) -> Vector4:
+	var vetor := Vector2(direcao_solar.x,direcao_solar.y).rotated(GradePlex.visao*PI*.5)
+	var origem := ponto+Vector3(vetor.x,vetor.y,direcao_solar.z)*1200.0
+	return Vector4(origem.x,origem.y,origem.z,2000.0)
 
 func configurar(chao: ChaoPlex, composicao: CenaPlex) -> void:
 	var piso := ShaderMaterial.new()
@@ -53,7 +89,7 @@ func vincular(material_novo: ShaderMaterial) -> void:
 
 func aplicar(mat: ShaderMaterial) -> void:
 	var eixos: Vector4 = [Vector4(1, 0, 0, 1), Vector4(0, 1, -1, 0), Vector4(-1, 0, 0, -1), Vector4(0, -1, 1, 0)][posmod(GradePlex.visao, 4)]
-	mat.set_shader_parameter("ambiente", ambiente_diurno)
+	aplicar_sol(mat)
 	mat.set_shader_parameter("eixos_visao", eixos)
 	mat.set_shader_parameter("tamanho_grade", Vector2(GradePlex.TAMANHO))
 	var centro := GradePlex.projetar_local(GradePlex.CENTRO)

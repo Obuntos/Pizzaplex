@@ -44,8 +44,8 @@ static func ajustar(volume: Dictionary, tipo: String) -> void:
 			else: v *= .5
 			p = Vector3(roundf((u-v)*32.0),roundf((u+v)*16.0-altura_marca),(u+v)*32.0+altura_marca)
 		var y := roundf(p.y*fator)
-		var altura := (p.z-p.y*2.0)/3.0*fator
-		pontos[i] = Vector3(roundf(p.x*fator),y,y*2.0+altura*3.0)
+		var altura_local := (p.z-p.y*2.0)/3.0*fator
+		pontos[i] = Vector3(roundf(p.x*fator),y,y*2.0+altura_local*3.0)
 	volume.pontos = pontos
 	volume.cores = cores
 
@@ -77,3 +77,4 @@ static func sprite(tipo: String, rotacao: int, estado: String) -> Texture2D:
 	var chave := str([tipo,rotacao,estado])
 	if not imagens.has(chave): imagens[chave] = GeometriaPlex.obter(tipo,rotacao,4,0,false,estado).textura
 	return imagens[chave]
+

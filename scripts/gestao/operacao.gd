@@ -9,6 +9,7 @@ var administrador := -1
 var criacao: Dictionary = {}
 var espera_chegada := 25.0
 var mostrar_controle := true
+var motivo_chegada := ""
 
 func _init(cena: Node) -> void:
 	jogo = cena
@@ -19,6 +20,7 @@ func configurar(valor: Dictionary, modo_debug: bool) -> void:
 	if nome.is_empty(): nome = "Pizzaplex"
 	debug = modo_debug
 	aberto = modo_debug
+	espera_chegada=3.0
 	aplicar_precos()
 
 func aplicar_precos() -> void:
@@ -29,8 +31,8 @@ func aplicar_precos() -> void:
 func mudar_abertura(valor: bool) -> void:
 	if aberto!=valor and valor: jogo.fantasias.abertura()
 	aberto = valor
-	espera_chegada = minf(espera_chegada,15.0)
-	jogo.painel.mensagem("Restaurante aberto. Novas visitas chegam quando o salão e a cozinha estiverem prontos." if aberto else "Restaurante fechado para novas visitas. Quem já entrou pode terminar a refeição e sair.")
+	espera_chegada = minf(espera_chegada,3.0)
+	jogo.painel.mensagem("Restaurante aberto. Novas visitas chegam quando houver uma entrada e espaço interno para recebê-las." if aberto else "Restaurante fechado para novas visitas. Quem já entrou pode terminar a refeição e sair.")
 	jogo.painel.hud.atualizar(1.0)
 
 func chegada() -> Vector2i:
@@ -39,25 +41,37 @@ func chegada() -> Vector2i:
 		if porta.is_empty(): continue
 		var frente := GradePlex.frente(porta.rotacao)
 		for lado in [frente,-frente]:
+			var dentro: Vector2i=celula_porta-lado
+			if not jogo.ambientes.em(dentro).get("fechada",false): continue
 			for distancia in [2,3,1]:
-				var c: Vector2i = porta.celula + lado*distancia
+				var c: Vector2i = celula_porta + lado*distancia
 				if not jogo.clientes.chao(c) or jogo.personagens.any(func(a): return a.celula==c): continue
-				if not jogo.ambientes.em(c).get("fechada",false): return c
+				if not jogo.ambientes.em(c).get("fechada",false) and not jogo.clientes.caminho(c,dentro).is_empty(): return c
 	return Vector2i(-1,-1)
 
 func atualizar(delta: float) -> void:
-	if not aberto or debug: return
+	if not aberto: return
 	espera_chegada -= delta
 	if espera_chegada>0: return
-	espera_chegada = 85.0
+	espera_chegada = 5.0
 	if jogo.clientes.grupos.size()>=3: return
-	if jogo.ambientes.equipamentos("mesa",["salao"]).is_empty(): return
-	if jogo.ambientes.equipamentos("forno",["cozinha"]).is_empty(): return
+	jogo.ambientes.atualizar()
+	var salao: bool=jogo.ambientes.ambientes.any(func(sala): return sala.fechada and (sala.funcoes.has("salao") or sala.objetos.any(func(id): return LugaresPlex.mesa(jogo.planta.objetos[id].tipo) and LugaresPlex.total(jogo.planta,id)>0)))
+	var arcade: bool=not jogo.ambientes.equipamentos("maquina_fliperama",["jogos"]).is_empty()
+	if not salao and not arcade:
+		motivo_chegada="Prepare uma área interna com mesas e cadeiras, ou uma sala de jogos, para receber visitantes."
+		return
 	var local := chegada()
-	if not GradePlex.dentro(local): return
-	if randi()%4==0 and not jogo.ambientes.equipamentos("maquina_fliperama",["jogos"]).is_empty():
-		jogo.lazer.criar(local,randi()%2==0)
-	else: jogo.clientes.criar_preset(local,"variada")
+	if not GradePlex.dentro(local):
+		motivo_chegada="A entrada precisa ligar o exterior a uma área interna, com passagem livre."
+		return
+	var criou: bool=false
+	if arcade and (not salao or randi()%4==0): criou=jogo.lazer.criar(local,randi()%2==0)
+	else: criou=jogo.clientes.criar_preset(local,"variada")
+	if criou:
+		motivo_chegada=""
+		espera_chegada=45.0
+	else: motivo_chegada="Libere espaço próximo à entrada para os visitantes chegarem juntos."
 
 func gravar() -> Dictionary:
 	return {"nome":nome,"debug":debug,"aberto":aberto,"administrador":administrador,"criacao":criacao,"espera_chegada":espera_chegada,"mostrar_controle":mostrar_controle,"fantasia_adiada":jogo.fantasias.adiou}

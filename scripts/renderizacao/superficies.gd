@@ -8,12 +8,12 @@ static func normais_volume(pontos: PackedVector3Array) -> PackedColorArray:
 	var resultado := PackedColorArray()
 	var profundidades: Dictionary = {}
 	for ponto in pontos:
-		profundidades[Vector2i(ponto.x, ponto.y)] = ponto.z
+		profundidades[Vector2i(int(ponto.x), int(ponto.y))] = ponto.z
 	var gradientes := [Vector2(-1.5, -1), Vector2(1.5, -1), Vector2(0, 2)]
 	var normais := [Vector3(.707107, .707107, 0), Vector3(-.707107, .707107, 0), Vector3(0, 0, 1)]
 	var vizinhas := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(2, 0), Vector2i(-2, 0), Vector2i(0, 2), Vector2i(0, -2)]
 	for ponto in pontos:
-		var pixel := Vector2i(ponto.x, ponto.y)
+		var pixel := Vector2i(int(ponto.x), int(ponto.y))
 		var melhor := 0
 		var nota_melhor := -1.0
 		for face in 3:

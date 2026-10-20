@@ -14,6 +14,7 @@ var definicao: Dictionary = {}
 var percurso: Dictionary = {}
 var pes: Array[Vector3] = []
 var pisos: Array[float] = []
+var ajuste_entrada := Vector2.ZERO
 
 static func carregar() -> void:
 	if dados.is_empty():
@@ -21,17 +22,21 @@ static func carregar() -> void:
 
 func iniciar(personagem: Node2D, planta: PlantaPlex, escada: Vector2i, modo: String) -> bool:
 	carregar()
-	if not dados.has(personagem.modelo):
+	var modelo: String = personagem.modelo
+	if not dados.has(modelo): modelo=AnimatronicosPlex.base(modelo)
+	if not dados.get(modelo,{}).has(modo):
 		return false
 	var objeto := planta.em(escada)
-	if objeto.get("tipo", "") != "escada":
+	if not EscadasPlex.eh(objeto) or not EscadasPlex.acessivel(escada,planta):
 		return false
 	celula = escada
 	rotacao = objeto.rotacao
 	sentido = modo
 	carregando = personagem.carregando or personagem.carga_item>=0
-	definicao = dados[personagem.modelo][sentido]
+	definicao = dados[modelo][sentido]
 	percurso = definicao.tracks[rotacao]
+	var primeiro: Array=percurso.frames[0]
+	ajuste_entrada=personagem.local-Vector2(celula)-Vector2(primeiro[1],primeiro[2])
 	relogio = 0.0
 	indice = 0
 	quadro = 0
@@ -42,7 +47,8 @@ func iniciar(personagem: Node2D, planta: PlantaPlex, escada: Vector2i, modo: Str
 func aplicar(personagem: Node2D, mistura: float) -> void:
 	var a: Array = percurso.frames[indice]
 	var b: Array = percurso.frames[mini(indice + 1, percurso.frames.size() - 1)]
-	personagem.local = Vector2(celula) + Vector2(lerpf(a[1], b[1], mistura), lerpf(a[2], b[2], mistura))
+	var ajuste := ajuste_entrada*(1.0-smoothstep(0.0,.24,relogio))
+	personagem.local = Vector2(celula) + Vector2(lerpf(a[1], b[1], mistura), lerpf(a[2], b[2], mistura)) + ajuste
 	personagem.altura = lerpf(a[3], b[3], mistura)
 	personagem.fase = lerpf(a[4], b[4], mistura)
 	personagem.direcao = percurso.facing
@@ -51,7 +57,7 @@ func aplicar(personagem: Node2D, mistura: float) -> void:
 	pisos.clear()
 	for pe in 2:
 		var inicio: int = 5 + pe * 4
-		pes.append(Vector3(celula.x + lerpf(a[inicio], b[inicio], mistura), celula.y + lerpf(a[inicio + 1], b[inicio + 1], mistura), lerpf(a[inicio + 2], b[inicio + 2], mistura)))
+		pes.append(Vector3(celula.x + lerpf(a[inicio], b[inicio], mistura) + ajuste.x, celula.y + lerpf(a[inicio + 1], b[inicio + 1], mistura) + ajuste.y, lerpf(a[inicio + 2], b[inicio + 2], mistura)))
 		pisos.append(a[inicio + 3] if mistura < 0.5 else b[inicio + 3])
 
 func atualizar(personagem: Node2D, delta: float) -> bool:
@@ -63,3 +69,4 @@ func atualizar(personagem: Node2D, delta: float) -> bool:
 	var mistura: float = clampf((relogio - float(a[0])) / maxf(0.001, float(b[0]) - float(a[0])), 0.0, 1.0)
 	aplicar(personagem, mistura)
 	return relogio >= float(percurso.duration) - 0.00001
+

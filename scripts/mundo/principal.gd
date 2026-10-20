@@ -70,6 +70,7 @@ func _ready() -> void:
 	poses = PosesPlex.new(planta, rotas, personagens)
 	saida_montagem = SaidaMontagemPlex.new(planta, rotas, poses, personagens)
 	iluminacao = IluminacaoPlex.new(planta)
+	iluminacao.atualizar_sol(calendario)
 	tarefas = TarefasPlex.new(planta, rotas)
 	tarefas.personagens = personagens
 	ambientes = AmbientesPlex.new(planta, rotas)
@@ -139,7 +140,7 @@ func _ready() -> void:
 		if is_instance_valid(selecionado):
 			selecionado.automatico = valor)
 	painel.salvar_solicitado.connect(salvar)
-	painel.carregar_solicitado.connect(carregar)
+	painel.carregar_solicitado.connect(painel.hud.abrir_saves)
 	painel.paredes_solicitadas.connect(trocar_paredes)
 	painel.recorte_escolhido.connect(func(valor):
 		cortar_frente = valor
@@ -357,10 +358,7 @@ func _physics_process(delta: float) -> void:
 	conforto.atualizar(delta)
 	if ultimo_minuto != calendario.minuto_do_dia():
 		ultimo_minuto = calendario.minuto_do_dia()
-		iluminacao.ambiente_diurno = calendario.luz_ambiente()
-		for ref in iluminacao.materiais:
-			var mat: ShaderMaterial = ref.get_ref()
-			if mat != null: mat.set_shader_parameter("ambiente", iluminacao.ambiente_diurno)
+		iluminacao.atualizar_sol(calendario)
 	compras.atualizar(delta)
 	projetos_endo.atualizar(delta)
 	atendimento.atualizar(delta)
@@ -384,7 +382,7 @@ func _physics_process(delta: float) -> void:
 	if espera_palco >= 1.0:
 		espera_palco = 0.0
 		for ator in personagens:
-			if ator.robo and ator.automatico and not AnimatronicosPlex.pausado(ator) and not ator.ocupado() and ator.pronto_para_destino() and ator.pose < 0:
+			if ator.robo and ator.automatico and not EquipePlex.em_comando(ator) and not AnimatronicosPlex.pausado(ator) and not ator.ocupado() and ator.pronto_para_destino() and ator.pose < 0:
 				levar_ao_palco(ator)
 
 func terminal_apontado() -> int:
@@ -414,7 +412,8 @@ func personagem_apontado() -> PersonagemPlex:
 
 func _input(evento: InputEvent) -> void:
 	if evento is InputEventKey and evento.pressed and not evento.echo and evento.keycode==KEY_ESCAPE and painel.hud!=null:
-		if vestiario_ui.aberto(): vestiario_ui.adiar()
+		if painel.hud.arquivos.visible: painel.hud.arquivos.fechar()
+		elif vestiario_ui.aberto(): vestiario_ui.adiar()
 		elif carteira.aberto(): carteira.fechar()
 		elif terminal_ui.aberto(): terminal_ui.fechar()
 		elif catalogo_modelos.aberto(): catalogo_modelos.fechar()
@@ -534,17 +533,18 @@ func _unhandled_input(evento: InputEvent) -> void:
 		traco_parede.estender(apontada(), editor)
 
 func clicar_mundo(celula: Vector2i) -> void:
-	var mouse := get_global_mouse_position()
-	for ator in personagens:
-		var ponto := GradePlex.projetar(ator.local, ator.altura)
-		if Rect2(ponto + Vector2(-15, -65), Vector2(30, 70)).has_point(mouse):
-			if ator.robo and ator.suporte >= 0 and is_instance_valid(selecionado) and not selecionado.robo:
-				tarefas.solicitar(selecionado, ator.suporte)
-				return
-			selecionar(ator)
+	var ator := personagem_apontado()
+	if is_instance_valid(ator):
+		if ator==selecionado and celula!=ator.celula and planta.transitavel(celula):
+			comandar(celula)
 			return
-	if interface_gestao.inspecionar(celula): return
-	comandar(celula)
+		if ator.robo and ator.suporte>=0 and is_instance_valid(selecionado) and not selecionado.robo:
+			tarefas.solicitar(selecionado,ator.suporte)
+			return
+		selecionar(ator)
+		return
+	if is_instance_valid(selecionado): comandar(celula)
+	else: interface_gestao.inspecionar(celula)
 
 func comandar(celula: Vector2i) -> void:
 	if not is_instance_valid(selecionado):
@@ -553,12 +553,15 @@ func comandar(celula: Vector2i) -> void:
 	if selecionado.cargo in ["cliente", "crianca", "adolescente"]:
 		painel.mensagem("Clientes seguem a visita automaticamente. Use a aba Clientes para adicionar famílias.")
 		return
-	if selecionado.robo and selecionado.modelo != "endo" and planta.em(celula).get("tipo", "") == "palco":
+	if selecionado.robo and selecionado.modelo != "endo" and EscadasPlex.palco(planta.em(celula)):
 		var marcas := planta.sobre(celula, "pose")
 		if marcas.is_empty() or not poses.encaminhar(selecionado, marcas[0].id):
 			painel.mensagem("O destino no palco precisa de uma Pose livre e acessível.")
+		else: selecionado.visita.comando_manual_ate=selecionado.relogio+15.0
 		return
 	if servicos.trabalhos.has(selecionado.identificador): servicos.cancelar(selecionado)
+	if planta.objetos.has(selecionado.pose) and int(planta.objetos[selecionado.pose].get("reserva",0))==selecionado.identificador:
+		planta.objetos[selecionado.pose].reserva=0
 	selecionado.pose = -1
 	var caminho: Array[Vector2i]
 	var objeto := planta.em(celula)
@@ -583,14 +586,16 @@ func comandar(celula: Vector2i) -> void:
 	if selecionado.suporte >= 0:
 		selecionado.suporte = -1
 	selecionado.andar(caminho)
+	if selecionado.has_meta("limites_rota"): selecionado.remove_meta("limites_rota")
+	selecionado.visita.comando_manual_ate=selecionado.relogio+15.0
 	painel.mensagem("Destino atualizado. As tarefas automáticas continuam ativas.")
 
 func salvar() -> void:
-	ArquivoPlex.salvar(planta, personagens, servicos.gravar(), clientes.gravar(), compras.gravar(), {"ativa":campanha,"calendario":calendario.gravar(),"gastos_construcao":compras_construcao,"visao":GradePlex.visao,"paredes":nivel_paredes,"cortar_frente":cortar_frente,"operacao":operacao.gravar()})
-	painel.mensagem("Construção e personagens salvos.")
+	var sucesso := ArquivoPlex.salvar(planta, personagens, servicos.gravar(), clientes.gravar(), compras.gravar(), {"ativa":campanha,"calendario":calendario.gravar(),"gastos_construcao":compras_construcao,"visao":GradePlex.visao,"paredes":nivel_paredes,"cortar_frente":cortar_frente,"operacao":operacao.gravar()})
+	painel.mensagem("Partida salva. Ela está disponível na janela Carregar." if sucesso else "Não foi possível salvar a partida.")
 
-func carregar() -> void:
-	var dados := ArquivoPlex.ler()
+func carregar(caminho: String = ArquivoPlex.CAMINHO) -> void:
+	var dados := ArquivoPlex.ler(caminho)
 	if dados.is_empty():
 		painel.mensagem("Ainda não há uma construção salva.")
 		return
@@ -635,6 +640,8 @@ func carregar() -> void:
 	operacao.restaurar(progresso.get("operacao",{}))
 	compras_construcao = int(progresso.get("gastos_construcao",0))
 	calendario.restaurar(progresso.get("calendario",{}))
+	ultimo_minuto=-1
+	iluminacao.atualizar_sol(calendario)
 	GradePlex.visao = posmod(int(progresso.get("visao",GradePlex.visao)),4)
 	nivel_paredes = clampi(int(progresso.get("paredes",nivel_paredes)),1,4)
 	cortar_frente = bool(progresso.get("cortar_frente",cortar_frente))

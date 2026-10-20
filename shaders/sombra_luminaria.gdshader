@@ -2,6 +2,7 @@ shader_type canvas_item;
 render_mode unshaded;
 #include "res://shaders/iluminacao.gdshaderinc"
 uniform int indice_luz = -1;
+uniform bool sombra_solar = false;
 uniform sampler2D profundidade : filter_nearest, repeat_disable;
 uniform sampler2D superficies : filter_nearest, repeat_disable;
 uniform vec2 origem;
@@ -29,10 +30,20 @@ void fragment() {
 	float altura = d < -9999.0 ? 0.0 : (d - mundo_sombra.y * 2.0) / 3.0;
 	vec2 celula = grade_mundo(vec3(mundo_sombra.x, 2.0 * (mundo_sombra.y + altura_destino), altura_destino));
 	if (abs(altura - altura_destino) > 1.3 || any(lessThan(celula, vec2(-0.5))) || any(greaterThan(celula, (tamanho_grade - vec2(0.5))))) { discard; }
-	if (indice_luz < 0 || indice_luz >= quantidade_luzes) { discard; }
+	if (!sombra_solar && (indice_luz < 0 || indice_luz >= quantidade_luzes)) { discard; }
 	vec3 receptor = vec3(mundo_sombra.x, 2.0 * (mundo_sombra.y + altura_destino), altura_destino + 1.5);
-	float energia = energia_luz(indice_luz, receptor);
-	vec3 cor = luzes_cor[indice_luz].rgb;
+	float energia = 0.0;
+	vec3 cor = cor_solar;
+	if (sombra_solar) {
+		vec3 fisico = posicao_mundo(receptor);
+		vec2 celula_sol = celula_luz(fisico);
+		if (texture(bloqueios, (celula_sol + 0.5) / tamanho_grade).g > 0.5) { discard; }
+		energia = energia_solar * visibilidade_luz(fisico, fisico + direcao_solar * 1200.0);
+	} else {
+		energia = energia_luz(indice_luz, receptor);
+		cor = luzes_cor[indice_luz].rgb;
+	}
 	energia *= dot(cor, vec3(0.2126, 0.7152, 0.0722));
 	COLOR = vec4(0.09, 0.11, 0.13, texture(TEXTURE, UV).a * opacidade * clamp(energia, 0.0, 1.0));
 }
+

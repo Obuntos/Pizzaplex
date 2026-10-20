@@ -16,7 +16,7 @@ func ponto(id: int, operador: bool, fila: int = 0) -> Vector2i:
 	var item: Dictionary=jogo.planta.objetos.get(id,{})
 	if item.is_empty(): return Vector2i(-1,-1)
 	var pos:=ApoiosPlex.posicao(jogo.planta,item)
-	var centro:=Vector2i(pos.x,pos.y)
+	var centro:=Vector2i(int(pos.x),int(pos.y))
 	var frente:=GradePlex.frente(item.rotacao)*(1 if operador else -1)
 	var lado:=Vector2i(frente.y,-frente.x)
 	for offset in [frente*(fila+1),frente*(fila+1)+lado,frente*(fila+1)-lado]:

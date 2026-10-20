@@ -64,8 +64,8 @@ static func porta_recortada(caminho: String, fechado: String, nivel: int) -> Tex
 		corte.convert(Image.FORMAT_RGBA8)
 		var altura: int = [6, 22, 52][clampi(nivel - 1, 0, 2)]
 		for x in corte.get_width():
-			var base: int = maxi(base_coluna(original, x), base_coluna(referencia, x))
-			for y in range(0, maxi(0, base - altura)):
+			var base_local: int = maxi(base_coluna(original, x), base_coluna(referencia, x))
+			for y in range(0, maxi(0, base_local - altura)):
 				corte.set_pixel(x, y, Color.TRANSPARENT)
 		texturas[chave] = ImageTexture.create_from_image(corte)
 	return texturas[chave]
@@ -86,31 +86,31 @@ static func sprite(tipo: String, rotacao: int, estado: String = "", nivel: int =
 			completa.blit_rect(recorte, Rect2i(Vector2i.ZERO, recorte.get_size()), Vector2i(int(volume.origin[0]) + 96, int(volume.origin[1]) + 144))
 			texturas[chave] = ImageTexture.create_from_image(completa)
 		return texturas[chave]
-	var base: String = objetos[tipo].pasta + "/sprites/"
+	var base_local: String = objetos[tipo].pasta + "/sprites/"
 	var direcao: String = DIRECOES[posmod(rotacao, 4)]
-	var caminho: String = base + direcao + ".png"
+	var caminho: String = base_local + direcao + ".png"
 	if tipo == "parede":
 		if nivel == 4:
-			caminho = base + "conexoes/" + str(mascara) + ".png"
+			caminho = base_local + "conexoes/" + str(mascara) + ".png"
 		else:
-			caminho = base + "vistas/" + str(nivel) + "/" + direcao + ".png"
+			caminho = base_local + "vistas/" + str(nivel) + "/" + direcao + ".png"
 	elif tipo in ["porta", "porta_dupla"]:
 		if estado == "aberta":
-			caminho = base + "aberta/" + direcao + ".png"
-			return porta_recortada(caminho, base + direcao + ".png", nivel)
+			caminho = base_local + "aberta/" + direcao + ".png"
+			return porta_recortada(caminho, base_local + direcao + ".png", nivel)
 		elif nivel < 4:
-			caminho = base + "vistas/" + str(nivel) + "/" + direcao + ".png"
+			caminho = base_local + "vistas/" + str(nivel) + "/" + direcao + ".png"
 	elif tipo == "caixa" and estado != "":
-		caminho = base + estado + "/" + direcao + ".png"
+		caminho = base_local + estado + "/" + direcao + ".png"
 	return textura(caminho)
 
 static func superficies(tipo: String, rotacao: int, conexoes: int = 0, ligada: bool = false) -> Array[Texture2D]:
-	var base: String = objetos[tipo].pasta + "/sprites/"
-	var caminho: String = base + DIRECOES[rotacao] + ".png"
+	var base_local: String = objetos[tipo].pasta + "/sprites/"
+	var caminho: String = base_local + DIRECOES[rotacao] + ".png"
 	if tipo == "escada" and ligada:
-		caminho = base + "palco/" + str(conexoes) + "/" + DIRECOES[rotacao] + ".png"
+		caminho = base_local + "palco/" + str(conexoes) + "/" + DIRECOES[rotacao] + ".png"
 	elif tipo == "escada" and conexoes != 0:
-		caminho = base + "conexoes/" + str(conexoes) + "/" + DIRECOES[rotacao] + ".png"
+		caminho = base_local + "conexoes/" + str(conexoes) + "/" + DIRECOES[rotacao] + ".png"
 	var chave: String = caminho + ":superficie:" + str(conexoes)
 	if not texturas.has(chave):
 		var original := imagem(caminho)
@@ -168,9 +168,9 @@ static func camadas_suporte(rotacao: int) -> Array[Texture2D]:
 	var chave := "suporte:" + str(rotacao)
 	if not texturas.has(chave):
 		var original := sprite("suporte", rotacao).get_image()
-		var base := original.duplicate() as Image
+		var base_local := original.duplicate() as Image
 		var coluna := original.duplicate() as Image
-		base.convert(Image.FORMAT_RGBA8)
+		base_local.convert(Image.FORMAT_RGBA8)
 		coluna.convert(Image.FORMAT_RGBA8)
 		var frente := Vector2(GradePlex.frente(rotacao))
 		var lado := Vector2(frente.y, -frente.x)
@@ -187,8 +187,8 @@ static func camadas_suporte(rotacao: int) -> Array[Texture2D]:
 				if Geometry2D.is_point_in_polygon(Vector2(x + 0.5, y + 0.5), poligono):
 					coluna.set_pixel(x, y, Color.TRANSPARENT)
 				else:
-					base.set_pixel(x, y, Color.TRANSPARENT)
-		texturas[chave] = ImageTexture.create_from_image(base)
+					base_local.set_pixel(x, y, Color.TRANSPARENT)
+		texturas[chave] = ImageTexture.create_from_image(base_local)
 		texturas[chave + ":coluna"] = ImageTexture.create_from_image(coluna)
 	return [texturas[chave], texturas[chave + ":coluna"]]
 
