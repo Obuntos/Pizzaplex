@@ -42,8 +42,8 @@ static func especificacao(objeto: Dictionary, planta: PlantaPlex, salas: Diction
 	var ponto := GradePlex.projetar_local(celula) if em_mundo else GradePlex.projetar(celula)
 	var posicao := Vector3(ponto.x, ponto.y * 2.0, altura + 2.0)
 	var direcao := Vector3(0, 0, 1)
-	var alcance := 150.0
-	var cone := 0.06
+	var alcance := 180.0
+	var cone := -1.0
 	if objeto.tipo == "luz_teto":
 		posicao.z = altura + 140.0
 		direcao = Vector3(0, 0, -1)

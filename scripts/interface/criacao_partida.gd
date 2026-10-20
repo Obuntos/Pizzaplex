@@ -80,6 +80,7 @@ func _ready() -> void:
 	quadro.custom_minimum_size=Vector2(260,310)
 	quadro.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	previa.add_child(quadro)
+	quadro.resized.connect(centralizar)
 	var giros := HBoxContainer.new()
 	giros.alignment=BoxContainer.ALIGNMENT_CENTER
 	giros.add_theme_constant_override("separation",24)
@@ -125,37 +126,32 @@ func abrir(modo_debug: bool) -> void:
 
 func atualizar_previa() -> void:
 	if not pronto or not visible: return
-	if is_instance_valid(ator):
-		quadro.remove_child(ator)
-		ator.queue_free()
-	ator=load("res://cenas/personagens/personagem.tscn").instantiate()
-	ator.configurar(-1,str(dados().modelo),Vector2i.ZERO,false)
+	var novo_modelo := str(dados().modelo)
+	if not is_instance_valid(ator) or ator.modelo != novo_modelo:
+		if is_instance_valid(ator):
+			quadro.remove_child(ator)
+			ator.queue_free()
+		ator=load("res://cenas/personagens/personagem.tscn").instantiate()
+		ator.configurar(-1,novo_modelo,Vector2i.ZERO,false)
+		ator.planta_visual=PlantaPlex.new()
+		ator.scale=Vector2.ONE*3.0
+		quadro.add_child(ator)
 	ator.funcao="administrador"
 	ator.visita.administrador=true
 	ator.uniforme=dados().uniforme
 	ator.cabelo=dados().cabelo
-	ator.planta_visual=PlantaPlex.new()
-	ator.scale=Vector2.ONE*3.0
 	ator.direcao=direcao
-	quadro.add_child(ator)
 	ator.atualizar_visual(false)
 	centralizar()
 	ator.identificacao.hide()
 
 func centralizar() -> void:
 	if not is_instance_valid(ator): return
-	var limites := Rect2()
-	var iniciou := false
-	for fonte in ator.pintura.fontes:
-		var sprite: Sprite2D=fonte.sprite
-		if sprite.texture==null: continue
-		var usados := sprite.texture.get_image().get_used_rect()
-		if not usados.has_area(): continue
-		var transformacao := ator.global_transform.affine_inverse()*sprite.global_transform
-		var retangulo := transformacao*Rect2(usados)
-		limites=limites.merge(retangulo) if iniciou else retangulo
-		iniciou=true
-	if iniciou: posicao_previa=(quadro.size*.5-limites.get_center()*ator.scale).round()
+	var definicao: Dictionary = ator.animacao.definicao
+	var tamanho := Vector2(definicao.width, definicao.height)
+	var pivo := Vector2(definicao.pivot[0], definicao.pivot[1])
+	var centro := (tamanho * .5 - pivo) * ator.animacao.scale
+	posicao_previa = (quadro.size * .5 - centro * ator.scale).round()
 	ator.position=posicao_previa
 
 func confirmar() -> void:

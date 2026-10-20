@@ -117,8 +117,8 @@ func energia_recebida(indice: int, ponto: Vector3) -> float:
 	if distancia > p.w:
 		return 0.0
 	var d := direcoes[indice]
-	var cone := smoothstep(d.w, minf(0.99, d.w + 0.3), (-delta / distancia).dot(Vector3(d.x, d.y, d.z)))
-	var queda := (1.0 - smoothstep(p.w * 0.8, p.w, distancia)) / (1.0 + distancia * distancia / (p.w * p.w))
+	var cone := 1.0 if d.w <= -.99 else smoothstep(d.w, minf(0.99, d.w + 0.3), (-delta / distancia).dot(Vector3(d.x, d.y, d.z)))
+	var queda := (1.0 - smoothstep(p.w * 0.35, p.w, distancia)) / (1.0 + distancia * distancia / (p.w * p.w))
 	var cor := cores[indice]
 	var brilho := cor.x * 0.2126 + cor.y * 0.7152 + cor.z * 0.0722
 	return cor.w * brilho * cone * queda * visibilidade(ponto, origem_luz)

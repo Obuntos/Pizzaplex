@@ -69,6 +69,7 @@ vec3 local_porta(vec3 ponto, vec4 portal) {
 }
 
 bool trecho_bloqueado(vec2 celula, vec3 p, vec3 luz, float entrada, float saida) {
+	if (saida <= entrada + 0.000001) { return false; }
 	if (any(lessThan(celula, vec2(0.0))) || any(greaterThanEqual(celula, tamanho_grade))) { return false; }
 	vec4 portal = texture(passagens, (celula + 0.5) / tamanho_grade);
 	if (abs(portal.a) < 0.5) {
@@ -103,12 +104,11 @@ float visibilidade_luz(vec3 p, vec3 origem_luz) {
 	if (passo.x == 0.0) { proximos.x = 1e20; }
 	if (passo.y == 0.0) { proximos.y = 1e20; }
 	float entrada = 0.0;
-	for (int trecho = 0; trecho < 80; trecho++) {
+	for (int trecho = 0; trecho < 128; trecho++) {
 		float saida = min(1.0, min(proximos.x, proximos.y));
 		if (trecho_bloqueado(celula, p, origem_luz, entrada, saida)) { return 0.0; }
 		if (saida >= 1.0) { return 1.0; }
 		if (abs(proximos.x - proximos.y) < 0.000001) {
-			if (trecho_bloqueado(celula + vec2(passo.x, 0.0), p, origem_luz, max(0.0, saida - 0.00001), min(1.0, saida + 0.00001)) || trecho_bloqueado(celula + vec2(0.0, passo.y), p, origem_luz, max(0.0, saida - 0.00001), min(1.0, saida + 0.00001))) { return 0.0; }
 			celula += passo;
 			proximos += incremento;
 		} else if (proximos.x < proximos.y) {
@@ -123,14 +123,31 @@ float visibilidade_luz(vec3 p, vec3 origem_luz) {
 	return 0.0;
 }
 
+vec3 receptor_superficie(vec3 p, vec3 normal, bool estrutura) {
+	vec3 receptor = p + normal * 2.0;
+	if (!estrutura || abs(normal.z) > 0.5) { return receptor; }
+	vec2 grade = grade_fisica(receptor);
+	vec2 celula = floor(grade + 0.5);
+	if (altura_bloqueio(celula) <= receptor.z + 1.0) { return receptor; }
+	vec4 portal = texture(passagens, (celula + 0.5) / tamanho_grade);
+	if (abs(portal.a) > 0.5) { return receptor; }
+	vec2 direcao = vec2((normal.x + normal.y) / 64.0, (normal.y - normal.x) / 64.0);
+	vec2 local = grade - celula;
+	float avanco = 1e20;
+	if (abs(direcao.x) > 0.000001) { avanco = min(avanco, (0.501 - sign(direcao.x) * local.x) / abs(direcao.x)); }
+	if (abs(direcao.y) > 0.000001) { avanco = min(avanco, (0.501 - sign(direcao.y) * local.y) / abs(direcao.y)); }
+	return receptor + normal * clamp(avanco, 0.0, 24.0);
+}
+
 float energia_fisica(int i, vec3 p) {
 	vec3 delta = luzes_posicao[i].xyz - p;
 	float distancia = max(1.0, length(delta));
 	float alcance = luzes_posicao[i].w;
 	if (distancia > alcance) { return 0.0; }
 	vec3 l = delta / distancia;
-	float cone = smoothstep(luzes_direcao[i].w, min(0.99, luzes_direcao[i].w + 0.3), dot(-l, luzes_direcao[i].xyz));
-	float queda = (1.0 - smoothstep(alcance * 0.8, alcance, distancia)) / (1.0 + distancia * distancia / (alcance * alcance));
+	float cone = 1.0;
+	if (luzes_direcao[i].w > -0.99) { cone = smoothstep(luzes_direcao[i].w, min(0.99, luzes_direcao[i].w + 0.3), dot(-l, luzes_direcao[i].xyz)); }
+	float queda = (1.0 - smoothstep(alcance * 0.35, alcance, distancia)) / (1.0 + distancia * distancia / (alcance * alcance));
 	return luzes_cor[i].a * queda * cone * visibilidade_luz(p, luzes_posicao[i].xyz);
 }
 
@@ -141,6 +158,7 @@ float energia_luz(int i, vec3 p) {
 vec3 iluminar_plex(vec3 base, vec3 p, vec3 normal, vec3 material_pixel, float volume_sprite, bool estrutura) {
 	p = posicao_mundo(p);
 	normal = normalize(vec3(vetor_mundo(normal.xy), normal.z));
+	vec3 receptor = receptor_superficie(p, normal, estrutura);
 	vec3 acumulada = vec3(0.0);
 	vec3 reflexo = vec3(0.0);
 	for (int i = 0; i < 32; i++) {
@@ -150,32 +168,29 @@ vec3 iluminar_plex(vec3 base, vec3 p, vec3 normal, vec3 material_pixel, float vo
 		float alcance = luzes_posicao[i].w;
 		if (distancia > alcance) { continue; }
 		vec3 l = delta / distancia;
-		float energia = energia_fisica(i, p + normal * 2.0);
+		float energia = energia_fisica(i, receptor);
 		vec3 cor = mix(vec3(1.0), luzes_cor[i].rgb / max(0.01, max(luzes_cor[i].r, max(luzes_cor[i].g, luzes_cor[i].b))), influencia_cor);
 		float difusa = max(0.0, dot(normal, l));
-		float luz_subindo = step(0.8, luzes_direcao[i].z) * max(0.0, -l.z);
-		float envolvimento = max(0.0, 0.20 - normal.z * 0.30);
-		difusa = max(difusa, luz_subindo * envolvimento * volume_sprite);
-		float arandela = step(-0.85, luzes_direcao[i].z) * step(luzes_direcao[i].z, 0.0);
-		difusa = max(difusa, (1.0 - step(0.8, luzes_direcao[i].z)) * (0.08 + arandela * 0.10) * volume_sprite);
+		float difusa_sprite = 0.24 + 0.76 * difusa;
+		difusa = mix(difusa, difusa_sprite, clamp(volume_sprite, 0.0, 1.0));
+		float reflexao_chao = step(0.8, luzes_direcao[i].z) * step(0.0, l.z) * max(0.0, normal.z) * 0.45;
+		difusa = max(difusa, reflexao_chao);
 		acumulada += difusa * energia * cor;
 		vec3 reflexao = l + vec3(vetor_mundo(vec2(0.0, 0.894427)), 0.447214);
 		vec3 metade = reflexao / max(length(reflexao), 0.0001);
 		reflexo += pow(max(0.0, dot(normal, metade)), 14.0) * material_pixel.g * energia * cor * 0.30;
 	}
 	float protecao = material_pixel.b;
-	vec2 celula = celula_luz(p);
-	if (estrutura) { celula = clamp(celula, vec2(0.0), (tamanho_grade - vec2(1.0))); }
+	vec2 celula = celula_luz(receptor);
 	float fechada = 0.0;
 	if (all(greaterThanEqual(celula, vec2(0.0))) && all(lessThan(celula, tamanho_grade))) {
 		vec4 recinto = texture(bloqueios, (celula + 0.5) / tamanho_grade);
-		fechada = estrutura ? recinto.b : recinto.g;
+		fechada = estrutura && normal.z > 0.5 ? recinto.b : recinto.g;
 	}
 	float ambiente_local = mix(ambiente, max(0.006, ambiente * 0.32), fechada);
 	vec3 iluminacao_ambiente = cor_ambiente * ambiente_local;
 	vec3 solar = vec3(0.0);
 	if (energia_solar > 0.001) {
-		vec3 receptor = p + normal * 2.0;
 		vec2 celula_sol = celula_luz(receptor);
 		float interior = 0.0;
 		if (all(greaterThanEqual(celula_sol, vec2(0.0))) && all(lessThan(celula_sol, tamanho_grade))) {

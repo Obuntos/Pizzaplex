@@ -43,6 +43,7 @@ static func local_porta(ponto: Vector3, objeto: Dictionary) -> Vector3:
 	return Vector3(local.dot(Vector2(frente.y, -frente.x)), local.dot(frente), ponto.z)
 
 static func trecho_bloqueado(planta: PlantaPlex, celula: Vector2i, ponto: Vector3, luz: Vector3, entrada: float, saida: float) -> bool:
+	if saida <= entrada + .000001: return false
 	var objeto := planta.em(celula)
 	if objeto.get("tipo", "") not in CatalogoPlex.PORTAS:
 		var z := minf(lerpf(ponto.z, luz.z, entrada), lerpf(ponto.z, luz.z, saida))
@@ -76,7 +77,6 @@ static func visibilidade(planta: PlantaPlex, ponto: Vector3, luz: Vector3) -> fl
 		if trecho_bloqueado(planta, celula, ponto, luz, entrada, saida): return 0.0
 		if saida >= 1.0: return 1.0
 		if absf(proximos.x - proximos.y) < .000001:
-			if trecho_bloqueado(planta, celula + Vector2i(passo.x, 0), ponto, luz, maxf(0, saida - .00001), minf(1, saida + .00001)) or trecho_bloqueado(planta, celula + Vector2i(0, passo.y), ponto, luz, maxf(0, saida - .00001), minf(1, saida + .00001)): return 0.0
 			celula += passo
 			proximos += incremento
 		elif proximos.x < proximos.y:

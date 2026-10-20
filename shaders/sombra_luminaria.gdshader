@@ -44,6 +44,22 @@ void fragment() {
 		cor = luzes_cor[indice_luz].rgb;
 	}
 	energia *= dot(cor, vec3(0.2126, 0.7152, 0.0722));
-	COLOR = vec4(0.09, 0.11, 0.13, texture(TEXTURE, UV).a * opacidade * clamp(energia, 0.0, 1.0));
+	vec3 fisico = posicao_mundo(receptor);
+	vec2 celula_ambiente = celula_luz(fisico);
+	float interior = 0.0;
+	if (all(greaterThanEqual(celula_ambiente, vec2(0.0))) && all(lessThan(celula_ambiente, tamanho_grade))) {
+		interior = texture(bloqueios, (celula_ambiente + 0.5) / tamanho_grade).g;
+	}
+	float preenchimento = mix(ambiente, max(0.006, ambiente * 0.32), interior);
+	for (int i = 0; i < 32; i++) {
+		if (i >= quantidade_luzes) { break; }
+		if (!sombra_solar && i == indice_luz) { continue; }
+		preenchimento += energia_fisica(i, fisico) * dot(luzes_cor[i].rgb, vec3(0.2126, 0.7152, 0.0722));
+	}
+	if (!sombra_solar && interior < 0.5 && energia_solar > 0.001) {
+		preenchimento += energia_solar * visibilidade_luz(fisico, fisico + direcao_solar * 1200.0) * dot(cor_solar, vec3(0.2126, 0.7152, 0.0722));
+	}
+	float participacao = energia / max(energia + preenchimento, 0.0001);
+	COLOR = vec4(0.09, 0.11, 0.13, texture(TEXTURE, UV).a * opacidade * clamp(energia, 0.0, 1.0) * participacao);
 }
 
