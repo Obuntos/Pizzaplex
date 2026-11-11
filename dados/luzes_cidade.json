@@ -1,0 +1,244 @@
+{
+  "resolucao": 4,
+  "postes": {
+    "tipo": "cidade_poste_de_luz",
+    "alcance": 3.1,
+    "energia": 0.44,
+    "deslocamento": [
+      0.0,
+      0.3
+    ]
+  },
+  "casas": {
+    "cidade_casa_10_10": {
+      "volume": [
+        1.2,
+        1.4,
+        8.8,
+        7.2
+      ],
+      "alcance": 1.8,
+      "energia": 0.14
+    },
+    "cidade_casa_b_10_10": {
+      "volume": [
+        1,
+        2,
+        9,
+        7
+      ],
+      "alcance": 1.8,
+      "energia": 0.14
+    },
+    "cidade_casa_c_10_10": {
+      "volume": [
+        1.2,
+        1.6,
+        8.4,
+        7
+      ],
+      "alcance": 1.8,
+      "energia": 0.14
+    },
+    "cidade_apartamentos_10_10": {
+      "volume": [
+        1,
+        1.2,
+        9,
+        7.2
+      ],
+      "alcance": 1.8,
+      "energia": 0.14
+    },
+    "cidade_hospital_10_10": {
+      "volume": [
+        0.8,
+        1,
+        9.2,
+        6.6
+      ],
+      "alcance": 2.2,
+      "energia": 0.22
+    },
+    "cidade_delegacia_10_10": {
+      "volume": [
+        1,
+        1.2,
+        9,
+        6.6
+      ],
+      "alcance": 2.2,
+      "energia": 0.22
+    },
+    "cidade_posto_gasolina_10_10": {
+      "volume": [
+        0.8,
+        0.8,
+        4.6,
+        4.8
+      ],
+      "alcance": 2.2,
+      "energia": 0.22,
+      "extras": [
+        [
+          5,
+          7,
+          3.6,
+          0.3
+        ],
+        [
+          8,
+          7,
+          3.6,
+          0.3
+        ]
+      ]
+    }
+  },
+  "emissoes": {
+    "cidade_casa_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "residencial",
+      "janelas": 18,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_casa_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_casa_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_casa_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_casa_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_casa_b_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "residencial",
+      "janelas": 11,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_casa_b_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_casa_b_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_casa_b_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_casa_b_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_casa_c_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "residencial",
+      "janelas": 14,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_casa_c_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_casa_c_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_casa_c_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_casa_c_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_apartamentos_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "residencial",
+      "janelas": 46,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_apartamentos_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_apartamentos_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_apartamentos_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_apartamentos_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_poste_de_luz": {
+      "cor": [
+        1.0,
+        0.88,
+        0.61
+      ],
+      "energia": 1.0,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_poste_de_luz/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_poste_de_luz/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_poste_de_luz/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_poste_de_luz/emissao/esquerda.png"
+      },
+      "origens": {
+        "frente": [
+          -16,
+          -87
+        ],
+        "direita": [
+          -16,
+          -97
+        ],
+        "costas": [
+          -5,
+          -97
+        ],
+        "esquerda": [
+          -5,
+          -87
+        ]
+      }
+    },
+    "cidade_hospital_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "hospital",
+      "janelas": 45,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_hospital_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_hospital_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_hospital_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_hospital_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_delegacia_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "permanente",
+      "janelas": 32,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_delegacia_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_delegacia_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_delegacia_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_delegacia_10_10/emissao/esquerda.png"
+      }
+    },
+    "cidade_posto_gasolina_10_10": {
+      "cor": [
+        1,
+        0.8,
+        0.51
+      ],
+      "energia": 0.78,
+      "rotina": "permanente",
+      "janelas": 8,
+      "mascaras": {
+        "frente": "res://assets/cidade/cidade_posto_gasolina_10_10/emissao/frente.png",
+        "direita": "res://assets/cidade/cidade_posto_gasolina_10_10/emissao/direita.png",
+        "costas": "res://assets/cidade/cidade_posto_gasolina_10_10/emissao/costas.png",
+        "esquerda": "res://assets/cidade/cidade_posto_gasolina_10_10/emissao/esquerda.png"
+      }
+    }
+  }
+}

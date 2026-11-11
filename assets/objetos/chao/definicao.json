@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "chao",
+  "name": "Chão",
+  "tile": {
+    "width": 64,
+    "height": 32
+  },
+  "frame": {
+    "width": 192,
+    "height": 192
+  },
+  "pivot": {
+    "x": 96,
+    "y": 144
+  },
+  "pivotMeaning": "centro do tile no nivel do chao",
+  "height": 0,
+  "footprint": {
+    "width": 1,
+    "depth": 1
+  },
+  "directions": [
+    {
+      "index": 0,
+      "name": "frente",
+      "angle": 0,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/frente.png",
+      "sheetFrame": {
+        "x": 0,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 1,
+      "name": "direita",
+      "angle": 90,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/direita.png",
+      "sheetFrame": {
+        "x": 192,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 2,
+      "name": "costas",
+      "angle": 180,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/costas.png",
+      "sheetFrame": {
+        "x": 384,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 3,
+      "name": "esquerda",
+      "angle": 270,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/esquerda.png",
+      "sheetFrame": {
+        "x": 576,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    }
+  ],
+  "spritesheet": "sprites/spritesheet.png",
+  "palette": {
+    "style": "poucos tons, contornos suaves, sem textura miuda"
+  },
+  "walkable": true,
+  "surfaceHeight": 0,
+  "colors": [
+    "#cbc7b5",
+    "#6e706b",
+    "#b58c85"
+  ]
+}

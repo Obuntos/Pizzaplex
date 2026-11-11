@@ -1,0 +1,946 @@
+{
+ "dec_piscina_bolinhas": {
+  "nome": "Piscina de bolinhas",
+  "pasta": "res://assets/objetos/decoracao/dec_piscina_bolinhas",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 17,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "cheia",
+   "baixa"
+  ],
+  "estado_padrao": "cheia",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 220,
+  "conforto": 6,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "uso": "piscina"
+ },
+ "dec_bolinhas_caidas": {
+  "nome": "Bolinhas caídas",
+  "pasta": "res://assets/objetos/decoracao/dec_bolinhas_caidas",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 5,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "poucas",
+   "muitas",
+   "rolando"
+  ],
+  "estado_padrao": "poucas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true
+ },
+ "dec_bolinhas_espalhadas": {
+  "nome": "Bolinhas espalhadas",
+  "pasta": "res://assets/objetos/decoracao/dec_bolinhas_espalhadas",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 9,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "espalhadas",
+   "monte"
+  ],
+  "estado_padrao": "espalhadas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true
+ },
+ "dec_pizza_inteira": {
+  "nome": "Pizza de parede · inteira",
+  "pasta": "res://assets/objetos/decoracao/dec_pizza_inteira",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 84,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "calabresa",
+   "mucarela",
+   "marguerita"
+  ],
+  "estado_padrao": "calabresa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 18,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_pizza_sem_fatia": {
+  "nome": "Pizza de parede · sem uma fatia",
+  "pasta": "res://assets/objetos/decoracao/dec_pizza_sem_fatia",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 84,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "calabresa",
+   "mucarela",
+   "marguerita"
+  ],
+  "estado_padrao": "calabresa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 18,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_pizza_fatia": {
+  "nome": "Fatia de pizza de parede",
+  "pasta": "res://assets/objetos/decoracao/dec_pizza_fatia",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 86,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "calabresa",
+   "mucarela",
+   "marguerita"
+  ],
+  "estado_padrao": "calabresa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 14,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_pizza_duas_fatias": {
+  "nome": "Duas fatias de parede",
+  "pasta": "res://assets/objetos/decoracao/dec_pizza_duas_fatias",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 90,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "calabresa",
+   "mucarela",
+   "marguerita"
+  ],
+  "estado_padrao": "calabresa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 16,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_pizza_cartaz": {
+  "nome": "Cartaz de pizza",
+  "pasta": "res://assets/objetos/decoracao/dec_pizza_cartaz",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 86,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "calabresa",
+   "mucarela",
+   "marguerita"
+  ],
+  "estado_padrao": "calabresa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 16,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_estrelas_3": {
+  "nome": "Estrelinhas de parede · 3",
+  "pasta": "res://assets/objetos/decoracao/dec_estrelas_3",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 86,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "douradas",
+   "coloridas",
+   "brancas"
+  ],
+  "estado_padrao": "douradas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 10,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_estrelas_4": {
+  "nome": "Estrelinhas de parede · 4",
+  "pasta": "res://assets/objetos/decoracao/dec_estrelas_4",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 86,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "douradas",
+   "coloridas",
+   "brancas"
+  ],
+  "estado_padrao": "douradas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 12,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_estrelas_8": {
+  "nome": "Estrelinhas de parede · 8",
+  "pasta": "res://assets/objetos/decoracao/dec_estrelas_8",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 86,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "douradas",
+   "coloridas",
+   "brancas"
+  ],
+  "estado_padrao": "douradas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 16,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_estrelas_caidas": {
+  "nome": "Estrelas caídas no chão",
+  "pasta": "res://assets/objetos/decoracao/dec_estrelas_caidas",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 2,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "douradas",
+   "coloridas",
+   "brancas"
+  ],
+  "estado_padrao": "douradas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 6,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "dec_nuvem_pequena": {
+  "nome": "Nuvem de papelão · pequena",
+  "pasta": "res://assets/objetos/decoracao/dec_nuvem_pequena",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "branca",
+   "ceu",
+   "entardecer"
+  ],
+  "estado_padrao": "branca",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 12,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_nuvem_larga": {
+  "nome": "Nuvem de papelão · larga",
+  "pasta": "res://assets/objetos/decoracao/dec_nuvem_larga",
+  "largura": 2,
+  "profundidade": 1,
+  "altura": 82,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "branca",
+   "ceu",
+   "entardecer"
+  ],
+  "estado_padrao": "branca",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 18,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_nuvem_de_palco": {
+  "nome": "Nuvem de palco em pé",
+  "pasta": "res://assets/objetos/decoracao/dec_nuvem_de_palco",
+  "largura": 2,
+  "profundidade": 1,
+  "altura": 52,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "branca",
+   "ceu",
+   "entardecer"
+  ],
+  "estado_padrao": "branca",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Palcos",
+  "preco": 30,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false
+ },
+ "dec_cartaz_orelhitas_toy": {
+  "nome": "Cartaz Toy Orelhitas",
+  "pasta": "res://assets/objetos/decoracao/dec_cartaz_orelhitas_toy",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 82,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "novo",
+   "desbotado",
+   "rasgado"
+  ],
+  "estado_padrao": "novo",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 20,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_cartaz_patitas_toy": {
+  "nome": "Cartaz Toy Patitas",
+  "pasta": "res://assets/objetos/decoracao/dec_cartaz_patitas_toy",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 82,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "novo",
+   "desbotado",
+   "rasgado"
+  ],
+  "estado_padrao": "novo",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 20,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_cartaz_toys_dupla": {
+  "nome": "Cartaz Toy Orelhitas e Patitas",
+  "pasta": "res://assets/objetos/decoracao/dec_cartaz_toys_dupla",
+  "largura": 2,
+  "profundidade": 1,
+  "altura": 82,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "novo",
+   "desbotado",
+   "rasgado"
+  ],
+  "estado_padrao": "novo",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 32,
+  "conforto": 5,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "dec_tapete_roxo_2x2": {
+  "nome": "Tapete roxo estrelado · 2 × 2",
+  "pasta": "res://assets/objetos/decoracao/dec_tapete_roxo_2x2",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 1.5,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "franja",
+   "liso",
+   "canto"
+  ],
+  "estado_padrao": "franja",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 30,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "dec_tapete_roxo_3x2": {
+  "nome": "Tapete roxo estrelado · 3 × 2",
+  "pasta": "res://assets/objetos/decoracao/dec_tapete_roxo_3x2",
+  "largura": 3,
+  "profundidade": 2,
+  "altura": 1.5,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "franja",
+   "liso",
+   "canto"
+  ],
+  "estado_padrao": "franja",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 40,
+  "conforto": 5,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "dec_tapete_vermelho_2x2": {
+  "nome": "Tapete vermelho · 2 × 2",
+  "pasta": "res://assets/objetos/decoracao/dec_tapete_vermelho_2x2",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 1.5,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "franja",
+   "liso",
+   "canto"
+  ],
+  "estado_padrao": "franja",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 30,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "dec_passadeira_vermelha": {
+  "nome": "Passadeira vermelha · 3 × 1",
+  "pasta": "res://assets/objetos/decoracao/dec_passadeira_vermelha",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 1.5,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "franja",
+   "liso",
+   "canto"
+  ],
+  "estado_padrao": "franja",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 28,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "dec_cortina_roxa_estrelas": {
+  "nome": "Cortina roxa com estrelas",
+  "pasta": "res://assets/objetos/decoracao/dec_cortina_roxa_estrelas",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 104,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "fechada",
+   "meia",
+   "aberta"
+  ],
+  "estado_padrao": "fechada",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Palcos",
+  "preco": 75,
+  "conforto": 5,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "cortina": true,
+  "cortina_circo": true
+ },
+ "macabro_olho_solto": {
+  "nome": "Olho solto",
+  "pasta": "res://assets/objetos/decoracao/macabro_olho_solto",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 12,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "azul",
+   "verde",
+   "castanho",
+   "injetado",
+   "esmagado"
+  ],
+  "estado_padrao": "azul",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_olhos_espalhados": {
+  "nome": "Olhos espalhados",
+  "pasta": "res://assets/objetos/decoracao/macabro_olhos_espalhados",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 12,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "par",
+   "trio",
+   "cinco"
+  ],
+  "estado_padrao": "par",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_monte_tripas": {
+  "nome": "Monte de tripas",
+  "pasta": "res://assets/objetos/decoracao/macabro_monte_tripas",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 19,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "rosadas",
+   "escuras",
+   "velhas"
+  ],
+  "estado_padrao": "rosadas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_tripas_arrastadas": {
+  "nome": "Tripas arrastadas",
+  "pasta": "res://assets/objetos/decoracao/macabro_tripas_arrastadas",
+  "largura": 4,
+  "profundidade": 2,
+  "altura": 8,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "rosa",
+   "escura"
+  ],
+  "estado_padrao": "rosa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_cerebro_inteiro": {
+  "nome": "Cérebro",
+  "pasta": "res://assets/objetos/decoracao/macabro_cerebro_inteiro",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 17,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "inteiro",
+   "sobre-sangue",
+   "partido"
+  ],
+  "estado_padrao": "inteiro",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_cerebro_esmagado": {
+  "nome": "Cérebro esmagado",
+  "pasta": "res://assets/objetos/decoracao/macabro_cerebro_esmagado",
+  "largura": 2,
+  "profundidade": 2,
+  "altura": 10,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "esmagado",
+   "pedacos"
+  ],
+  "estado_padrao": "esmagado",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true
+ },
+ "macabro_poca_pequena": {
+  "nome": "Poça pequena",
+  "pasta": "res://assets/objetos/decoracao/macabro_poca_pequena",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 2,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "fresco",
+   "escuro",
+   "seco",
+   "com-gotas"
+  ],
+  "estado_padrao": "fresco",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ },
+ "macabro_respingos": {
+  "nome": "Respingos",
+  "pasta": "res://assets/objetos/decoracao/macabro_respingos",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 2,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "radial",
+   "lateral",
+   "gotas"
+  ],
+  "estado_padrao": "radial",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ },
+ "macabro_gotejamento": {
+  "nome": "Gotejamento",
+  "pasta": "res://assets/objetos/decoracao/macabro_gotejamento",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 2,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "trilha",
+   "tres"
+  ],
+  "estado_padrao": "trilha",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ },
+ "macabro_poca_grande": {
+  "nome": "Poça grande",
+  "pasta": "res://assets/objetos/decoracao/macabro_poca_grande",
+  "largura": 3,
+  "profundidade": 3,
+  "altura": 3,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "fresca",
+   "escura",
+   "seca",
+   "com-respingos"
+  ],
+  "estado_padrao": "fresca",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ },
+ "macabro_arrasto": {
+  "nome": "Rastro de arrasto",
+  "pasta": "res://assets/objetos/decoracao/macabro_arrasto",
+  "largura": 4,
+  "profundidade": 2,
+  "altura": 3,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "arrasto",
+   "dedos",
+   "seco"
+  ],
+  "estado_padrao": "arrasto",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ },
+ "macabro_banho_de_sangue": {
+  "nome": "Banho de sangue",
+  "pasta": "res://assets/objetos/decoracao/macabro_banho_de_sangue",
+  "largura": 3,
+  "profundidade": 3,
+  "altura": 3,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "radial",
+   "jato",
+   "chuva"
+  ],
+  "estado_padrao": "radial",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Cenário",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "oculto": true,
+  "entulho": true,
+  "sangue": true
+ }
+}

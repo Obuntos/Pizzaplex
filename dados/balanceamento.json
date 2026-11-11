@@ -1,0 +1,328 @@
+{
+  "reembolso": 0.5,
+  "reciclagem_inicial": 0.2,
+  "itens": {
+    "cadeira": {
+      "preco": 35,
+      "conforto": 7
+    },
+    "mesa": {
+      "preco": 75,
+      "conforto": 7
+    },
+    "mesa_longa": {
+      "preco": 190,
+      "conforto": 7
+    },
+    "mesa_longa_arredondada": {
+      "preco": 210,
+      "conforto": 8
+    },
+    "banco_espera": {
+      "preco": 100,
+      "conforto": 7
+    },
+    "antigo_cadeira_velha": {
+      "preco": 12,
+      "conforto": 3
+    },
+    "antigo_mesa_velha_1": {
+      "preco": 30,
+      "conforto": 3
+    },
+    "antigo_mesa_velha_3": {
+      "preco": 75,
+      "conforto": 3
+    },
+    "antigo_estante_velha_1": {
+      "preco": 35,
+      "conforto": 0
+    },
+    "antigo_estante_velha_2": {
+      "preco": 45,
+      "conforto": 0
+    },
+    "antigo_armario_vestiario": {
+      "preco": 25,
+      "conforto": 2
+    },
+    "antigo_armario_duplo": {
+      "preco": 40,
+      "conforto": 2
+    },
+    "antigo_armario_oficina": {
+      "preco": 45,
+      "conforto": 0
+    },
+    "antigo_porta_antiga_1": {
+      "preco": 25,
+      "conforto": 3
+    },
+    "antigo_porta_antiga_2": {
+      "preco": 45,
+      "conforto": 3
+    },
+    "parede": {
+      "preco": 12,
+      "conforto": 6
+    },
+    "porta": {
+      "preco": 50,
+      "conforto": 6
+    },
+    "porta_dupla": {
+      "preco": 90,
+      "conforto": 6
+    },
+    "porta_principal": {
+      "preco": 160,
+      "conforto": 7
+    },
+    "porta_servico": {
+      "preco": 65,
+      "conforto": 6
+    },
+    "janela": {
+      "preco": 45,
+      "conforto": 7
+    },
+    "janela_2": {
+      "preco": 80,
+      "conforto": 7
+    },
+    "janela_3": {
+      "preco": 115,
+      "conforto": 7
+    },
+    "antigo_piso_velho": {
+      "preco": 2,
+      "conforto": 2
+    },
+    "antigo_piso_novo": {
+      "preco": 6,
+      "conforto": 7
+    },
+    "antigo_piso_quadriculado": {
+      "preco": 7,
+      "conforto": 7
+    },
+    "antigo_papel_parede_modulo": {
+      "preco": 24,
+      "conforto": 7
+    },
+    "bancada_preparo": {
+      "preco": 120,
+      "conforto": 0
+    },
+    "forno": {
+      "preco": 280,
+      "conforto": 0
+    },
+    "geladeira": {
+      "preco": 180,
+      "conforto": 0
+    },
+    "pia": {
+      "preco": 110,
+      "conforto": 0
+    },
+    "registradora": {
+      "preco": 90,
+      "conforto": 0
+    },
+    "terminal_ibm": {
+      "preco": 220,
+      "conforto": 0
+    },
+    "suporte": {
+      "preco": 130,
+      "conforto": 0
+    },
+    "bancada": {
+      "preco": 90,
+      "conforto": 0
+    },
+    "balcao": {
+      "preco": 100,
+      "conforto": 0
+    },
+    "estante": {
+      "preco": 70,
+      "conforto": 0
+    },
+    "armario_ferramentas": {
+      "preco": 85,
+      "conforto": 0
+    },
+    "armario_limpeza": {
+      "preco": 65,
+      "conforto": 0
+    },
+    "armario_utensilios": {
+      "preco": 80,
+      "conforto": 0
+    },
+    "armario_funcionarios": {
+      "preco": 55,
+      "conforto": 3
+    },
+    "vaso_sanitario": {
+      "preco": 85,
+      "conforto": 5
+    },
+    "pia_banheiro": {
+      "preco": 65,
+      "conforto": 5
+    },
+    "divisoria_porta": {
+      "preco": 80,
+      "conforto": 5
+    },
+    "maquina_fliperama": {
+      "preco": 350,
+      "conforto": 7
+    },
+    "ponto_recebimento": {
+      "preco": 10,
+      "conforto": 0
+    },
+    "vassoura": {
+      "preco": 12,
+      "conforto": 0
+    },
+    "balde": {
+      "preco": 10,
+      "conforto": 0
+    },
+    "lixeira": {
+      "preco": 25,
+      "conforto": 0
+    },
+    "lixeira_salao": {
+      "preco": 20,
+      "conforto": 0
+    },
+    "palco": {
+      "preco": 45,
+      "conforto": 5
+    },
+    "escada": {
+      "preco": 35,
+      "conforto": 0
+    },
+    "pose": {
+      "preco": 0,
+      "conforto": 0
+    },
+    "pose_montagem": {
+      "preco": 0,
+      "conforto": 0
+    },
+    "pose_quebrado": {
+      "preco": 0,
+      "conforto": 0
+    },
+    "prateleira_suspensa": {
+      "preco": 45,
+      "conforto": 0
+    },
+    "estante_suspensa": {
+      "preco": 80,
+      "conforto": 0
+    },
+    "cortina_central_1": {
+      "preco": 35,
+      "conforto": 6
+    },
+    "cortina_central_2": {
+      "preco": 65,
+      "conforto": 6
+    },
+    "cortina_central_3": {
+      "preco": 90,
+      "conforto": 6
+    },
+    "cortina_central_9": {
+      "preco": 250,
+      "conforto": 6
+    },
+    "cortina_lateral_esquerda": {
+      "preco": 25,
+      "conforto": 6
+    },
+    "cortina_lateral_direita": {
+      "preco": 25,
+      "conforto": 6
+    },
+    "cortina_quina_interna": {
+      "preco": 20,
+      "conforto": 6
+    },
+    "cortina_quina_externa": {
+      "preco": 20,
+      "conforto": 6
+    }
+  },
+  "utilitarios": [
+    "ponto_recebimento",
+    "pose",
+    "pose_montagem",
+    "pose_quebrado",
+    "vassoura",
+    "balde",
+    "prato",
+    "bandeja",
+    "pizza",
+    "fatia_pizza",
+    "copo_bebida",
+    "dinheiro",
+    "pecas_manutencao",
+    "caixa_ferramentas",
+    "suporte",
+    "bancada",
+    "bancada_preparo",
+    "forno",
+    "pia",
+    "geladeira",
+    "registradora",
+    "terminal_ibm",
+    "estante",
+    "prateleira_suspensa",
+    "estante_suspensa",
+    "armario_limpeza",
+    "armario_ferramentas",
+    "armario_utensilios",
+    "lixeira",
+    "lixeira_salao",
+    "escada",
+    "antigo_escada_madeira_3",
+    "antigo_fogao_uma_boca",
+    "antigo_geladeira_antiga",
+    "cenario_faca_cozinha",
+    "cenario_lanterna_mao",
+    "cenario_machado_lenhador",
+    "cenario_gerador_antigo",
+    "cenario_gerador_medio",
+    "cenario_gerador_novo",
+    "guarana_copo",
+    "guarana_tampa"
+  ],
+  "nao_revendaveis": [
+    "pizza",
+    "fatia_pizza",
+    "prato",
+    "bandeja",
+    "copo_bebida",
+    "guarana_copo",
+    "guarana_tampa",
+    "dinheiro",
+    "restos_mesa",
+    "mancha_chao",
+    "bebida_derramada",
+    "pecas_manutencao",
+    "caixa_ferramentas",
+    "pose",
+    "pose_montagem",
+    "pose_quebrado"
+  ]
+}

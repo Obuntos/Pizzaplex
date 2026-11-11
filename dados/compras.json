@@ -1,0 +1,79 @@
+{
+  "pizza": {
+    "nome": "Pizza",
+    "tipo": "caixa_pizza",
+    "grupo": "mercado",
+    "preco": 36,
+    "unidades": 6,
+    "componente": "pizza",
+    "descricao": "Ingredientes completos para seis pizzas.",
+    "cor": "#b8a16e"
+  },
+  "guarana": {
+    "nome": "Guaraná",
+    "tipo": "caixa_guarana",
+    "grupo": "mercado",
+    "preco": 12,
+    "unidades": 4,
+    "componente": "guarana",
+    "descricao": "Uma caixa rende quatro copos de guaraná.",
+    "cor": "#87a26f"
+  },
+  "pecas_media": {
+    "nome": "Peças · Média",
+    "tipo": "caixa_pecas_media",
+    "grupo": "oficina",
+    "preco": 35,
+    "unidades": 1,
+    "qualidade": "media",
+    "durabilidade": 100,
+    "nivel": 1,
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
+    "cor": "#c7ab71"
+  },
+  "pecas_boa": {
+    "nome": "Peças · Boa",
+    "tipo": "caixa_pecas_boa",
+    "grupo": "oficina",
+    "preco": 65,
+    "unidades": 1,
+    "qualidade": "boa",
+    "durabilidade": 160,
+    "nivel": 2,
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
+    "cor": "#97b9b2"
+  },
+  "pecas_otima": {
+    "nome": "Peças · Ótima",
+    "tipo": "caixa_pecas_otima",
+    "grupo": "oficina",
+    "preco": 95,
+    "unidades": 1,
+    "qualidade": "otima",
+    "durabilidade": 240,
+    "nivel": 3,
+    "descricao": "Kit de reposição. O mecânico busca as peças e repara um animatrônico desligado, preservando o personagem. A qualidade define quanto tempo o reparo dura.",
+    "cor": "#b3a6c5"
+  },
+  "pratos_papel": {
+    "nome": "Pratos de papel · 10 unidades",
+    "tipo": "caixa_utensilios",
+    "grupo": "mercado",
+    "preco": 4,
+    "unidades": 10,
+    "material_prato": "papel",
+    "cor_prato": "branco",
+    "descricao": "Um pacote com dez pratos de papel em cores e estampas variadas. Chega em uma caixa e ocupa uma pilha na estante. Após a refeição, vai para o lixo.",
+    "cor": "#dfb78c"
+  },
+  "pratos_ceramica": {
+    "nome": "Prato de cerâmica · 1 unidade",
+    "tipo": "caixa_utensilios",
+    "grupo": "mercado",
+    "preco": 12,
+    "unidades": 1,
+    "material_prato": "ceramica",
+    "descricao": "Uma peça reutilizável por pacote. Fica na estante e retorna ao mesmo lugar após a lavagem.",
+    "cor": "#d6ded1"
+  }
+}

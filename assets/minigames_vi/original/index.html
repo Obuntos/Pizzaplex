@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#26343a">
+  <title>Animatrônicos · Minigame</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="js/base.js"></script>
+  <script defer src="js/endo.js"></script>
+  <script defer src="js/plastico.js"></script>
+  <script defer src="js/roupa.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="identity"><h1><b id="game-name">Endo</b> <span id="game-number">01</span></h1><p id="game-note">Instalar os olhos</p></div>
+      <button id="reset" type="button">Recomeçar</button>
+    </header>
+    <div class="workspace">
+      <aside aria-label="Minigames">
+        <section><h2>Minigame</h2><div class="game-list" id="games"></div></section>
+        <section>
+          <h2>Estado</h2>
+          <dl class="hud" id="hud"></dl>
+          <div class="meter" id="meter" hidden><span></span><div><i></i></div></div>
+        </section>
+        <p class="tip" id="tip"></p>
+      </aside>
+      <div class="stage" id="stage"></div>
+    </div>
+    <footer><span>Um minigame para cada versão</span><span id="foot-keys"></span></footer>
+  </main>
+</body>
+</html>

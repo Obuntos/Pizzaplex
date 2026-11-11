@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cheyk5v2eklkk"]
+
+[ext_resource type="Script" path="res://scripts/mundo/principal.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/interface/ajustes_hotfix.gd" id="2"]
+
+[node name="Pizzaplex" type="Node2D" unique_id=604306888]
+visible = true
+texture_filter = 1
+script = ExtResource("1")
+
+[node name="AjustesVisuais" type="Node" parent="."]
+script = ExtResource("2")

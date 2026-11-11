@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pizzaplex Beta"
+config/version="0.1.0-beta"
+run/main_scene="res://cenas/interface/inicio.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Pizzaplex_Beta"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+IdiomaPlex="*res://scripts/idioma/idioma.gd"
+
+[display]
+
+window/size/viewport_width=1366
+window/size/viewport_height=768
+window/size/window_width_override=1366
+window/size/window_height_override=768
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0392, 0.098, 0.0824, 1)

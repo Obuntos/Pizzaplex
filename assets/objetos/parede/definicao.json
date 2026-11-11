@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "parede",
+  "name": "Parede",
+  "tile": {
+    "width": 64,
+    "height": 32
+  },
+  "frame": {
+    "width": 192,
+    "height": 192
+  },
+  "pivot": {
+    "x": 96,
+    "y": 144
+  },
+  "pivotMeaning": "centro do tile no nivel do chao",
+  "height": 104,
+  "footprint": {
+    "width": 1,
+    "depth": 1
+  },
+  "directions": [
+    {
+      "index": 0,
+      "name": "frente",
+      "angle": 0,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/frente.png",
+      "sheetFrame": {
+        "x": 0,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 1,
+      "name": "direita",
+      "angle": 90,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/direita.png",
+      "sheetFrame": {
+        "x": 192,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 2,
+      "name": "costas",
+      "angle": 180,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/costas.png",
+      "sheetFrame": {
+        "x": 384,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    },
+    {
+      "index": 3,
+      "name": "esquerda",
+      "angle": 270,
+      "footprint": {
+        "width": 1,
+        "depth": 1
+      },
+      "sprite": "sprites/esquerda.png",
+      "sheetFrame": {
+        "x": 576,
+        "y": 0,
+        "width": 192,
+        "height": 192
+      }
+    }
+  ],
+  "spritesheet": "sprites/spritesheet.png",
+  "palette": {
+    "style": "poucos tons, contornos suaves, sem textura miuda"
+  },
+  "walkable": false,
+  "roomBoundary": true,
+  "occupiesFullTile": true,
+  "cutHeight": 52,
+  "cutSprites": {
+    "frente": "sprites/cortada/frente.png",
+    "direita": "sprites/cortada/direita.png",
+    "costas": "sprites/cortada/costas.png",
+    "esquerda": "sprites/cortada/esquerda.png"
+  },
+  "cutSpritesheet": "sprites/cortada/spritesheet.png",
+  "cutChangesCollision": false,
+  "placement": "tile",
+  "views": [
+    {
+      "level": 1,
+      "height": 6,
+      "spritesheet": "sprites/vistas/1/spritesheet.png"
+    },
+    {
+      "level": 2,
+      "height": 22,
+      "spritesheet": "sprites/vistas/2/spritesheet.png"
+    },
+    {
+      "level": 3,
+      "height": 52,
+      "spritesheet": "sprites/vistas/3/spritesheet.png"
+    },
+    {
+      "level": 4,
+      "height": 104,
+      "spritesheet": "sprites/vistas/4/spritesheet.png"
+    }
+  ],
+  "viewChangesCollision": false,
+  "connectionMasks": {
+    "count": 16,
+    "bits": {
+      "minusV": 1,
+      "plusU": 2,
+      "plusV": 4,
+      "minusU": 8
+    },
+    "spritesheet": "sprites/conexoes/spritesheet.png"
+  }
+}

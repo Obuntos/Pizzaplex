@@ -1,0 +1,4934 @@
+{
+  "amb_painel_diagnostico:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/0_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_painel_diagnostico:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/1_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/2_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/desligado/3_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_painel_diagnostico:0:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/0_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_painel_diagnostico:1:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/1_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:2:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/2_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:3:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/ligado/3_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_painel_diagnostico:0:alerta": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/0_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_painel_diagnostico:1:alerta": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/1_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:2:alerta": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/2_normal.png",
+    "origin": [
+      -39,
+      -76
+    ]
+  },
+  "amb_painel_diagnostico:3:alerta": {
+    "image": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_painel_diagnostico/sprites/alerta/3_normal.png",
+    "origin": [
+      -39,
+      -83
+    ]
+  },
+  "amb_carregador_oficina:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/0_normal.png",
+    "origin": [
+      -31,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/1_normal.png",
+    "origin": [
+      -40,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/2_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/desligado/3_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:0:carregando": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/0_normal.png",
+    "origin": [
+      -31,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:1:carregando": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/1_normal.png",
+    "origin": [
+      -40,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:2:carregando": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/2_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:3:carregando": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/carregando/3_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:0:enrolado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/0_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:1:enrolado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/1_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:2:enrolado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/2_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_carregador_oficina:3:enrolado": {
+    "image": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carregador_oficina/sprites/enrolado/3_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "amb_registradora_antiga:0:fechada": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/0_normal.png",
+    "origin": [
+      -28,
+      -36
+    ]
+  },
+  "amb_registradora_antiga:1:fechada": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/1_normal.png",
+    "origin": [
+      -28,
+      -27
+    ]
+  },
+  "amb_registradora_antiga:2:fechada": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/2_normal.png",
+    "origin": [
+      -28,
+      -27
+    ]
+  },
+  "amb_registradora_antiga:3:fechada": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/fechada/3_normal.png",
+    "origin": [
+      -28,
+      -36
+    ]
+  },
+  "amb_registradora_antiga:0:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/0_normal.png",
+    "origin": [
+      -47,
+      -36
+    ]
+  },
+  "amb_registradora_antiga:1:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/1_normal.png",
+    "origin": [
+      -47,
+      -28
+    ]
+  },
+  "amb_registradora_antiga:2:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/2_normal.png",
+    "origin": [
+      -28,
+      -28
+    ]
+  },
+  "amb_registradora_antiga:3:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_registradora_antiga/sprites/aberta/3_normal.png",
+    "origin": [
+      -28,
+      -36
+    ]
+  },
+  "amb_telefone_disco:0:gancho": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/0_normal.png",
+    "origin": [
+      -20,
+      -20
+    ]
+  },
+  "amb_telefone_disco:1:gancho": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/1_normal.png",
+    "origin": [
+      -21,
+      -16
+    ]
+  },
+  "amb_telefone_disco:2:gancho": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/2_normal.png",
+    "origin": [
+      -22,
+      -16
+    ]
+  },
+  "amb_telefone_disco:3:gancho": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/gancho/3_normal.png",
+    "origin": [
+      -22,
+      -20
+    ]
+  },
+  "amb_telefone_disco:0:fora": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/0_normal.png",
+    "origin": [
+      -20,
+      -16
+    ]
+  },
+  "amb_telefone_disco:1:fora": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/1_normal.png",
+    "origin": [
+      -40,
+      -16
+    ]
+  },
+  "amb_telefone_disco:2:fora": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/2_normal.png",
+    "origin": [
+      -20,
+      -30
+    ]
+  },
+  "amb_telefone_disco:3:fora": {
+    "image": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_telefone_disco/sprites/fora/3_normal.png",
+    "origin": [
+      -20,
+      -20
+    ]
+  },
+  "amb_livro_reservas:0:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/0_normal.png",
+    "origin": [
+      -27,
+      -16
+    ]
+  },
+  "amb_livro_reservas:1:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/1_normal.png",
+    "origin": [
+      -27,
+      -16
+    ]
+  },
+  "amb_livro_reservas:2:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/2_normal.png",
+    "origin": [
+      -27,
+      -16
+    ]
+  },
+  "amb_livro_reservas:3:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/aberto/3_normal.png",
+    "origin": [
+      -27,
+      -16
+    ]
+  },
+  "amb_livro_reservas:0:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/0_normal.png",
+    "origin": [
+      -21,
+      -14
+    ]
+  },
+  "amb_livro_reservas:1:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/1_normal.png",
+    "origin": [
+      -20,
+      -14
+    ]
+  },
+  "amb_livro_reservas:2:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/2_normal.png",
+    "origin": [
+      -20,
+      -14
+    ]
+  },
+  "amb_livro_reservas:3:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_livro_reservas/sprites/fechado/3_normal.png",
+    "origin": [
+      -21,
+      -14
+    ]
+  },
+  "amb_cardapio_balcao:0:padrao": {
+    "image": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/0_normal.png",
+    "origin": [
+      -15,
+      -22
+    ]
+  },
+  "amb_cardapio_balcao:1:padrao": {
+    "image": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/1_normal.png",
+    "origin": [
+      -15,
+      -22
+    ]
+  },
+  "amb_cardapio_balcao:2:padrao": {
+    "image": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/2_normal.png",
+    "origin": [
+      -15,
+      -22
+    ]
+  },
+  "amb_cardapio_balcao:3:padrao": {
+    "image": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cardapio_balcao/sprites/padrao/3_normal.png",
+    "origin": [
+      -15,
+      -22
+    ]
+  },
+  "forno:0:limpo": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:limpo": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:limpo": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:limpo": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:0:usado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/usado/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/usado/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/usado/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:usado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/usado/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/usado/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/usado/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:usado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/usado/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/usado/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/usado/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:usado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/usado/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/usado/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/usado/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:0:abandonado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/abandonado/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/abandonado/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/abandonado/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:abandonado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/abandonado/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/abandonado/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/abandonado/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:abandonado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/abandonado/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/abandonado/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/abandonado/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:abandonado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/abandonado/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/abandonado/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/abandonado/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:0:fechado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:0:aberto": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:0:funcionando": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/0_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:fechado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:aberto": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:1:funcionando": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/1_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:fechado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:aberto": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:2:funcionando": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/2_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:fechado": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:aberto": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "forno:3:funcionando": {
+    "image": "res://assets/objetos/ambientes/forno/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/forno/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/forno/sprites/limpo/3_normal.png",
+    "origin": [
+      -48,
+      -74
+    ]
+  },
+  "pia:0:limpo": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/limpo/0_normal.png",
+    "origin": [
+      -44,
+      -62
+    ]
+  },
+  "pia:1:limpo": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/limpo/1_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:2:limpo": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/limpo/2_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:3:limpo": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/limpo/3_normal.png",
+    "origin": [
+      -45,
+      -62
+    ]
+  },
+  "pia:0:usado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/usado/0.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/usado/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/usado/0_normal.png",
+    "origin": [
+      -44,
+      -62
+    ]
+  },
+  "pia:1:usado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/usado/1.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/usado/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/usado/1_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:2:usado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/usado/2.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/usado/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/usado/2_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:3:usado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/usado/3.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/usado/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/usado/3_normal.png",
+    "origin": [
+      -45,
+      -62
+    ]
+  },
+  "pia:0:abandonado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/abandonado/0.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/abandonado/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/abandonado/0_normal.png",
+    "origin": [
+      -44,
+      -62
+    ]
+  },
+  "pia:1:abandonado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/abandonado/1.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/abandonado/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/abandonado/1_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:2:abandonado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/abandonado/2.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/abandonado/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/abandonado/2_normal.png",
+    "origin": [
+      -45,
+      -54
+    ]
+  },
+  "pia:3:abandonado": {
+    "image": "res://assets/objetos/ambientes/pia/sprites/abandonado/3.png",
+    "depth": "res://assets/objetos/ambientes/pia/sprites/abandonado/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia/sprites/abandonado/3_normal.png",
+    "origin": [
+      -45,
+      -62
+    ]
+  },
+  "amb_coifa_industrial:0:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/0_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_coifa_industrial:1:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/1_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:2:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/2_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:3:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/limpo/3_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_coifa_industrial:0:usado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/0_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_coifa_industrial:1:usado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/1_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:2:usado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/2_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:3:usado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/usado/3_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_coifa_industrial:0:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/0_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_coifa_industrial:1:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/1_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:2:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/2_normal.png",
+    "origin": [
+      -46,
+      -109
+    ]
+  },
+  "amb_coifa_industrial:3:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_coifa_industrial/sprites/abandonado/3_normal.png",
+    "origin": [
+      -46,
+      -110
+    ]
+  },
+  "amb_escorredor_louca:0:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/0_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:1:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/1_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:2:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/2_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:3:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/limpo/3_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:0:usado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/0_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:1:usado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/1_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:2:usado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/2_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:3:usado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/usado/3_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:0:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/0_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:1:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/1_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:2:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/2_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_escorredor_louca:3:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_escorredor_louca/sprites/abandonado/3_normal.png",
+    "origin": [
+      -27,
+      -21
+    ]
+  },
+  "amb_carrinho_louca:0:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/0_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:1:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/1_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:2:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/2_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:3:limpo": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/limpo/3_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:0:usado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/0_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:1:usado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/1_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:2:usado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/2_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:3:usado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/usado/3_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:0:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/0_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:1:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/1_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:2:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/2_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "amb_carrinho_louca:3:abandonado": {
+    "image": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_carrinho_louca/sprites/abandonado/3_normal.png",
+    "origin": [
+      -36,
+      -57
+    ]
+  },
+  "vaso_sanitario:0:inteiro": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/0.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/0.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/0_normal.png",
+    "origin": [
+      -22,
+      -52
+    ]
+  },
+  "vaso_sanitario:1:inteiro": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/1.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/1.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/1_normal.png",
+    "origin": [
+      -22,
+      -43
+    ]
+  },
+  "vaso_sanitario:2:inteiro": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/2.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/2.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/2_normal.png",
+    "origin": [
+      -26,
+      -43
+    ]
+  },
+  "vaso_sanitario:3:inteiro": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/3.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/3.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/inteiro/3_normal.png",
+    "origin": [
+      -26,
+      -52
+    ]
+  },
+  "vaso_sanitario:0:gasto": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/0.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/0.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/0_normal.png",
+    "origin": [
+      -22,
+      -52
+    ]
+  },
+  "vaso_sanitario:1:gasto": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/1.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/1.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/1_normal.png",
+    "origin": [
+      -22,
+      -43
+    ]
+  },
+  "vaso_sanitario:2:gasto": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/2.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/2.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/2_normal.png",
+    "origin": [
+      -26,
+      -43
+    ]
+  },
+  "vaso_sanitario:3:gasto": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/3.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/3.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/gasto/3_normal.png",
+    "origin": [
+      -26,
+      -52
+    ]
+  },
+  "vaso_sanitario:0:quebrado": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/0.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/0.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/0_normal.png",
+    "origin": [
+      -22,
+      -52
+    ]
+  },
+  "vaso_sanitario:1:quebrado": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/1.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/1.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/1_normal.png",
+    "origin": [
+      -22,
+      -43
+    ]
+  },
+  "vaso_sanitario:2:quebrado": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/2.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/2.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/2_normal.png",
+    "origin": [
+      -26,
+      -43
+    ]
+  },
+  "vaso_sanitario:3:quebrado": {
+    "image": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/3.png",
+    "depth": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/3.bin",
+    "normal": "res://assets/objetos/ambientes/vaso_sanitario/sprites/quebrado/3_normal.png",
+    "origin": [
+      -26,
+      -52
+    ]
+  },
+  "pia_banheiro:0:inteiro": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/0.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/0_normal.png",
+    "origin": [
+      -28,
+      -50
+    ]
+  },
+  "pia_banheiro:1:inteiro": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/1.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/1_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "pia_banheiro:2:inteiro": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/2.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/2_normal.png",
+    "origin": [
+      -29,
+      -48
+    ]
+  },
+  "pia_banheiro:3:inteiro": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/3.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/inteiro/3_normal.png",
+    "origin": [
+      -29,
+      -50
+    ]
+  },
+  "pia_banheiro:0:gasto": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/0.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/0_normal.png",
+    "origin": [
+      -28,
+      -50
+    ]
+  },
+  "pia_banheiro:1:gasto": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/1.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/1_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "pia_banheiro:2:gasto": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/2.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/2_normal.png",
+    "origin": [
+      -29,
+      -48
+    ]
+  },
+  "pia_banheiro:3:gasto": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/3.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/gasto/3_normal.png",
+    "origin": [
+      -29,
+      -50
+    ]
+  },
+  "pia_banheiro:0:quebrado": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/0.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/0.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/0_normal.png",
+    "origin": [
+      -28,
+      -50
+    ]
+  },
+  "pia_banheiro:1:quebrado": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/1.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/1.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/1_normal.png",
+    "origin": [
+      -28,
+      -48
+    ]
+  },
+  "pia_banheiro:2:quebrado": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/2.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/2.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/2_normal.png",
+    "origin": [
+      -29,
+      -48
+    ]
+  },
+  "pia_banheiro:3:quebrado": {
+    "image": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/3.png",
+    "depth": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/3.bin",
+    "normal": "res://assets/objetos/ambientes/pia_banheiro/sprites/quebrado/3_normal.png",
+    "origin": [
+      -29,
+      -50
+    ]
+  },
+  "amb_espelho_banheiro:0:inteiro": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/0_normal.png",
+    "origin": [
+      -37,
+      -85
+    ]
+  },
+  "amb_espelho_banheiro:1:inteiro": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/1_normal.png",
+    "origin": [
+      -37,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:2:inteiro": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/2_normal.png",
+    "origin": [
+      -3,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:3:inteiro": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/inteiro/3_normal.png",
+    "origin": [
+      -3,
+      -85
+    ]
+  },
+  "amb_espelho_banheiro:0:manchado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/0_normal.png",
+    "origin": [
+      -37,
+      -85
+    ]
+  },
+  "amb_espelho_banheiro:1:manchado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/1_normal.png",
+    "origin": [
+      -37,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:2:manchado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/2_normal.png",
+    "origin": [
+      -3,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:3:manchado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/manchado/3_normal.png",
+    "origin": [
+      -3,
+      -85
+    ]
+  },
+  "amb_espelho_banheiro:0:rachado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/0_normal.png",
+    "origin": [
+      -37,
+      -85
+    ]
+  },
+  "amb_espelho_banheiro:1:rachado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/1_normal.png",
+    "origin": [
+      -37,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:2:rachado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/2_normal.png",
+    "origin": [
+      -3,
+      -100
+    ]
+  },
+  "amb_espelho_banheiro:3:rachado": {
+    "image": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_espelho_banheiro/sprites/rachado/3_normal.png",
+    "origin": [
+      -3,
+      -85
+    ]
+  },
+  "divisoria_porta:0:fechada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/0.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/0.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/0_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:1:fechada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/1.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/1.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/1_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:2:fechada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/2.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/2.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/2_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:3:fechada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/3.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/3.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/fechada/3_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:0:aberta": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/0.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/0.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/0_normal.png",
+    "origin": [
+      -23,
+      -96
+    ]
+  },
+  "divisoria_porta:1:aberta": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/1.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/1.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/1_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:2:aberta": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/2.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/2.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/2_normal.png",
+    "origin": [
+      -24,
+      -95
+    ]
+  },
+  "divisoria_porta:3:aberta": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/3.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/3.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/aberta/3_normal.png",
+    "origin": [
+      -32,
+      -95
+    ]
+  },
+  "divisoria_porta:0:quebrada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/0.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/0.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/0_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:1:quebrada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/1.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/1.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/1_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:2:quebrada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/2.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/2.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/2_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "divisoria_porta:3:quebrada": {
+    "image": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/3.png",
+    "depth": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/3.bin",
+    "normal": "res://assets/objetos/ambientes/divisoria_porta/sprites/quebrada/3_normal.png",
+    "origin": [
+      -23,
+      -95
+    ]
+  },
+  "amb_dispensador_papel:0:cheio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/0_normal.png",
+    "origin": [
+      -29,
+      -55
+    ]
+  },
+  "amb_dispensador_papel:1:cheio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/1_normal.png",
+    "origin": [
+      -29,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:2:cheio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/2_normal.png",
+    "origin": [
+      -3,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:3:cheio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/cheio/3_normal.png",
+    "origin": [
+      -3,
+      -55
+    ]
+  },
+  "amb_dispensador_papel:0:vazio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/0_normal.png",
+    "origin": [
+      -29,
+      -55
+    ]
+  },
+  "amb_dispensador_papel:1:vazio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/1_normal.png",
+    "origin": [
+      -29,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:2:vazio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/2_normal.png",
+    "origin": [
+      -3,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:3:vazio": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/vazio/3_normal.png",
+    "origin": [
+      -3,
+      -55
+    ]
+  },
+  "amb_dispensador_papel:0:quebrado": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/0_normal.png",
+    "origin": [
+      -29,
+      -55
+    ]
+  },
+  "amb_dispensador_papel:1:quebrado": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/1_normal.png",
+    "origin": [
+      -28,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:2:quebrado": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/2_normal.png",
+    "origin": [
+      -3,
+      -70
+    ]
+  },
+  "amb_dispensador_papel:3:quebrado": {
+    "image": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_dispensador_papel/sprites/quebrado/3_normal.png",
+    "origin": [
+      -3,
+      -55
+    ]
+  },
+  "amb_fliperama_estrelar:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/desligado/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:avariado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:avariado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:avariado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:avariado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/avariado/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_0/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_1/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_2/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_3/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_4/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_5/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_6/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:0:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/0_normal.png",
+    "origin": [
+      -35,
+      -102
+    ]
+  },
+  "amb_fliperama_estrelar:1:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/1_normal.png",
+    "origin": [
+      -35,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:2:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/2_normal.png",
+    "origin": [
+      -34,
+      -101
+    ]
+  },
+  "amb_fliperama_estrelar:3:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_estrelar/sprites/ligado_7/3_normal.png",
+    "origin": [
+      -34,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/desligado/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_0/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_1/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_2/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_3/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_4/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_5/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_6/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:0:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/0_normal.png",
+    "origin": [
+      -37,
+      -103
+    ]
+  },
+  "amb_fliperama_corrida:1:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/1_normal.png",
+    "origin": [
+      -37,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:2:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/2_normal.png",
+    "origin": [
+      -36,
+      -102
+    ]
+  },
+  "amb_fliperama_corrida:3:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_fliperama_corrida/sprites/ligado_7/3_normal.png",
+    "origin": [
+      -36,
+      -103
+    ]
+  },
+  "amb_maquina_fichas:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/desligado/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_0/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_1/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_2/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_3/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_4/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_5/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_6/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:0:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/0_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:1:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/1_normal.png",
+    "origin": [
+      -28,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:2:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/2_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_fichas:3:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_fichas/sprites/ligado_7/3_normal.png",
+    "origin": [
+      -26,
+      -75
+    ]
+  },
+  "amb_maquina_premios:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/desligado/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_0": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_0/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_1": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_1/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_2": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_2/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_3": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_3/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_4": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_4/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_5": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_5/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_6": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_6/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:0:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/0_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:1:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/1_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:2:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/2_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_maquina_premios:3:ligado_7": {
+    "image": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_maquina_premios/sprites/ligado_7/3_normal.png",
+    "origin": [
+      -38,
+      -107
+    ]
+  },
+  "amb_balcao_tickets:0:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/0_normal.png",
+    "origin": [
+      -65,
+      -96
+    ]
+  },
+  "amb_balcao_tickets:1:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/1_normal.png",
+    "origin": [
+      -65,
+      -87
+    ]
+  },
+  "amb_balcao_tickets:2:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/2_normal.png",
+    "origin": [
+      -65,
+      -87
+    ]
+  },
+  "amb_balcao_tickets:3:aberto": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/aberto/3_normal.png",
+    "origin": [
+      -65,
+      -96
+    ]
+  },
+  "amb_balcao_tickets:0:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/0_normal.png",
+    "origin": [
+      -65,
+      -96
+    ]
+  },
+  "amb_balcao_tickets:1:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/1_normal.png",
+    "origin": [
+      -65,
+      -87
+    ]
+  },
+  "amb_balcao_tickets:2:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/2_normal.png",
+    "origin": [
+      -65,
+      -87
+    ]
+  },
+  "amb_balcao_tickets:3:fechado": {
+    "image": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_balcao_tickets/sprites/fechado/3_normal.png",
+    "origin": [
+      -65,
+      -96
+    ]
+  },
+  "amb_tomada_antiga:0:simples": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/0_normal.png",
+    "origin": [
+      -22,
+      -22
+    ]
+  },
+  "amb_tomada_antiga:1:simples": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/1_normal.png",
+    "origin": [
+      -22,
+      -37
+    ]
+  },
+  "amb_tomada_antiga:2:simples": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/2_normal.png",
+    "origin": [
+      -3,
+      -37
+    ]
+  },
+  "amb_tomada_antiga:3:simples": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/simples/3_normal.png",
+    "origin": [
+      -3,
+      -22
+    ]
+  },
+  "amb_tomada_antiga:0:dupla": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/0_normal.png",
+    "origin": [
+      -25,
+      -23
+    ]
+  },
+  "amb_tomada_antiga:1:dupla": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/1_normal.png",
+    "origin": [
+      -25,
+      -38
+    ]
+  },
+  "amb_tomada_antiga:2:dupla": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/2_normal.png",
+    "origin": [
+      -3,
+      -38
+    ]
+  },
+  "amb_tomada_antiga:3:dupla": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/dupla/3_normal.png",
+    "origin": [
+      -3,
+      -23
+    ]
+  },
+  "amb_tomada_antiga:0:quebrada": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/0_normal.png",
+    "origin": [
+      -24,
+      -22
+    ]
+  },
+  "amb_tomada_antiga:1:quebrada": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/1_normal.png",
+    "origin": [
+      -22,
+      -37
+    ]
+  },
+  "amb_tomada_antiga:2:quebrada": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/2_normal.png",
+    "origin": [
+      -3,
+      -37
+    ]
+  },
+  "amb_tomada_antiga:3:quebrada": {
+    "image": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_tomada_antiga/sprites/quebrada/3_normal.png",
+    "origin": [
+      -3,
+      -22
+    ]
+  },
+  "amb_interruptor_antigo:0:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/0_normal.png",
+    "origin": [
+      -22,
+      -50
+    ]
+  },
+  "amb_interruptor_antigo:1:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/1_normal.png",
+    "origin": [
+      -22,
+      -65
+    ]
+  },
+  "amb_interruptor_antigo:2:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/2_normal.png",
+    "origin": [
+      -3,
+      -65
+    ]
+  },
+  "amb_interruptor_antigo:3:desligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/desligado/3_normal.png",
+    "origin": [
+      -3,
+      -50
+    ]
+  },
+  "amb_interruptor_antigo:0:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/0_normal.png",
+    "origin": [
+      -22,
+      -50
+    ]
+  },
+  "amb_interruptor_antigo:1:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/1_normal.png",
+    "origin": [
+      -22,
+      -65
+    ]
+  },
+  "amb_interruptor_antigo:2:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/2_normal.png",
+    "origin": [
+      -3,
+      -65
+    ]
+  },
+  "amb_interruptor_antigo:3:ligado": {
+    "image": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_interruptor_antigo/sprites/ligado/3_normal.png",
+    "origin": [
+      -3,
+      -50
+    ]
+  },
+  "amb_quadro_energia:0:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/0_normal.png",
+    "origin": [
+      -30,
+      -89
+    ]
+  },
+  "amb_quadro_energia:1:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/1_normal.png",
+    "origin": [
+      -31,
+      -104
+    ]
+  },
+  "amb_quadro_energia:2:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/2_normal.png",
+    "origin": [
+      -3,
+      -104
+    ]
+  },
+  "amb_quadro_energia:3:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/pequena/3_normal.png",
+    "origin": [
+      -3,
+      -89
+    ]
+  },
+  "amb_quadro_energia:0:grande": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/0_normal.png",
+    "origin": [
+      -37,
+      -91
+    ]
+  },
+  "amb_quadro_energia:1:grande": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/1_normal.png",
+    "origin": [
+      -37,
+      -106
+    ]
+  },
+  "amb_quadro_energia:2:grande": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/2_normal.png",
+    "origin": [
+      -6,
+      -106
+    ]
+  },
+  "amb_quadro_energia:3:grande": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/grande/3_normal.png",
+    "origin": [
+      -6,
+      -91
+    ]
+  },
+  "amb_quadro_energia:0:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/0_normal.png",
+    "origin": [
+      -36,
+      -95
+    ]
+  },
+  "amb_quadro_energia:1:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/1_normal.png",
+    "origin": [
+      -36,
+      -106
+    ]
+  },
+  "amb_quadro_energia:2:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/2_normal.png",
+    "origin": [
+      -6,
+      -106
+    ]
+  },
+  "amb_quadro_energia:3:aberta": {
+    "image": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_quadro_energia/sprites/aberta/3_normal.png",
+    "origin": [
+      -31,
+      -91
+    ]
+  },
+  "amb_relogio_ponto:0:manha": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/0_normal.png",
+    "origin": [
+      -36,
+      -77
+    ]
+  },
+  "amb_relogio_ponto:1:manha": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/1_normal.png",
+    "origin": [
+      -30,
+      -92
+    ]
+  },
+  "amb_relogio_ponto:2:manha": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/2_normal.png",
+    "origin": [
+      -3,
+      -92
+    ]
+  },
+  "amb_relogio_ponto:3:manha": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/manha/3_normal.png",
+    "origin": [
+      -6,
+      -77
+    ]
+  },
+  "amb_relogio_ponto:0:tarde": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/0_normal.png",
+    "origin": [
+      -36,
+      -77
+    ]
+  },
+  "amb_relogio_ponto:1:tarde": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/1_normal.png",
+    "origin": [
+      -30,
+      -92
+    ]
+  },
+  "amb_relogio_ponto:2:tarde": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/2_normal.png",
+    "origin": [
+      -3,
+      -92
+    ]
+  },
+  "amb_relogio_ponto:3:tarde": {
+    "image": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_relogio_ponto/sprites/tarde/3_normal.png",
+    "origin": [
+      -6,
+      -77
+    ]
+  },
+  "amb_placas_salas:0:COZINHA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:COZINHA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:COZINHA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:COZINHA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/COZINHA/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:OFICINA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:OFICINA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:OFICINA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:OFICINA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/OFICINA/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:BANHEIRO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:BANHEIRO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:BANHEIRO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:BANHEIRO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/BANHEIRO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:DEPOSITO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:DEPOSITO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:DEPOSITO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:DEPOSITO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DEPOSITO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:SALAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:SALAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:SALAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:SALAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/SALAO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:JOGOS": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:JOGOS": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:JOGOS": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:JOGOS": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/JOGOS/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:ENTRADA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:ENTRADA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:ENTRADA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:ENTRADA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENTRADA/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:RECEPCAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:RECEPCAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:RECEPCAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:RECEPCAO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/RECEPCAO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:LIMPEZA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:LIMPEZA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:LIMPEZA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:LIMPEZA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/LIMPEZA/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:DESCANSO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:DESCANSO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:DESCANSO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:DESCANSO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/DESCANSO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:ESCRITORIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:ESCRITORIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:ESCRITORIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:ESCRITORIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESCRITORIO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:VESTIARIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:VESTIARIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:VESTIARIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:VESTIARIO": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/VESTIARIO/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:ESTOQUE": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:ESTOQUE": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:ESTOQUE": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:ESTOQUE": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ESTOQUE/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_placas_salas:0:ENERGIA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/0_normal.png",
+    "origin": [
+      -34,
+      -88
+    ]
+  },
+  "amb_placas_salas:1:ENERGIA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/1_normal.png",
+    "origin": [
+      -34,
+      -103
+    ]
+  },
+  "amb_placas_salas:2:ENERGIA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/2_normal.png",
+    "origin": [
+      -5,
+      -103
+    ]
+  },
+  "amb_placas_salas:3:ENERGIA": {
+    "image": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_placas_salas/sprites/ENERGIA/3_normal.png",
+    "origin": [
+      -5,
+      -88
+    ]
+  },
+  "amb_marcas_moveis:0:cadeira": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/0_normal.png",
+    "origin": [
+      -23,
+      -13
+    ]
+  },
+  "amb_marcas_moveis:1:cadeira": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/1_normal.png",
+    "origin": [
+      -23,
+      -13
+    ]
+  },
+  "amb_marcas_moveis:2:cadeira": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/2_normal.png",
+    "origin": [
+      -23,
+      -13
+    ]
+  },
+  "amb_marcas_moveis:3:cadeira": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/cadeira/3_normal.png",
+    "origin": [
+      -23,
+      -13
+    ]
+  },
+  "amb_marcas_moveis:0:mesa": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/0_normal.png",
+    "origin": [
+      -54,
+      -29
+    ]
+  },
+  "amb_marcas_moveis:1:mesa": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/1_normal.png",
+    "origin": [
+      -54,
+      -29
+    ]
+  },
+  "amb_marcas_moveis:2:mesa": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/2_normal.png",
+    "origin": [
+      -53,
+      -29
+    ]
+  },
+  "amb_marcas_moveis:3:mesa": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/mesa/3_normal.png",
+    "origin": [
+      -53,
+      -28
+    ]
+  },
+  "amb_marcas_moveis:0:armario": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/0_normal.png",
+    "origin": [
+      -28,
+      -16
+    ]
+  },
+  "amb_marcas_moveis:1:armario": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/1_normal.png",
+    "origin": [
+      -28,
+      -16
+    ]
+  },
+  "amb_marcas_moveis:2:armario": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/2_normal.png",
+    "origin": [
+      -29,
+      -16
+    ]
+  },
+  "amb_marcas_moveis:3:armario": {
+    "image": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_marcas_moveis/sprites/armario/3_normal.png",
+    "origin": [
+      -29,
+      -16
+    ]
+  },
+  "amb_gordura_piso:0:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/0_normal.png",
+    "origin": [
+      -16,
+      -10
+    ]
+  },
+  "amb_gordura_piso:1:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/1_normal.png",
+    "origin": [
+      -13,
+      -10
+    ]
+  },
+  "amb_gordura_piso:2:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/2_normal.png",
+    "origin": [
+      -13,
+      -8
+    ]
+  },
+  "amb_gordura_piso:3:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/pequena/3_normal.png",
+    "origin": [
+      -16,
+      -8
+    ]
+  },
+  "amb_gordura_piso:0:media": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/0_normal.png",
+    "origin": [
+      -29,
+      -16
+    ]
+  },
+  "amb_gordura_piso:1:media": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/1_normal.png",
+    "origin": [
+      -22,
+      -16
+    ]
+  },
+  "amb_gordura_piso:2:media": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/2_normal.png",
+    "origin": [
+      -22,
+      -13
+    ]
+  },
+  "amb_gordura_piso:3:media": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/media/3_normal.png",
+    "origin": [
+      -28,
+      -13
+    ]
+  },
+  "amb_gordura_piso:0:grande": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/0_normal.png",
+    "origin": [
+      -45,
+      -23
+    ]
+  },
+  "amb_gordura_piso:1:grande": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/1_normal.png",
+    "origin": [
+      -33,
+      -24
+    ]
+  },
+  "amb_gordura_piso:2:grande": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/2_normal.png",
+    "origin": [
+      -34,
+      -18
+    ]
+  },
+  "amb_gordura_piso:3:grande": {
+    "image": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_gordura_piso/sprites/grande/3_normal.png",
+    "origin": [
+      -43,
+      -19
+    ]
+  },
+  "amb_umidade_parede:0:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/0_normal.png",
+    "origin": [
+      -30,
+      -15
+    ]
+  },
+  "amb_umidade_parede:1:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/1_normal.png",
+    "origin": [
+      -30,
+      -31
+    ]
+  },
+  "amb_umidade_parede:2:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/2_normal.png",
+    "origin": [
+      -3,
+      -26
+    ]
+  },
+  "amb_umidade_parede:3:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/pequena/3_normal.png",
+    "origin": [
+      -3,
+      -10
+    ]
+  },
+  "amb_umidade_parede:0:media": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/0_normal.png",
+    "origin": [
+      -41,
+      -17
+    ]
+  },
+  "amb_umidade_parede:1:media": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/1_normal.png",
+    "origin": [
+      -41,
+      -34
+    ]
+  },
+  "amb_umidade_parede:2:media": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/2_normal.png",
+    "origin": [
+      -8,
+      -27
+    ]
+  },
+  "amb_umidade_parede:3:media": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/media/3_normal.png",
+    "origin": [
+      -8,
+      -10
+    ]
+  },
+  "amb_umidade_parede:0:grande": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/0_normal.png",
+    "origin": [
+      -54,
+      -20
+    ]
+  },
+  "amb_umidade_parede:1:grande": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/1_normal.png",
+    "origin": [
+      -54,
+      -37
+    ]
+  },
+  "amb_umidade_parede:2:grande": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/2_normal.png",
+    "origin": [
+      -21,
+      -32
+    ]
+  },
+  "amb_umidade_parede:3:grande": {
+    "image": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_umidade_parede/sprites/grande/3_normal.png",
+    "origin": [
+      -21,
+      -15
+    ]
+  },
+  "amb_poeira_piso:0:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/0_normal.png",
+    "origin": [
+      -15,
+      -9
+    ]
+  },
+  "amb_poeira_piso:1:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/1_normal.png",
+    "origin": [
+      -15,
+      -9
+    ]
+  },
+  "amb_poeira_piso:2:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/2_normal.png",
+    "origin": [
+      -15,
+      -9
+    ]
+  },
+  "amb_poeira_piso:3:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/pequena/3_normal.png",
+    "origin": [
+      -14,
+      -9
+    ]
+  },
+  "amb_poeira_piso:0:media": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/0_normal.png",
+    "origin": [
+      -26,
+      -14
+    ]
+  },
+  "amb_poeira_piso:1:media": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/1_normal.png",
+    "origin": [
+      -26,
+      -15
+    ]
+  },
+  "amb_poeira_piso:2:media": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/2_normal.png",
+    "origin": [
+      -26,
+      -15
+    ]
+  },
+  "amb_poeira_piso:3:media": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/media/3_normal.png",
+    "origin": [
+      -25,
+      -15
+    ]
+  },
+  "amb_poeira_piso:0:grande": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/0_normal.png",
+    "origin": [
+      -40,
+      -21
+    ]
+  },
+  "amb_poeira_piso:1:grande": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/1_normal.png",
+    "origin": [
+      -39,
+      -22
+    ]
+  },
+  "amb_poeira_piso:2:grande": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/2_normal.png",
+    "origin": [
+      -39,
+      -21
+    ]
+  },
+  "amb_poeira_piso:3:grande": {
+    "image": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_poeira_piso/sprites/grande/3_normal.png",
+    "origin": [
+      -39,
+      -21
+    ]
+  },
+  "amb_pegadas_piso:0:par": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/0_normal.png",
+    "origin": [
+      -22,
+      -5
+    ]
+  },
+  "amb_pegadas_piso:1:par": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/1_normal.png",
+    "origin": [
+      -14,
+      -13
+    ]
+  },
+  "amb_pegadas_piso:2:par": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/2_normal.png",
+    "origin": [
+      -15,
+      -9
+    ]
+  },
+  "amb_pegadas_piso:3:par": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/par/3_normal.png",
+    "origin": [
+      -7,
+      -9
+    ]
+  },
+  "amb_pegadas_piso:0:caminho": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/0_normal.png",
+    "origin": [
+      -43,
+      -16
+    ]
+  },
+  "amb_pegadas_piso:1:caminho": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/1_normal.png",
+    "origin": [
+      -35,
+      -23
+    ]
+  },
+  "amb_pegadas_piso:2:caminho": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/2_normal.png",
+    "origin": [
+      -36,
+      -19
+    ]
+  },
+  "amb_pegadas_piso:3:caminho": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/caminho/3_normal.png",
+    "origin": [
+      -28,
+      -20
+    ]
+  },
+  "amb_pegadas_piso:0:curva": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/0_normal.png",
+    "origin": [
+      -32,
+      -16
+    ]
+  },
+  "amb_pegadas_piso:1:curva": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/1_normal.png",
+    "origin": [
+      -44,
+      -18
+    ]
+  },
+  "amb_pegadas_piso:2:curva": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/2_normal.png",
+    "origin": [
+      -36,
+      -24
+    ]
+  },
+  "amb_pegadas_piso:3:curva": {
+    "image": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_pegadas_piso/sprites/curva/3_normal.png",
+    "origin": [
+      -28,
+      -20
+    ]
+  },
+  "amb_riscos_arrasto:0:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/0_normal.png",
+    "origin": [
+      -10,
+      -9
+    ]
+  },
+  "amb_riscos_arrasto:1:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/1_normal.png",
+    "origin": [
+      -14,
+      -7
+    ]
+  },
+  "amb_riscos_arrasto:2:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/2_normal.png",
+    "origin": [
+      -14,
+      -9
+    ]
+  },
+  "amb_riscos_arrasto:3:pequena": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/pequena/3_normal.png",
+    "origin": [
+      -14,
+      -9
+    ]
+  },
+  "amb_riscos_arrasto:0:media": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/0_normal.png",
+    "origin": [
+      -17,
+      -13
+    ]
+  },
+  "amb_riscos_arrasto:1:media": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/1_normal.png",
+    "origin": [
+      -21,
+      -11
+    ]
+  },
+  "amb_riscos_arrasto:2:media": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/2_normal.png",
+    "origin": [
+      -22,
+      -13
+    ]
+  },
+  "amb_riscos_arrasto:3:media": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/media/3_normal.png",
+    "origin": [
+      -23,
+      -13
+    ]
+  },
+  "amb_riscos_arrasto:0:grande": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/0_normal.png",
+    "origin": [
+      -28,
+      -18
+    ]
+  },
+  "amb_riscos_arrasto:1:grande": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/1_normal.png",
+    "origin": [
+      -33,
+      -16
+    ]
+  },
+  "amb_riscos_arrasto:2:grande": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/2_normal.png",
+    "origin": [
+      -33,
+      -18
+    ]
+  },
+  "amb_riscos_arrasto:3:grande": {
+    "image": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_riscos_arrasto/sprites/grande/3_normal.png",
+    "origin": [
+      -33,
+      -18
+    ]
+  },
+  "amb_mesa_roxa_estrelas:0:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/0_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:1:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/1_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:2:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/2_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:3:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/toalha/3_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:0:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/0_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:1:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/1_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:2:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/2_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_roxa_estrelas:3:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_roxa_estrelas/sprites/posta/3_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:0:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/0_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:1:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/1_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:2:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/2_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:3:toalha": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/toalha/3_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:0:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/0_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:1:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/1_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:2:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/2_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_mesa_amarela_confetes:3:posta": {
+    "image": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_mesa_amarela_confetes/sprites/posta/3_normal.png",
+    "origin": [
+      -67,
+      -67
+    ]
+  },
+  "amb_cadeira_vinho:0:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/0_normal.png",
+    "origin": [
+      -24,
+      -57
+    ]
+  },
+  "amb_cadeira_vinho:1:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/1_normal.png",
+    "origin": [
+      -24,
+      -47
+    ]
+  },
+  "amb_cadeira_vinho:2:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/2_normal.png",
+    "origin": [
+      -26,
+      -47
+    ]
+  },
+  "amb_cadeira_vinho:3:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/conservada/3_normal.png",
+    "origin": [
+      -26,
+      -57
+    ]
+  },
+  "amb_cadeira_vinho:0:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/0_normal.png",
+    "origin": [
+      -24,
+      -57
+    ]
+  },
+  "amb_cadeira_vinho:1:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/1_normal.png",
+    "origin": [
+      -24,
+      -47
+    ]
+  },
+  "amb_cadeira_vinho:2:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/2_normal.png",
+    "origin": [
+      -26,
+      -47
+    ]
+  },
+  "amb_cadeira_vinho:3:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_vinho/sprites/gasta/3_normal.png",
+    "origin": [
+      -26,
+      -57
+    ]
+  },
+  "amb_cadeira_verde:0:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/0_normal.png",
+    "origin": [
+      -24,
+      -59
+    ]
+  },
+  "amb_cadeira_verde:1:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/1_normal.png",
+    "origin": [
+      -24,
+      -49
+    ]
+  },
+  "amb_cadeira_verde:2:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/2_normal.png",
+    "origin": [
+      -27,
+      -49
+    ]
+  },
+  "amb_cadeira_verde:3:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/conservada/3_normal.png",
+    "origin": [
+      -27,
+      -59
+    ]
+  },
+  "amb_cadeira_verde:0:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/0_normal.png",
+    "origin": [
+      -24,
+      -59
+    ]
+  },
+  "amb_cadeira_verde:1:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/1_normal.png",
+    "origin": [
+      -24,
+      -49
+    ]
+  },
+  "amb_cadeira_verde:2:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/2_normal.png",
+    "origin": [
+      -27,
+      -49
+    ]
+  },
+  "amb_cadeira_verde:3:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_verde/sprites/gasta/3_normal.png",
+    "origin": [
+      -27,
+      -59
+    ]
+  },
+  "amb_cadeira_roxa:0:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/0_normal.png",
+    "origin": [
+      -24,
+      -56
+    ]
+  },
+  "amb_cadeira_roxa:1:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/1_normal.png",
+    "origin": [
+      -24,
+      -46
+    ]
+  },
+  "amb_cadeira_roxa:2:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/2_normal.png",
+    "origin": [
+      -29,
+      -46
+    ]
+  },
+  "amb_cadeira_roxa:3:conservada": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/conservada/3_normal.png",
+    "origin": [
+      -29,
+      -56
+    ]
+  },
+  "amb_cadeira_roxa:0:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/0.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/0.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/0_normal.png",
+    "origin": [
+      -24,
+      -56
+    ]
+  },
+  "amb_cadeira_roxa:1:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/1.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/1.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/1_normal.png",
+    "origin": [
+      -24,
+      -46
+    ]
+  },
+  "amb_cadeira_roxa:2:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/2.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/2.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/2_normal.png",
+    "origin": [
+      -29,
+      -46
+    ]
+  },
+  "amb_cadeira_roxa:3:gasta": {
+    "image": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/3.png",
+    "depth": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/3.bin",
+    "normal": "res://assets/objetos/ambientes/amb_cadeira_roxa/sprites/gasta/3_normal.png",
+    "origin": [
+      -29,
+      -56
+    ]
+  }
+}

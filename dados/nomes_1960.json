@@ -1,0 +1,428 @@
+{
+  "masculinos": [
+    "Roberto",
+    "Carlos",
+    "Luiz",
+    "Paulo",
+    "Fernando",
+    "Antonio",
+    "José",
+    "Francisco",
+    "Marcos",
+    "Sérgio",
+    "Ricardo",
+    "Eduardo",
+    "Jorge",
+    "Marcelo",
+    "Claudio",
+    "Márcio",
+    "Mário",
+    "Renato",
+    "Wilson",
+    "Ronaldo",
+    "Geraldo",
+    "Walter",
+    "Milton",
+    "Valter",
+    "Nelson",
+    "Edilson",
+    "Maurício",
+    "Osvaldo",
+    "Gilberto",
+    "Rubens",
+    "Sebastião",
+    "Raimundo",
+    "Edson",
+    "Hélio",
+    "Benedito",
+    "Celso",
+    "Ivan",
+    "Adílson",
+    "César",
+    "Rogério",
+    "Arthur",
+    "Valdir",
+    "Jair",
+    "Reinaldo",
+    "Silvio",
+    "Moacir",
+    "Otávio",
+    "Almir",
+    "Osmar",
+    "Walmir",
+    "Agenor",
+    "Laerte",
+    "Humberto",
+    "Arnaldo",
+    "Ademir",
+    "Dirceu",
+    "Ernani",
+    "Decio",
+    "Odair",
+    "Juvenal",
+    "Clovis",
+    "Durval",
+    "Edgard",
+    "Belmiro",
+    "Ananias",
+    "Altamiro",
+    "Aristides",
+    "Waldemar",
+    "Euclides",
+    "Severino",
+    "Venâncio",
+    "Olimpio",
+    "Getúlio",
+    "Osório",
+    "Wanderley",
+    "Hamilton",
+    "Newton",
+    "Denis",
+    "Washington",
+    "Lafayette",
+    "Ney",
+    "Ronnie",
+    "Jerry",
+    "Gerson",
+    "Wagner",
+    "Wanderson",
+    "Clayton",
+    "Everson",
+    "Henrique",
+    "Afonso",
+    "Rodrigo",
+    "Augusto",
+    "Octávio",
+    "Gastão",
+    "Álvaro",
+    "Caio",
+    "Guilherme",
+    "Rodolfo"
+  ],
+  "femininos": [
+    "Maria",
+    "Ana",
+    "Márcia",
+    "Regina",
+    "Sandra",
+    "Sônia",
+    "Luciana",
+    "Vera",
+    "Fátima",
+    "Tânia",
+    "Denise",
+    "Rita",
+    "Solange",
+    "Silvia",
+    "Angela",
+    "Rosa",
+    "Marta",
+    "Suely",
+    "Patricia",
+    "Neide",
+    "Carmen",
+    "Jane",
+    "Marlene",
+    "Helena",
+    "Claudia",
+    "Teresa",
+    "Terezinha",
+    "Eliana",
+    "Elisabeth",
+    "Rosana",
+    "Cristina",
+    "Lúcia",
+    "Beatriz",
+    "Leila",
+    "Simone",
+    "Cecília",
+    "Sheila",
+    "Aparecida",
+    "Norma",
+    "Vilma",
+    "Zilda",
+    "Margarida",
+    "Eunice",
+    "Nádia",
+    "Iara",
+    "Arlete",
+    "Wanda",
+    "Lurdes",
+    "Célia",
+    "Ivone",
+    "Alzira",
+    "Cleide",
+    "Iracema",
+    "Conceição",
+    "Dulce",
+    "Wilma",
+    "Yolanda",
+    "Dalva",
+    "Jandira",
+    "Odete",
+    "Rosângela",
+    "Bernadete",
+    "Diná",
+    "Zélia",
+    "Neuza",
+    "Mercedes",
+    "Isolina",
+    "Dirce",
+    "Noemia",
+    "Geralda",
+    "Sebastiana",
+    "Filomena",
+    "Aurea",
+    "Carmem",
+    "Zulmira",
+    "Rosemary",
+    "Clarice",
+    "Shirley",
+    "Miriam",
+    "Glória",
+    "Ivete",
+    "Wanderléa",
+    "Rosemarie",
+    "Suzana",
+    "Mara",
+    "Jacqueline",
+    "Daisy",
+    "Gladys",
+    "Yvone",
+    "Cynthia",
+    "Constança",
+    "Maria Eduarda",
+    "Carolina",
+    "Antônia",
+    "Stella",
+    "Leonor",
+    "Guilhermina",
+    "Isabel",
+    "Francisca",
+    "Eugenia"
+  ],
+  "sobrenomes": [
+    "Silva",
+    "Santos",
+    "Oliveira",
+    "Souza",
+    "Rodrigues",
+    "Ferreira",
+    "Alves",
+    "Pereira",
+    "Lima",
+    "Gomes",
+    "Costa",
+    "Ribeiro",
+    "Martins",
+    "Carvalho",
+    "Almeida",
+    "Lopes",
+    "Soares",
+    "Fernandes",
+    "Vieira",
+    "Barbosa",
+    "Rocha",
+    "Dias",
+    "Nascimento",
+    "Andrade",
+    "Moreira",
+    "Rossi",
+    "Ferrari",
+    "Esposito",
+    "Bianchi",
+    "Bruno",
+    "Romero",
+    "Navarro",
+    "Torres",
+    "Molina",
+    "Garcia",
+    "Vasconcelos",
+    "Guimarães",
+    "Prado",
+    "Siqueira",
+    "Peixoto",
+    "Albuquerque",
+    "Junqueira",
+    "Lins",
+    "Cavalcanti",
+    "Assumpção",
+    "Neves",
+    "Franco",
+    "Mello",
+    "Ramos",
+    "Pires",
+    "Barros",
+    "Cruz",
+    "Luz",
+    "Vianna",
+    "Frota"
+  ],
+  "apelidos_masculinos": [
+    {
+      "nome": "Beto",
+      "origens": [
+        "Roberto",
+        "Alberto"
+      ]
+    },
+    {
+      "nome": "Zé",
+      "origens": [
+        "José"
+      ]
+    },
+    {
+      "nome": "Tonho",
+      "origens": [
+        "Antônio"
+      ]
+    },
+    {
+      "nome": "Chico",
+      "origens": [
+        "Francisco"
+      ]
+    },
+    {
+      "nome": "Caju",
+      "origens": []
+    },
+    {
+      "nome": "Vadico",
+      "origens": []
+    },
+    {
+      "nome": "Tião",
+      "origens": [
+        "Sebastião"
+      ]
+    },
+    {
+      "nome": "Zeca",
+      "origens": []
+    },
+    {
+      "nome": "Manolo",
+      "origens": []
+    },
+    {
+      "nome": "Nenê",
+      "origens": []
+    },
+    {
+      "nome": "Alemão",
+      "origens": []
+    },
+    {
+      "nome": "Tão",
+      "origens": []
+    },
+    {
+      "nome": "Serginho",
+      "origens": []
+    },
+    {
+      "nome": "Dico",
+      "origens": []
+    },
+    {
+      "nome": "Juca",
+      "origens": []
+    }
+  ],
+  "apelidos_femininos": [
+    {
+      "nome": "Zezé",
+      "origens": [
+        "Maria José",
+        "Josefina"
+      ]
+    },
+    {
+      "nome": "Beth",
+      "origens": [
+        "Elisabeth"
+      ]
+    },
+    {
+      "nome": "Teteia",
+      "origens": []
+    },
+    {
+      "nome": "Nena",
+      "origens": []
+    },
+    {
+      "nome": "Cidinha",
+      "origens": [
+        "Aparecida"
+      ]
+    },
+    {
+      "nome": "Tere",
+      "origens": []
+    },
+    {
+      "nome": "Lili",
+      "origens": []
+    },
+    {
+      "nome": "Lalá",
+      "origens": []
+    },
+    {
+      "nome": "Dinha",
+      "origens": []
+    },
+    {
+      "nome": "Nicinha",
+      "origens": []
+    },
+    {
+      "nome": "Santinha",
+      "origens": []
+    },
+    {
+      "nome": "Bia",
+      "origens": []
+    },
+    {
+      "nome": "Mimi",
+      "origens": []
+    },
+    {
+      "nome": "Naná",
+      "origens": []
+    },
+    {
+      "nome": "Pepa",
+      "origens": []
+    }
+  ],
+  "alcunhas": [
+    {
+      "nome": "Broto",
+      "origens": [
+        "Guria",
+        "Garota jovem"
+      ]
+    },
+    {
+      "nome": "Doutor",
+      "origens": []
+    },
+    {
+      "nome": "Bacana",
+      "origens": []
+    },
+    {
+      "nome": "Cadete",
+      "origens": []
+    },
+    {
+      "nome": "Professor",
+      "origens": []
+    }
+  ]
+}

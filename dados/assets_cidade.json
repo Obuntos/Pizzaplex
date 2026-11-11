@@ -1,0 +1,7406 @@
+{
+  "cidade_grama": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_faixa_de_pedestre": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_lombada": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_bueiro": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_terra_reta": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_terra": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_ciclovia_reta": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_ciclovia_curva": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_poste_de_luz": {
+    "nome": "Poste de luz",
+    "pasta": "res://assets/cidade/cidade_poste_de_luz",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 71,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "apagado",
+      "aceso"
+    ],
+    "estado_padrao": "apagado",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -35,
+        -87
+      ],
+      "direita": [
+        -16,
+        -97
+      ],
+      "costas": [
+        -15,
+        -97
+      ],
+      "esquerda": [
+        -13,
+        -87
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_semaforo": {
+    "nome": "Semaforo",
+    "pasta": "res://assets/cidade/cidade_semaforo",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 83,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "vermelho",
+      "amarelo",
+      "verde"
+    ],
+    "estado_padrao": "vermelho",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -13,
+        -99
+      ],
+      "direita": [
+        -13,
+        -99
+      ],
+      "costas": [
+        -13,
+        -99
+      ],
+      "esquerda": [
+        -13,
+        -99
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_placa_pare": {
+    "nome": "Placa pare",
+    "pasta": "res://assets/cidade/cidade_placa_pare",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 53,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -12,
+        -70
+      ],
+      "direita": [
+        -12,
+        -70
+      ],
+      "costas": [
+        -12,
+        -70
+      ],
+      "esquerda": [
+        -12,
+        -70
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_placa_estacionamento": {
+    "nome": "Placa estacionamento",
+    "pasta": "res://assets/cidade/cidade_placa_estacionamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 51,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -11,
+        -68
+      ],
+      "direita": [
+        -11,
+        -68
+      ],
+      "costas": [
+        -11,
+        -68
+      ],
+      "esquerda": [
+        -11,
+        -68
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_placa_velocidade": {
+    "nome": "Placa velocidade",
+    "pasta": "res://assets/cidade/cidade_placa_velocidade",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 55,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -13,
+        -72
+      ],
+      "direita": [
+        -13,
+        -72
+      ],
+      "costas": [
+        -13,
+        -72
+      ],
+      "esquerda": [
+        -13,
+        -72
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_ponto_de_onibus": {
+    "nome": "Ponto de onibus",
+    "pasta": "res://assets/cidade/cidade_ponto_de_onibus",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 65,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -29,
+        -70
+      ],
+      "direita": [
+        -29,
+        -76
+      ],
+      "costas": [
+        -24,
+        -76
+      ],
+      "esquerda": [
+        -24,
+        -70
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_hidrante": {
+    "nome": "Hidrante",
+    "pasta": "res://assets/cidade/cidade_hidrante",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 12,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -9,
+        -27
+      ],
+      "direita": [
+        -9,
+        -27
+      ],
+      "costas": [
+        -8,
+        -27
+      ],
+      "esquerda": [
+        -8,
+        -27
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_caixa_de_correio": {
+    "nome": "Caixa de correio",
+    "pasta": "res://assets/cidade/cidade_caixa_de_correio",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 28,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -11,
+        -43
+      ],
+      "direita": [
+        -11,
+        -43
+      ],
+      "costas": [
+        -11,
+        -43
+      ],
+      "esquerda": [
+        -11,
+        -43
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_padaria_10_10": {
+    "nome": "Padaria",
+    "pasta": "res://assets/cidade/cidade_padaria_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -123
+      ],
+      "direita": [
+        -608,
+        -241
+      ],
+      "costas": [
+        -320,
+        -385
+      ],
+      "esquerda": [
+        -32,
+        -267
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "alturas": {
+      "frente": "res://assets/cidade/cidade_padaria_10_10/alturas/frente.png",
+      "direita": "res://assets/cidade/cidade_padaria_10_10/alturas/direita.png",
+      "costas": "res://assets/cidade/cidade_padaria_10_10/alturas/costas.png",
+      "esquerda": "res://assets/cidade/cidade_padaria_10_10/alturas/esquerda.png"
+    }
+  },
+  "cidade_mercadinho_10_10": {
+    "nome": "Mercadinho",
+    "pasta": "res://assets/cidade/cidade_mercadinho_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -123
+      ],
+      "direita": [
+        -608,
+        -241
+      ],
+      "costas": [
+        -320,
+        -385
+      ],
+      "esquerda": [
+        -32,
+        -267
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_farmacia_10_10": {
+    "nome": "Farmácia",
+    "pasta": "res://assets/cidade/cidade_farmacia_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -123
+      ],
+      "direita": [
+        -608,
+        -241
+      ],
+      "costas": [
+        -320,
+        -385
+      ],
+      "esquerda": [
+        -32,
+        -267
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "alturas": {
+      "frente": "res://assets/cidade/cidade_farmacia_10_10/alturas/frente.png",
+      "direita": "res://assets/cidade/cidade_farmacia_10_10/alturas/direita.png",
+      "costas": "res://assets/cidade/cidade_farmacia_10_10/alturas/costas.png",
+      "esquerda": "res://assets/cidade/cidade_farmacia_10_10/alturas/esquerda.png"
+    }
+  },
+  "cidade_apartamentos_10_10": {
+    "nome": "Edifício residencial",
+    "pasta": "res://assets/cidade/cidade_apartamentos_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -204
+      ],
+      "direita": [
+        -608,
+        -322
+      ],
+      "costas": [
+        -320,
+        -473
+      ],
+      "esquerda": [
+        -32,
+        -348
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_casa_b_10_10": {
+    "nome": "Casa térrea",
+    "pasta": "res://assets/cidade/cidade_casa_b_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -64
+      ],
+      "direita": [
+        -608,
+        -178
+      ],
+      "costas": [
+        -320,
+        -308
+      ],
+      "esquerda": [
+        -32,
+        -166
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_casa_c_10_10": {
+    "nome": "Casa com garagem",
+    "pasta": "res://assets/cidade/cidade_casa_c_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -105
+      ],
+      "direita": [
+        -608,
+        -227
+      ],
+      "costas": [
+        -320,
+        -364
+      ],
+      "esquerda": [
+        -32,
+        -243
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_escola_10_10": {
+    "nome": "Escola",
+    "pasta": "res://assets/cidade/cidade_escola_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -116
+      ],
+      "direita": [
+        -608,
+        -219
+      ],
+      "costas": [
+        -320,
+        -363
+      ],
+      "esquerda": [
+        -32,
+        -260
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_hospital_10_10": {
+    "nome": "Hospital",
+    "pasta": "res://assets/cidade/cidade_hospital_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -172
+      ],
+      "direita": [
+        -608,
+        -278
+      ],
+      "costas": [
+        -320,
+        -422
+      ],
+      "esquerda": [
+        -32,
+        -316
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_delegacia_10_10": {
+    "nome": "Delegacia",
+    "pasta": "res://assets/cidade/cidade_delegacia_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -134
+      ],
+      "direita": [
+        -608,
+        -217
+      ],
+      "costas": [
+        -320,
+        -361
+      ],
+      "esquerda": [
+        -32,
+        -252
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_posto_gasolina_10_10": {
+    "nome": "Posto de gasolina",
+    "pasta": "res://assets/cidade/cidade_posto_gasolina_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -64
+      ],
+      "direita": [
+        -608,
+        -245
+      ],
+      "costas": [
+        -320,
+        -366
+      ],
+      "esquerda": [
+        -32,
+        -165
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_floricultura_10_10": {
+    "nome": "Floricultura",
+    "pasta": "res://assets/cidade/cidade_floricultura_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -89
+      ],
+      "direita": [
+        -608,
+        -205
+      ],
+      "costas": [
+        -320,
+        -306
+      ],
+      "esquerda": [
+        -32,
+        -189
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "alturas": {
+      "frente": "res://assets/cidade/cidade_floricultura_10_10/alturas/frente.png",
+      "direita": "res://assets/cidade/cidade_floricultura_10_10/alturas/direita.png",
+      "costas": "res://assets/cidade/cidade_floricultura_10_10/alturas/costas.png",
+      "esquerda": "res://assets/cidade/cidade_floricultura_10_10/alturas/esquerda.png"
+    }
+  },
+  "cidade_casa_10_10": {
+    "nome": "Casa azul",
+    "pasta": "res://assets/cidade/cidade_casa_10_10",
+    "largura": 10,
+    "profundidade": 10,
+    "altura": 180,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -320,
+        -110
+      ],
+      "direita": [
+        -608,
+        -232
+      ],
+      "costas": [
+        -320,
+        -381
+      ],
+      "esquerda": [
+        -32,
+        -263
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_arvore_copa_redonda": {
+    "nome": "Arvore copa redonda",
+    "pasta": "res://assets/cidade/cidade_arvore_copa_redonda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 80,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -24,
+        -93
+      ],
+      "direita": [
+        -23,
+        -93
+      ],
+      "costas": [
+        -22,
+        -97
+      ],
+      "esquerda": [
+        -21,
+        -97
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_arvore_pinheiro": {
+    "nome": "Arvore pinheiro",
+    "pasta": "res://assets/cidade/cidade_arvore_pinheiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 80,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -19,
+        -94
+      ],
+      "direita": [
+        -19,
+        -94
+      ],
+      "costas": [
+        -19,
+        -94
+      ],
+      "esquerda": [
+        -19,
+        -94
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_calcada": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_calcada_borda": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_calcada_canto": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_calcada_ponta": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_calcada_ilha": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_pontilhada_reta": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_pontilhada_curva": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_pontilhada_tee": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_pontilhada_cruzamento": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_pontilhada_ponta": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_estrada_lisa": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5
+  },
+  "cidade_grama_r1": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_grama_r2": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_grama_r3": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_grama_gasto": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_grama_gasto_r1": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_grama_gasto_r2": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_grama_gasto_r3": {
+    "nome": "Grama",
+    "pasta": "res://assets/cidade/cidade_grama",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_faixa_de_pedestre_r1": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_faixa_de_pedestre_r2": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_faixa_de_pedestre_r3": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_faixa_de_pedestre_gasto": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_faixa_de_pedestre_gasto_r1": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_faixa_de_pedestre_gasto_r2": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_faixa_de_pedestre_gasto_r3": {
+    "nome": "Faixa de pedestre",
+    "pasta": "res://assets/cidade/cidade_faixa_de_pedestre",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_lombada_r1": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_lombada_r2": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_lombada_r3": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_lombada_gasto": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_lombada_gasto_r1": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_lombada_gasto_r2": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_lombada_gasto_r3": {
+    "nome": "Lombada",
+    "pasta": "res://assets/cidade/cidade_lombada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_bueiro_r1": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_bueiro_r2": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_bueiro_r3": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_bueiro_gasto": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_bueiro_gasto_r1": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_bueiro_gasto_r2": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_bueiro_gasto_r3": {
+    "nome": "Bueiro",
+    "pasta": "res://assets/cidade/cidade_bueiro",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_terra_reta_r1": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_terra_reta_r2": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_terra_reta_r3": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_terra_reta_gasto": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_terra_reta_gasto_r1": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_terra_reta_gasto_r2": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_terra_reta_gasto_r3": {
+    "nome": "Estrada terra reta",
+    "pasta": "res://assets/cidade/cidade_estrada_terra_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_terra_r1": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_terra_r2": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_terra_r3": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_terra_gasto": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_terra_gasto_r1": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_terra_gasto_r2": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_terra_gasto_r3": {
+    "nome": "Estrada terra",
+    "pasta": "res://assets/cidade/cidade_estrada_terra",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_ciclovia_reta_r1": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_ciclovia_reta_r2": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_ciclovia_reta_r3": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_ciclovia_reta_gasto": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_ciclovia_reta_gasto_r1": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_ciclovia_reta_gasto_r2": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_ciclovia_reta_gasto_r3": {
+    "nome": "Ciclovia reta",
+    "pasta": "res://assets/cidade/cidade_ciclovia_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_ciclovia_curva_r1": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_ciclovia_curva_r2": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_ciclovia_curva_r3": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_ciclovia_curva_gasto": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_ciclovia_curva_gasto_r1": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_ciclovia_curva_gasto_r2": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_ciclovia_curva_gasto_r3": {
+    "nome": "Ciclovia curva",
+    "pasta": "res://assets/cidade/cidade_ciclovia_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_r1": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_r2": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_r3": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_gasto": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_calcada_gasto_r1": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_gasto_r2": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_gasto_r3": {
+    "nome": "Calcada",
+    "pasta": "res://assets/cidade/cidade_calcada",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_borda_r1": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_borda_r2": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_borda_r3": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_borda_gasto": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_calcada_borda_gasto_r1": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_borda_gasto_r2": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_borda_gasto_r3": {
+    "nome": "Calcada borda",
+    "pasta": "res://assets/cidade/cidade_calcada_borda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_canto_r1": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_canto_r2": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_canto_r3": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_canto_gasto": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_calcada_canto_gasto_r1": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_canto_gasto_r2": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_canto_gasto_r3": {
+    "nome": "Calcada canto",
+    "pasta": "res://assets/cidade/cidade_calcada_canto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_ponta_r1": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_ponta_r2": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_ponta_r3": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_ponta_gasto": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_calcada_ponta_gasto_r1": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_ponta_gasto_r2": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_ponta_gasto_r3": {
+    "nome": "Calcada ponta",
+    "pasta": "res://assets/cidade/cidade_calcada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_ilha_r1": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_ilha_r2": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_ilha_r3": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_calcada_ilha_gasto": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_calcada_ilha_gasto_r1": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_calcada_ilha_gasto_r2": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_calcada_ilha_gasto_r3": {
+    "nome": "Calcada ilha",
+    "pasta": "res://assets/cidade/cidade_calcada_ilha",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -20
+      ],
+      "direita": [
+        -32,
+        -20
+      ],
+      "costas": [
+        -32,
+        -20
+      ],
+      "esquerda": [
+        -32,
+        -20
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_reta_r1": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_reta_r2": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_reta_r3": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_reta_gasto": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_pontilhada_reta_gasto_r1": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_reta_gasto_r2": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_reta_gasto_r3": {
+    "nome": "Estrada pontilhada reta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_reta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_curva_r1": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_curva_r2": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_curva_r3": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_curva_gasto": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_pontilhada_curva_gasto_r1": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_curva_gasto_r2": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_curva_gasto_r3": {
+    "nome": "Estrada pontilhada curva",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_tee_r1": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_tee_r2": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_tee_r3": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_tee_gasto": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_pontilhada_tee_gasto_r1": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_tee_gasto_r2": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_tee_gasto_r3": {
+    "nome": "Estrada pontilhada tee",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_tee",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_cruzamento_r1": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_cruzamento_r2": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_cruzamento_r3": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_cruzamento_gasto": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_pontilhada_cruzamento_gasto_r1": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_cruzamento_gasto_r2": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_cruzamento_gasto_r3": {
+    "nome": "Estrada pontilhada cruzamento",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_cruzamento",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_ponta_r1": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_ponta_r2": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_ponta_r3": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_pontilhada_ponta_gasto": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_pontilhada_ponta_gasto_r1": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_pontilhada_ponta_gasto_r2": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_pontilhada_ponta_gasto_r3": {
+    "nome": "Estrada pontilhada ponta",
+    "pasta": "res://assets/cidade/cidade_estrada_pontilhada_ponta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_lisa_r1": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_lisa_r2": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_lisa_r3": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "novo",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "cidade_estrada_lisa_gasto": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 0
+  },
+  "cidade_estrada_lisa_gasto_r1": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 1
+  },
+  "cidade_estrada_lisa_gasto_r2": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 2
+  },
+  "cidade_estrada_lisa_gasto_r3": {
+    "nome": "Estrada lisa",
+    "pasta": "res://assets/cidade/cidade_estrada_lisa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "novo",
+      "gasto"
+    ],
+    "estado_padrao": "gasto",
+    "bairro": true,
+    "piso": true,
+    "sobreposto": true,
+    "origem_celula": true,
+    "origens": {
+      "frente": [
+        -32,
+        -18
+      ],
+      "direita": [
+        -32,
+        -18
+      ],
+      "costas": [
+        -32,
+        -18
+      ],
+      "esquerda": [
+        -32,
+        -18
+      ]
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 5,
+    "rotacao_base": 3
+  },
+  "canteiro_flores": {
+    "nome": "Canteiro de flores",
+    "pasta": "res://assets/cidade/canteiro_flores",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 16,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": false,
+    "origens": {
+      "frente": [
+        -29,
+        -22
+      ],
+      "direita": [
+        -29,
+        -23
+      ],
+      "costas": [
+        -29,
+        -18
+      ],
+      "esquerda": [
+        -29,
+        -25
+      ]
+    },
+    "alturas": {
+      "frente": "res://assets/cidade/canteiro_flores/alturas/frente.png",
+      "direita": "res://assets/cidade/canteiro_flores/alturas/direita.png",
+      "costas": "res://assets/cidade/canteiro_flores/alturas/costas.png",
+      "esquerda": "res://assets/cidade/canteiro_flores/alturas/esquerda.png"
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 6
+  },
+  "canteiro_lavanda": {
+    "nome": "Canteiro de lavanda",
+    "pasta": "res://assets/cidade/canteiro_lavanda",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 16,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": false,
+    "origens": {
+      "frente": [
+        -29,
+        -22
+      ],
+      "direita": [
+        -29,
+        -23
+      ],
+      "costas": [
+        -29,
+        -18
+      ],
+      "esquerda": [
+        -29,
+        -25
+      ]
+    },
+    "alturas": {
+      "frente": "res://assets/cidade/canteiro_lavanda/alturas/frente.png",
+      "direita": "res://assets/cidade/canteiro_lavanda/alturas/direita.png",
+      "costas": "res://assets/cidade/canteiro_lavanda/alturas/costas.png",
+      "esquerda": "res://assets/cidade/canteiro_lavanda/alturas/esquerda.png"
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 6
+  },
+  "jardineira": {
+    "nome": "Jardineira comprida",
+    "pasta": "res://assets/cidade/jardineira",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 16,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "bairro": true,
+    "piso": false,
+    "sobreposto": false,
+    "origem_celula": false,
+    "origens": {
+      "frente": [
+        -45,
+        -30
+      ],
+      "direita": [
+        -45,
+        -31
+      ],
+      "costas": [
+        -45,
+        -26
+      ],
+      "esquerda": [
+        -45,
+        -27
+      ]
+    },
+    "alturas": {
+      "frente": "res://assets/cidade/jardineira/alturas/frente.png",
+      "direita": "res://assets/cidade/jardineira/alturas/direita.png",
+      "costas": "res://assets/cidade/jardineira/alturas/costas.png",
+      "esquerda": "res://assets/cidade/jardineira/alturas/esquerda.png"
+    },
+    "categoria": "Cenário",
+    "preco": 0,
+    "conforto": 6
+  }
+}

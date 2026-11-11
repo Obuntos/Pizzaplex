@@ -1,0 +1,1586 @@
+{
+  "formato": "pizzaplex_terreno_layout",
+  "versao": 1,
+  "editor": "Pizzaplex_Editor_Terrenos",
+  "coordenadas": "locais_terreno",
+  "grade": {
+    "largura": 10,
+    "profundidade": 12,
+    "tile": [
+      64,
+      32
+    ]
+  },
+  "terreno": "floricultura",
+  "nome": "Floricultura",
+  "origem_cidade": [
+    33,
+    13
+  ],
+  "predio_original": "cidade_floricultura_10_10",
+  "salas": [],
+  "pisos": [
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        0
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        1
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        2
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        3
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        4
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        5
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        6
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        7
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        8
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        9
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        10
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        0,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        1,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        2,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        3,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        4,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        5,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        6,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        7,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        8,
+        11
+      ]
+    },
+    {
+      "tipo": "antigo_piso_velho",
+      "r": 0,
+      "estado": "padrao",
+      "celula": [
+        9,
+        11
+      ]
+    }
+  ],
+  "objetos": [
+    {
+      "id": "obj_1",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        0
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_2",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        1
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_3",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        2
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_4",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        3
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_5",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        4
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_6",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        5
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_7",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        6
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_8",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        7
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_9",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        8
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_10",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        9
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_11",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        10
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_12",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        0,
+        11
+      ],
+      "rotacao": 1,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_13",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        1,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_14",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        2,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_15",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        3,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_16",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        4,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_17",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        5,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_18",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        6,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_19",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        7,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_20",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        8,
+        0
+      ],
+      "rotacao": 0,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_21",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        0
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_22",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        1
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_23",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        2
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_24",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        3
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_25",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        4
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_26",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        5
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_27",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        6
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_28",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        7
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_29",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        8
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_30",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        9
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_31",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        10
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_32",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        9,
+        11
+      ],
+      "rotacao": 3,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_33",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        1,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_34",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        2,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_35",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        3,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_36",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        4,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_37",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        5,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_38",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        6,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_39",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        7,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    },
+    {
+      "id": "obj_40",
+      "tipo": "antigo_parede_quebrada_modulo",
+      "celula": [
+        8,
+        11
+      ],
+      "rotacao": 2,
+      "estado": "rachada",
+      "elevacao": 0,
+      "apoio": null
+    }
+  ]
+}

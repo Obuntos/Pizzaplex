@@ -1,0 +1,808 @@
+{
+  "oficina_armario_metal_baixo": {
+    "nome": "Armário metálico baixo",
+    "pasta": "res://assets/objetos/oficina/oficina_armario_metal_baixo",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 30.24,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "meia",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_armario_metal_alto": {
+    "nome": "Armário metálico alto",
+    "pasta": "res://assets/objetos/oficina/oficina_armario_metal_alto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 54.72,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "meia",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_armario_metal_duplo": {
+    "nome": "Armário metálico duplo",
+    "pasta": "res://assets/objetos/oficina/oficina_armario_metal_duplo",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 54.72,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "meia",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_vestiario_individual": {
+    "nome": "Vestiário individual",
+    "pasta": "res://assets/objetos/oficina/oficina_vestiario_individual",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 57.6,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_vestiario_triplo": {
+    "nome": "Vestiário de três portas",
+    "pasta": "res://assets/objetos/oficina/oficina_vestiario_triplo",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 57.6,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_vestiario_duplo_niveis": {
+    "nome": "Vestiário de quatro compartimentos",
+    "pasta": "res://assets/objetos/oficina/oficina_vestiario_duplo_niveis",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 57.6,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 65,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_bancada_trabalho": {
+    "nome": "Bancada mecânica com blueprints",
+    "pasta": "res://assets/objetos/oficina/oficina_bancada_trabalho",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 53.04,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "engrenagens",
+      "motor",
+      "braco"
+    ],
+    "estado_padrao": "engrenagens",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 95,
+    "conforto": 2,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_cadeira_escritorio_baixa": {
+    "nome": "Cadeira de escritório baixa",
+    "pasta": "res://assets/objetos/oficina/oficina_cadeira_escritorio_baixa",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 37.72,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "cinza",
+      "verde",
+      "vinho"
+    ],
+    "estado_padrao": "cinza",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 45,
+    "conforto": 2,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_cadeira_escritorio_alta": {
+    "nome": "Cadeira de escritório alta",
+    "pasta": "res://assets/objetos/oficina/oficina_cadeira_escritorio_alta",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 45.1,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "cinza",
+      "verde",
+      "vinho"
+    ],
+    "estado_padrao": "cinza",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 45,
+    "conforto": 2,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_caixa_papelao": {
+    "nome": "Caixa de papelão",
+    "pasta": "res://assets/objetos/oficina/oficina_caixa_papelao",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 21.28,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_caixa_madeira": {
+    "nome": "Caixote de madeira",
+    "pasta": "res://assets/objetos/oficina/oficina_caixa_madeira",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 21.28,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "fechada",
+      "aberta"
+    ],
+    "estado_padrao": "fechada",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_duto_reto": {
+    "nome": "Duto reto",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_reto",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_vertical": {
+    "nome": "Duto vertical",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_vertical",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_curva": {
+    "nome": "Curva de duto",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_curva",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_t": {
+    "nome": "Derivação em T",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_t",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_cruz": {
+    "nome": "Conexão em cruz",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_cruz",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_quina": {
+    "nome": "Quina externa da parede",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_quina",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_grade": {
+    "nome": "Grade de ventilação",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_grade",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_duto_linha": {
+    "nome": "Linha conectada · 3 tiles",
+    "pasta": "res://assets/objetos/oficina/oficina_duto_linha",
+    "largura": 3,
+    "profundidade": 1,
+    "altura": 100,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "baixo",
+      "alto"
+    ],
+    "estado_padrao": "baixo",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true
+  },
+  "oficina_fita_perigo_1": {
+    "nome": "Fita modular · 1 tile",
+    "pasta": "res://assets/objetos/oficina/oficina_fita_perigo_1",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 50,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "integra",
+      "rasgada",
+      "pontas"
+    ],
+    "estado_padrao": "integra",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_fita_perigo_2": {
+    "nome": "Linha de fitas · 2 tiles",
+    "pasta": "res://assets/objetos/oficina/oficina_fita_perigo_2",
+    "largura": 2,
+    "profundidade": 1,
+    "altura": 50,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "integra",
+      "rasgada",
+      "pontas"
+    ],
+    "estado_padrao": "integra",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_fita_perigo_3": {
+    "nome": "Linha de fitas · 3 tiles",
+    "pasta": "res://assets/objetos/oficina/oficina_fita_perigo_3",
+    "largura": 3,
+    "profundidade": 1,
+    "altura": 50,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "integra",
+      "rasgada",
+      "pontas"
+    ],
+    "estado_padrao": "integra",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_galao_gasolina": {
+    "nome": "Galão de gasolina",
+    "pasta": "res://assets/objetos/oficina/oficina_galao_gasolina",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 21.0,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "integro",
+      "gasto",
+      "enferrujado"
+    ],
+    "estado_padrao": "integro",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_papeis_folhas": {
+    "nome": "Folhas soltas e dobradas",
+    "pasta": "res://assets/objetos/oficina/oficina_papeis_folhas",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 2,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_papeis_formularios": {
+    "nome": "Formulários e recibos",
+    "pasta": "res://assets/objetos/oficina/oficina_papeis_formularios",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 2,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_papeis_blueprints": {
+    "nome": "Blueprints descartados",
+    "pasta": "res://assets/objetos/oficina/oficina_papeis_blueprints",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 2,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "padrao"
+    ],
+    "estado_padrao": "padrao",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_placa_voltagem_horizontal": {
+    "nome": "Placa de alta voltagem",
+    "pasta": "res://assets/objetos/oficina/oficina_placa_voltagem_horizontal",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 75,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "normal",
+      "gasta"
+    ],
+    "estado_padrao": "normal",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_placa_voltagem_vertical": {
+    "nome": "Placa vertical",
+    "pasta": "res://assets/objetos/oficina/oficina_placa_voltagem_vertical",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 79,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "normal",
+      "gasta"
+    ],
+    "estado_padrao": "normal",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_placa_voltagem_haste": {
+    "nome": "Placa sobre haste",
+    "pasta": "res://assets/objetos/oficina/oficina_placa_voltagem_haste",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 52,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "normal",
+      "gasta"
+    ],
+    "estado_padrao": "normal",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 8,
+    "conforto": 0,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false,
+    "oculto": true,
+    "apenas_cenario": true
+  },
+  "oficina_planta_folhas_largas": {
+    "nome": "Planta de folhas largas",
+    "pasta": "res://assets/objetos/oficina/oficina_planta_folhas_largas",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 32.3,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "verde",
+      "terracota",
+      "bege"
+    ],
+    "estado_padrao": "verde",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 25,
+    "conforto": 4,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_planta_folhas_longas": {
+    "nome": "Planta de folhas longas",
+    "pasta": "res://assets/objetos/oficina/oficina_planta_folhas_longas",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 40.8,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "verde",
+      "terracota",
+      "bege"
+    ],
+    "estado_padrao": "verde",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 25,
+    "conforto": 4,
+    "sobreposto": false,
+    "transitavel": false,
+    "parede_requerida": false
+  },
+  "oficina_poster_obras": {
+    "nome": "Pôster de obras · três estados",
+    "pasta": "res://assets/objetos/oficina/oficina_poster_obras",
+    "largura": 1,
+    "profundidade": 1,
+    "altura": 88,
+    "pivo": [
+      96,
+      144
+    ],
+    "estados": [
+      "normal",
+      "leve",
+      "alto"
+    ],
+    "estado_padrao": "normal",
+    "mobilia": true,
+    "decoracao_oficina": true,
+    "categoria": "Decoração",
+    "preco": 12,
+    "conforto": 2,
+    "sobreposto": true,
+    "transitavel": true,
+    "parede_requerida": true,
+    "oculto": true,
+    "apenas_cenario": true
+  }
+}

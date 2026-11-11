@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.gd": "gdscript",
+    "*.tscn": "gdresource",
+    "*.tres": "gdresource"
+  },
+  "files.exclude": {
+    ".godot": true
+  },
+  "search.exclude": {
+    ".godot": true
+  },
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": true,
+  "godotTools.lsp.headless": false
+}
