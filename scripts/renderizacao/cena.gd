@@ -243,6 +243,7 @@ func vincular(personagem: PersonagemPlex) -> void:
 	material_novo.set_shader_parameter("origem", Vector2(ORIGEM))
 	material_novo.set_shader_parameter("tamanho", Vector2(TAMANHO))
 	personagem.material = material_novo
+	personagem.remove_meta("pele_aplicada")
 	personagem.visual.use_parent_material = true
 	personagem.animacao.use_parent_material = true
 	personagem.carga.use_parent_material = true
@@ -272,6 +273,9 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 	var atlas: AtlasTexture=personagem.animacao.atlases.get("modelo",null)
 	var fonte: Texture2D=atlas.atlas if atlas!=null else null
 	var possui_normal: bool=fonte is CanvasTexture and fonte.normal_texture!=null and fonte.normal_texture.get_size()==fonte.diffuse_texture.get_size()
+	var pele:=PelePlex.de(personagem)
+	if str(personagem.get_meta("pele_aplicada",""))!=pele:
+		PelePlex.aplicar(material_atual,pele);personagem.set_meta("pele_aplicada",pele)
 	material_atual.set_shader_parameter("normal_automatica",personagem.robo and not possui_normal)
 	material_atual.set_shader_parameter("fantasia_urso",personagem.modelo=="fantasia_urso")
 	material_atual.set_shader_parameter("volume_fantasia",personagem.modelo.begins_with("fantasia_") and personagem.modelo not in ["fantasia_coelho"])

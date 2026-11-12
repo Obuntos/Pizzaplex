@@ -4,6 +4,7 @@ extends Node2D
 static var cache_expressoes:Dictionary={}
 var desgaste: float = 0.0
 var modelo: String = "humano"
+var variacao_corpo: String = ""
 var expressao: String = "neutro"
 var camadas: Dictionary = {}
 var atlases: Dictionary = {}
@@ -101,6 +102,7 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 				var anim:=acao if acao in ["parado","andar","sentar","levar_prato","segurar_prato","lavar","preparar"] else "preparar" if acao in ["varrer","esfregar"] else "andar" if acao=="carregar" else "parado"
 				var humor:=expressao if expressao in ["neutro","feliz","muito_feliz","triste","chateado","depressivo","ansioso","medo","pavor","incomodado","raivoso","confuso","surpreso","shocked"] else "neutro"
 				arquivo="res://assets/personagens/bonnie_visitante/"+humor+"/"+anim+".png"
+			if not variacao_corpo.is_empty() and ResourceLoader.exists("res://assets/personagens/"+modelo+"/variacoes/"+variacao_corpo+"/"+acao+".png"): arquivo="res://assets/personagens/"+modelo+"/variacoes/"+variacao_corpo+"/"+acao+".png"
 			if not ResourceLoader.exists(arquivo): arquivo = "res://assets/personagens/" + modelo + "/parado.png"
 			if modelo == "endo" and pecas >= 0:
 				arquivo = "res://assets/personagens/endo/montagem.png"

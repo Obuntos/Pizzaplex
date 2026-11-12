@@ -143,7 +143,8 @@ func ataque(m:PersonagemPlex,r:PersonagemPlex) -> void:
 		if not caca.guarda(g):continue
 		if VisaoNPCPlex.ve(jogo,g,m,8.0) or guarda.monitorando(g) and guarda.camera_atual_ve(g,m.local):caca.somar_medo(g,1.5);jogo.sistemas.baloes.exibir(g,"O ANIMATRÔNICO ATACOU O MECÂNICO!",4)
 	jogo.sistemas.investigacao.registrar_incidente(m)
-	GorePlex.espalhar(jogo,m.celula,3,posmod(roundi(float(r.direcao)/2.0),4))
+	if CatalogoMontagemPlex.quebrado(r.modelo):r.robotica.ensanguentado=true;jogo.sistemas.cartazes.morte(m.celula)
+	else:GorePlex.espalhar(jogo,m.celula,3,posmod(roundi(float(r.direcao)/2.0),4))
 	jogo.painel.mensagem("O animatrônico ativou durante a manutenção e atacou o mecânico. Limpe tudo antes que alguém veja.")
 	jogo.sistemas.avisos.marcar(m.local,"O mecânico foi atacado")
 	jogo.sistemas.jornal.noticiar("Funcionário da pizzaria desaparece durante o turno da noite.")

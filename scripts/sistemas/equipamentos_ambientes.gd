@@ -78,6 +78,7 @@ func abrir_diagnostico(id:int) -> void:
 	if not is_instance_valid(diagnostico_ui):diagnostico_ui=DiagnosticoRobosPlex.new();jogo.add_child(diagnostico_ui);diagnostico_ui.configurar(jogo)
 	diagnostico_ui.abrir(id)
 func opcoes(menu:CanvasLayer,p:Dictionary) -> void:
+	jogo.sistemas.cartazes.opcoes(menu,p)
 	match str(p.tipo):
 		"sistema_triturador_residuos":jogo.sistemas.vhs.opcoes(menu,p)
 		"amb_painel_diagnostico":menu.adicionar("Testar robô e percursos",func():abrir_diagnostico(int(p.id)))

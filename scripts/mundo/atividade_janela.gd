@@ -3,7 +3,6 @@ extends Node
 
 const FPS_SEGUNDO_PLANO=24
 const FPS_MINIMIZADA=10
-const PASSOS_SEGUNDO_PLANO=4
 const RECUPERACAO_US=2000000
 var jogo:Node
 var janela:Window
@@ -56,8 +55,6 @@ func observar(foco:bool,reduzida:bool,agora_us:int=0) -> void:
 	else:
 		retomada_ate_us=0
 	Engine.max_fps=mini(limite_ativo,FPS_MINIMIZADA) if reduzida else mini(limite_ativo,FPS_SEGUNDO_PLANO) if not foco else limite_ativo
-	Engine.max_physics_steps_per_frame=maxi(2,mini(passos_anteriores,PASSOS_SEGUNDO_PLANO)) if not foco or reduzida else 1
-	Engine.physics_ticks_per_second=mini(fisica_anterior,FPS_MINIMIZADA) if reduzida else mini(fisica_anterior,FPS_SEGUNDO_PLANO) if not foco else fisica_anterior
 	if not foco and is_instance_valid(jogo):
 		jogo.arrastando=false
 		jogo.apagando=false

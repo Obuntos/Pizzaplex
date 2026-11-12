@@ -12,6 +12,9 @@ var uniforme_indice:=0
 var cabelo_indice:=0
 var cabelos:Array=[]
 var cor_escolhida:="marrom_escuro"
+var pele_escolhida:=PelePlex.PADRAO
+var peles:Dictionary={}
+var material_pele:=ShaderMaterial.new()
 var sexos:Array[Button]=[]
 var cores:Dictionary={}
 var cabelo_nome:=Label.new()
@@ -118,6 +121,19 @@ func _ready() -> void:
 		b.pressed.connect(definir_cor.bind(id))
 		paleta.add_child(b)
 		cores[id]=b
+	T.texto(formulario,"Cor da pele",16)
+	var paleta_pele:=HBoxContainer.new()
+	paleta_pele.add_theme_constant_override("separation",12)
+	formulario.add_child(paleta_pele)
+	for tom in PelePlex.opcoes():
+		var id_pele:=str(tom.id)
+		var bp:=Button.new()
+		bp.custom_minimum_size=Vector2(42,40)
+		bp.toggle_mode=true
+		bp.tooltip_text=str(tom.nome)
+		bp.pressed.connect(definir_pele.bind(id_pele))
+		paleta_pele.add_child(bp)
+		peles[id_pele]=bp
 	T.texto(formulario,"Olhos",16)
 	criar_seletor(formulario,olhos_nome,trocar_olhos)
 	olhos_nome.text=NOMES_OLHOS[olhos_indice]
@@ -164,7 +180,7 @@ func redimensionar() -> void:
 	janela.position=((tela-janela.size*escala)*.5).round()
 
 func dados() -> Dictionary:
-	return {"restaurante":restaurante.text.strip_edges(),"nome":nome.text.strip_edges(),"modelo":"humano" if sexo==0 else "humana","uniforme":"administrador_"+("masculino" if sexo==0 else "feminino")+"_"+str(uniforme_indice+1),"cabelo":str(cabelos[cabelo_indice].id),"cor_cabelo":CoresCabeloPlex.validar(cor_escolhida),"olhos":RostoPlex.OLHOS[olhos_indice],"itens_faciais":RostoPlex.itens(faciais_indices.map(func(i):return ITENS_FACIAIS[i]))}
+	return {"restaurante":restaurante.text.strip_edges(),"nome":nome.text.strip_edges(),"modelo":"humano" if sexo==0 else "humana","uniforme":"administrador_"+("masculino" if sexo==0 else "feminino")+"_"+str(uniforme_indice+1),"cabelo":str(cabelos[cabelo_indice].id),"cor_cabelo":CoresCabeloPlex.validar(cor_escolhida),"pele":PelePlex.validar(pele_escolhida),"olhos":RostoPlex.OLHOS[olhos_indice],"itens_faciais":RostoPlex.itens(faciais_indices.map(func(i):return ITENS_FACIAIS[i]))}
 
 func criar_seletor(pai:Control,rotulo:Label,acao:Callable) -> void:
 	var linha:=HBoxContainer.new();pai.add_child(linha)
@@ -203,6 +219,11 @@ func definir_cor(id:String) -> void:
 	atualizar_controles()
 	atualizar_previa()
 
+func definir_pele(id:String) -> void:
+	pele_escolhida=PelePlex.validar(id)
+	atualizar_controles()
+	atualizar_previa()
+
 func atualizar_controles() -> void:
 	for i in sexos.size():
 		sexos[i].set_pressed_no_signal(sexo==i)
@@ -220,6 +241,15 @@ func atualizar_controles() -> void:
 			if estado=="disabled": tinta=tinta.darkened(.4)
 			b.add_theme_stylebox_override(estado,VintagePlex.caixa(tinta,VintagePlex.CREME if id==cor_escolhida else Color("28160d"),4))
 		b.add_theme_stylebox_override("focus",VintagePlex.caixa(Color.TRANSPARENT,Color("c98a4b"),0))
+	for tom in PelePlex.opcoes():
+		var id_pele:=str(tom.id)
+		var bp:Button=peles[id_pele]
+		bp.set_pressed_no_signal(id_pele==pele_escolhida)
+		for estado in ["normal","hover","pressed","hover_pressed"]:
+			var tinta_pele:=Color(str(tom.cor))
+			if estado=="hover": tinta_pele=tinta_pele.lightened(.2)
+			bp.add_theme_stylebox_override(estado,VintagePlex.caixa(tinta_pele,VintagePlex.CREME if id_pele==pele_escolhida else Color("28160d"),4))
+		bp.add_theme_stylebox_override("focus",VintagePlex.caixa(Color.TRANSPARENT,Color("c98a4b"),0))
 
 func abrir() -> void:
 	erro.text=""
@@ -240,12 +270,18 @@ func atualizar_previa() -> void:
 		ator.configurar(-1,novo_modelo,Vector2i.ZERO,false)
 		ator.planta_visual=PlantaPlex.new()
 		ator.scale=Vector2.ONE*3.0
+		material_pele.shader=preload("res://shaders/pele.gdshader")
+		ator.material=material_pele
+		ator.visual.use_parent_material=true
+		ator.animacao.use_parent_material=true
 		quadro.add_child(ator)
 	ator.funcao="administrador"
 	ator.visita.administrador=true
 	ator.uniforme=valor.uniforme
 	ator.cabelo=valor.cabelo
 	ator.visita.cor_cabelo=valor.cor_cabelo
+	ator.visita.pele=valor.pele
+	PelePlex.aplicar(material_pele,str(valor.pele))
 	ator.visita.olhos=valor.olhos;ator.visita.itens_faciais=valor.itens_faciais
 	ator.direcao=direcao
 	ator.atualizar_visual(false)

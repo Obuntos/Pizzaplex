@@ -414,7 +414,8 @@
   "apoio": false,
   "sobreposto": true,
   "parede_requerida": true,
-  "transitavel": true
+  "transitavel": true,
+  "cartaz_envelhece": true
  },
  "dec_cartaz_patitas_toy": {
   "nome": "Cartaz Toy Patitas",
@@ -440,7 +441,8 @@
   "apoio": false,
   "sobreposto": true,
   "parede_requerida": true,
-  "transitavel": true
+  "transitavel": true,
+  "cartaz_envelhece": true
  },
  "dec_cartaz_toys_dupla": {
   "nome": "Cartaz Toy Orelhitas e Patitas",
@@ -466,7 +468,8 @@
   "apoio": false,
   "sobreposto": true,
   "parede_requerida": true,
-  "transitavel": true
+  "transitavel": true,
+  "cartaz_envelhece": true
  },
  "dec_tapete_roxo_2x2": {
   "nome": "Tapete roxo estrelado · 2 × 2",
@@ -942,5 +945,308 @@
   "oculto": true,
   "entulho": true,
   "sangue": true
+ },
+ "of_fantasia_bancada": {
+  "nome": "Fantasia na bancada",
+  "pasta": "res://assets/objetos/decoracao/of_fantasia_bancada",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "orelhitas_quebrado",
+   "toy_orelhitas_quebrado",
+   "patitas_quebrado",
+   "toy_patitas_quebrado",
+   "orelhitas",
+   "toy_orelhitas",
+   "patitas",
+   "toy_patitas"
+  ],
+  "estado_padrao": "orelhitas_quebrado",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 0,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
+ },
+ "of_cartaz_orelhitas_telefone": {
+  "nome": "Cartaz clássico · Orelhitas ao telefone",
+  "pasta": "res://assets/objetos/decoracao/of_cartaz_orelhitas_telefone",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 74,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "novo",
+   "desbotado",
+   "rasgado"
+  ],
+  "estado_padrao": "novo",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 20,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true,
+  "cartaz_envelhece": true
+ },
+ "of_cartaz_patitas_milkshake": {
+  "nome": "Cartaz clássico · Patitas com milk-shake",
+  "pasta": "res://assets/objetos/decoracao/of_cartaz_patitas_milkshake",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 74,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "novo",
+   "desbotado",
+   "rasgado"
+  ],
+  "estado_padrao": "novo",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 20,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true,
+  "cartaz_envelhece": true
+ },
+ "of_cabeca_no_chao": {
+  "nome": "Cabeça no chão",
+  "pasta": "res://assets/objetos/decoracao/of_cabeca_no_chao",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 30,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "orelhitas",
+   "toy_orelhitas",
+   "patitas",
+   "toy_patitas",
+   "orelhitas_quebrado",
+   "toy_orelhitas_quebrado",
+   "patitas_quebrado",
+   "toy_patitas_quebrado"
+  ],
+  "estado_padrao": "orelhitas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 15,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "of_cabeca_tombada": {
+  "nome": "Cabeça tombada",
+  "pasta": "res://assets/objetos/decoracao/of_cabeca_tombada",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 22,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "orelhitas",
+   "toy_orelhitas",
+   "patitas",
+   "toy_patitas",
+   "orelhitas_quebrado",
+   "toy_orelhitas_quebrado",
+   "patitas_quebrado",
+   "toy_patitas_quebrado"
+  ],
+  "estado_padrao": "orelhitas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 15,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "of_cabecas_plastico": {
+  "nome": "Cabeças de plástico",
+  "pasta": "res://assets/objetos/decoracao/of_cabecas_plastico",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 30,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "misturadas",
+   "coelhos",
+   "ursos"
+  ],
+  "estado_padrao": "misturadas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 15,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "of_cabeca_endo": {
+  "nome": "Cabeça de endoesqueleto",
+  "pasta": "res://assets/objetos/decoracao/of_cabeca_endo",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 28,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "coelho_acesa",
+   "coelho_apagada",
+   "coelho_vermelha",
+   "urso_acesa",
+   "urso_apagada"
+  ],
+  "estado_padrao": "coelho_acesa",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 18,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "of_monte_cabecas": {
+  "nome": "Monte de cabeças",
+  "pasta": "res://assets/objetos/decoracao/of_monte_cabecas",
+  "largura": 2,
+  "profundidade": 1,
+  "altura": 44,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "misturado",
+   "toys",
+   "plastico"
+  ],
+  "estado_padrao": "misturado",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 30,
+  "conforto": 2,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false
+ },
+ "of_plastico_em_pe": {
+  "nome": "Plástico em pé",
+  "pasta": "res://assets/objetos/decoracao/of_plastico_em_pe",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "coelho",
+   "urso"
+  ],
+  "estado_padrao": "coelho",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 40,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false
+ },
+ "of_plastico_sentado": {
+  "nome": "Plástico sentado",
+  "pasta": "res://assets/objetos/decoracao/of_plastico_sentado",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 70,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "coelho",
+   "urso"
+  ],
+  "estado_padrao": "coelho",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 35,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true
+ },
+ "of_estante_pecas": {
+  "nome": "Estante de peças",
+  "pasta": "res://assets/objetos/decoracao/of_estante_pecas",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 104,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "arrumada",
+   "toys"
+  ],
+  "estado_padrao": "arrumada",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 90,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false
  }
 }

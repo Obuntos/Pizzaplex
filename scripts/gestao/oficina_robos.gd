@@ -132,14 +132,43 @@ func liberar_operario(d:Dictionary) -> void:
 	if is_instance_valid(a):a.visita.erase("obra_atracao");a.visita.erase("oficina_trabalho");a.trabalho="";a.progresso_acao=0.0
 	d.ator=-1
 func remover(r:PersonagemPlex) -> void:
+	levantar_fantasia(r)
 	var d:Dictionary=r.visita.get("oficina_robo",{})
 	if not d.is_empty():
 		liberar_operario(d)
 		for id in d.get("pecas",[]):
 			if int(jogo.planta.objetos.get(int(id),{}).get("reparo_robo",-1))==r.identificador:jogo.planta.remover(int(id))
 	liberar_reservas(r)
+static func estado_bancada(r:PersonagemPlex) -> String:
+	var nome:="patitas" if r.modelo.contains("patitas") else "orelhitas"
+	if r.modelo.contains("toy"):nome="toy_"+nome
+	if r.robotica.get("ensanguentado",false):nome+="_quebrado"
+	return nome
+func sentar_fantasia(r:PersonagemPlex,d:Dictionary) -> void:
+	var mesa:Dictionary=jogo.planta.objetos.get(int(d.mesa),{})
+	if mesa.is_empty():return
+	mesa.fantasia_bancada=estado_bancada(r);mesa.fantasia_robo=r.identificador
+	jogo.planta.alterada.emit()
+func levantar_fantasia(r:PersonagemPlex) -> void:
+	for p in jogo.planta.objetos.values():
+		if int(p.get("fantasia_robo",-1))==r.identificador:p.erase("fantasia_bancada");p.erase("fantasia_robo")
+	jogo.planta.alterada.emit()
+func ataque_bancada(r:PersonagemPlex,a:PersonagemPlex) -> void:
+	r.robotica.ensanguentado=true
+	jogo.sistemas.cartazes.morte(a.celula)
+	jogo.sistemas.investigacao.registrar_incidente(a)
+	jogo.sistemas.jornal.noticiar("Funcionário da pizzaria desaparece na oficina.")
+	jogo.painel.mensagem("O animatrônico quebrado atacou "+IdentidadesPlex.completo(a)+" na oficina. Só restou o sangue na fantasia.")
+	for p in jogo.planta.objetos.values():
+		if int(p.get("fantasia_robo",-1))==r.identificador:p.fantasia_bancada=estado_bancada(r)
+	a.visita.erase("obra_atracao");a.visita.erase("oficina_trabalho")
+	jogo.despawn(a)
+	jogo.planta.alterada.emit()
 func pecas(r:PersonagemPlex,d:Dictionary) -> void:
 	var mesa:Dictionary=jogo.planta.objetos.get(int(d.mesa),{})
+	if d.modo=="estrutura":
+		sentar_fantasia(r,d)
+		return
 	for i in 2:
 		var tipo:="ajuste_cabeca_olhos" if i==0 else "ajuste_cabeca_plastico"
 		if d.modo=="estrutura":tipo="ajuste_estrutura_fantasia" if i==0 else "ajuste_estrutura_plastico"
@@ -162,6 +191,8 @@ func atualizar_reparo(r:PersonagemPlex,d:Dictionary,dt:float) -> void:
 		if not rota.is_empty():a.andar(rota);a.trabalho="ir_montar_atracao"
 		return
 	jogo.tarefas.orientar(a,Vector2(jogo.planta.objetos[alvo].celula));a.trabalho="montar";d.tempo=float(d.tempo)+dt*HabilidadesEquipePlex.fator(a,"manutencao");a.progresso_acao=fposmod(float(d.tempo)/2.4,1)
+	if CatalogoMontagemPlex.quebrado(r.modelo) and jogo.sistemas.mecanico.possuido(r) and not d.get("atacou",false) and randf()<dt*.01:
+		d.atacou=true;liberar_operario(d);ataque_bancada(r,a);return
 	if float(d.tempo)<(12.0 if etapa=="consertar" else 4.0):return
 	liberar_operario(d);d.tempo=0.0
 	match etapa:
@@ -174,7 +205,7 @@ func atualizar_reparo(r:PersonagemPlex,d:Dictionary,dt:float) -> void:
 			retirar_peca(d,"ajuste_estrutura_plastico" if d.modo=="estrutura" else "ajuste_cabeca_plastico");d.etapa="espera_cabeca"
 			if d.modo=="estrutura":r.visita.montagem_passos=34
 		"repor_cabeca":
-			retirar_peca(d,"ajuste_estrutura_fantasia" if d.modo=="estrutura" else "ajuste_cabeca_olhos");r.visita.erase("reparo_sem_cabeca");r.visita.erase("montagem_passos")
+			retirar_peca(d,"ajuste_estrutura_fantasia" if d.modo=="estrutura" else "ajuste_cabeca_olhos");r.visita.erase("reparo_sem_cabeca");r.visita.erase("montagem_passos");levantar_fantasia(r)
 			r.robotica.desgaste=0.0;r.robotica.avariado=false;r.robotica.manutencao_solicitada=false;r.robotica.reparos=int(r.robotica.get("reparos",0))+1;d.etapa="estacionado";d.modo="deposito";r.trabalho="armazenado"
 			mesa.erase("reparo_reserva")
 	jogo.planta.alterada.emit()

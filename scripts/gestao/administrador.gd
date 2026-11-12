@@ -30,6 +30,7 @@ static func criar(jogo: Node) -> PersonagemPlex:
 	a.uniforme = str(d.get("uniforme","administrador_masculino_1"))
 	a.cabelo = str(d.get("cabelo","curto"))
 	a.visita.cor_cabelo=CoresCabeloPlex.validar(str(d.get("cor_cabelo","marrom_escuro")))
+	a.visita.pele=PelePlex.validar(str(d.get("pele",PelePlex.PADRAO)))
 	a.visita.olhos=RostoPlex.olhos(str(d.get("olhos","padrao")));a.visita.itens_faciais=RostoPlex.itens(d.get("itens_faciais",[]))
 	a.identidade = {"nome":str(d.get("nome","Administrador")).strip_edges().left(40),"sobrenome":"","apelido":"","idade":30,"sexo":"feminino" if a.modelo=="humana" else "masculino"}
 	jogo.operacao.administrador = a.identificador

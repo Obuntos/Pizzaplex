@@ -136,6 +136,11 @@ func atualizar(delta: float, planta: PlantaPlex, rotas: RotasPlex, personagens: 
 func atualizar_visual(andando: bool) -> void:
 	if trabalho=="usar_caixa": progresso_acao=fposmod(relogio/1.6,1.0)
 	animacao.roupa_visitante=RoupasVisitantesPlex.pasta(self)
+	if ProfissoesBairroPlex.eh(modelo):
+		if not visita.has("variacao_corpo"):
+			var semente:=str(identidade.get("morador_id",identificador))
+			visita.variacao_corpo=["padrao","gordo","musculoso"][posmod(hash(semente+"corpo"),3)]+"_"+["branco","bege","pardo","moreno","preto","retinto"][posmod(hash(semente+"pele"),6)]
+		animacao.variacao_corpo=str(visita.variacao_corpo)
 	var ponto := ponto_visual()
 	position = GradePlex.projetar(Vector2(ponto.x, ponto.y)) + Vector2(0.0, 0.01)
 	visual.position.y = -ponto.z

@@ -1,6 +1,9 @@
 shader_type canvas_item;
 uniform float desgaste_plex = 0.0;
 uniform float montagem_plex = 1.0;
+uniform vec3 pele_origem[64];
+uniform vec3 pele_destino[64];
+uniform int pele_total = 0;
 render_mode unshaded;
 #include "res://shaders/iluminacao.gdshaderinc"
 #include "res://shaders/mapa_cena.gdshaderinc"
@@ -120,6 +123,10 @@ void fragment() {
 		normal=normalize(mix(baixo,alto,smoothstep(inicio_cabeca-5.0,inicio_cabeca+5.0,z)));
 	} else if (z < inicio_cabeca) {
 		normal = normalize(vec3(n.x, n.z, n.y));
+	}
+	for (int i = 0; i < 64; i++) {
+		if (i >= pele_total) { break; }
+		if (distance(COLOR.rgb, pele_origem[i]) < 0.003) { COLOR.rgb = pele_destino[i]; break; }
 	}
 	COLOR.rgb *= mix(vec3(1.0),vec3(.83,.80,.75),clamp(desgaste_plex,0.0,1.0));
 	COLOR.rgb = iluminar_plex(COLOR.rgb, vec3(mundo.x, distancia - z, z), normal, dados, 1.0, false);

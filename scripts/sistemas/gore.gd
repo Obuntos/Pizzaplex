@@ -11,6 +11,7 @@ static func sorteio(lista:Array) -> String:return str(lista[randi()%lista.size()
 
 static func espalhar(jogo:Node,celula:Vector2i,violencia:int,rotacao:int=-1) -> void:
 	var planta:PlantaPlex=jogo.planta
+	jogo.sistemas.cartazes.morte(celula)
 	var giro:int=randi()%4 if rotacao<0 else rotacao
 	var nivel:=clampi(violencia,1,3)
 	if nivel==1:
