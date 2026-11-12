@@ -15,7 +15,7 @@ func configurar(cena: Node, tipo: String) -> void:
 	jogo=cena;predio=tipo;layer=116
 	add_child(raiz);raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.theme=T.criar()
 	var sombra:=ColorRect.new();sombra.color=Color(0,0,0,.65);sombra.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.add_child(sombra)
-	raiz.add_child(folha)
+	raiz.add_child(folha);folha.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",18))
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;folha.add_child(scroll)
 	scroll.add_child(conteudo);conteudo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	get_viewport().size_changed.connect(posicionar)
@@ -30,10 +30,8 @@ func preencher() -> void:
 	var anterior:=scroll.scroll_vertical
 	assinatura=estado_atual()
 	for n in conteudo.get_children():conteudo.remove_child(n);n.queue_free()
-	var topo:=HBoxContainer.new();conteudo.add_child(topo)
-	T.texto(topo,"REFERÊNCIA DO BAIRRO",20).size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	T.botao(topo,"×",queue_free)
-	T.texto(conteudo,str(CatalogoPlex.objetos.get(predio,{}).get("nome","Restaurante")),18)
+	KitPlex.cabecalho(conteudo,"Referência do bairro",queue_free)
+	KitPlex.texto(conteudo,str(CatalogoPlex.objetos.get(predio,{}).get("nome","Restaurante")),22,T.AMBAR,"titulo")
 	var geral:=ReputacaoClientesPlex.nota(jogo.servicos)
 	rotulo("Satisfação com a pizzaria: %.0f / 100"%geral)
 	rotulo("Famílias satisfeitas podem pedir aniversários, trazendo os filhos e crianças convidadas. Reserve lugares para todos e compre o bolo para iniciar o preparo.")
@@ -46,13 +44,13 @@ func preencher() -> void:
 		total+=1
 		rotulo("Família %s · satisfação %.0f / 100"%[familia.nome,ReputacaoClientesPlex.nota(jogo.servicos,str(familia.id))])
 	if total==0:rotulo("Este prédio não possui famílias residentes cadastradas.")
-	T.texto(conteudo,"PEDIDOS DE ANIVERSÁRIO",18)
+	KitPlex.secao(conteudo,"Pedidos de aniversário")
 	var pendentes:=0
 	for pedido in jogo.servicos.aniversarios:
 		var grupo: Dictionary=jogo.clientes.grupos.get(int(pedido.grupo),{})
 		if grupo.is_empty() or grupo.get("estado","")=="saindo" or pedido.estado in ["recusado","encerrado"]:continue
 		pendentes+=1
-		var card:=PanelContainer.new();conteudo.add_child(card)
+		var card:=KitPlex.painel(conteudo,"campo",12)
 		var coluna:=VBoxContainer.new();card.add_child(coluna)
 		var nome:=str(pedido.get("nome","Família"))
 		var filhos: Array=grupo.get("criancas",[])
@@ -60,10 +58,11 @@ func preencher() -> void:
 		var l:=T.texto(coluna,str(filhos.size())+" crianças · "+str(pedido.get("convidados",0))+" convidada(s) · "+("lugares suficientes" if ReputacaoClientesPlex.lugares(jogo,grupo) else "faltam cadeiras ou mesas"),14);l.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		var id:=int(grupo.id)
 		if pedido.estado=="solicitado":
-			T.botao(coluna,"Reservar aniversário",func(): jogo.festas.reservar(id);preencher.call_deferred())
-			T.botao(coluna,"Recusar pedido",func(): jogo.festas.recusar(id);preencher.call_deferred())
+			var escolha:=HBoxContainer.new();coluna.add_child(escolha)
+			KitPlex.botao(escolha,"Reservar aniversário",func(): jogo.festas.reservar(id);preencher.call_deferred(),"ouro").size_flags_horizontal=Control.SIZE_EXPAND_FILL
+			KitPlex.botao(escolha,"Recusar pedido",func(): jogo.festas.recusar(id);preencher.call_deferred(),"vinho")
 		elif pedido.estado=="reservado":
-			T.botao(coluna,"Comprar bolo de aniversário · $ 12",func(): jogo.festas.pedir(id,true);preencher.call_deferred())
+			KitPlex.botao(coluna,"Comprar bolo de aniversário · $ 12",func(): jogo.festas.pedir(id,true);preencher.call_deferred(),"ouro")
 		else:T.texto(coluna,"Bolo: "+str(grupo.get("festa_estado","pedido")).replace("_"," "),14)
 	if pendentes==0:rotulo("Nenhum aniversário solicitado no momento.")
 	scroll.set_deferred("scroll_vertical",anterior)

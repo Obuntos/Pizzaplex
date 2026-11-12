@@ -23,15 +23,15 @@ var assinatura:=-1
 
 func configurar(cena:Node) -> void:
 	jogo=cena;layer=118;add_child(raiz);raiz.theme=T.criar();raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	raiz.add_child(emblema);emblema.position=Vector2(16,80);emblema.custom_minimum_size=Vector2(216,46);emblema.pressed.connect(alternar)
-	for estado in ["normal","hover","pressed","focus"]:emblema.add_theme_stylebox_override(estado,T.caixa(Color("3a2420") if estado!="hover" else Color("4a2e27"),T.AMBAR,6))
-	var linha:=HBoxContainer.new();linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;emblema.add_child(linha);linha.position=Vector2(6,4)
-	var icone:=IconeHudPlex.new("fichario");icone.escala_pixel=1.5;icone.custom_minimum_size=Vector2(36,36);linha.add_child(icone)
-	var coluna:=VBoxContainer.new();coluna.mouse_filter=Control.MOUSE_FILTER_IGNORE;coluna.add_theme_constant_override("separation",2);linha.add_child(coluna)
-	emblema_titulo=T.texto(coluna,"INVESTIGAÇÃO",13,T.AMBAR)
+	raiz.add_child(emblema);emblema.position=Vector2(16,80);emblema.custom_minimum_size=Vector2(224,56);emblema.pressed.connect(alternar)
+	KitPlex.preparar_botao(emblema,Color("3a2420"),false,4);emblema.tooltip_text="Quadro da investigação"
+	var linha:=HBoxContainer.new();linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;emblema.add_child(linha);linha.position=Vector2(4,2)
+	var icone:=IconeHudPlex.new("fichario");icone.escala_pixel=2.0;icone.custom_minimum_size=Vector2(48,48);linha.add_child(icone)
+	var coluna:=VBoxContainer.new();coluna.mouse_filter=Control.MOUSE_FILTER_IGNORE;coluna.add_theme_constant_override("separation",4);coluna.alignment=BoxContainer.ALIGNMENT_CENTER;linha.add_child(coluna)
+	emblema_titulo=KitPlex.texto(coluna,"INVESTIGAÇÃO",13,T.AMBAR,"forte")
 	coluna.add_child(emblema_barra);preparar_barra(emblema_barra,Vector2(160,8))
 	emblema.hide()
-	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,18))
+	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",18))
 	var col:=VBoxContainer.new();col.custom_minimum_size.x=560;col.add_theme_constant_override("separation",10);janela.add_child(col)
 	var topo:=T.cabecalho(col,"QUADRO DA INVESTIGAÇÃO","fichario");T.botao(topo,"×",fechar)
 	col.add_child(etapas);etapas.add_theme_constant_override("separation",6)
@@ -39,18 +39,16 @@ func configurar(cena:Node) -> void:
 	var linha_barra:=HBoxContainer.new();col.add_child(linha_barra)
 	suspeita_texto=T.texto(linha_barra,"",14,T.AMBAR);suspeita_texto.custom_minimum_size.x=170
 	linha_barra.add_child(barra);preparar_barra(barra,Vector2(370,14));barra.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-	T.texto(col,"AGORA",13,T.SUAVE)
+	KitPlex.secao(col,"Agora")
 	agora_texto=T.texto(col,"",14,T.PAPEL);agora_texto.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;agora_texto.custom_minimum_size.x=550
 	desaparecidos_texto=T.texto(col,"",13,T.SUAVE);desaparecidos_texto.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;desaparecidos_texto.custom_minimum_size.x=550
-	T.texto(col,"PISTAS",13,T.SUAVE)
+	KitPlex.secao(col,"Pistas")
 	var rolagem:=ScrollContainer.new();rolagem.custom_minimum_size=Vector2(550,170);rolagem.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;col.add_child(rolagem)
 	rolagem.add_child(pistas_lista);pistas_lista.size_flags_horizontal=Control.SIZE_EXPAND_FILL;pistas_lista.add_theme_constant_override("separation",4)
 	jogo.janelas_moveis.registrar(janela,fechar,56);janela.hide()
 func preparar_barra(b:ProgressBar,tamanho:Vector2) -> void:
 	b.min_value=0;b.max_value=100;b.show_percentage=false;b.custom_minimum_size=tamanho;b.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	var fundo:=StyleBoxFlat.new();fundo.bg_color=Color("1e1512");fundo.border_color=T.LINHA;fundo.set_border_width_all(1)
-	var cheio:=StyleBoxFlat.new();cheio.bg_color=Color("c4553f")
-	b.add_theme_stylebox_override("background",fundo);b.add_theme_stylebox_override("fill",cheio)
+	b.add_theme_stylebox_override("background",KitPlex.quadro([KitPlex.TINTA],Color("20150f"),0,2));b.add_theme_stylebox_override("fill",KitPlex.quadro([KitPlex.TINTA],Color("c4553f"),0,0))
 
 func aberto() -> bool:return janela.visible
 func alternar() -> void:

@@ -78,7 +78,6 @@ func abrir_diagnostico(id:int) -> void:
 	if not is_instance_valid(diagnostico_ui):diagnostico_ui=DiagnosticoRobosPlex.new();jogo.add_child(diagnostico_ui);diagnostico_ui.configurar(jogo)
 	diagnostico_ui.abrir(id)
 func opcoes(menu:CanvasLayer,p:Dictionary) -> void:
-	jogo.sistemas.cartazes.opcoes(menu,p)
 	match str(p.tipo):
 		"sistema_triturador_residuos":jogo.sistemas.vhs.opcoes(menu,p)
 		"amb_painel_diagnostico":menu.adicionar("Testar robô e percursos",func():abrir_diagnostico(int(p.id)))
@@ -105,7 +104,7 @@ func abrir_ponto() -> void:
 		var minutos:=float(a.visita.get("minutos_folha",0));var valor:=HabilidadesEquipePlex.salario(a)*minutos/FolhaPagamentoPlex.MINUTOS_SEMANA
 		var credito:=float(a.visita.get("credito_salario",a.visita.get("contrato_pago",0) if a.visita.get("contrato_noturno",false) else 0))
 		linhas.append("%s · %.1f h · $%.2f a receber · %s"%[IdentidadesPlex.completo(a),minutos/60,maxf(0,valor-credito),"Trabalhando" if a.visita.get("ponto_ativo",false) else "Fora do ponto"])
-	var janela:=AcceptDialog.new();jogo.add_child(janela);janela.title="Ponto da equipe";janela.dialog_text="\n".join(linhas) if not linhas.is_empty() else "Nenhum funcionário contratado.";janela.confirmed.connect(janela.queue_free);janela.canceled.connect(janela.queue_free);janela.popup_centered(Vector2i(660,300))
+	AvisoPlex.mostrar(jogo,"Ponto da equipe","\n".join(linhas) if not linhas.is_empty() else "Nenhum funcionário contratado.","Fechar","",640)
 func alternar_luzes(p:Dictionary) -> void:
 	jogo.ambientes.atualizar()
 	var sala:=sala_lado(p)

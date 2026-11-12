@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdo1kenhbgc5d"
-path="res://.godot/imported/2.png-5d74d154eeec0b47be6d9838df78f0db.ctex"
+uid="uid://cchmd8xi5qoil"
+path="res://.godot/imported/patitas.png-6aa1e21e0ce8d17526dfabc07cd6cff2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interface/fichario_pixel/2.png"
-dest_files=["res://.godot/imported/2.png-5d74d154eeec0b47be6d9838df78f0db.ctex"]
+source_file="res://assets/interface/estudo/patitas.png"
+dest_files=["res://.godot/imported/patitas.png-6aa1e21e0ce8d17526dfabc07cd6cff2.ctex"]
 
 [params]
 

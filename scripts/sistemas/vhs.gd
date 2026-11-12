@@ -58,13 +58,7 @@ func opcoes(menu:CanvasLayer,_o:Dictionary) -> void:
 func ver() -> void:
 	var linhas:=PackedStringArray()
 	for f in fitas:linhas.append("[%s] dia %d %s · %s"%[str(f.tipo),int(f.dia)+1,str(f.hora),str(f.titulo)])
-	var popup:=AcceptDialog.new()
-	popup.title="Fitas VHS das câmeras"
-	popup.dialog_text="\n".join(linhas) if not linhas.is_empty() else "Nenhuma fita gravada."
-	popup.theme=preload("res://scripts/interface/tema_hud.gd").criar()
-	jogo.add_child(popup)
-	popup.confirmed.connect(popup.queue_free);popup.close_requested.connect(popup.queue_free)
-	popup.popup_centered(Vector2i(560,320))
+	AvisoPlex.mostrar(jogo,"Fitas VHS das câmeras","\n".join(linhas) if not linhas.is_empty() else "Nenhuma fita gravada.","Fechar","",560)
 
 func gravar() -> Dictionary:return {"fitas":fitas.duplicate(true),"proximo":proximo}
 func restaurar(d:Dictionary) -> void:

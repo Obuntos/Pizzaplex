@@ -3,7 +3,7 @@ extends RefCounted
 
 var jogo: Node
 var espera:=0.0
-var popup: ConfirmationDialog
+var popup: AvisoPlex
 var presente_atual: Dictionary={}
 var referencia_ui: ReferenciaBairroPlex
 static var volumes_bolo: Dictionary={}
@@ -185,17 +185,9 @@ func atualizar(delta: float) -> void:
 
 func mostrar_presente() -> void:
 	presente_atual=jogo.servicos.recompensas[0]
-	popup=ConfirmationDialog.new()
-	popup.title="Um presente para o restaurante"
-	popup.dialog_text="Você ganhou desenho! Deseja pendurar?"
-	popup.ok_button_text="Sim"
-	popup.cancel_button_text="Não"
-	popup.theme=preload("res://scripts/interface/tema_hud.gd").criar()
-	jogo.add_child(popup)
-	popup.confirmed.connect(func(): responder(true))
-	popup.canceled.connect(func(): responder(false))
-	popup.close_requested.connect(func(): responder(false))
-	popup.popup_centered(Vector2i(410,170))
+	popup=AvisoPlex.mostrar(jogo,"Um presente para o restaurante","Você ganhou desenho! Deseja pendurar?","Sim","Não",410)
+	popup.confirmado.connect(func(): responder(true))
+	popup.cancelado.connect(func(): responder(false))
 
 func responder(aceitar: bool) -> void:
 	if presente_atual.is_empty(): return

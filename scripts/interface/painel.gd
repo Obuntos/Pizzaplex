@@ -22,6 +22,7 @@ var rodape: PanelContainer
 var abas := TabContainer.new()
 var navegacao := OptionButton.new()
 var hud: HudPlex
+var aviso:=AvisoHudPlex.new()
 
 func _ready() -> void:
 	var raiz:=Control.new()
@@ -36,6 +37,7 @@ func _ready() -> void:
 	rodape.hide()
 	raiz.add_child(rodape)
 	rodape.add_child(status)
+	add_child(aviso)
 	recorte.toggled.connect(func(valor): recorte_escolhido.emit(valor))
 	cor_luz.color_changed.connect(func(_valor): emitir_luz())
 	energia_luz.value_changed.connect(func(_valor): emitir_luz())
@@ -56,6 +58,7 @@ func botao(lista: VBoxContainer, nome: String, valor: String) -> void:
 func mensagem(texto: String) -> void:
 	status.text = texto
 	status.tooltip_text=""
+	if aviso.is_inside_tree(): aviso.mostrar(texto)
 
 func bloqueia_mouse(ponto: Vector2) -> bool:
 	if hud != null and hud.menu_aberto(): return true

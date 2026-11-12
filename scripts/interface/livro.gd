@@ -1,93 +1,106 @@
 class_name UILivroPlex
 extends CanvasLayer
-const T=preload("res://scripts/interface/fichario_estilo.gd")
+## Ficha de um animatrônico já estudado, como uma página impressa do
+## restaurante: faixas quadriculadas, o retrato num palco com cortina e,
+## ao lado, o nome e a descrição completa. A montagem começa daqui.
+
+const TINTA=Color("2a1408")
+const SEPIA=Color("8a5a38")
+const TEXTO=Color("9a5f3c")
 var jogo: Node
 var raiz:=Control.new()
 var janela:=PanelContainer.new()
-var grade:=HBoxContainer.new()
-var folha:=PanelContainer.new()
-var moedas:=Label.new()
-var titulo:=Label.new()
-var categoria:=3
-var pagina:=0
-var abas: Array[Button]=[]
+var id_atual:=""
+var voltar:Callable
+var palco:FichasEstudoPlex.Palco
+var retrato:TextureRect
+var nome:Label
+var subtitulo:Label
+var texto:Label
+var acao:Button
+var situacao:Label
+var botao_voltar:Button
 var assinatura:=-1
 
 func configurar(cena: Node) -> void:
-	jogo=cena;layer=46
+	jogo=cena;layer=80
 	raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.mouse_filter=Control.MOUSE_FILTER_STOP;add_child(raiz)
-	raiz.theme=T.tema();raiz.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	var escuro:=ColorRect.new();escuro.color=Color(.03,.04,.10,.72);escuro.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.add_child(escuro)
-	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",T.caixa(Color("14306e")))
-	var coluna:=VBoxContainer.new();coluna.add_theme_constant_override("separation",8);janela.add_child(coluna)
-	var cabecalho:=HBoxContainer.new();coluna.add_child(cabecalho)
-	T.texto(cabecalho,"ATRAÇÕES · CONJUNTO VI",24).size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	cabecalho.add_child(moedas);moedas.add_theme_font_size_override("font_size",24);moedas.add_theme_color_override("font_color",Color("f6d56a"))
-	T.botao(cabecalho,"X",fechar,Color("d09a2c")).custom_minimum_size=Vector2(36,36)
-	var linha:=HBoxContainer.new();coluna.add_child(linha)
-	for i in 4: abas.append(T.botao(linha,LivroAtracoesPlex.CATEGORIAS[i].to_upper(),func(): mudar(i),[Color("9f91d5"),Color("d9892b"),Color("2e8fd0"),Color("d8879b")][i]))
-	for i in 3:
-		abas[i].disabled=true
-		abas[i].modulate=Color("747b93")
-		abas[i].text="  "+abas[i].text;abas[i].custom_minimum_size.x=150
-		var trava:=Trava.new();trava.position=Vector2(8,10);trava.scale=Vector2(.5,.5);abas[i].add_child(trava)
-	folha.name="Folha";folha.custom_minimum_size=Vector2(744,390);folha.size_flags_vertical=Control.SIZE_EXPAND_FILL;coluna.add_child(folha)
-	var papel:=StyleBoxTexture.new();papel.texture=load("res://assets/interface/fichario_pixel/2.png")
-	papel.content_margin_left=22;papel.content_margin_right=22;papel.content_margin_top=20;papel.content_margin_bottom=14;folha.add_theme_stylebox_override("panel",papel)
-	var corpo:=VBoxContainer.new();corpo.add_theme_constant_override("separation",10);folha.add_child(corpo)
-	corpo.add_child(titulo);titulo.add_theme_font_size_override("font_size",24);titulo.add_theme_color_override("font_color",Color("d4e6ff"))
-	grade.add_theme_constant_override("separation",16);grade.size_flags_vertical=Control.SIZE_EXPAND_FILL;corpo.add_child(grade)
+	raiz.theme=TemaHudPlex.criar();raiz.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	var escuro:=ColorRect.new();escuro.color=Color(.05,.025,.015,.7);escuro.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.add_child(escuro)
+	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",KitPlex.quadro([Color("2a1408"),Color("b8955e")],Color("f1dcaa"),1,0))
+	var pagina:=VBoxContainer.new();pagina.add_theme_constant_override("separation",0);janela.add_child(pagina)
+	# Cabeçalho: faixa quadriculada com o título no meio.
+	var cabeca:=Control.new();cabeca.custom_minimum_size=Vector2(860,64);pagina.add_child(cabeca)
+	var xadrez:=FichasEstudoPlex.Xadrez.new();xadrez.custom_minimum_size.y=40;xadrez.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE);xadrez.offset_top=12;xadrez.offset_bottom=52;cabeca.add_child(xadrez)
+	var placa:=PanelContainer.new();placa.add_theme_stylebox_override("panel",KitPlex.quadro([Color("2a1408"),Color("b8955e")],Color("f1dcaa"),1,10));cabeca.add_child(placa)
+	placa.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP);placa.grow_horizontal=Control.GROW_DIRECTION_BOTH;placa.offset_top=4
+	var titulo:=KitPlex.texto(placa,"Ficha de animatrônico",24,SEPIA,"titulo");titulo.uppercase=true
+	var fechar_botao:=KitPlex.fechar(cabeca,fechar);fechar_botao.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT);fechar_botao.offset_left=-52;fechar_botao.offset_top=12;fechar_botao.offset_right=-12;fechar_botao.offset_bottom=52
+	var arquivo:=KitPlex.texto(cabeca,"Arquivo Pizzaplex · 1958",11,SEPIA,"forte");arquivo.position=Vector2(18,56)
+	# Corpo: palco com o retrato e a coluna de texto.
+	var margem:=MarginContainer.new()
+	for lado in ["left","right"]:margem.add_theme_constant_override("margin_"+lado,28)
+	margem.add_theme_constant_override("margin_top",18);margem.add_theme_constant_override("margin_bottom",18)
+	pagina.add_child(margem)
+	var corpo:=HBoxContainer.new();corpo.add_theme_constant_override("separation",28);margem.add_child(corpo)
+	palco=FichasEstudoPlex.Palco.new();palco.custom_minimum_size=Vector2(280,452);corpo.add_child(palco)
+	retrato=TextureRect.new();palco.add_child(retrato)
+	var coluna:=VBoxContainer.new();coluna.add_theme_constant_override("separation",10);coluna.size_flags_horizontal=Control.SIZE_EXPAND_FILL;corpo.add_child(coluna)
+	nome=KitPlex.texto(coluna,"",36,TINTA,"titulo");nome.uppercase=true
+	nome.add_theme_color_override("font_outline_color",Color("2a1408"));nome.add_theme_constant_override("outline_size",6)
+	subtitulo=KitPlex.texto(coluna,"",13,SEPIA,"forte");subtitulo.uppercase=true
+	var fio:=ColorRect.new();fio.color=Color("cfa676");fio.custom_minimum_size=Vector2(0,2);fio.mouse_filter=Control.MOUSE_FILTER_IGNORE;coluna.add_child(fio)
+	texto=KitPlex.texto(coluna,"",17,TEXTO,"forte");texto.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;texto.custom_minimum_size.x=480;texto.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	texto.add_theme_constant_override("line_spacing",4)
+	# Montagem: a ação que antes ficava na blueprint.
+	var montagem:=KitPlex.painel(coluna,"campo",10)
+	var linha:=HBoxContainer.new();linha.add_theme_constant_override("separation",10);montagem.add_child(linha)
+	var info:=VBoxContainer.new();info.add_theme_constant_override("separation",0);info.size_flags_horizontal=Control.SIZE_EXPAND_FILL;info.alignment=BoxContainer.ALIGNMENT_CENTER;linha.add_child(info)
+	KitPlex.texto(info,"MONTAGEM",12,KitPlex.AMBAR,"forte")
+	situacao=KitPlex.texto(info,"",13,KitPlex.AREIA);situacao.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;situacao.custom_minimum_size.x=220
+	acao=KitPlex.botao(linha,"CONSTRUIR",func():reservar(id_atual),"ouro",17);acao.custom_minimum_size=Vector2(190,46);acao.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	var rodape:=HBoxContainer.new();coluna.add_child(rodape)
-	rodape.alignment=BoxContainer.ALIGNMENT_END
-	T.botao(rodape,"<",func(): pagina=maxi(0,pagina-1);assinatura=-1;atualizar())
-	T.botao(rodape,">",func(): pagina+=1;assinatura=-1;atualizar())
+	botao_voltar=KitPlex.botao(rodape,"Voltar ao cartaz",func():
+		var destino:=voltar
+		fechar()
+		if destino.is_valid():destino.call(),"noite",15)
+	botao_voltar.icon=VintagePlex.icone("seta_esquerda")
+	pagina.add_child(FichasEstudoPlex.Xadrez.new())
 	jogo.livro.alterado.connect(recarregar);get_viewport().size_changed.connect(centralizar);raiz.hide()
 
-func mudar(valor: int) -> void:
-	if valor!=3: return
-	categoria=valor;pagina=0;assinatura=-1;atualizar()
 func aberto() -> bool: return raiz.visible and is_inside_tree()
-func fechar() -> void: raiz.hide()
-func abrir() -> void:
-	if not jogo.livro.disponivel(): return
-	raiz.show();assinatura=-1;atualizar();centralizar.call_deferred()
+func fechar() -> void: raiz.hide();voltar=Callable()
+
+## Abre a ficha de um animatrônico estudado. Sem id, usa o primeiro estudado.
+func abrir(id:String="", ao_voltar:Callable=Callable()) -> void:
+	if id.is_empty():
+		for candidato in EstudosPlex.ORDEM:
+			if jogo.atracoes.pesquisado(candidato):id=candidato;break
+	if id.is_empty() or not jogo.atracoes.pesquisado(id):return
+	id_atual=id;voltar=ao_voltar
+	var f:=FichasEstudoPlex.ficha(id)
+	var cor:=FichasEstudoPlex.cor(id)
+	palco.borda=cor;palco.queue_redraw()
+	retrato.queue_free()
+	retrato=FichasEstudoPlex.retrato(palco,id,4,false)
+	nome.text=str(f.nome);nome.add_theme_color_override("font_color",cor)
+	subtitulo.text=str(f.get("subtitulo",""));subtitulo.visible=not subtitulo.text.is_empty()
+	texto.text=str(f.get("longa",""))
+	botao_voltar.visible=voltar.is_valid()
+	assinatura=-1;raiz.show();atualizar();centralizar.call_deferred()
 func centralizar() -> void:
-	janela.size=Vector2(800,580);JanelasMoveisPlex.centralizar(janela,get_viewport().get_visible_rect().size)
+	janela.reset_size();JanelasMoveisPlex.centralizar(janela,get_viewport().get_visible_rect().size)
 
 func atualizar() -> void:
-	var livro: LivroAtracoesPlex=jogo.livro
-	moedas.text="ESTUDOS DO CIRCO"
-	titulo.text=LivroAtracoesPlex.CATEGORIAS[categoria].to_upper()
-	var chave:=hash([categoria,pagina,livro.moedas,livro.adquiridos,jogo.atracoes.fila,jogo.personagens.size()])
-	var papel:=folha.get_theme_stylebox("panel") as StyleBoxTexture
-	papel.texture=load("res://assets/interface/fichario_pixel/2.png")
-	if chave==assinatura: return
+	if id_atual.is_empty():return
+	var chave:=hash([id_atual,jogo.atracoes.fila,jogo.personagens.size()])
+	if chave==assinatura:return
 	assinatura=chave
-	for filho in grade.get_children(): grade.remove_child(filho);filho.queue_free()
-	var lista: Array=livro.registros(categoria)
-	pagina=clampi(pagina,0,maxi(0,ceili(lista.size()/3.0)-1))
-	for r in lista.slice(pagina*3,pagina*3+3): criar_card(r)
-	if lista.is_empty(): T.texto(grade,"SEM PROJETOS NESTA COLEÇÃO",12,Color("d6e9ec"))
-
-func criar_card(r: Dictionary) -> void:
-	var card:=VBoxContainer.new();card.custom_minimum_size=Vector2(216,320);card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;card.add_theme_constant_override("separation",8);grade.add_child(card)
-	var nome:=T.texto(card,str(r.nome).to_upper(),24);nome.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	var grupo:=T.texto(card,LivroAtracoesPlex.CATEGORIAS[int(r.categoria)].to_upper(),12,Color("9fc4f2"));grupo.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	var foto:=TextureRect.new();foto.custom_minimum_size=Vector2(200,176);foto.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;foto.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;card.add_child(foto)
-	if not AtracoesCatalogoPlex.permitido(str(r.id)):
-		var trava:=Trava.new();trava.position=Vector2(84,64);foto.add_child(trava)
-		var bloqueado:=T.botao(card,"BLOQUEADO",func(): pass,Color("72788f"));bloqueado.disabled=true
-		return
-	var caminho: String=r.get("rosto","")
-	if not caminho.is_empty():
-		foto.texture=load(caminho)
-	var possui: bool=jogo.livro.possui(r.id) and jogo.atracoes.pesquisado(str(r.id))
-	if possui:
-		var em_obra: bool=jogo.atracoes.ocupado(r.id)
-		var seta: bool=jogo.atracoes.fila.any(func(o): return o.modelo==r.id and o.fase=="seta")
-		var b:=T.botao(card,"POSICIONAR SETA" if seta else "EM MONTAGEM" if em_obra else "CONSTRUIR",func(): reservar(r.id),Color("8cbb81"));b.disabled=em_obra and not seta
-	else:
-		var b:=T.botao(card,"ESTUDAR NA MESA",func(): pass,Color("72788f"));b.disabled=true
+	var em_obra:bool=jogo.atracoes.ocupado(id_atual)
+	var seta:bool=jogo.atracoes.fila.any(func(o): return o.modelo==id_atual and o.fase=="seta")
+	acao.text="POSICIONAR SETA" if seta else "EM MONTAGEM" if em_obra else "CONSTRUIR"
+	acao.disabled=em_obra and not seta
+	situacao.text="Escolha onde ele vai ficar." if seta else "A equipe já está montando." if em_obra else "Leve as peças à bancada de montagem da oficina."
 
 func reservar(id: String) -> void:
 	if not AtracoesCatalogoPlex.permitido(id) or not jogo.livro.possui(id): return
@@ -98,14 +111,5 @@ func recarregar() -> void:
 	assinatura=-1
 	if aberto(): atualizar()
 
-class Trava extends Control:
-	func _init() -> void:
-		mouse_filter=Control.MOUSE_FILTER_IGNORE
-		custom_minimum_size=Vector2(32,32)
-	func _draw() -> void:
-		var cor:=Color("d9dce7")
-		draw_rect(Rect2(7,1,18,4),cor)
-		draw_rect(Rect2(3,5,4,12),cor)
-		draw_rect(Rect2(25,5,4,12),cor)
-		draw_rect(Rect2(0,14,32,18),cor)
-		draw_rect(Rect2(14,20,4,8),Color("33456e"))
+func _process(_delta:float) -> void:
+	if aberto():atualizar()

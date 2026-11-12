@@ -16,7 +16,7 @@ var fim:Array=[]
 var escolhendo:=""
 func configurar(cena:Node) -> void:
 	jogo=cena;layer=120;add_child(raiz);raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	raiz.add_child(janela);janela.theme=T.criar();janela.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,16))
+	raiz.add_child(janela);janela.theme=T.criar();janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",16))
 	var col:=VBoxContainer.new();col.custom_minimum_size.x=470;col.add_theme_constant_override("separation",12);janela.add_child(col)
 	var topo:=T.cabecalho(col,"PAINEL DE DIAGNÓSTICO","gestao");T.botao(topo,"×",fechar)
 	col.add_child(robos);robos.item_selected.connect(func(i):selecionar(int(robos.get_item_metadata(i))))

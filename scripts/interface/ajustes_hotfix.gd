@@ -21,38 +21,6 @@ func instalar() -> void:
 	if instalado:return
 	if jogo==null or not is_instance_valid(jogo.painel) or not is_instance_valid(jogo.painel.hud):return
 	var hud:HudPlex=jogo.painel.hud
-	var barra_inferior:Node=hud.ar_ui.botao.get_parent()
-	if is_instance_valid(barra_inferior):
-		if hud.corte.get_parent()!=hud.catalogo_botao.get_parent():
-			hud.corte.reparent(hud.catalogo_botao.get_parent())
-		var acoes:Node=hud.catalogo_botao.get_parent()
-		acoes.move_child(hud.corte,hud.catalogo_botao.get_index()+2)
-		hud.corte.custom_minimum_size=Vector2(138,52)
-		hud.corte.tooltip_text="Alternar paredes completas e recortadas"
-		hud.corte.alignment=HORIZONTAL_ALIGNMENT_RIGHT
-		hud.corte.add_theme_font_size_override("font_size",14)
-		for estado in ["font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color","font_disabled_color"]:
-			hud.corte.remove_theme_color_override(estado)
-		for filho in hud.corte.get_children():
-			if filho is IconeHudPlex:
-				filho.tipo="paredes"
-				filho.escala_pixel=1.5
-				filho.custom_minimum_size=Vector2(36,36)
-				filho.size=Vector2(36,36)
-				filho.position=Vector2(6,8)
-				filho.queue_redraw()
-		if hud.terminal_atalho.get_parent()!=barra_inferior:
-			hud.terminal_atalho.reparent(barra_inferior)
-		barra_inferior.move_child(hud.terminal_atalho,hud.ar_ui.botao.get_index()+1)
-		hud.terminal_atalho.custom_minimum_size=Vector2(48,48)
-		hud.terminal_icone.size=Vector2(36,36)
-		hud.terminal_icone.custom_minimum_size=Vector2(36,36)
-		hud.terminal_icone.position=Vector2(6,6)
-		for filho in hud.ar_ui.botao.get_children():
-			if filho is IconeHudPlex:
-				filho.size=Vector2(36,36)
-				filho.custom_minimum_size=Vector2(36,36)
-				filho.position=Vector2(6,6)
 	if hud.expandir.get_parent()==hud.controles_horario:
 		hud.controles_horario.move_child(hud.expandir,0)
 		hud.expandir.custom_minimum_size=Vector2(132,52)
@@ -176,7 +144,7 @@ func organizar_catalogo() -> void:
 	catalogo.abas.columns=colunas
 	var linhas:int=ceili(float(CatalogoConstrucaoPlex.CATEGORIAS.size())/float(colunas))
 	var margem_inferior:float=76.0
-	var tamanho:float=minf(maxf(156.0,altura*0.53),170.0+34.0*linhas)
+	var tamanho:float=minf(maxf(156.0,altura*0.53),236.0+38.0*linhas)
 	tamanho=minf(tamanho,maxf(120.0,altura-margem_inferior-16.0))
 	catalogo.painel.offset_left=8
 	catalogo.painel.offset_right=-8
@@ -207,7 +175,7 @@ func adicionar_energia(catalogo:CatalogoConstrucaoPlex) -> void:
 	var tipo:="amb_interruptor_antigo"
 	var card:=Button.new()
 	card.name=tipo
-	card.custom_minimum_size=Vector2(138,122)
+	card.custom_minimum_size=Vector2(138,130)
 	card.clip_contents=true
 	card.set_meta("tipo",tipo)
 	card.tooltip_text="Energia"
@@ -217,7 +185,7 @@ func adicionar_energia(catalogo:CatalogoConstrucaoPlex) -> void:
 		catalogo.preencher()
 	)
 	catalogo.itens.add_child(card)
-	VintagePlex.preparar_botao(card,Color("514637"))
+	for estado in ["normal","hover","pressed","hover_pressed"]:card.add_theme_stylebox_override(estado,KitPlex.quadro([KitPlex.TINTA,Color("a5784c") if estado=="hover" else Color("6b4a36")],Color("4a3a2e") if estado=="hover" else Color("3b2a25"),1,7))
 	catalogo.cards[tipo]=card
 	var coluna:=VBoxContainer.new()
 	card.add_child(coluna)
@@ -247,7 +215,7 @@ func adicionar_energia(catalogo:CatalogoConstrucaoPlex) -> void:
 func ajustar_cards(catalogo:CatalogoConstrucaoPlex) -> void:
 	for card in catalogo.itens.get_children():
 		if card is Button:
-			card.custom_minimum_size=Vector2(138,122)
+			card.custom_minimum_size=Vector2(138,130)
 			for filho in card.get_children():
 				if filho is VBoxContainer:
 					for componente in filho.get_children():

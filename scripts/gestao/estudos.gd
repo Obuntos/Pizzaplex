@@ -27,7 +27,11 @@ func liberar() -> void:
 	var a:PersonagemPlex=jogo.clientes.ator(pesquisador)
 	if is_instance_valid(a) and a.visita.get("estudando",false):
 		a.visita.erase("estudando");a.visita.erase("estudo_forcado");a.trabalho="";a.movimento.cancelar()
-func configurar(id_mesa:int,id_pessoa:int,quantidade_horas:int,forcar:bool=false) -> bool:
+## Projeto que pode ser escolhido agora: qualquer um ainda não estudado,
+## desde que nenhum outro tenha progresso em andamento.
+func pode_escolher(id:String) -> bool:
+	return id in ORDEM and not concluidos.has(id) and (projeto.is_empty() or projeto==id or progresso<=0.0)
+func configurar(id_mesa:int,id_pessoa:int,quantidade_horas:int,forcar:bool=false,alvo:String="") -> bool:
 	var m:Dictionary=jogo.planta.objetos.get(id_mesa,{})
 	var a:PersonagemPlex=jogo.clientes.ator(id_pessoa)
 	if not eh_mesa(str(m.get("tipo",""))) or not elegivel(a) or proximo().is_empty(): return false
@@ -41,6 +45,7 @@ func configurar(id_mesa:int,id_pessoa:int,quantidade_horas:int,forcar:bool=false
 	liberar();mesa=id_mesa;pesquisador=id_pessoa;horas=clampi(quantidade_horas,1,12)
 	forcado=forcar
 	a.visita.estudando=true;a.visita.estudo_forcado=forcado
+	if not alvo.is_empty() and pode_escolher(alvo): projeto=alvo
 	if projeto.is_empty(): projeto=proximo()
 	return true
 func pausar() -> void: liberar();pesquisador=-1;forcado=false

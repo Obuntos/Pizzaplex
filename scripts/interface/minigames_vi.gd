@@ -26,7 +26,7 @@ var espera_fundo:=0.0
 func configurar(cena:Node,gestor:MontagemAtracoesPlex) -> void:
 	jogo=cena;montagem=gestor;layer=180;process_mode=Node.PROCESS_MODE_ALWAYS
 	add_child(raiz);raiz.theme=T.criar();raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE;raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,20));janela.add_child(coluna)
+	raiz.add_child(janela);janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",20));janela.add_child(coluna)
 	coluna.add_theme_constant_override("separation",14);coluna.add_child(titulo);titulo.add_theme_font_size_override("font_size",22)
 	descricao.custom_minimum_size.x=500;descricao.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;coluna.add_child(descricao)
 	var botoes:=HBoxContainer.new();coluna.add_child(botoes)

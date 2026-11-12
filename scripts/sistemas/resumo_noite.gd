@@ -39,11 +39,4 @@ func mostrar() -> void:
 	linhas.append("Fitas VHS gravadas: %d"%(int(s.vhs.proximo)-int(dados.fitas)))
 	linhas.append("Quedas de energia: %d"%(int(s.tempestade.quedas)-int(dados.quedas)))
 	linhas.append("Portas trancadas pelo segurança: %d"%(int(s.guarda.trancamentos)-int(dados.trancas)))
-	var popup:=AcceptDialog.new()
-	popup.title="Resumo da noite · 06:00"
-	popup.dialog_text="\n".join(linhas)
-	popup.ok_button_text="Fechar"
-	popup.theme=preload("res://scripts/interface/tema_hud.gd").criar()
-	jogo.add_child(popup)
-	popup.confirmed.connect(popup.queue_free);popup.close_requested.connect(popup.queue_free)
-	popup.popup_centered(Vector2i(460,320))
+	AvisoPlex.mostrar(jogo,"Resumo da noite · 06:00","\n".join(linhas),"Fechar","",460)

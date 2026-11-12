@@ -40,7 +40,7 @@ var tempo:=0.0
 func configurar(cena:Node) -> void:
 	jogo=cena;layer=181;add_child(raiz);raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	camada.z_index=121;jogo.add_child(camada);camada.draw.connect(desenhar);jogo.planta.alterada.connect(sujar_cameras)
-	raiz.add_child(janela);janela.theme=T.criar();janela.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,14))
+	raiz.add_child(janela);janela.theme=T.criar();janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",14))
 	var col:=VBoxContainer.new();col.custom_minimum_size.x=440;col.add_theme_constant_override("separation",6);janela.add_child(col)
 	var topo:=T.cabecalho(col,"DEBUG","debug");T.botao(topo,"×",fechar)
 	var abas:=TabContainer.new();col.add_child(abas)

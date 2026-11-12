@@ -12,20 +12,18 @@ var sala_anterior := -2
 
 func configurar(cena: Node, raiz: Control, linha: Node) -> void:
 	jogo=cena
-	botao=T.botao(linha,"",func():
+	botao=BotaoHudPlex.new("res://assets/interface/hud/conforto.png","","Conforto das salas")
+	botao.alternavel()
+	linha.add_child(botao)
+	botao.pressed.connect(func():
 		jogo.mapa_conforto.alternar()
 		if jogo.mapa_conforto.ativo and jogo.painel.hud.ar_ui.mapa.ativo:jogo.painel.hud.ar_ui.fechar()
-		botao.button_pressed=jogo.mapa_conforto.ativo
-		if not jogo.mapa_conforto.ativo: painel.hide(),T.MARROM)
-	botao.toggle_mode=true
-	botao.custom_minimum_size=Vector2(48,48)
-	botao.tooltip_text=""
-	var imagem := IconeHudPlex.new("conforto")
-	botao.add_child(imagem)
+		botao.set_pressed_no_signal(jogo.mapa_conforto.ativo)
+		if not jogo.mapa_conforto.ativo: painel.hide())
 	raiz.add_child(painel)
 	painel.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	painel.custom_minimum_size.x=292
-	painel.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,14))
+	painel.add_theme_stylebox_override("panel",KitPlex.moldura("hud_ativo",12))
 	var coluna := VBoxContainer.new()
 	coluna.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	painel.add_child(coluna)

@@ -21,8 +21,8 @@ func _ready() -> void:
 	passo.text="ESPAÇO";passo.add_theme_color_override("font_color",Color("e6bb73"));passo.add_theme_font_size_override("font_size",13);passo.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(passo)
 	escolhas.add_theme_constant_override("separation",12);add_child(escolhas)
 	for par in [[sim,"Sim!"],[nao,"Não"]]:
-		var b:Button=par[0];b.text=par[1];b.custom_minimum_size=Vector2(128,32);b.add_theme_color_override("font_color",Color("fff4d6"));b.add_theme_font_size_override("font_size",16)
-		for estado in ["normal","hover","pressed","focus"]:b.add_theme_stylebox_override(estado,TemaHudPlex.caixa(Color("63404f") if estado=="normal" else Color("8d5a6c"),Color("f8c6dc"),5))
+		var b:Button=par[0];b.text=par[1];b.custom_minimum_size=Vector2(128,36);b.add_theme_color_override("font_color",Color("fff4d6"));b.add_theme_font_size_override("font_size",16)
+		KitPlex.preparar_botao(b,Color("7a4a5c"),false,6)
 		escolhas.add_child(b)
 	sim.pressed.connect(func():escolha.emit(true));nao.pressed.connect(func():escolha.emit(false));escolhas.hide()
 	resized.connect(organizar);organizar()

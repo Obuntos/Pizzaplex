@@ -34,7 +34,7 @@ func configurar(cena: Node) -> void:
 		var seta:=IconeHudPlex.new("aba_fechada");seta.name="Seta";seta.escala_pixel=1.0;seta.custom_minimum_size=Vector2(24,24);seta.position=Vector2(8,3);b.add_child(seta)
 		botoes[nivel]=b
 		var painel:=PanelContainer.new()
-		painel.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,Color("a97565") if nivel==2 else T.AMBAR,8))
+		painel.add_theme_stylebox_override("panel",KitPlex.moldura("hud_alerta" if nivel==2 else "hud_ativo",8))
 		painel.mouse_force_pass_scroll_events=false
 		secao.add_child(painel);paineis[nivel]=painel
 		var scroll:=ScrollContainer.new();scroll.mouse_force_pass_scroll_events=false
@@ -151,10 +151,9 @@ func mostrar() -> void:
 			descricao.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 			descricao.custom_minimum_size.x=164
 			if DESTINOS.has(aviso.codigo) or aviso.codigo in ["pizza","bebida","pratos"]:
-				var acao:=T.botao(linha,"›",func(): resolver(aviso),T.MARROM)
-				acao.custom_minimum_size=Vector2(26,28)
-				acao.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-				acao.tooltip_text=""
+				var acao:=KitPlex.seta(linha,1,func(): resolver(aviso))
+				acao.custom_minimum_size=Vector2(32,36)
+				acao.tooltip_text="Resolver"
 			lista.add_child(HSeparator.new())
 
 func atualizar(delta: float) -> void:

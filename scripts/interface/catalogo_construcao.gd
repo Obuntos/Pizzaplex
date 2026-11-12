@@ -74,29 +74,30 @@ func configurar(cena: Node, raiz: Control) -> void:
 	painel.offset_right = -16
 	painel.offset_top = -388
 	painel.offset_bottom = -76
-	painel.add_theme_stylebox_override("panel",T.caixa(Color("2e2923"),Color("9c805b"),12))
+	painel.add_theme_stylebox_override("panel",KitPlex.moldura("hud",12))
 	raiz.add_child(painel)
 	var coluna := VBoxContainer.new()
-	coluna.add_theme_constant_override("separation",4)
+	coluna.add_theme_constant_override("separation",6)
 	painel.add_child(coluna)
-	var cabecalho:=T.cabecalho(coluna,"","construir")
-	titulo = T.texto(cabecalho,"CATÁLOGO",16,T.AMBAR)
+	var cabecalho:=HBoxContainer.new();cabecalho.add_theme_constant_override("separation",8);coluna.add_child(cabecalho)
+	KitPlex.icone(cabecalho,"res://assets/interface/ajustes/martelo.png")
+	titulo = KitPlex.texto(cabecalho,"CATÁLOGO",20,T.AMBAR,"titulo")
 	titulo.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	estilos.custom_minimum_size.x = 150
 	estilos.item_selected.connect(func(i): jogo.editor.estado_visual=str(estilos.get_item_metadata(i)))
 	cabecalho.add_child(estilos)
 	busca.placeholder_text = "Pesquisar item"
-	busca.custom_minimum_size = Vector2(180,24)
+	busca.custom_minimum_size = Vector2(200,40)
+	busca.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	estilos.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	busca.text_changed.connect(func(_v): preencher())
 	cabecalho.add_child(busca)
-	demolir=T.botao(cabecalho,"",func(): selecionado=""; jogo.escolher_ferramenta("remover"); preencher(),T.MARROM)
-	demolir.custom_minimum_size=Vector2(46,36)
-	demolir.toggle_mode=true
-	demolir.tooltip_text=""
-	var martelo:=IconeHudPlex.new("demolir")
-	martelo.escala_pixel=1.5;martelo.custom_minimum_size=Vector2(36,36)
-	martelo.position=Vector2(5,6)
-	demolir.add_child(martelo)
+	# Demolir é destrutivo: fica separado da busca, com nome, lixeira e face vinho quando ligado.
+	var botao_demolir:=BotaoHudPlex.new("res://assets/interface/ajustes/lixeira.png","Demolir","Remover itens e paredes")
+	botao_demolir.alternavel(Color("8b2026"))
+	botao_demolir.pressed.connect(func(): selecionado=""; jogo.escolher_ferramenta("remover"); preencher())
+	cabecalho.add_child(botao_demolir)
+	demolir=botao_demolir
 	T.botao(cabecalho,"×",func(): jogo.escolher_ferramenta("selecionar"); painel.hide()).tooltip_text=""
 	ajuda=T.texto(coluna,"",13,T.SUAVE)
 	ajuda.hide()
@@ -107,11 +108,11 @@ func configurar(cena: Node, raiz: Control) -> void:
 	coluna.add_child(abas)
 	for nome in CATEGORIAS:
 		var b:=VintagePlex.botao(abas,"      "+IdiomaPlex.traduzir(str(NOMES_ABAS.get(nome,nome))),func(): categoria=nome;busca.text="";preencher())
-		b.custom_minimum_size=Vector2(126,32)
+		b.custom_minimum_size=Vector2(126,34)
 		b.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 		b.add_theme_font_size_override("font_size",14)
 		b.toggle_mode=true
-		var ic:=IconeHudPlex.new(ICONES_ABAS[nome]);ic.escala_pixel=1.0;ic.custom_minimum_size=Vector2(24,24);ic.position=Vector2(7,4);b.add_child(ic)
+		var ic:=IconeHudPlex.new(ICONES_ABAS[nome]);ic.escala_pixel=1.0;ic.custom_minimum_size=Vector2(24,24);ic.position=Vector2(8,4);b.add_child(ic)
 		botoes[nome]=b
 	var scroll:=rolagem
 	scroll.gui_input.connect(rolar)
@@ -173,16 +174,16 @@ func preencher() -> void:
 		estilos.set_item_metadata(estilos.item_count-1,estado)
 		if estado==jogo.editor.estado_visual: estilos.select(estilos.item_count-1)
 	titulo.text = IdiomaPlex.traduzir("CATÁLOGO")+" / "+(IdiomaPlex.traduzir("RESULTADOS") if not busca.text.is_empty() else IdiomaPlex.traduzir(categoria).to_upper())
-	painel.add_theme_stylebox_override("panel",T.caixa(Color("2e2923"),Color("9c805b"),12))
 	ajuda.text=""
 	for nome in botoes:
 		var b:Button=botoes[nome]
 		b.text="      "+IdiomaPlex.traduzir(str(NOMES_ABAS.get(nome,nome)))
-		VintagePlex.preparar_botao(b,TONS[nome] if nome==categoria else Color("302016"))
+		# Aba ativa: afundada, na cor da categoria, com friso dourado.
+		KitPlex.preparar_botao(b,Color("3b2a25"),false,6,1)
 		b.add_theme_font_size_override("font_size",14)
 		b.set_pressed_no_signal(nome==categoria)
 		if nome==categoria:
-			for estado in ["normal","pressed","hover_pressed"]: b.add_theme_stylebox_override(estado,VintagePlex.caixa(TONS[nome].lightened(.24),Color("bf9565"),8))
+			for estado in ["normal","hover","pressed","hover_pressed"]: b.add_theme_stylebox_override(estado,KitPlex.quadro([KitPlex.TINTA,Color("f0c060")],Color(TONS[nome]).lightened(.12),1,6,1,Color(TONS[nome]).darkened(.4),true))
 	var tipos: Array = CatalogoPlex.objetos.keys().filter(func(tipo): return permitido(tipo) and (grupo(tipo)==categoria if busca.text.is_empty() else (str(CatalogoPlex.objetos[tipo].nome)+" "+NomesItensPlex.nome(tipo)+" "+NomesItensPlex.nome_pt(tipo)).to_lower().contains(busca.text.to_lower())))
 	tipos.sort_custom(func(a,b):return chave_ordem(a).naturalnocasecmp_to(chave_ordem(b))<0)
 	for tipo in tipos:
@@ -195,7 +196,7 @@ func preencher() -> void:
 		card.clip_contents = true
 		VintagePlex.preparar_botao(card,Color(TONS.get(grupo(tipo),TONS[categoria])).lightened(.08))
 		for estado in ["normal","hover","pressed","hover_pressed"]:
-			card.add_theme_stylebox_override(estado,T.caixa(Color("514637") if estado=="hover" else Color("3c342c"),Color("dfbb79") if selecionado==tipo else Color("76654e"),7))
+			card.add_theme_stylebox_override(estado,KitPlex.quadro([KitPlex.TINTA,Color("f0c060") if selecionado==tipo else Color("a5784c") if estado=="hover" else Color("6b4a36")],Color("4a3a2e") if estado=="hover" or selecionado==tipo else Color("3b2a25"),1,7))
 		var pacote: Array = info.get("pacote",[1,1])
 		var preco: int = jogo.preco_construcao(tipo)*int(pacote[0])*int(pacote[1])
 		card.tooltip_text=IdiomaPlex.traduzir(str(info.nome)) if IdiomaPlex.idioma_atual()!="en" else NomesItensPlex.nome(tipo)

@@ -54,24 +54,25 @@ func _ready() -> void:
 
 func criar_opcoes() -> void:
 	painel_opcoes.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	painel_opcoes.offset_left = -240
-	painel_opcoes.offset_right = 240
-	painel_opcoes.offset_top = -220
-	painel_opcoes.offset_bottom = 220
+	painel_opcoes.grow_horizontal=Control.GROW_DIRECTION_BOTH;painel_opcoes.grow_vertical=Control.GROW_DIRECTION_BOTH
+	painel_opcoes.custom_minimum_size.x=440
 	add_child(painel_opcoes)
-	painel_opcoes.add_theme_stylebox_override("panel",T.caixa(Color("251715"),Color("966e52"),20))
-	var lista:=VBoxContainer.new()
+	painel_opcoes.add_theme_stylebox_override("panel",KitPlex.moldura("janela",20))
+	var lista:=VBoxContainer.new();lista.add_theme_constant_override("separation",12)
 	painel_opcoes.add_child(lista)
-	T.texto(lista,"Opções",24,Color("ead1a3"))
-	T.texto(lista,"Idioma",16,Color("ead1a3"))
-	IdiomaPlex.criar_seletor(lista)
-	T.botao(lista,"Tela cheia / Janela",func():
+	KitPlex.cabecalho(lista,"Opções",func(): painel_opcoes.hide();sombra_dialogo.hide())
+	KitPlex.secao(lista,"Idioma")
+	IdiomaPlex.criar_seletor(lista).custom_minimum_size.y=44
+	KitPlex.secao(lista,"Tela")
+	KitPlex.botao(lista,"Tela cheia / Janela",func():
 		var janela:=get_window()
-		janela.mode=Window.MODE_WINDOWED if janela.mode==Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN)
-	var movimento:=CheckButton.new();movimento.text="Reduzir animações da interface"
+		janela.mode=Window.MODE_WINDOWED if janela.mode==Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN,"noite")
+	var movimento:=CheckBox.new();movimento.text="Reduzir animações da interface"
+	movimento.custom_minimum_size.y=44
 	movimento.toggled.connect(func(valor): fundo_menu.reduzido=valor)
 	lista.add_child(movimento)
-	T.botao(lista,"Voltar",func(): painel_opcoes.hide();sombra_dialogo.hide())
+	var rodape:=HBoxContainer.new();rodape.alignment=BoxContainer.ALIGNMENT_END;lista.add_child(rodape)
+	KitPlex.botao(rodape,"VOLTAR",func(): painel_opcoes.hide();sombra_dialogo.hide(),"ouro").custom_minimum_size.x=160
 	painel_opcoes.hide()
 
 func mostrar_opcoes() -> void:
@@ -204,13 +205,20 @@ func falhar_abertura(texto: String, jogo: Node=null) -> void:
 func criar_creditos() -> void:
 	add_child(creditos)
 	creditos.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	creditos.offset_left=-240;creditos.offset_right=240;creditos.offset_top=-100;creditos.offset_bottom=100
-	creditos.add_theme_stylebox_override("panel",T.caixa(Color("251715"),Color("966e52"),20))
-	var lista:=VBoxContainer.new();creditos.add_child(lista)
-	T.texto(lista,"Créditos",24,Color("ead1a3"))
-	T.texto(lista,"Arte: Sho E Ocenaette",16,Color("ead1a3"))
-	T.texto(lista,"Código: Oceanette e Shadow",16,Color("ead1a3"))
-	T.botao(lista,"Voltar",func(): creditos.hide();sombra_dialogo.hide())
+	creditos.grow_horizontal=Control.GROW_DIRECTION_BOTH;creditos.grow_vertical=Control.GROW_DIRECTION_BOTH
+	creditos.custom_minimum_size.x=440
+	creditos.add_theme_stylebox_override("panel",KitPlex.moldura("janela",20))
+	var lista:=VBoxContainer.new();lista.add_theme_constant_override("separation",12);creditos.add_child(lista)
+	KitPlex.cabecalho(lista,"Créditos",func(): creditos.hide();sombra_dialogo.hide())
+	# Folha de papel com a equipe, como um cartão preso à parede do restaurante.
+	var folha:=KitPlex.painel(lista,"papel",18)
+	var nomes:=VBoxContainer.new();nomes.add_theme_constant_override("separation",4);folha.add_child(nomes)
+	for par in [["Arte","Sho E Ocenaette"],["Código","Oceanette e Shadow"]]:
+		var papel_secao:=KitPlex.secao(nomes,par[0],Color("8a5a38"),Color("b8955e"))
+		papel_secao.name="Secao"
+		KitPlex.texto(nomes,par[1],20,Color("2a1408"),"titulo")
+	var rodape:=HBoxContainer.new();rodape.alignment=BoxContainer.ALIGNMENT_END;lista.add_child(rodape)
+	KitPlex.botao(rodape,"VOLTAR",func(): creditos.hide();sombra_dialogo.hide(),"ouro").custom_minimum_size.x=160
 	creditos.hide()
 
 func mostrar_creditos() -> void:

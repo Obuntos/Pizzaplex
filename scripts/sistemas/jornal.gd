@@ -42,14 +42,7 @@ func publicar() -> void:
 	if sumiram>0:manchetes.append("POLÍCIA INVESTIGA %d DESAPARECIMENTO(S) PERTO DA PIZZARIA"%sumiram)
 	if float(agora_.suspeita)>=40.0:manchetes.append("Investigação aperta o cerco: moradores pedem respostas.")
 	for e in eventos:manchetes.append(str(e))
-	var popup:=AcceptDialog.new()
-	popup.title="Jornal do Bairro · "+MESES[posmod(int(jogo.calendario.data().mes)-2,12)]
-	popup.dialog_text="\n\n".join(manchetes)
-	popup.ok_button_text="Fechar"
-	popup.theme=preload("res://scripts/interface/tema_hud.gd").criar()
-	jogo.add_child(popup)
-	popup.confirmed.connect(popup.queue_free);popup.close_requested.connect(popup.queue_free)
-	popup.popup_centered(Vector2i(520,360))
+	AvisoPlex.mostrar(jogo,"Jornal do Bairro · "+MESES[posmod(int(jogo.calendario.data().mes)-2,12)],"\n\n".join(manchetes))
 
 func gravar() -> Dictionary:return {"mes":mes,"base":base.duplicate(),"eventos":eventos.duplicate()}
 func restaurar(d:Dictionary) -> void:

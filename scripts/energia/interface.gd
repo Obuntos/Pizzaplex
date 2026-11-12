@@ -28,7 +28,7 @@ func configurar(cena: Node) -> void:
 	raiz.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	add_child(raiz)
 	janela.theme=T.criar()
-	janela.add_theme_stylebox_override("panel",T.caixa(Color("243039"),T.AMBAR,20))
+	janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",18))
 	raiz.add_child(janela)
 	var coluna:=VBoxContainer.new()
 	coluna.custom_minimum_size.x=440
@@ -39,7 +39,7 @@ func configurar(cena: Node) -> void:
 	coluna.add_child(secao)
 	secao.add_theme_constant_override("separation",12)
 	var faixa:=PanelContainer.new()
-	faixa.add_theme_stylebox_override("panel",T.caixa(Color("17242b"),T.LINHA,12))
+	faixa.add_theme_stylebox_override("panel",KitPlex.moldura("campo",12))
 	secao.add_child(faixa)
 	var descricao:=VBoxContainer.new()
 	faixa.add_child(descricao)
@@ -136,7 +136,7 @@ func atualizar() -> void:
 	resumo.text="Potência disponível: %.0f\nConsumo das luzes: %.1f  ·  Fornecimento: %.0f%%"%[rede.potencia,rede.demanda,rede.fator*100]
 	tanque.text="COMBUSTÍVEL                                       %.1f / 100"%carga
 	combustivel.value=carga
-	combustivel.add_theme_stylebox_override("fill",T.caixa(Color("ad744c") if carga<20 else T.VERDE,T.AMBAR if carga<20 else Color("9ebd8c"),0))
+	combustivel.add_theme_stylebox_override("fill",KitPlex.quadro([KitPlex.TINTA,T.AMBAR if carga<20 else Color("9ebd8c")],Color("ad744c") if carga<20 else Color("65834e"),1,0))
 	acionar.text="Desligar gerador" if ligada else "Religar pela caixa de energia"
 	abastecer.text="Manivela" if MobiliaPlex.visual(item)=="cenario_gerador_antigo" else "Abastecer até 100 · $ %.2f"%20.0
 	abastecer.tooltip_text=""

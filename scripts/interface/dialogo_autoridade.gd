@@ -9,7 +9,7 @@ func configurar(g:SegurancaBairroPlex,id:int,prisao:bool) -> void:
 	gestor=g;evento=id;layer=180;gestor.jogo.pausar("autoridade:"+str(get_instance_id()))
 	var raiz:=Control.new();raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.theme=T.criar();add_child(raiz)
 	var sombra:=ColorRect.new();sombra.color=Color(0,0,0,.7);sombra.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.add_child(sombra)
-	raiz.add_child(folha);folha.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.LINHA,24))
+	raiz.add_child(folha);folha.add_theme_stylebox_override("panel",KitPlex.moldura("janela_escura",24))
 	var c:=VBoxContainer.new();c.add_theme_constant_override("separation",16);folha.add_child(c)
 	var lista:Array=gestor.eventos.filter(func(registro):return int(registro.id)==id)
 	if lista.is_empty():queue_free();return

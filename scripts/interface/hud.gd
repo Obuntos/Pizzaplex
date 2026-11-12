@@ -8,11 +8,12 @@ var agenda := UICalendarioPlex.new()
 var calendario_visual:=RelogioCalendarioPlex.new()
 var catalogo_botao:Button
 var terminal_atalho: Button
-var terminal_icone:=IconeHudPlex.new("ibm")
 var controles_horario:=HBoxContainer.new()
 var icone_relogio:IconeHudPlex
 var livro_ui:=UILivroPlex.new()
-var saldo: Label
+var saldo: NumeroPixelPlex
+var painel_saldo: PanelContainer
+var agenda_botao: BotaoHudPlex
 var icone := IconeHudPlex.new()
 var corte: Button
 var resumo: Label
@@ -37,7 +38,8 @@ var pausa_anterior := 1.0
 var espera := 1.0
 var pendencias:=PendenciasRestaurantePlex.new()
 var carregar_botao: Button
-var ganho:=Label.new()
+var ganho:=NumeroPixelPlex.new("",2,Color("b8da9c"))
+var etiqueta_ganho: PanelContainer
 var acumulado:=0.0
 var animacao_ganho: Tween
 
@@ -47,13 +49,15 @@ func configurar(cena: Node) -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var topo:=PanelContainer.new();topo.position=Vector2(16,14);topo.custom_minimum_size=Vector2(216,58)
-	topo.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.LINHA,10));add_child(topo)
-	var linha:=HBoxContainer.new();topo.add_child(linha)
-	var notas:=IconeHudPlex.new("dinheiro");notas.escala_pixel=1.5;notas.custom_minimum_size=Vector2(36,36);linha.add_child(notas)
-	var carteira:=VBoxContainer.new();carteira.add_theme_constant_override("separation",0);linha.add_child(carteira)
-	saldo=T.texto(carteira,"$ 0.00",23,T.PAPEL);saldo.custom_minimum_size.x=142;saldo.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
-	carteira.add_child(ganho);ganho.add_theme_font_size_override("font_size",13);ganho.add_theme_color_override("font_color",Color("b8da9c"));ganho.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
+	# Saldo: cédula + visor de dígitos, da mesma família do relógio. O painel
+	# cresce para a direita conforme o valor aumenta.
+	painel_saldo=KitPlex.painel(self,"hud",8);painel_saldo.position=Vector2(16,14);painel_saldo.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	painel_saldo.tooltip_text="Disponível no caixa"
+	var linha:=HBoxContainer.new();linha.add_theme_constant_override("separation",8);linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;painel_saldo.add_child(linha)
+	KitPlex.icone(linha,"res://assets/interface/hud/dinheiro.png",32)
+	var visor:=KitPlex.painel(linha,"visor",8);visor.mouse_filter=Control.MOUSE_FILTER_IGNORE;visor.custom_minimum_size=Vector2(168,37)
+	saldo=NumeroPixelPlex.new("$ 0.00",3,T.AMBAR);saldo.apagado=Color("2c1d15");visor.add_child(saldo)
+	etiqueta_ganho=KitPlex.painel(self,"hud",6);etiqueta_ganho.mouse_filter=Control.MOUSE_FILTER_IGNORE;etiqueta_ganho.add_child(ganho);etiqueta_ganho.hide()
 	jogo.servicos.dinheiro_recebido.connect(receber_dinheiro)
 	var relogio := PanelContainer.new()
 	relogio.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
@@ -69,53 +73,40 @@ func configurar(cena: Node) -> void:
 	relogio.add_child(tempo)
 	tempo.add_child(icone)
 	tempo.add_child(calendario_visual)
+	# Barra inferior. À esquerda, os atalhos de consulta (só ícone); à direita,
+	# as ferramentas de trabalho (ícone + nome). Todos com 56 px de altura.
 	var acoes := HBoxContainer.new()
 	acoes.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
-	acoes.offset_left = -500
+	acoes.grow_horizontal=Control.GROW_DIRECTION_BEGIN
 	acoes.offset_right = -16
 	acoes.offset_top = -68
 	acoes.offset_bottom = -12
+	acoes.alignment=BoxContainer.ALIGNMENT_END
+	acoes.add_theme_constant_override("separation",6)
 	add_child(acoes)
-	for spec in [["Construir","construir",T.MARROM],["Agenda","calendario",T.AZUL],["Corte","paredes",T.VERDE]]:
-		var acao: String = spec[0]
-		var b := T.botao(acoes,"CATÁLOGO" if acao=="Construir" else "AGENDA" if acao=="Agenda" else "CORTE",func():
-			if acao=="Construir": catalogo.alternar()
-			elif acao=="Agenda": agenda.abrir()
-			else:
-				jogo.definir_corte(not jogo.cortar_frente)
-				atualizar(1.0),spec[2])
-		b.custom_minimum_size = Vector2(138,52)
-		var imagem := IconeHudPlex.new(spec[1])
-		imagem.escala_pixel=1.5
-		imagem.custom_minimum_size=Vector2(36,36)
-		imagem.position = Vector2(6,8)
-		b.add_child(imagem)
-		b.alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		b.add_theme_font_size_override("font_size",14)
-		if acao=="Construir":catalogo_botao=b
-		if acao=="Corte":
-			corte = b
-			b.tooltip_text=""
+	catalogo_botao=BotaoHudPlex.new("res://assets/interface/ajustes/martelo.png","Catálogo","Catálogo de construção",Color("5a3320"))
+	acoes.add_child(catalogo_botao);catalogo_botao.pressed.connect(func():catalogo.alternar())
+	agenda_botao=BotaoHudPlex.new("res://assets/interface/hud/agenda.png","Agenda","Agenda de apresentações")
+	acoes.add_child(agenda_botao);agenda_botao.pressed.connect(func():agenda.abrir())
+	corte=BotaoHudPlex.new("res://assets/interface/ajustes/paredes.png","Corte","Alternar paredes completas e recortadas")
+	acoes.add_child(corte);corte.pressed.connect(func():
+		jogo.definir_corte(not jogo.cortar_frente)
+		atualizar(1.0))
 	var ferramentas := HBoxContainer.new()
 	ferramentas.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	ferramentas.offset_left = 16
-	ferramentas.offset_top = -60
+	ferramentas.offset_top = -68
 	ferramentas.offset_bottom = -12
+	ferramentas.add_theme_constant_override("separation",6)
 	add_child(ferramentas)
 	conforto_ui.configurar(jogo,self,ferramentas)
 	ar_ui.configurar(jogo,self,ferramentas)
 	jogo.add_child(debug_ui);debug_ui.configurar(jogo)
 	jogo.add_child(quadro_investigacao);quadro_investigacao.configurar(jogo)
-	var debug_botao:=T.botao(ferramentas,"",debug_ui.alternar,T.AZUL);debug_botao.custom_minimum_size=Vector2(48,48)
-	var cubo:=IconeHudPlex.new("debug");cubo.escala_pixel=1.5;cubo.custom_minimum_size=Vector2(36,36);cubo.position=Vector2(6,6);debug_botao.add_child(cubo)
-	terminal_atalho=T.botao(acoes,"",abrir_terminal,T.AZUL)
-	acoes.move_child(terminal_atalho,0)
-	terminal_atalho.custom_minimum_size=Vector2(48,48)
-	terminal_icone.escala_pixel=1.5
-	terminal_icone.custom_minimum_size=Vector2(36,36)
-	terminal_icone.position=Vector2(6,6)
-	terminal_atalho.add_child(terminal_icone)
-	terminal_atalho.tooltip_text=""
+	terminal_atalho=BotaoHudPlex.new("res://assets/interface/ajustes/ibm.png","","Terminal de administração")
+	ferramentas.add_child(terminal_atalho);terminal_atalho.pressed.connect(abrir_terminal)
+	var debug_botao:=BotaoHudPlex.new("res://assets/interface/hud/debug.png","","Ferramentas de teste")
+	ferramentas.add_child(debug_botao);debug_botao.pressed.connect(debug_ui.alternar)
 	add_child(livro_ui);livro_ui.configurar(jogo)
 	painel_conforto=conforto_ui.painel
 	resumo=conforto_ui.titulo
@@ -132,29 +123,31 @@ func configurar(cena: Node) -> void:
 	sombra_pausa.z_index=105
 	sombra_pausa.hide()
 	menu.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	menu.offset_left=-200
-	menu.offset_right=200
-	menu.offset_top=-285
-	menu.offset_bottom=285
+	menu.grow_horizontal=Control.GROW_DIRECTION_BOTH;menu.grow_vertical=Control.GROW_DIRECTION_BOTH
+	menu.custom_minimum_size.x=380
 	menu.z_index=106
-	menu.add_theme_stylebox_override("panel",T.caixa(T.FUNDO,T.AMBAR,18))
+	menu.add_theme_stylebox_override("panel",KitPlex.moldura("janela",20))
 	add_child(menu)
 	var opcoes:=VBoxContainer.new()
 	opcoes.add_theme_constant_override("separation",10)
 	menu.add_child(opcoes)
-	var placa:=PanelContainer.new()
-	placa.add_theme_stylebox_override("panel",T.caixa(Color("69392f"),T.LINHA,12))
-	opcoes.add_child(placa)
-	T.texto(placa,"◆  PIZZAPLEX / PAUSA",20,T.PAPEL)
-	T.texto(opcoes,"Idioma",16,T.PAPEL)
-	IdiomaPlex.criar_seletor(opcoes)
-	TemaTerminalPlex.botao(opcoes,"CONTINUAR  ›",alternar_menu,true)
-	T.botao(opcoes,"Salvar partida",func(): jogo.salvar())
-	carregar_botao=T.botao(opcoes,"Carregar partida",abrir_saves)
+	KitPlex.placa(opcoes,"Pausa",22)
+	nome_restaurante=KitPlex.texto(opcoes,"",14,KitPlex.AREIA);nome_restaurante.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	var continuar:=KitPlex.botao(opcoes,"CONTINUAR",alternar_menu,"ouro",18);continuar.custom_minimum_size.y=50
+	KitPlex.secao(opcoes,"Partida")
+	var partida:=HBoxContainer.new();partida.add_theme_constant_override("separation",8);opcoes.add_child(partida)
+	KitPlex.botao(partida,"Salvar",func(): jogo.salvar()).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	carregar_botao=KitPlex.botao(partida,"Carregar",abrir_saves);carregar_botao.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	carregar_botao.disabled=not ArquivoPlex.tem_saves()
-	T.botao(opcoes,"Tela cheia / Janela",func(): jogo.alternar_tela_cheia())
-	T.botao(opcoes,"Menu inicial",func(): jogo.get_tree().change_scene_to_file("res://cenas/interface/inicio.tscn"))
-	T.botao(opcoes,"Sair do jogo",func(): jogo.get_tree().quit())
+	KitPlex.secao(opcoes,"Opções")
+	var linha_idioma:=HBoxContainer.new();linha_idioma.add_theme_constant_override("separation",10);opcoes.add_child(linha_idioma)
+	KitPlex.texto(linha_idioma,"Idioma",15).custom_minimum_size.x=84
+	IdiomaPlex.criar_seletor(linha_idioma).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	KitPlex.botao(opcoes,"Tela cheia / Janela",func(): jogo.alternar_tela_cheia(),"noite")
+	KitPlex.secao(opcoes,"Sair")
+	var saida:=HBoxContainer.new();saida.add_theme_constant_override("separation",8);opcoes.add_child(saida)
+	KitPlex.botao(saida,"Menu inicial",func(): jogo.get_tree().change_scene_to_file("res://cenas/interface/inicio.tscn"),"noite").size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	KitPlex.botao(saida,"Sair do jogo",func(): jogo.get_tree().quit(),"vinho").size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	menu.hide()
 	add_child(arquivos)
 	arquivos.excluido.connect(func(_caminho): carregar_botao.disabled=not ArquivoPlex.tem_saves())
@@ -169,6 +162,7 @@ func alternar_menu() -> void:
 	menu.visible = not menu.visible
 	sombra_pausa.visible=menu.visible
 	if menu.visible:
+		nome_restaurante.text=str(jogo.operacao.nome)
 		carregar_botao.disabled=not ArquivoPlex.tem_saves()
 		jogo.pausar("menu")
 	else: jogo.retomar("menu")
@@ -187,13 +181,11 @@ func atualizar(delta: float) -> void:
 	var c: CalendarioPlex = jogo.calendario
 	calendario_visual.atualizar(c)
 	terminal_atalho.disabled=terminal_disponivel()<0
-	terminal_icone.bloqueado=terminal_atalho.disabled
-	terminal_icone.queue_redraw()
 	organizar_controles()
 	icone.tipo = c.periodo()
 	icone.queue_redraw()
-	saldo.text = "$ %.2f"%float(jogo.servicos.saldo)
-	if corte != null: corte.text = "CORTE ON" if jogo.cortar_frente else "CORTE OFF"
+	saldo.texto=NumeroPixelPlex.dinheiro(float(jogo.servicos.saldo))
+	if corte != null and (corte.lampada==null or corte.ligado!=jogo.cortar_frente): corte.definir_estado(jogo.cortar_frente,"LIGADO","DESLIGADO","res://assets/interface/hud/paredes_corte.png")
 
 func compacto(pai: Node, texto: String, acao: Callable, cor: Color = T.FUNDO) -> Button:
 	var botao := T.botao(pai,texto,acao,cor)
@@ -236,17 +228,18 @@ func abrir_saves() -> void:
 func receber_dinheiro(valor: float) -> void:
 	if valor<=0.0: return
 	acumulado+=valor
-	ganho.text="(+%.2f)"%acumulado
-	ganho.modulate.a=1.0
+	ganho.texto="+"+NumeroPixelPlex.dinheiro(acumulado).trim_prefix("$ ")
+	etiqueta_ganho.reset_size();etiqueta_ganho.position=painel_saldo.position+Vector2(painel_saldo.size.x-etiqueta_ganho.size.x,painel_saldo.size.y+2)
+	etiqueta_ganho.modulate.a=1.0;etiqueta_ganho.show()
 	if animacao_ganho!=null and animacao_ganho.is_valid(): animacao_ganho.kill()
 	animacao_ganho=create_tween()
 	animacao_ganho.tween_interval(1.8)
-	animacao_ganho.tween_property(ganho,"modulate:a",0.0,.5)
+	animacao_ganho.tween_property(etiqueta_ganho,"modulate:a",0.0,.5)
 	animacao_ganho.tween_callback(limpar_ganho)
 
 func limpar_ganho() -> void:
 	acumulado=0.0
-	ganho.text=""
+	etiqueta_ganho.hide()
 
 func terminal_disponivel() -> int:
 	if jogo.compras.terminal_valido(jogo.terminal_ui.terminal): return jogo.terminal_ui.terminal

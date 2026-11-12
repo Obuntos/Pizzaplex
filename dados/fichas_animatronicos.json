@@ -1,0 +1,19 @@
+{
+ "_leia": "Textos das fichas de estudo. 'curta' aparece no cartaz de estudo (cerca de 100 caracteres). 'longa' aparece na ficha completa (cerca de 450 caracteres, em até 3 parágrafos separados por \\n). 'cor' tinge a moldura e o nome.",
+ "novo_coelho_detalhes": {
+  "nome": "Orelhitas",
+  "subtitulo": "Coleção VI",
+  "imagem": "res://assets/interface/estudo/orelhitas.png",
+  "cor": "e0a93c",
+  "curta": "blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla",
+  "longa": "blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla\nblablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla\nblablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla"
+ },
+ "vi_patitas": {
+  "nome": "Patitas",
+  "subtitulo": "Coleção VI",
+  "imagem": "res://assets/interface/estudo/patitas.png",
+  "cor": "9b86d6",
+  "curta": "blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla",
+  "longa": "blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla\nblablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla\nblablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla blablabla"
+ }
+}

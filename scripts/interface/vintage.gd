@@ -57,6 +57,9 @@ static func icone(tipo:String, cor:Color=CREME) -> Texture2D:
 			for i in 7:
 				if tipo=="baixo": ret.call(5+i,8+i,14-i*2,2)
 				else: ret.call(7+i if tipo=="seta_direita" else 15-i,5+i,2,14-i*2)
+		"menos","mais":
+			ret.call(5,10,14,4)
+			if tipo=="mais": ret.call(10,5,4,14)
 		"marcado","desmarcado":
 			ret.call(3,3,18,2);ret.call(3,19,18,2);ret.call(3,3,2,18);ret.call(19,3,2,18)
 			if tipo=="marcado":

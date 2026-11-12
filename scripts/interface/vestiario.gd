@@ -14,18 +14,19 @@ func configurar(cena: Node) -> void:
 	raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	raiz.theme=T.criar()
 	var fundo:=ColorRect.new()
-	fundo.color=Color(0.025,.04,.06,.8)
+	fundo.color=Color(.05,.025,.015,.72)
 	fundo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	raiz.add_child(fundo)
 	raiz.add_child(janela)
-	janela.add_theme_stylebox_override("panel",T.caixa(Color("243039"),T.AMBAR,24))
+	janela.add_theme_stylebox_override("panel",KitPlex.moldura("janela",20))
 	var coluna:=VBoxContainer.new()
-	coluna.add_theme_constant_override("separation",18)
+	coluna.add_theme_constant_override("separation",14)
 	janela.add_child(coluna)
-	T.texto(coluna,"VESTIÁRIO / FANTASIAS",25,T.AMBAR)
-	var texto:=T.texto(coluna,"Escolha um mascote para receber e entreter as crianças e os adolescentes no salão.",17,T.PAPEL)
+	KitPlex.placa(coluna,"Vestiário",22)
+	var texto:=T.texto(coluna,"Escolha um mascote para receber e entreter as crianças e os adolescentes no salão.",15,T.PAPEL)
+	texto.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	texto.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	texto.custom_minimum_size.x=640
+	texto.custom_minimum_size.x=480
 	var opcoes:=HBoxContainer.new()
 	opcoes.alignment=BoxContainer.ALIGNMENT_CENTER
 	coluna.add_child(opcoes)
@@ -33,8 +34,10 @@ func configurar(cena: Node) -> void:
 		var modelo: String=spec[0]
 		var card:=Button.new()
 		card.custom_minimum_size=Vector2(200,276)
-		card.add_theme_stylebox_override("normal",T.caixa(Color("334049"),T.LINHA,12))
-		card.add_theme_stylebox_override("hover",T.caixa(Color("46514b"),T.AMBAR,12))
+		# Cartão de papel: o friso fica dourado ao passar o mouse.
+		card.add_theme_stylebox_override("normal",KitPlex.moldura("papel",12))
+		for estado in ["hover","pressed","hover_pressed"]:card.add_theme_stylebox_override(estado,KitPlex.moldura("papel_ativo",12))
+		card.add_theme_stylebox_override("focus",KitPlex.moldura("contorno_ouro"))
 		opcoes.add_child(card)
 		var conteudo:=VBoxContainer.new()
 		conteudo.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -55,15 +58,16 @@ func configurar(cena: Node) -> void:
 		imagem.custom_minimum_size.y=208
 		imagem.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		conteudo.add_child(imagem)
-		T.texto(conteudo,spec[1],20).horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		KitPlex.texto(conteudo,spec[1],20,Color("2a1408"),"titulo").horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		card.pressed.connect(func(): fechar(); jogo.fantasias.vestir(modelo))
-	T.botao(coluna,"Agora não",adiar)
+	var rodape:=HBoxContainer.new();rodape.alignment=BoxContainer.ALIGNMENT_CENTER;coluna.add_child(rodape)
+	KitPlex.botao(rodape,"Agora não",adiar,"noite").custom_minimum_size.x=200
 	jogo.get_viewport().size_changed.connect(redimensionar)
 	raiz.hide()
 
 func redimensionar() -> void:
 	var tela: Vector2=jogo.get_viewport_rect().size
-	janela.size=Vector2(720,440)
+	janela.size=Vector2(560,0)
 	JanelasMoveisPlex.centralizar(janela,tela)
 
 func aberto() -> bool:
