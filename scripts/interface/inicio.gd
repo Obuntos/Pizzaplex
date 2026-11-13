@@ -139,8 +139,7 @@ func _process(_delta: float) -> void:
 		if modo == "novo":
 			jogo.operacao.configurar(config_partida)
 			PizzariaAbandonadaPlex.montar(jogo)
-			var admin:PersonagemPlex=AdministradorPlex.criar(jogo)
-			jogo.sistemas.tutorial.preparar_intro(admin)
+			AdministradorPlex.criar(jogo)
 		elif modo=="carregar":
 			if not jogo.carregar(save_escolhido):
 				jogo.queue_free();carregando=false;carregamento.hide();informacao.text="Esta partida não está disponível."
@@ -177,7 +176,6 @@ func _process(_delta: float) -> void:
 		jogo.set_process_input(true)
 		jogo.set_process_unhandled_input(true)
 		barra.value = 100
-		if modo=="novo":jogo.sistemas.tutorial.iniciar_intro()
 		await get_tree().process_frame
 		queue_free()
 

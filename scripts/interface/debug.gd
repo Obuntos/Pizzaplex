@@ -91,6 +91,7 @@ func configurar(cena:Node) -> void:
 	T.texto(novos,"GORE (clique no tile)",14,T.AMBAR)
 	var linha_gore:=HBoxContainer.new();novos.add_child(linha_gore)
 	for n in [1,2,3]:T.botao(linha_gore,"Nível "+str(n),func():escolhendo="gore"+str(n);avisar("Debug: clique no tile do gore nível "+str(n)+". Botão direito cancela."),T.AZUL)
+	T.botao(novos,"Completar estudo atual",completar_estudo,T.AZUL)
 	T.botao(novos,"Ir para 23:25 (mecânico noturno)",func():jogo.calendario.minutos=1405.0;jogo.sistemas.mecanico.feita=-1;avisar("Debug: horário ajustado para 23:25."),T.AZUL)
 	T.texto(geral,"DESEMPENHO",14,T.AMBAR)
 	info_geral=rotulo(geral)
@@ -433,3 +434,6 @@ func chamar_entregador() -> void:
 	if entregas.etapa!="":avisar("Debug: o entregador já está a caminho.");return
 	entregas.chamar()
 	avisar("Debug: entregador chamado." if entregas.etapa!="" else "Debug: o entregador não achou caminho até o ponto de recebimento.")
+
+func completar_estudo() -> void:
+	if not jogo.estudos.concluir(): avisar("Debug: não há estudo pendente.")

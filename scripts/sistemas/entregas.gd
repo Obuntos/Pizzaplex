@@ -53,7 +53,6 @@ func chamar() -> void:
 	if rota.is_empty():jogo.despawn(a);entregador=-1;etapa="";return
 	a.andar(rota);a.trabalho="entregar_compras"
 	for p in pendentes():p.estado="Entregador a caminho"
-	jogo.sistemas.avisos.marcar(a.local,"O entregador do mercadinho está a caminho")
 
 func atualizar(delta:float) -> void:
 	espera+=delta

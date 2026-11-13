@@ -25,8 +25,6 @@ func apagar(motivo:String) -> void:
 	quedas+=1
 	jogo.iluminacao.rede.atualizar();jogo.planta.alterada.emit()
 	jogo.painel.mensagem(motivo)
-	var caixas:=quadros()
-	if not caixas.is_empty():jogo.sistemas.avisos.marcar(Vector2(caixas[0].celula),motivo)
 	jogo.sistemas.jornal.noticiar("Queda de energia na pizzaria: "+motivo.to_lower())
 
 func atualizar(delta:float) -> void:

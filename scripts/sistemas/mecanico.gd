@@ -59,8 +59,6 @@ func iniciar() -> void:
 	var trazido:=false
 	if m.visita.get("fora_turno",false) or m.visita.get("saindo_fechamento",false):jogo.turnos.chegada(m,.5);trazido=true
 	m.visita.mec={"robo":r.identificador,"etapa":"chegar","t":0.0,"passo":0,"trazido":trazido}
-	jogo.painel.mensagem("O mecânico vai fazer a manutenção noturna de "+IdentidadesPlex.completo(r)+".")
-	jogo.sistemas.avisos.marcar(r.local,"Manutenção noturna: "+IdentidadesPlex.completo(r))
 
 func atualizar(delta:float) -> void:
 	espera+=delta
@@ -146,7 +144,6 @@ func ataque(m:PersonagemPlex,r:PersonagemPlex) -> void:
 	if CatalogoMontagemPlex.quebrado(r.modelo):r.robotica.ensanguentado=true;jogo.sistemas.cartazes.morte(m.celula)
 	else:GorePlex.espalhar(jogo,m.celula,3,posmod(roundi(float(r.direcao)/2.0),4))
 	jogo.painel.mensagem("O animatrônico ativou durante a manutenção e atacou o mecânico. Limpe tudo antes que alguém veja.")
-	jogo.sistemas.avisos.marcar(m.local,"O mecânico foi atacado")
 	jogo.sistemas.jornal.noticiar("Funcionário da pizzaria desaparece durante o turno da noite.")
 	r.visita.erase("bloqueio_noite");r.visita.erase("mec_noturno");r.trabalho=""
 	m.visita.erase("mec")

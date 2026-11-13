@@ -4,6 +4,7 @@ extends Node
 const FPS_SEGUNDO_PLANO=24
 const FPS_MINIMIZADA=10
 const RECUPERACAO_US=2000000
+const PASSOS_MAXIMOS=3
 var jogo:Node
 var janela:Window
 var suspenso:=false
@@ -31,7 +32,7 @@ func configurar(alvo:Node) -> void:
 	passos_anteriores=Engine.max_physics_steps_per_frame
 	fisica_anterior=Engine.physics_ticks_per_second
 	Engine.max_fps=limite_ativo
-	Engine.max_physics_steps_per_frame=maxi(passos_anteriores,8)
+	Engine.max_physics_steps_per_frame=PASSOS_MAXIMOS
 	janela.focus_exited.connect(perder_foco)
 	janela.focus_entered.connect(recuperar_foco)
 	configurado=true
@@ -54,6 +55,7 @@ func observar(foco:bool,reduzida:bool,agora_us:int=0) -> void:
 		retornos+=1
 	else:
 		retomada_ate_us=0
+	if is_instance_valid(jogo):jogo.desempenho.janela(foco and not reduzida)
 	Engine.max_fps=mini(limite_ativo,FPS_MINIMIZADA) if reduzida else mini(limite_ativo,FPS_SEGUNDO_PLANO) if not foco else limite_ativo
 	if not foco and is_instance_valid(jogo):
 		jogo.arrastando=false
@@ -71,7 +73,7 @@ func _process(_delta:float) -> void:
 		observar(janela.has_focus(),janela.mode==Window.MODE_MINIMIZED)
 	if recuperacao_ate_us>0 and Time.get_ticks_usec()>=recuperacao_ate_us:
 		recuperacao_ate_us=0
-		if em_foco and not minimizada:Engine.max_physics_steps_per_frame=maxi(passos_anteriores,8)
+		if em_foco and not minimizada:Engine.max_physics_steps_per_frame=PASSOS_MAXIMOS
 
 func _exit_tree() -> void:
 	if not configurado:return

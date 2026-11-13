@@ -76,6 +76,10 @@ func montagem(delta:float) -> void:
 		if minigame_aberto():return
 		if not str(o.get("minigame_pendente","")).is_empty():continue
 		var r:=ator(int(o.robo))
+		if is_instance_valid(r) and r.visita.get("montagem_olhar_jogador",false):
+			var mecanico:PersonagemPlex=ator(int(o.get("ator",-1)))
+			if not is_instance_valid(mecanico):mecanico=jogo.controle.administrador()
+			if is_instance_valid(mecanico) and mecanico.local.distance_squared_to(r.local)>.01:jogo.tarefas.orientar_cardinal(r,mecanico.local)
 		if o.get("pausada",false):
 			if o.get("motivo","")=="Sem acesso" and int(o.get("bloqueio_revisao",-1))!=jogo.planta.revisao:o.pausada=false
 			else:continue
@@ -174,8 +178,12 @@ func definir_pose(id:int,pose:int) -> bool:
 	if not is_instance_valid(r) or marca.is_empty() or not jogo.poses.livre(pose,r) or r.visita.get("montando_atracao",false):return false
 	var rota:Array[Vector2i]=jogo.rotas.caminho(r.origem_rota(),marca.celula)
 	if rota.is_empty():return false
+	var antiga:Dictionary=jogo.planta.objetos.get(r.pose,{})
+	if not antiga.is_empty() and int(antiga.id)!=pose and str(antiga.tipo)=="pose":
+		if int(antiga.get("seta_de",-1))==id:jogo.planta.remover(int(antiga.id))
+		elif int(antiga.get("dono",-1))==id:antiga.dono=-1
 	jogo.oficina.liberar_reservas(r);r.visita.erase("oficina_robo");r.visita.erase("diagnostico_animacao");r.visita.erase("diagnostico_rota")
-	r.visita.erase("recolhendo_deposito");r.visita.erase("destino_deposito");r.visita.erase("bancada_montagem");r.visita.erase("montagem_olhar_jogador");r.visita.erase("montagem_rotacao");marca.dono=id;r.pose=pose;r.visita.erase("aguarda_seta");r.trabalho="ir_pose";r.automatico=true;AnimatronicosPlex.garantir(r);r.robotica.desligado_manual=false;AnimatronicosPlex.mudar(r,"deslocando");r.andar(rota)
+	r.visita.erase("recolhendo_deposito");r.visita.erase("destino_deposito");r.visita.erase("bancada_montagem");r.visita.erase("montagem_olhar_jogador");r.visita.erase("montagem_rotacao");marca.dono=id;r.pose=pose;r.robotica.pose_palco=pose;r.visita.erase("aguarda_seta");r.trabalho="ir_pose";r.automatico=true;AnimatronicosPlex.garantir(r);r.robotica.desligado_manual=false;AnimatronicosPlex.mudar(r,"deslocando");r.andar(rota)
 	for o in fila:
 		if int(o.robo)==id:o.fase="caminhando"
 	jogo.livro.alterado.emit();return true

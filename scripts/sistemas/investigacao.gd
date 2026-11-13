@@ -206,4 +206,4 @@ func atualizar_cameras(delta:float) -> void:
 		var assinatura_nome:=hash([jogo.ambientes.assinatura_estrutura,jogo.animatronicos.palcos.assinatura,o.celula,o.rotacao,jogo.iluminacao.rede.fator>.05])
 		if int(o.get("camera_nome_revisao",-1))!=assinatura_nome:o.camera_nome=CamerasVigilanciaPlex.nome(jogo,o);o.camera_nome_revisao=assinatura_nome
 		o.camera_ligada=CamerasVigilanciaPlex.ligada(o,jogo.iluminacao.rede.fator)
-		if o.camera_ligada:o.camera_quadro=roundi(pingpong(tempo_camera/CamerasVigilanciaPlex.GIRO+float(posmod(int(o.id),7))/7.0,1.0)*12.0)
+		if o.camera_ligada:o.camera_quadro=roundi(pingpong(tempo_camera/CamerasVigilanciaPlex.GIRO+float(posmod(int(o.id),7))/7.0,1.0)*2.0)*6

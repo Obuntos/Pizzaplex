@@ -27,7 +27,6 @@ func avaliar() -> void:
 		var local:=ponto_perto(item.celula)
 		if local.x>=0:
 			criar(local);ultimo_surgimento=tempo
-			jogo.sistemas.avisos.marcar(Vector2(local),"Um rato apareceu")
 func ponto_perto(centro:Vector2i) -> Vector2i:
 	for raio in [1,2,3]:
 		for d in GradePlex.VIZINHOS:

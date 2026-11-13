@@ -63,7 +63,7 @@ func confirmar(r:PersonagemPlex,celula:Vector2i) -> void:
 	var destino:=livre(celula,r)
 	if destino.x<0:aviso("O animatrônico não tem caminho até o armazém.");return
 	jogo.servicos.saldo=snappedf(jogo.servicos.saldo-custo(),.01)
-	var pose:=r.pose if r.pose>=0 else int(r.visita.get("palco_anterior",-1))
+	var pose:=r.pose if r.pose>=0 else int(r.visita.get("palco_anterior",r.robotica.get("pose_palco",-1)))
 	jogo.oficina.liberar_palco(r)
 	r.robotica.armazem=[celula.x,celula.y];r.robotica.troca={"novo":PAR[r.modelo],"pose":pose}
 	marcar_sala(celula)
@@ -110,6 +110,7 @@ func deitar(r:PersonagemPlex) -> bool:
 func ativar(n:PersonagemPlex,pose:int,celula:Array) -> void:
 	n.robotica.erase("armazenado");n.robotica.bateria=100.0;n.robotica.desligado_manual=false;n.robotica.armazem=celula;n.trabalho=""
 	AnimatronicosPlex.garantir(n)
+	if pose<0:pose=int(n.robotica.get("pose_palco",-1))
 	if pose>=0 and jogo.planta.objetos.has(pose) and jogo.atracoes.definir_pose(n.identificador,pose):return
 	n.visita.palco_anterior=pose
 	aviso("O lugar no palco está ocupado ou sem acesso. Use Redefinir lugar no "+IdentidadesPlex.completo(n)+".")
@@ -162,7 +163,7 @@ func reconstruir(carcaca:PersonagemPlex) -> void:
 	if jogo.controle_robo.controlado(ativo):jogo.controle_robo.soltar(false)
 	var destino:=livre(Vector2i(int(celula[0]),int(celula[1])),ativo)
 	if destino.x<0:aviso("O "+IdentidadesPlex.completo(ativo)+" não tem caminho até o armazém.");jogo.servicos.saldo=snappedf(jogo.servicos.saldo+custo(),.01);return
-	var pose:=ativo.pose if ativo.pose>=0 else int(ativo.visita.get("palco_anterior",-1))
+	var pose:=ativo.pose if ativo.pose>=0 else int(ativo.visita.get("palco_anterior",ativo.robotica.get("pose_palco",-1)))
 	jogo.oficina.liberar_palco(ativo)
 	ativo.robotica.armazem=celula;ativo.robotica.troca={"novo":inteiro,"pose":pose}
 	mandar(ativo,destino)

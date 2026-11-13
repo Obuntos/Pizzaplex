@@ -50,7 +50,6 @@ func matar(r:PersonagemPlex,v:PersonagemPlex) -> void:
 	for a in presentes:jogo.controle.incidentes.fugir(a)
 	r.robotica.fome=0.0
 	if saciou:r.robotica.fome_folga_ate=agora()+FOLGA_EXTRA
-	jogo.sistemas.avisos.marcar(v.local,"Ataque: "+IdentidadesPlex.completo(v))
 	jogo.despawn(v)
 	jogo.painel.mensagem(("A vítima estava em pânico: o animatrônico ficou saciado por mais tempo." if saciou else "O animatrônico se alimentou. A fome voltou a zero.")+(" Houve testemunhas." if not presentes.is_empty() else ""))
 

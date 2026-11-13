@@ -34,7 +34,7 @@ func vincular(palco:int) -> void:
 			if o.celula==r.celula and jogo.poses.livre(int(o.id),r):prender(r,o);break
 			if jogo.atracoes.definir_pose(r.identificador,int(o.id)):break
 func prender(r:PersonagemPlex,marca:Dictionary) -> void:
-	marca.dono=r.identificador;r.pose=int(marca.id);r.automatico=true;r.robotica.desligado_manual=false
+	marca.dono=r.identificador;r.pose=int(marca.id);r.robotica.pose_palco=int(marca.id);r.automatico=true;r.robotica.desligado_manual=false
 	r.trabalho="apresentar";r.direcao=GradePlex.direcao_suporte(int(marca.rotacao));r.visita.erase("aguarda_seta")
 	jogo.livro.alterado.emit()
 func encerrar(id:int) -> void:

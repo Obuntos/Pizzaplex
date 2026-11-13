@@ -12,14 +12,13 @@ func _init(cena:Node) -> void:jogo=cena
 func noite() -> bool:return jogo.calendario.minutos>=1380.0 or jogo.calendario.minutos<360.0
 func filmado(p:Vector2) -> bool:return jogo.sistemas.investigacao.filmado(p)
 
-func gravar_fita(tipo:String,titulo:String,chave:String,onde:Vector2=Vector2(-1,-1)) -> void:
+func gravar_fita(tipo:String,titulo:String,chave:String,_onde:Vector2=Vector2(-1,-1)) -> void:
 	var marca:=chave+":"+str(jogo.calendario.dias)
 	if gravadas.has(marca):return
 	gravadas[marca]=true
 	fitas.append({"id":proximo,"tipo":tipo,"titulo":titulo,"dia":int(jogo.calendario.dias),"hora":"%02d:%02d"%[floori(float(jogo.calendario.minutos)/60.0),posmod(int(jogo.calendario.minutos),60)]})
 	proximo+=1
 	while fitas.size()>MAXIMO:fitas.pop_front()
-	if onde.x>=0:jogo.sistemas.avisos.marcar(onde,"Fita VHS gravada: "+titulo)
 
 func atualizar(delta:float) -> void:
 	espera+=delta

@@ -71,10 +71,14 @@ func atualizar(delta:float) -> void:
 	jogo.tarefas.orientar(a,Vector2(m.celula)+Vector2(CatalogoPlex.dimensoes(str(m.tipo),int(m.rotacao))-Vector2i.ONE)*.5)
 	var minutos:=delta*CalendarioPlex.MINUTOS_POR_SEGUNDO if forcado else minf(delta*CalendarioPlex.MINUTOS_POR_SEGUNDO,float(horas*60)-minutos_dia)
 	progresso=minf(MINUTOS_PROJETO,progresso+minutos);minutos_dia+=minutos;a.progresso_acao=fposmod(a.relogio/2.5,1.0)
-	if progresso>=MINUTOS_PROJETO:
-		var id:=projeto;concluidos[id]=true;jogo.livro.adquiridos[id]=true
-		liberar();projeto="";pesquisador=-1;progresso=0.0;forcado=false
-		jogo.livro.alterado.emit();jogo.painel.mensagem("Estudo concluído: "+CatalogoMontagemPlex.nome(id)+".")
+	if progresso>=MINUTOS_PROJETO: concluir()
+func concluir() -> bool:
+	var id:=projeto if not projeto.is_empty() else proximo()
+	if id.is_empty(): return false
+	concluidos[id]=true;jogo.livro.adquiridos[id]=true
+	liberar();projeto="";pesquisador=-1;progresso=0.0;forcado=false
+	jogo.livro.alterado.emit();jogo.painel.mensagem("Estudo concluído: "+CatalogoMontagemPlex.nome(id)+".")
+	return true
 func gravar() -> Dictionary:
 	return {"projeto":projeto,"mesa":mesa,"pesquisador":pesquisador,"horas":horas,"progresso":progresso,"dia":dia,"minutos_dia":minutos_dia,"concluidos":concluidos.duplicate(),"forcado":forcado}
 func restaurar(d:Dictionary) -> void:

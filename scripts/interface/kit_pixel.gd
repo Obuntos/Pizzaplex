@@ -108,10 +108,10 @@ static func preparar_botao(b:Button, cor:Color=Color("5a3320"), claro:bool=false
 
 ## Botão com variante nomeada: ouro para a ação principal, verde para ligar,
 ## vinho para destruir, madeira para o restante.
-static func botao(pai:Node, texto:String, acao:Callable, variante:String="madeira", tamanho:int=16) -> Button:
+static func botao(pai:Node, rotulo:String, acao:Callable, variante:String="madeira", tamanho:int=16) -> Button:
 	var v:Dictionary=VARIANTES.get(variante,VARIANTES.madeira)
 	var b:=Button.new()
-	b.text=texto
+	b.text=rotulo
 	b.custom_minimum_size=Vector2(44,40)
 	b.add_theme_font_override("font",VintagePlex.fonte("botao"))
 	b.add_theme_font_size_override("font_size",tamanho)
@@ -121,9 +121,9 @@ static func botao(pai:Node, texto:String, acao:Callable, variante:String="madeir
 	return b
 
 ## Botão sem face: só o texto, para ações terciárias como Fechar.
-static func botao_discreto(pai:Node, texto:String, acao:Callable, tamanho:int=15) -> Button:
+static func botao_discreto(pai:Node, rotulo:String, acao:Callable, tamanho:int=15) -> Button:
 	var b:=Button.new()
-	b.text=texto
+	b.text=rotulo
 	b.custom_minimum_size=Vector2(44,40)
 	b.add_theme_font_override("font",VintagePlex.fonte("botao"))
 	b.add_theme_font_size_override("font_size",tamanho)

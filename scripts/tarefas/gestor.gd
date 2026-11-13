@@ -33,3 +33,7 @@ func orientar(personagem: PersonagemPlex, destino: Vector2) -> void:
 	var deslocamento := GradePlex.projetar_local(destino-personagem.local)
 	personagem.direcao = posmod(int(round(atan2(deslocamento.x,deslocamento.y*2.0)/(PI/4.0))),8)
 
+func orientar_cardinal(personagem: PersonagemPlex, destino: Vector2) -> void:
+	var deslocamento := GradePlex.projetar_local(destino-personagem.local)
+	personagem.direcao = posmod(int(round(atan2(deslocamento.x,deslocamento.y*2.0)/(PI/2.0)))*2,8)
+

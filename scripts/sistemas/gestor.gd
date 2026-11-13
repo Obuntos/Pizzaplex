@@ -1,9 +1,8 @@
 class_name NovosSistemasPlex
 extends RefCounted
 
-const TutorialCorrigido=preload("res://scripts/interface/tutorial_bonnie_corrigido.gd")
 var jogo:Node
-var tutorial:TutorialBonniePlex
+var tutorial:Node
 var bonnie:BonnieSemanalPlex
 var ambiencia:AmbienciaRestaurantePlex
 var shows:ShowsPalcoPlex
@@ -23,18 +22,14 @@ var tempestade:TempestadeEnergiaPlex
 var mecanico:MecanicoNoturnoPlex
 var acessorios:AcessoriosEquipePlex
 var perdidas:CriancasPerdidasPlex
-var avisos:AvisosClicaveisPlex
 var resumo:ResumoNoitePlex
 var escala_ui:EscalaNoturnaUIPlex
 var piscina:PiscinaBolinhasPlex
 var cartazes:CartazesPlex
 func _init(cena:Node) -> void:
-	jogo=cena;bonnie=BonnieSemanalPlex.new(cena);ambiencia=AmbienciaRestaurantePlex.new(cena);shows=ShowsPalcoPlex.new(cena);jovens=BrincadeirasBairroPlex.new(cena);investigacao=InvestigacaoProgressivaPlex.new(cena);guarda=GuardaAutonomoPlex.new(cena);baloes=BaloesAcaoPlex.new(cena);caca=CacaAnimatronicosPlex.new(cena);armazem=ArmazemRobosPlex.new(cena);bandas=BandasPlex.new(cena);jornal=JornalCidadePlex.new(cena);entregas=EntregasMercadoPlex.new(cena);vhs=FitasVhsPlex.new(cena);tempestade=TempestadeEnergiaPlex.new(cena);mecanico=MecanicoNoturnoPlex.new(cena);acessorios=AcessoriosEquipePlex.new(cena);perdidas=CriancasPerdidasPlex.new(cena);avisos=AvisosClicaveisPlex.new(cena);resumo=ResumoNoitePlex.new(cena);piscina=PiscinaBolinhasPlex.new(cena);cartazes=CartazesPlex.new(cena)
-func configurar_tutorial() -> void:
-	if is_instance_valid(tutorial):return
-	tutorial=TutorialCorrigido.new();jogo.add_child(tutorial);tutorial.configurar(jogo)
+	jogo=cena;bonnie=BonnieSemanalPlex.new(cena);ambiencia=AmbienciaRestaurantePlex.new(cena);shows=ShowsPalcoPlex.new(cena);jovens=BrincadeirasBairroPlex.new(cena);investigacao=InvestigacaoProgressivaPlex.new(cena);guarda=GuardaAutonomoPlex.new(cena);baloes=BaloesAcaoPlex.new(cena);caca=CacaAnimatronicosPlex.new(cena);armazem=ArmazemRobosPlex.new(cena);bandas=BandasPlex.new(cena);jornal=JornalCidadePlex.new(cena);entregas=EntregasMercadoPlex.new(cena);vhs=FitasVhsPlex.new(cena);tempestade=TempestadeEnergiaPlex.new(cena);mecanico=MecanicoNoturnoPlex.new(cena);acessorios=AcessoriosEquipePlex.new(cena);perdidas=CriancasPerdidasPlex.new(cena);resumo=ResumoNoitePlex.new(cena);piscina=PiscinaBolinhasPlex.new(cena);cartazes=CartazesPlex.new(cena)
 func atualizar(delta:float) -> void:
-	guarda.atualizar_energia(delta);baloes.atualizar(delta);bonnie.atualizar(delta);ambiencia.atualizar(delta);shows.atualizar(delta);jovens.atualizar(delta);investigacao.atualizar(delta);caca.atualizar(delta);armazem.atualizar(delta);bandas.atualizar(delta);jornal.atualizar(delta);entregas.atualizar(delta);vhs.atualizar(delta);tempestade.atualizar(delta);mecanico.atualizar(delta);acessorios.atualizar(delta);perdidas.atualizar(delta);avisos.atualizar(delta);resumo.atualizar(delta);piscina.atualizar(delta);cartazes.atualizar(delta)
+	guarda.atualizar_energia(delta);baloes.atualizar(delta);bonnie.atualizar(delta);ambiencia.atualizar(delta);shows.atualizar(delta);jovens.atualizar(delta);investigacao.atualizar(delta);caca.atualizar(delta);armazem.atualizar(delta);bandas.atualizar(delta);jornal.atualizar(delta);entregas.atualizar(delta);vhs.atualizar(delta);tempestade.atualizar(delta);mecanico.atualizar(delta);acessorios.atualizar(delta);perdidas.atualizar(delta);resumo.atualizar(delta);piscina.atualizar(delta);cartazes.atualizar(delta)
 static func visual_coelho(a:PersonagemPlex) -> void:
 	if not AtracoesCatalogoPlex.permitido(a.modelo) or not a.animacao.camadas.has("modelo"):return
 	var sprite:Sprite2D=a.animacao.camadas.modelo
@@ -43,9 +38,9 @@ static func visual_coelho(a:PersonagemPlex) -> void:
 	if not a.visita.has("montagem_passos"):return
 	var passo:=clampi(int(a.visita.montagem_passos),0,52);var r:=posmod(floori(float(GradePlex.direcao_visual(a.direcao))/2.0),4)
 	if a.visita.has("montagem_rotacao"):r=GradePlex.rotacao_visual(int(a.visita.montagem_rotacao))
-	if a.visita.get("montagem_olhar_jogador",false):r=0
+	if a.visita.get("montagem_olhar_jogador",false):r=posmod(roundi(float(GradePlex.direcao_visual(a.direcao))/2.0),4)
 	var atlas:AtlasTexture=a.animacao.atlases.modelo
-	atlas.atlas=CatalogoPlex.textura("res://assets/sistemas/vi/"+("patitas" if a.modelo=="vi_patitas" else "orelhitas")+"/montagem/"+str(r)+".png");atlas.region=Rect2((passo%8)*192,floori(float(passo)/8)*192,192,192);sprite.offset=Vector2(float(a.animacao.definicao.pivot[0])-32.0,float(a.animacao.definicao.pivot[1])-94.0)
+	atlas.atlas=CatalogoPlex.textura("res://assets/sistemas/vi/"+("patitas" if a.modelo=="vi_patitas" else "orelhitas")+"/montagem/"+str(r)+".png");atlas.region=Rect2((passo%8)*192,floori(float(passo)/8)*192,192,192)
 	sprite.scale=Vector2.ONE/a.animacao.scale;sprite.position=-Vector2(96,144)*sprite.scale
 	a.animacao.arquivos.modelo="montagem:"+str(r)
 func trancar(id:int) -> bool:

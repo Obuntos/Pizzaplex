@@ -190,7 +190,7 @@ func atualizar_reparo(r:PersonagemPlex,d:Dictionary,dt:float) -> void:
 		var rota:Array[Vector2i]=jogo.rotas.aproximar(a.origem_rota(),alvo)
 		if not rota.is_empty():a.andar(rota);a.trabalho="ir_montar_atracao"
 		return
-	jogo.tarefas.orientar(a,Vector2(jogo.planta.objetos[alvo].celula));a.trabalho="montar";d.tempo=float(d.tempo)+dt*HabilidadesEquipePlex.fator(a,"manutencao");a.progresso_acao=fposmod(float(d.tempo)/2.4,1)
+	jogo.tarefas.orientar(a,Vector2(jogo.planta.objetos[alvo].celula));jogo.tarefas.orientar_cardinal(r,a.local);a.trabalho="montar";d.tempo=float(d.tempo)+dt*HabilidadesEquipePlex.fator(a,"manutencao");a.progresso_acao=fposmod(float(d.tempo)/2.4,1)
 	if CatalogoMontagemPlex.quebrado(r.modelo) and jogo.sistemas.mecanico.possuido(r) and not d.get("atacou",false) and randf()<dt*.01:
 		d.atacou=true;liberar_operario(d);ataque_bancada(r,a);return
 	if float(d.tempo)<(12.0 if etapa=="consertar" else 4.0):return

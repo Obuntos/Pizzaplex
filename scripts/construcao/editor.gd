@@ -193,6 +193,7 @@ func _aplicar(celula: Vector2i) -> void:
 			else: planta.remover(id)
 			return
 		if ferramenta=="pose" and alvo_pose_atracao>=0:
+			planta.objetos[id].seta_de=alvo_pose_atracao
 			if jogo.atracoes.definir_pose(alvo_pose_atracao,id):
 				alvo_pose_atracao=-1;jogo.escolher_ferramenta("selecionar")
 			else: planta.remover(id);aviso.emit("Sem acesso à seta. Verifique as escadas e o caminho.")

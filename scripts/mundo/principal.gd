@@ -241,7 +241,6 @@ func _ready() -> void:
 	janelas_moveis.registrar(painel.hud.arquivos.janela,painel.hud.arquivos.fechar,72)
 	janelas_moveis.registrar(painel.hud.catalogo.painel,func(): painel.hud.catalogo.painel.hide();escolher_ferramenta("selecionar"),44)
 
-	sistemas.configurar_tutorial()
 
 func escolher_ferramenta(valor: String) -> void:
 	if valor!=editor.ferramenta: editor.item_movendo=-1
@@ -408,7 +407,9 @@ func apontada() -> Vector2i:
 	return centro
 
 func _process(delta: float) -> void:
+	var inicio:=Time.get_ticks_usec()
 	_atualizar_quadro(delta)
+	desempenho.processo(inicio)
 
 func _atualizar_quadro(delta: float) -> void:
 	desempenho.quadro(delta)
@@ -493,7 +494,9 @@ func _atualizar_quadro(delta: float) -> void:
 	desempenho.medir("Quadro visual",inicio_quadro)
 
 func _physics_process(delta: float) -> void:
+	var inicio:=Time.get_ticks_usec()
 	_simular(delta)
+	desempenho.fisica(inicio)
 
 func _simular(delta: float) -> void:
 	if not atividade_janela.permite_simular(): return

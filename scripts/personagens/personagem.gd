@@ -137,9 +137,9 @@ func atualizar_visual(andando: bool) -> void:
 	if trabalho=="usar_caixa": progresso_acao=fposmod(relogio/1.6,1.0)
 	animacao.roupa_visitante=RoupasVisitantesPlex.pasta(self)
 	if ProfissoesBairroPlex.eh(modelo):
-		if not visita.has("variacao_corpo"):
+		if not visita.has("variacao_corpo") or str(visita.variacao_corpo).ends_with("_retinto"):
 			var semente:=str(identidade.get("morador_id",identificador))
-			visita.variacao_corpo=["padrao","gordo","musculoso"][posmod(hash(semente+"corpo"),3)]+"_"+["branco","bege","pardo","moreno","preto","retinto"][posmod(hash(semente+"pele"),6)]
+			visita.variacao_corpo=["padrao","gordo","musculoso"][posmod(hash(semente+"corpo"),3)]+"_"+["branco","bege","pardo","moreno","preto"][posmod(hash(semente+"pele"),5)]
 		animacao.variacao_corpo=str(visita.variacao_corpo)
 	var ponto := ponto_visual()
 	position = GradePlex.projetar(Vector2(ponto.x, ponto.y)) + Vector2(0.0, 0.01)
@@ -194,7 +194,8 @@ func atualizar_visual(andando: bool) -> void:
 	else:
 		animacao.atualizar(acao, GradePlex.direcao_visual(direcao), fase_visual, tempo_visual, pecas, progresso_acao)
 	carga.visible = (carregando or carga_item>=0) and not em_degraus and trabalho == "colocar" and animacao.definicao.layered
-	carga.texture = CatalogoPlex.sprite(caixa_tipo, GradePlex.rotacao_visual(0))
+	var item_carga: Dictionary = planta_visual.objetos.get(carga_item,{}) if planta_visual != null else {}
+	carga.texture = ViVisuaisPlex.volume(item_carga).textura if item_carga.has("modelo_vi") and item_carga.has("modulo") else CatalogoPlex.sprite(caixa_tipo, GradePlex.rotacao_visual(0))
 	if carga.visible:
 		var angulo := GradePlex.direcao_visual(direcao) * PI / 4.0
 		var origem := Vector2(sin(angulo) * 6.75, cos(angulo) * 3.375 - 19.75) - Vector2(96, 144)

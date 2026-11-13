@@ -30,7 +30,7 @@ func montar(titulo:String, texto:String, confirmar:String, cancelar:String, larg
 	var corpo:=KitPlex.texto(rolagem,texto,15,Color("2a1408"))
 	corpo.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;corpo.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	corpo.custom_minimum_size.x=largura-48
-	var linhas:=texto.count("\n")+1+texto.length()/56
+	var linhas:float=texto.count("\n")+1+texto.length()/56.0
 	rolagem.custom_minimum_size.y=clampf(linhas*20.0+8.0,48.0,300.0)
 	var rodape:=HBoxContainer.new();rodape.alignment=BoxContainer.ALIGNMENT_END;rodape.add_theme_constant_override("separation",8);coluna.add_child(rodape)
 	if not cancelar.is_empty():KitPlex.botao(rodape,cancelar,func():responder(false),"noite").custom_minimum_size.x=120

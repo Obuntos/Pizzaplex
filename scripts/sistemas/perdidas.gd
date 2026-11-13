@@ -37,7 +37,6 @@ func perder(a:PersonagemPlex,grupo:Dictionary) -> void:
 	reputacao(chave,-PERDA)
 	jogo.sistemas.baloes.exibir(a,"Cadê minha mãe?",4)
 	jogo.painel.mensagem(IdentidadesPlex.completo(a)+" se perdeu da família.")
-	jogo.sistemas.avisos.marcar(a.local)
 
 func devolver(a:PersonagemPlex,quem:PersonagemPlex=null) -> bool:
 	var c:=caso(a)
