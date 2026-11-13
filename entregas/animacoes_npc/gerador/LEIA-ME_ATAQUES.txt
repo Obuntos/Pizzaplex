@@ -1,0 +1,48 @@
+ATAQUES DO ORELHITAS AO ADULTO
+==============================
+
+Visualizador: abra "visualizador_ataques_orelhitas.html" (escolha a versao e o adulto ♂/♀).
+Embaixo de cada ataque aparece o corpo no chao daquele ataque, sozinho, nas 8 direcoes.
+
+UM ATAQUE PARA CADA VERSAO (54 quadros a 12 por segundo: comeco 0-13, loop 14-29, fim 30-53)
+  normal       Orelhitas ............. ENFORCA: agarra o pescoco, ergue a vitima do chao, ela esperneia e
+                                       segura os pulsos dele; fica mole, ele solta e ela cai de costas.
+                                       Corpo: deitado de costas, cabeca virada.
+  toy          Toy Orelhitas ......... ARRANCA O BRACO: agarra o braco esquerdo da vitima e puxa (ela se inclina
+                                       para tras e resiste, o braco estica); arranca, a vitima cai, o toy ergue o
+                                       braco na altura da cara, olha e larga no chao.
+                                       Corpo: sem o braco esquerdo, o braco no chao ao lado, poca de sangue.
+  quebrado     Orelhitas Quebrado .... ABRE A BARRIGA: segura pelo ombro e cava a barriga com a outra mao (a vitima
+                                       se curva e segura o braco dele); no fim abre com as duas maos, solta, a
+                                       vitima recua e cai de costas.
+                                       Corpo: de costas com a barriga aberta, poca de sangue.
+  toyquebrado  Toy Orelhitas Quebrado COME O ROSTO: segura a cabeca com as duas maos, ergue e morde varias vezes
+                                       (a vitima empurra o peito dele e chuta); solta e a vitima cai.
+                                       Corpo: de costas, sem rosto, poca de sangue embaixo da cabeca.
+Cada versao mexe do seu jeito: o Orelhitas e preciso, o Toy passa do ponto e volta, os quebrados vao aos trancos.
+
+ARQUIVOS (pasta ataques/<versao>/)
+  animatronico/longe.png   o braco do lado OPOSTO a camera (fica atras da vitima)
+  animatronico/resto.png   todo o resto do animatronico
+  animatronico/completo.png  os dois juntos (so para conferir)
+      quadros 160x130, chao em (80, 92); no jogo escala 1,2 na horizontal e 1 na vertical.
+  humano/<adulto_masculino|adulto_feminino>/ataque/{corpo,cabeca,objeto,frente,completo}.png
+      quadros 112x110, pes em (56, 80); escala 1,375 no jogo. Sem olhos e sem boca.
+      objeto = feridas, sangue e o braco arrancado.
+  humano/<adulto_x>/corpo_no_chao/...   1 coluna x 8 linhas, mesmo quadro/apoio do ultimo quadro do ataque.
+  A LINHA da folha do humano e a direcao DELE: com o animatronico virado para d, use a linha (d + 4) % 8.
+
+COMO JUNTAR NO JOGO (ataques.json)
+  ataques.<versao>.deslocamento[d] = onde ficam os pes do humano em relacao ao chao do animatronico
+  (pixels do jogo). Ordem de desenho:
+    deslocamento[d][1] >  3 (vitima mais perto da camera):  longe, resto, humano
+    deslocamento[d][1] < -3 (vitima mais longe):            humano, longe, resto
+    senao (de lado):                                        longe, humano, resto
+  E isso que deixa o braco do lado de la ATRAS da vitima.
+
+REFAZER
+  python3 gerador/gerar_ataques.py <pasta_dos_moldes> <raiz_do_projeto> <pasta Orelhitas_Poses> <saida>
+  python3 gerador/ataques_visualizador.py <saida>/ataques visualizador_ataques_orelhitas.html
+  (Python 3 + Pillow + NumPy; Node com Playwright/Chromium para desenhar o Orelhitas com o codigo dele.)
+  As coreografias ficam em gerador/ataques.py. As maos do animatronico sao calculadas a partir das juntas
+  da vitima em cada quadro e passadas ao Orelhitas por gerador/orelhitas/matar.js.

@@ -139,6 +139,31 @@ class Tipo:
         for k in ('head_top', 'head_bot', 'head_cy', 'eye_y', 'mouth_y'):
             setattr(self, k, getattr(self, k) + oy)
 
+    def cab_ferida(self, row, amt):
+        """Cabeca com o rosto arrancado (amt 0..1 = tamanho da ferida)."""
+        f = self.feat[row]
+        img = self.cab[row].copy()
+        if 'olhos' not in f:
+            return img
+        pts = f['olhos'] + f.get('boca', [])
+        cx = sum(q[0] for q in pts) / len(pts)
+        cy = sum(q[1] for q in pts) / len(pts)
+        lado = len(f['olhos']) == 1
+        rx = (4.5 if lado else 8.5) * (0.35 + 0.65 * amt)
+        ry = 7.0 * (0.35 + 0.65 * amt)
+        h, w = img.shape[:2]
+        yy, xx = np.mgrid[0:h, 0:w]
+        rng = np.random.RandomState(row)
+        borda = 1 + 0.18 * np.sin(np.arctan2(yy - cy, xx - cx) * 5 + rng.rand() * 6)
+        dist = np.sqrt(((xx + .5 - cx) / rx) ** 2 + ((yy + .5 - cy) / ry) ** 2) / borda
+        dentro = (dist <= 1) & (img[..., 3] > 100)
+        cores = [(66, 8, 16), (110, 16, 28), (158, 34, 46), (196, 70, 80)]
+        for lim, c in ((1.0, cores[2]), (0.86, cores[1]), (0.55, cores[0])):
+            m = dentro & (dist <= lim)
+            img[m, :3] = c
+        img[dentro & (dist > 0.92), :3] = cores[3]
+        return img
+
     # landmarks (coordenadas de tela convertidas para u)
     def u_de_y(self, y):
         return M.GROUND - y
@@ -330,8 +355,10 @@ def esqueleto(T, p):
         J['Pd' + s] = pd / (np.linalg.norm(pd) + 1e-9)
     J['head_off'] = np.asarray(p['head'], float)
     # rotacao de corpo inteiro (deitar)
-    if p['corpo_rot'] is not None:
-        axis, ang, piv = p['corpo_rot']
+    rots = p['corpo_rot']
+    if rots is not None and not isinstance(rots, list):
+        rots = [rots]
+    for axis, ang, piv in (rots or []):
         ang = math.radians(ang)
         piv = np.asarray(piv, float)
         for k in list(J):
@@ -352,6 +379,12 @@ def esqueleto(T, p):
             if k in ('axes', 'head_off') or k.startswith('Hd') or k.startswith('Pd'):
                 continue
             J[k] = J[k] - v3(0, 0, low)
+    mv = p.get('mover')
+    if mv is not None:
+        for k in list(J):
+            if k in ('axes', 'head_off') or k.startswith('Hd') or k.startswith('Pd'):
+                continue
+            J[k] = J[k] + np.asarray(mv, float)
     return J
 
 
@@ -489,6 +522,14 @@ def montar(T, p, d, fase=0.0):
     for s in 'LR':
         lg = longe(J['E' + s], J['W' + s])
         cor = T.pele.cor(lg)
+        if s in (p.get('sem') or ''):
+            # braco arrancado: so o toco no ombro
+            dirb = J['E' + s] - J['S' + s]
+            dirb = dirb / (np.linalg.norm(dirb) + 1e-9)
+            q.capsula(S(J['S' + s]), S(J['S' + s] + dirb * 1.6), T.arm_r * 1.15, T.arm_r * 1.2, cor, g := 'toco' + s)
+            q.capsula(S(J['S' + s] + dirb * 1.7), S(J['S' + s] + dirb * 1.9), T.arm_r * 1.0, T.arm_r * 1.0,
+                      M.cor_plana((150, 26, 36)), 'toco_ferida' + s)
+            continue
         flag = p['over' + s]
         ov = over_ok(flag, J['W' + s], J['E' + s])
         ov1 = ov and bool(flag) and over_ok(flag, J['S' + s], J['E' + s])
@@ -519,7 +560,8 @@ def montar(T, p, d, fase=0.0):
     rot = 0
     if p['cabeca_rot'] is not None:
         hrow, rot = p['cabeca_rot'](J, pr, d)
-    camadas = {'cabeca': _desloca(_gira(T.cab[hrow], N0, rot), off)}
+    cabimg = T.cab_ferida(hrow, p.get('ferida_rosto', 0)) if p.get('ferida_rosto', 0) > 0 else T.cab[hrow]
+    camadas = {'cabeca': _desloca(_gira(cabimg, N0, rot), off)}
     head_mask = camadas['cabeca'][..., 3] > 40
 
     # separa camadas

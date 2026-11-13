@@ -1,0 +1,282 @@
+{
+ "fps": 12,
+ "direcoes": [
+  "frente",
+  "frente_direita",
+  "direita",
+  "costas_direita",
+  "costas",
+  "costas_esquerda",
+  "esquerda",
+  "frente_esquerda"
+ ],
+ "animatronico": {
+  "quadro": [
+   160,
+   130
+  ],
+  "chao": [
+   80,
+   92
+  ],
+  "escala_jogo": [
+   1.2,
+   1.0
+  ],
+  "camadas": {
+   "longe": "braco do lado oposto a camera: vai ATRAS da vitima",
+   "resto": "todo o resto"
+  }
+ },
+ "humano": {
+  "quadro": [
+   112,
+   110
+  ],
+  "pes": [
+   56,
+   80
+  ],
+  "escala_jogo": [
+   1.375,
+   1.375
+  ],
+  "camadas": [
+   "corpo",
+   "cabeca",
+   "objeto",
+   "frente"
+  ],
+  "linha": "direcao do humano = (direcao do animatronico + 4) % 8"
+ },
+ "ordem": "para a direcao d: se deslocamento[d][1] > 3 (vitima mais perto da camera): longe, resto, humano; se < -3 (vitima mais longe): humano, longe, resto; senao (de lado): longe, humano, resto",
+ "ataques": {
+  "normal": {
+   "nome": "Orelhitas",
+   "acao": "enforca",
+   "quadros": 54,
+   "inicio": [
+    0,
+    14
+   ],
+   "loop": [
+    14,
+    30
+   ],
+   "fim": [
+    30,
+    54
+   ],
+   "deslocamento": [
+    [
+     0.0,
+     6.75
+    ],
+    [
+     11.46,
+     4.77
+    ],
+    [
+     16.2,
+     0.0
+    ],
+    [
+     11.46,
+     -4.77
+    ],
+    [
+     0.0,
+     -6.75
+    ],
+    [
+     -11.46,
+     -4.77
+    ],
+    [
+     -16.2,
+     -0.0
+    ],
+    [
+     -11.46,
+     4.77
+    ]
+   ],
+   "camadas_humano": [
+    "corpo",
+    "cabeca",
+    "frente"
+   ]
+  },
+  "toy": {
+   "nome": "Toy Orelhitas",
+   "acao": "arranca o braço",
+   "quadros": 54,
+   "inicio": [
+    0,
+    14
+   ],
+   "loop": [
+    14,
+    30
+   ],
+   "fim": [
+    30,
+    54
+   ],
+   "deslocamento": [
+    [
+     10.8,
+     8.5
+    ],
+    [
+     22.06,
+     2.83
+    ],
+    [
+     20.4,
+     -4.5
+    ],
+    [
+     6.79,
+     -9.19
+    ],
+    [
+     -10.8,
+     -8.5
+    ],
+    [
+     -22.06,
+     -2.83
+    ],
+    [
+     -20.4,
+     4.5
+    ],
+    [
+     -6.79,
+     9.19
+    ]
+   ],
+   "camadas_humano": [
+    "corpo",
+    "cabeca",
+    "objeto",
+    "frente"
+   ]
+  },
+  "quebrado": {
+   "nome": "Orelhitas Quebrado",
+   "acao": "abre a barriga",
+   "quadros": 54,
+   "inicio": [
+    0,
+    14
+   ],
+   "loop": [
+    14,
+    30
+   ],
+   "fim": [
+    30,
+    54
+   ],
+   "deslocamento": [
+    [
+     -12.0,
+     7.5
+    ],
+    [
+     4.24,
+     8.84
+    ],
+    [
+     18.0,
+     5.0
+    ],
+    [
+     21.21,
+     -1.77
+    ],
+    [
+     12.0,
+     -7.5
+    ],
+    [
+     -4.24,
+     -8.84
+    ],
+    [
+     -18.0,
+     -5.0
+    ],
+    [
+     -21.21,
+     1.77
+    ]
+   ],
+   "camadas_humano": [
+    "corpo",
+    "cabeca",
+    "objeto",
+    "frente"
+   ]
+  },
+  "toyquebrado": {
+   "nome": "Toy Orelhitas Quebrado",
+   "acao": "come o rosto",
+   "quadros": 54,
+   "inicio": [
+    0,
+    14
+   ],
+   "loop": [
+    14,
+    30
+   ],
+   "fim": [
+    30,
+    54
+   ],
+   "deslocamento": [
+    [
+     6.0,
+     6.25
+    ],
+    [
+     14.85,
+     2.65
+    ],
+    [
+     15.0,
+     -2.5
+    ],
+    [
+     6.36,
+     -6.19
+    ],
+    [
+     -6.0,
+     -6.25
+    ],
+    [
+     -14.85,
+     -2.65
+    ],
+    [
+     -15.0,
+     2.5
+    ],
+    [
+     -6.36,
+     6.19
+    ]
+   ],
+   "camadas_humano": [
+    "corpo",
+    "cabeca",
+    "objeto",
+    "frente"
+   ]
+  }
+ }
+}
