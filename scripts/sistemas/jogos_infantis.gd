@@ -144,7 +144,7 @@ func correr(g:Dictionary,dt:float) -> void:
 			g.vez=g.ids.find(a.identificador);g.imune=3.2;g.trocas=int(g.trocas)+1;a.emocao.exibir("exclamacao");jogo.sistemas.baloes.exibir(a,"Agora eu sou o pegador!",3);return
 	for id in g.ids:
 		var a:=ator(int(id));var chaser:bool=a==pegador
-		a.visita.correndo=true;a.visita.brincadeira_velocidade=clampf(.97+float(posmod(a.identificador,5))*.065+sin(float(g.tempo)*.34+a.identificador)*.12+(.10 if chaser else 0.0),.82,1.4)
+		a.visita.correndo=true;a.visita.pegador=chaser;a.visita.brincadeira_velocidade=clampf(.97+float(posmod(a.identificador,5))*.065+sin(float(g.tempo)*.34+a.identificador)*.12+(.10 if chaser else 0.0),.82,1.4)
 		if float(g.tempo)<float(g.rotas_em.get(id,0)):continue
 		g.rotas_em[id]=float(g.tempo)+1.1+float(posmod(a.identificador,4))*.17
 		var vistos:Array=[]

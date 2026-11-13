@@ -47,7 +47,7 @@ func folha(caminho:String,largura:int,altura_quadro:int,material_sprite:ShaderMa
 	s.material=material_sprite;s.position=posicao;s.scale=escala
 	return s
 
-static func cores_roupa(v:PersonagemPlex) -> Dictionary:
+static func cores_roupa(v:PersonagemPlex,faixas:Array=[["camisa",31,40,12,36],["calca",43,51,12,36],["sapato",52,56,12,36]]) -> Dictionary:
 	var fonte:=str(v.animacao.arquivos.get("corpo",""))
 	if fonte.is_empty():return {}
 	var parado:=fonte.get_base_dir()+"/parado_corpo.png"
@@ -55,16 +55,18 @@ static func cores_roupa(v:PersonagemPlex) -> Dictionary:
 	if imagem==null or imagem.is_empty():return {}
 	PelePlex.carregar()
 	var pele:Dictionary=PelePlex.dados.mapas.get("branco",{})
+	var tons:Array[Color]=[]
+	for hexa in pele:tons.append(Color("#"+str(hexa)))
 	var resultado:={}
-	for faixa in [["camisa",31,40],["calca",43,51],["sapato",52,56]]:
+	for faixa in faixas:
 		var contagem:={};var total_pele:=0
 		for y in range(int(faixa[1]),int(faixa[2])):
-			for x in range(12,36):
+			for x in range(int(faixa[3]),int(faixa[4])):
 				if x>=imagem.get_width() or y>=imagem.get_height():continue
 				var c:=imagem.get_pixel(x,y)
 				if c.a<.5 or c.get_luminance()<.1:continue
 				var hexa:=c.to_html(false)
-				if pele.has(hexa):total_pele+=1;continue
+				if pele.has(hexa) or tons.any(func(t:Color):return absf(t.r-c.r)+absf(t.g-c.g)+absf(t.b-c.b)<.12):total_pele+=1;continue
 				contagem[hexa]=int(contagem.get(hexa,0))+1
 		var melhor:="";var maior:=0
 		for hexa in contagem:
@@ -74,12 +76,12 @@ static func cores_roupa(v:PersonagemPlex) -> Dictionary:
 		if soma>=6 and soma>=total_pele:resultado[faixa[0]]=Color("#"+melhor)
 	return resultado
 
-static func capturar_cabeca(a:PersonagemPlex,direcao_visual:int) -> Texture2D:
-	var chave:=str(a.identificador)+":"+str(direcao_visual)
+static func capturar_cabeca(a:PersonagemPlex,direcao_visual:int,expressao_alvo:String="pavor") -> Texture2D:
+	var chave:=str(a.identificador)+":"+str(direcao_visual)+":"+expressao_alvo
 	if cabecas.has(chave):return cabecas[chave]
 	var original:=a.direcao;var antes:=a.visible;var expressao:=a.animacao.expressao
 	a.direcao=posmod(direcao_visual+GradePlex.visao*2,8)
-	a.visible=true;a.animacao.expressao="pavor"
+	a.visible=true;a.animacao.expressao=expressao_alvo
 	a.atualizar_visual(false)
 	var incluir:Array=[]
 	for nome in ["cabeca","olhos","boca"]:
