@@ -224,7 +224,7 @@ def contorno(q, interno=True):
             g2 = _sh(q.grp, dy, dx, -1)
             sil |= mask & ~m2
             edge |= mask & m2 & (g2 != q.grp) & ((z2 > q.z + 0.9) | ((np.abs(z2 - q.z) <= 0.9) & (q.grp > g2)))
-        rgb[sil] = rgb[sil] * 0.72 + OUT * 0.28
+        rgb[sil] = rgb[sil] * 0.84 + OUT * 0.16
         rgb[edge] = rgb[edge] * 0.45 + OUT * 0.55
     alpha = np.where(mask, 255.0, 0.0)
     owner_over = q.over.copy()

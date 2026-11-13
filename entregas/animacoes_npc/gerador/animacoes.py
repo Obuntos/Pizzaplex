@@ -38,8 +38,8 @@ def carregar_objetos(src):
         return out
     OBJ['pizza'] = load('fatia_pizza', 0.46)
     OBJ['bolo'] = load('fatia_bolo', 0.8)
-    OBJ['presente'] = load('presente_pequeno', 0.56)
-    OBJ['balao'] = load('balao', 0.62, crop=(0, 0, 25, 26))
+    OBJ['presente'] = load('presente_pequeno', 0.46)
+    OBJ['balao'] = load('balao', 0.55, crop=(0, 0, 25, 26))
 
 
 def P(T, **kw):
@@ -124,10 +124,7 @@ def caixa_presente(J, T, p):
 
 def balao(J, T, p):
     w = mao(J, 'R', 0.4)
-    sway = p['a1']
-    top = w + v3(3.2 + sway, -5.5 - abs(sway), 18.5 + 0.6 * sway)
-    return [dict(t='cap', a=w, b=top, r=0.3, rgb=(225, 225, 215), g='fio', zoff=-40),
-            prop_sprite('balao', top, zoff=-40, ancora='base')]
+    return [dict(t='balao', mao=w, img=OBJ['balao']['frente'], sway=round(p['a1'] * 1.6))]
 
 
 def ajusta_balao(T):
@@ -292,6 +289,7 @@ def comer_pizza(T):
     du = 0.0
     peito = dict(hR=v3(T.sh_r * 0.35, T.arm * 0.6, T.sh_u - 4.5), eR=v3(1, -0.6, -0.8), hdR=v3(-0.2, 0.6, 0.8))
     boca = dict(hR=v3(1.2, 4.2, face_u(T, T.mouth_y, 4.2) - 0.6), eR=v3(1, -0.2, -1), hdR=v3(-0.3, 0.5, 0.8),
+                rfR='boca', rwR=1.0, roR=v3(0.5, 0.6, 3.5),
                 head=v3(0, 0.4, -0.5), lean=3, overR='face')
     pe = P(T, props=fatia_pizza, **peito)
     bo = P(T, props=fatia_pizza, mouth='aberta', **boca)
@@ -317,6 +315,7 @@ def comer_bolo(T):
     plate = dict(hL=v3(-1.2, T.arm * 0.72, T.sh_u - 5.2), eL=v3(-1, -0.4, -0.8), hdL=v3(0.4, 0.8, 0))
     fork_plate = dict(hR=v3(0.9, T.arm * 0.78, T.sh_u - 4.6), eR=v3(1, -0.4, -0.8), hdR=v3(-0.4, 0.4, -0.8))
     fork_mouth = dict(hR=v3(1.4, 3.6, face_u(T, T.mouth_y, 3.6) - 2.0), eR=v3(1, -0.2, -1),
+                      rfR='boca', rwR=1.0, roR=v3(0.6, 3.4, 3.0),
                       hdR=v3(-0.3, 0.6, 0.6), head=v3(0, 0.3, -0.4), overR='face')
     a = P(T, props=prato_bolo, **plate, **fork_plate)
     b = P(T, props=prato_bolo, a2=1.0, **plate, **fork_plate)
@@ -339,6 +338,7 @@ def rindo(T, crianca=False):
     else:
         maos = dict(hL=v3(-2.6, 3.0, T.hip_u + 3.4), eL=v3(-1, -0.3, 0), hdL=v3(0.6, 0.5, 0),
                     hR=v3(1.4, 3.8, face_u(T, T.mouth_y, 3.8) - 1.2), eR=v3(1, -0.2, -1), hdR=v3(-0.3, 0.6, 0.6),
+                    rfR='boca', rwR=1.0, roR=v3(0.3, 0.8, 3.5),
                     overR='face')
     pose = P(T, eyes='riso', mouth='riso', **maos)
     ini = fase([(0, R), (0.5, mistura(R, pose, 0.6)), (1, pose)], 4)
@@ -428,7 +428,8 @@ def sentada_mao_boca(T):
     def maos(du):
         y = face_u(T, T.mouth_y, 4.0, du) - 1.8
         return dict(hL=v3(-1.0, 3.8, y - 0.4), hR=v3(1.0, 4.4, y + 0.6), eL=v3(-1, -0.3, -1), eR=v3(1, -0.3, -1),
-                    hdL=v3(0.2, 0.3, 1), hdR=v3(-0.2, 0.3, 1), overL='face', overR='face',
+                    hdL=v3(0.2, 1, 0.4), hdR=v3(-0.2, 1, 0.4), overL='face', overR='face',
+                    rfL='boca', rfR='boca', rwL=1.0, rwR=1.0, roL=v3(1.3, 0.8, 3.0), roR=v3(1.3, 0.2, 3.8),
                     head=v3(0, 0.6, -1.4), shrug=1.0, stretch=1.3)
     a, _ = sentar_chao(T, maos)
     return a
@@ -438,8 +439,8 @@ def sentada_maos_orelhas(T):
     def maos(du):
         y = face_u(T, T.eye_y, 0, du) - 1.6
         rr = T.head_rx - 1.2
-        return dict(hL=v3(-rr, 0.6, y), hR=v3(rr, 0.6, y), eL=v3(-1, -0.2, -0.6), eR=v3(1, -0.2, -0.6),
-                    hdL=v3(0, 0, 1), hdR=v3(0, 0, 1), overL='always', overR='always',
+        return dict(hL=v3(-rr, 1.0, y), hR=v3(rr, 1.0, y), eL=v3(-1, -0.2, -0.6), eR=v3(1, -0.2, -0.6),
+                    hdL=v3(0, 0, 1), hdR=v3(0, 0, 1), overL='face', overR='face',
                     head=v3(0, 0.4, -1.4), shrug=1.2, stretch=1.35)
     a, _ = sentar_chao(T, maos, olhos='fechado', boca='neutro')
     return a
@@ -449,7 +450,8 @@ def sentada_tampando_olhos(T):
     def maos(du):
         y = face_u(T, T.eye_y, 5.4, du) - 1.6
         return dict(hL=v3(-3.4, 5.4, y), hR=v3(3.4, 5.4, y), eL=v3(-1, -0.3, -1), eR=v3(1, -0.3, -1),
-                    hdL=v3(0.1, 0.2, 1), hdR=v3(-0.1, 0.2, 1), overL='face', overR='face',
+                    hdL=v3(0.2, 1, 0.5), hdR=v3(-0.2, 1, 0.5), overL='face', overR='face',
+                    rfL='olhos', rfR='olhos', rwL=1.0, rwR=1.0, roL=v3(0, 0.6, 4.0), roR=v3(0, 0.6, 4.0),
                     head=v3(0, 0.6, -1.4), shrug=1.0, stretch=1.35)
     a, final = sentar_chao(T, maos, olhos='assustado')
     for fasen in ('inicio', 'loop', 'fim'):
@@ -459,7 +461,7 @@ def sentada_tampando_olhos(T):
     # espiadinha: a mao esquerda desce um pouco no meio do loop
     for i in (4, 5):
         p = a['loop'][i]
-        a['loop'][i] = com(p, hL=p['hL'] + v3(-0.4, 0, -2.6), eyes='assustado')
+        a['loop'][i] = com(p, rwL=0.6)
     return a
 
 
@@ -494,7 +496,8 @@ def chorando_tampando_olhos(T):
     R = P(T)
     y = face_u(T, T.eye_y, 5.4) - 2.2
     tampa = P(T, hL=v3(-3.4, 5.4, y), hR=v3(3.4, 5.4, y), eL=v3(-1, -0.4, -1), eR=v3(1, -0.4, -1),
-              hdL=v3(0.1, 0.2, 1), hdR=v3(-0.1, 0.2, 1), overL='face', overR='face',
+              hdL=v3(0.2, 1, 0.5), hdR=v3(-0.2, 1, 0.5), overL='face', overR='face',
+              rfL='olhos', rfR='olhos', rwL=1.0, rwR=1.0, roL=v3(0, 0.6, 4.0), roR=v3(0, 0.6, 4.0),
               head=v3(0, 0.6, -1.8), lean=8, shrug=1.0, stretch=1.45, eyes='fechado', mouth='aberta')
     ini = fase([(0, R), (0.5, mistura(R, com(tampa, eyes='triste', mouth='neutro'), 0.55)), (1, tampa)], 4)
     loop = []
@@ -506,8 +509,9 @@ def chorando_tampando_olhos(T):
                         pelvis=v3(0, 0, -0.3 * sob), tears=t, mouth='aberta' if sob > 0.3 else 'neutro',
                         lean=8 + 3 * sob))
     limpa = P(T, hR=v3(2.6, 4.0, face_u(T, T.eye_y, 4.0) - 2.4), eR=v3(1, -0.4, -1), hdR=v3(-0.5, 0.2, 1),
-              overR='face', head=v3(0, 0.3, -0.8), lean=4, stretch=1.4, eyes='triste', mouth='neutro')
-    fim = fase([(0, tampa), (0.4, limpa), (0.7, com(limpa, hR=limpa['hR'] + v3(-1.2, 0, 0.3))), (1, com(R, eyes='triste'))], 6)
+              overR='face', head=v3(0, 0.3, -0.8), lean=4, stretch=1.4, eyes='triste', mouth='neutro',
+              rfR='olhos', rwR=1.0, roR=v3(0, 1.6, 3.5))
+    fim = fase([(0, tampa), (0.4, limpa), (0.7, com(limpa, roR=v3(-1.6, 1.0, 3.5))), (1, com(R, eyes='triste'))], 6)
     for k, p in enumerate(fim[:3]):
         fim[k] = com(p, tears=0.9 + 0.1 * k)
     return anim(ini, loop, fim, 10)
@@ -515,9 +519,9 @@ def chorando_tampando_olhos(T):
 
 def pular_bracos_cima(T):
     R = P(T)
-    cima = dict(hL=v3(-T.sh_r - 4.2, 0.6, T.sh_u + 4.6), hR=v3(T.sh_r + 4.2, 0.6, T.sh_u + 4.6),
-                eL=v3(-1, -0.3, -0.5), eR=v3(1, -0.3, -0.5), hdL=v3(-0.5, 0, 1), hdR=v3(0.5, 0, 1),
-                overL='always', overR='always', stretch=1.2)
+    cima = dict(hL=v3(-T.sh_r - 6.0, 0.4, T.sh_u + 8.0), hR=v3(T.sh_r + 6.0, 0.4, T.sh_u + 8.0),
+                eL=v3(-1, -0.3, -0.5), eR=v3(1, -0.3, -0.5), hdL=v3(-0.4, 0, 1), hdR=v3(0.4, 0, 1),
+                overL='face', overR='face', stretch=1.38)
     baixo = dict(hL=rest_hand(T, 'L') + v3(-0.4, -1.6, 0.8), hR=rest_hand(T, 'R') + v3(0.4, -1.6, 0.8))
     agach = P(T, pelvis=v3(0, -0.6, -2.4), lean=12, fL=v3(-T.leg_off, 0, T.ankle_u), fR=v3(T.leg_off, 0, T.ankle_u),
               eyes='riso', mouth='riso', **baixo)
@@ -530,7 +534,7 @@ def pular_bracos_cima(T):
     pouso = P(T, pelvis=v3(0, -0.4, -1.8), lean=8, eyes='riso', mouth='aberta',
               fL=v3(-T.leg_off, 0, T.ankle_u), fR=v3(T.leg_off, 0, T.ankle_u),
               **{k: v for k, v in cima.items() if k not in ('hL', 'hR')},
-              hL=v3(-T.sh_r - 3.4, 1.0, T.sh_u + 2.4), hR=v3(T.sh_r + 3.4, 1.0, T.sh_u + 2.4))
+              hL=v3(-T.sh_r - 5.0, 0.8, T.sh_u + 5.0), hR=v3(T.sh_r + 5.0, 0.8, T.sh_u + 5.0))
     ini = fase([(0, R), (1, agach)], 3)
     loop = fase([(0, agach), (0.2, estica), (0.4, ar(4.5)), (0.6, ar(3.5)), (0.78, estica), (0.9, pouso)], 10, True)
     fim = fase([(0, agach), (0.5, com(agach, pelvis=v3(0, -0.3, -1.0), lean=6)), (1, com(R, eyes='feliz', mouth='aberta'))], 4)
@@ -539,9 +543,9 @@ def pular_bracos_cima(T):
 
 def andar_caixa(T):
     R = P(T)
-    bw = OBJ['presente']['frente'].shape[1] / 2 + 0.2
-    fwd = T.arm * 0.62
-    u = T.sh_u - 5.2
+    bw = OBJ['presente']['frente'].shape[1] / 2 * 0.85
+    fwd = T.arm * 0.58
+    u = T.sh_u - 5.4
 
     def segura(extra):
         return dict(hL=v3(-bw, fwd, u) + extra, hR=v3(bw, fwd, u) + extra, eL=v3(-1, -0.5, -0.4), eR=v3(1, -0.5, -0.4),

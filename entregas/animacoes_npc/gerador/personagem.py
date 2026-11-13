@@ -108,6 +108,23 @@ class Tipo:
         by = np.nonzero(ba)[0]
         self.mouth_y = (by.min() + by.max() + 1) / 2 if len(by) else self.eye_y + 4
         self.arm = self.ua + self.fa
+        # pontos do rosto (do molde) por direcao: usados como alvo das maos
+        self.feat = []
+        for d in range(8):
+            f = {}
+            ol = self.olhos['neutro'][d][..., 3] > 90
+            bl = [b for b in _blobs(ol) if b[4] >= 3]
+            if bl:
+                f['olhos'] = [((x0 + x1 + 1) / 2, (y0 + y1 + 1) / 2) for (x0, y0, x1, y1, n) in bl]
+            bo = self.boca['neutro'][d][..., 3] > 50
+            if bo.any():
+                ys, xs = np.nonzero(bo)
+                f['boca'] = [((xs.min() + xs.max() + 1) / 2, (ys.min() + ys.max() + 1) / 2)]
+            if 'boca' not in f and 'olhos' in f:
+                # molde sem boca (adolescentes): boca estimada abaixo dos olhos
+                xs_ = [q[0] for q in f['olhos']]
+                f['boca'] = [(sum(xs_) / len(xs_), f['olhos'][0][1] + 5.0)]
+            self.feat.append(f)
 
     # landmarks (coordenadas de tela convertidas para u)
     def u_de_y(self, y):
@@ -229,6 +246,7 @@ def pose_base(T):
         stretch=1.12, overL='', overR='', props=None,
         corpo_rot=None, chao=False, cabeca_rot=None, deitar=0.0,
         a1=0.0, a2=0.0, a3=0.0, a4=0.0,
+        rfL='boca', rfR='boca', rwL=0.0, rwR=0.0, roL=v3(0, 0, 3), roR=v3(0, 0, 3),
     )
 
 
@@ -369,6 +387,23 @@ def montar(T, p, d, fase=0.0):
         p['chao'] = True
         p['cabeca_rot'] = _cabeca_deitada
     J = esqueleto(T, p)
+    if p['deitar'] <= 0 and (p['rwL'] > 0 or p['rwR'] > 0):
+        p = dict(p)
+        for s in 'LR':
+            w = p['rw' + s]
+            if w <= 0:
+                continue
+            tgt = alvo_rosto(T, p, J, d, s, p['rf' + s], p['ro' + s])
+            if tgt is None:
+                continue
+            hd = p['hd' + s] if p['hd' + s] is not None else v3(0, 1, 0.4)
+            hd = np.asarray(hd, float) / (np.linalg.norm(hd) + 1e-9)
+            tgt = tgt - hd * T.hand_r * 1.3 * 0.55
+            p['h' + s] = p['h' + s] * (1 - w) + tgt * w
+            p['stretch'] = max(p['stretch'], 1.0 + 0.65 * w)
+            if not p['over' + s]:
+                p['over' + s] = 'face'
+        J = esqueleto(T, p)
     dx = 0.0
     if p['deitar'] > 0:
         chave = (T.nome, d, round(p['deitar'], 2))
@@ -408,12 +443,18 @@ def montar(T, p, d, fase=0.0):
         z = np.mean([S(x)[2] for x in pts])
         return float(np.clip((torso_z - z - 0.6) / 2.2, 0, 1))
 
-    def over_ok(flag):
-        if flag == 'always':
-            return True
-        if flag == 'face':
-            return facing_z > -0.3
-        return False
+    N0 = (M.CX, M.GROUND - T.neck_u)
+    Ns = S(J['N'] + J['head_off'])
+    off = (int(round(Ns[0] - N0[0])), int(round(Ns[1] - N0[1])))
+    head_z = Ns[2]
+
+    def over_ok(flag, *pts):
+        # parte marcada fica na frente da cabeca so se estiver do lado da camera
+        z = np.mean([S(x)[2] for x in pts])
+        if not flag:
+            # antebraco/mao bem a frente da cabeca (apontar, segurar algo)
+            return z > head_z + 2.5
+        return z > head_z - 1.0
 
     # tronco
     a = S(J['B'])
@@ -436,9 +477,10 @@ def montar(T, p, d, fase=0.0):
         lg = longe(J['E' + s], J['W' + s])
         cor = T.pele.cor(lg)
         flag = p['over' + s]
-        ov = over_ok(flag)
+        ov = over_ok(flag, J['W' + s], J['E' + s])
+        ov1 = ov and bool(flag) and over_ok(flag, J['S' + s], J['E' + s])
         g = 'braco' + s
-        q.capsula(S(J['S' + s]), S(J['E' + s]), T.arm_r * 1.05, T.arm_r, cor, g, over=ov)
+        q.capsula(S(J['S' + s]), S(J['E' + s]), T.arm_r * 1.05, T.arm_r, cor, g, over=ov1)
         q.capsula(S(J['E' + s]), S(J['W' + s]), T.arm_r, T.arm_r * 0.95, cor, g, over=ov)
         hr = T.hand_r * (1.3 if flag == 'face' else 1.0)
         hp = J['W' + s] + J['Hd' + s] * hr * 0.55
@@ -452,27 +494,19 @@ def montar(T, p, d, fase=0.0):
     prim = p['props'](J, T, p) if callable(p['props']) else (p['props'] or [])
     for it in prim:
         tem_obj = True
-        _desenhar_prop(qo, it, pr, S, d, T)
+        _desenhar_prop(qo, it, pr, S, d, T, off)
     if tem_obj:
         obj_rgba, _, obj_z = M.contorno(qo, interno=True)
     else:
         obj_rgba = np.zeros((H, W, 4), np.uint8)
         obj_z = np.full((H, W), -1e9)
 
-    # cabeca
-    N0 = (M.CX, M.GROUND - T.neck_u)
-    Ns = S(J['N'] + J['head_off'])
-    off = (int(round(Ns[0] - N0[0])), int(round(Ns[1] - N0[1])))
-    head_z = Ns[2]
+    # cabeca (sem olhos e boca)
     hrow = (d + p['hturn']) % 8
     rot = 0
     if p['cabeca_rot'] is not None:
         hrow, rot = p['cabeca_rot'](J, pr, d)
-    eyes = T.olhos.get(p['eyes'], T.olhos['neutro'])[hrow]
-    mouth = T.boca.get(p['mouth'], T.boca['neutro'])[hrow]
-    camadas = {}
-    for nome, img in (('cabeca', T.cab[hrow]), ('olhos', eyes), ('boca', mouth)):
-        camadas[nome] = _desloca(_gira(img, N0, rot), off)
+    camadas = {'cabeca': _desloca(_gira(T.cab[hrow], N0, rot), off)}
     head_mask = camadas['cabeca'][..., 3] > 40
 
     # separa camadas
@@ -490,10 +524,6 @@ def montar(T, p, d, fase=0.0):
     obj = obj_rgba.copy()
     esconde = alpha_o & head_mask & (obj_z < head_z)
     obj[esconde] = 0
-    if p['tears'] >= 0 and facing_z > -0.3:
-        lg = _desloca(_gira(T.lagrimas(hrow, p['tears']), N0, rot), off)
-        m = lg[..., 3] > 0
-        frente[m] = lg[m]
     camadas['corpo'] = corpo
     camadas['objeto'] = obj
     camadas['frente'] = frente
@@ -503,14 +533,48 @@ def montar(T, p, d, fase=0.0):
 _CENTRO = {}
 
 
-ORDEM = ['corpo', 'cabeca', 'olhos', 'boca', 'objeto', 'frente']
+ORDEM = ['corpo', 'cabeca', 'objeto', 'frente']
 
 
 def compor(camadas):
     im = Image.new('RGBA', (W, H))
     for n in ORDEM:
-        im.alpha_composite(Image.fromarray(camadas[n]))
+        if n in camadas:
+            im.alpha_composite(Image.fromarray(camadas[n]))
     return im
+
+
+def alvo_rosto(T, p, J, d, s, feat, ro):
+    """Ponto local que cai sobre o olho/boca do molde na direcao d."""
+    sign = 1.0 if s == 'R' else -1.0
+
+    def resolve(dd):
+        pr = Projetor(dd)
+        R, F = M.eixos(dd)
+        if F[2] < -0.3:
+            return None
+        row = (dd + p['hturn']) % 8
+        pts = T.feat[row].get(feat)
+        if not pts:
+            return None
+        N0 = (M.CX, M.GROUND - T.neck_u)
+        Ns = pr.tela(J['N'] + J['head_off'])
+        ox, oy = round(Ns[0] - N0[0]), round(Ns[1] - N0[1])
+        if len(pts) > 1:
+            sx = pr.tela(J['S' + s])[0]
+            pt = min(pts, key=lambda q_: abs(q_[0] + ox - sx))
+        else:
+            pt = pts[0]
+        xs = pt[0] + ox + sign * R[0] * ro[0]
+        ys = pt[1] + oy + ro[1]
+        Z = Ns[2] + F[2] * ro[2] + sign * R[2] * 1.6
+        X = xs - M.CX
+        U = M.GROUND + M.K * Z - ys
+        return v3(X * R[0] + Z * R[2], X * F[0] + Z * F[2], U)
+    t = resolve(d)
+    if t is None:
+        t = resolve(0)
+    return t
 
 
 def _cabeca_deitada(J, pr, d):
@@ -553,7 +617,7 @@ def _gira(img, piv, k):
 
 # ---------------------------------------------------------------- objetos
 
-def _desenhar_prop(q, it, pr, S, d, T):
+def _desenhar_prop(q, it, pr, S, d, T, off=(0, 0)):
     t = it['t']
     g = it.get('g', 'obj')
     if t == 'cap':
@@ -584,6 +648,21 @@ def _desenhar_prop(q, it, pr, S, d, T):
         r2 = it.get('r2', r1)
         pts = [c + a1 * r1 * math.cos(k * math.pi / 8) + a2 * r2 * math.sin(k * math.pi / 8) for k in range(16)]
         _desenhar_prop(q, dict(t='poly', pts=pts, rgb=it['rgb'], g=g, shade=it.get('shade', 1.0)), pr, S, d, T)
+    elif t == 'balao':
+        # balao sempre ao lado da cabeca (sem cobrir), preso a mao pelo fio
+        hx, hy, _ = S(it['mao'])
+        rel = hx - (M.CX + pr.dx)
+        if abs(rel) > 2.0:
+            lado = 1 if rel > 0 else -1
+        else:
+            lado = -1 if pr.F[0] > 0 else 1
+        img = it['img']
+        bw, bh = img.shape[1], img.shape[0]
+        cx = M.CX + off[0] + lado * (T.head_rx + bw / 2 - 0.5) + it.get('sway', 0)
+        cx = min(max(cx, bw / 2 + 0.5), W - bw / 2 - 0.5)
+        base_y = M.GROUND - T.neck_u + off[1] - 1 + abs(it.get('sway', 0)) * 0.5
+        q.capsula((hx, hy, -40), (cx, base_y, -40), 0.3, 0.3, M.cor_plana((225, 225, 215)), 'fio')
+        q.sprite(img, cx - bw / 2, base_y - bh + 1, -39, 'balao')
     elif t == 'sprite':
         imgs = it['img']
         vis = it.get('vista')

@@ -16,7 +16,7 @@ import animacoes as A          # noqa: E402
 import personagem as P         # noqa: E402
 from motor import W, H, DIRECOES  # noqa: E402
 
-CAMADAS = ['corpo', 'cabeca', 'olhos', 'boca', 'objeto', 'frente']
+CAMADAS = ['corpo', 'cabeca', 'objeto', 'frente']
 
 
 def render_anim(T, a):

@@ -7,7 +7,7 @@ import json
 import os
 import sys
 
-CAMADAS = ['corpo', 'cabeca', 'olhos', 'boca', 'objeto', 'frente']
+CAMADAS = ['corpo', 'cabeca', 'objeto', 'frente']
 
 
 def b64(path):

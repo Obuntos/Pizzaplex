@@ -21,12 +21,12 @@ e termina na pose parada (em pe), entao da para emendar com a animacao de andar.
 
 CAMADAS (desenhe nesta ordem)
   corpo.png   - corpo e membros
-  cabeca.png  - cabeca (do molde)
-  olhos.png   - olhos (expressao muda conforme a acao)
-  boca.png    - boca (fala, mastiga, ri...)
+  cabeca.png  - cabeca (do molde), SEM olhos e SEM boca
   objeto.png  - objeto de mao (pizza, bolo, presente, balao, ferramentas, livro...)
   frente.png  - partes que ficam NA FRENTE da cabeca ou do objeto (maos no rosto, maos
-                segurando a caixa, lagrimas)
+                segurando a caixa, braco do lado da camera)
+  As animacoes nao tem olhos nem boca: o rosto fica por conta das camadas de olhos/boca
+  do jogo, desenhadas por cima da cabeca e por baixo de frente.png.
   completo.png - tudo ja junto
 Camadas vazias numa animacao nao sao salvas (ver "camadas" no JSON).
 
@@ -79,9 +79,9 @@ OBSERVACOES
 - Objetos de cena (fliperama, bancada, cadeira, terminal IBM, pia, fogao, caixa registradora)
   NAO estao desenhados nas folhas: as poses foram feitas para o personagem ficar na frente
   deles no jogo. Nas animacoes sentadas o corpo fica na altura de um assento comum.
-- Os rostos usam os olhos/bocas do molde e as expressoes que ja existem no projeto
-  (feliz, triste, assustado); olhos de riso "^ ^", olhos fechados, bocas abertas e
-  lagrimas foram desenhados no mesmo estilo.
+- As maos que vao ao rosto (boca, olhos) miram a posicao dos olhos/boca do molde em cada
+  direcao. A mao do lado oposto a camera fica atras da cabeca.
+- O balao fica sempre ao lado da cabeca (sem cobri-la), preso a mao pelo fio.
 
 REFAZER / AJUSTAR
 O gerador esta em "gerador/" (Python 3 + Pillow + NumPy):
