@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orelhitas Ataque</title>
+<style>
+:root{--bg:#f4f1ec;--painel:#fff;--txt:#2a2420;--sub:#7a6f66;--borda:#e2dbd2;--real:#b3262f;--ini:#e3a33b;--loop:#3f9a5b;--fim:#4a76c9;--palco:#e9e4dc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1917;--painel:#25221f;--txt:#eee7de;--sub:#a3988c;--borda:#3a3530;--palco:#2e2a26}}
+:root[data-theme="dark"]{--bg:#1b1917;--painel:#25221f;--txt:#eee7de;--sub:#a3988c;--borda:#3a3530;--palco:#2e2a26}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:14px 16px;border-bottom:1px solid var(--borda);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+h1{font-size:17px;margin:0}
+main{padding:14px 16px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--borda);background:var(--painel);color:var(--txt);border-radius:999px;padding:4px 11px;cursor:pointer;font:inherit}
+.chip.on{background:var(--real);color:#fff;border-color:var(--real)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:12px}
+.ctl label{display:flex;gap:6px;align-items:center;color:var(--sub)}
+select{background:var(--painel);color:var(--txt);border:1px solid var(--borda);border-radius:6px;padding:3px 6px;font:inherit}
+.btn{border:1px solid var(--borda);background:var(--painel);color:var(--txt);border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--cel),1fr));gap:10px}
+.cel{background:var(--painel);border:1px solid var(--borda);border-radius:10px;padding:8px;text-align:center;overflow:hidden}
+.cel .nome{font-size:12px;color:var(--sub);margin-top:4px}
+canvas{image-rendering:pixelated;display:block;margin:auto;border-radius:6px;max-width:100%}
+.barra{height:8px;border-radius:4px;display:flex;overflow:hidden;margin:6px 0 2px;background:var(--palco)}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--sub);flex-wrap:wrap;margin-bottom:10px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+h2{font-size:15px;margin:22px 0 4px}
+.nota{color:var(--sub);font-size:13px;margin:0 0 10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Orelhitas · ataque</h1>
+  <div class="chips" id="versoes"></div>
+  <div class="chips" id="sexos"></div>
+  <button class="btn" id="tema" title="Alternar tema">◐</button>
+</header>
+<main>
+  <div class="ctl">
+    <label>Mostrar <select id="modo">
+      <option value="seq">Sequência: começo → loop ×2 → fim</option>
+      <option value="loop">Só o loop</option><option value="inicio">Só o começo</option><option value="fim">Só o fim</option>
+    </select></label>
+    <label>Velocidade <select id="vel"><option value=".5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label>
+    <label>Zoom <select id="zoom"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+    <label>Fundo <select id="fundo"><option value="#cfc8bd">Piso claro</option><option value="#3a3f42">Piso escuro</option></select></label>
+    <label><input type="checkbox" id="vAnim" checked> animatrônico</label>
+    <label><input type="checkbox" id="vHum" checked> humano</label>
+    <button class="btn" id="pausa">Pausar</button><button class="btn" id="passo">Quadro ›</button>
+  </div>
+  <div class="barra" id="barra"></div>
+  <div class="leg"><span style="--c:var(--ini)">começo</span><span style="--c:var(--loop)">loop</span><span style="--c:var(--fim)">fim</span><span id="pos"></span></div>
+  <div class="grade" id="grade"></div>
+  <h2>Corpo no chão</h2>
+  <p class="nota">O corpo depois do ataque, sozinho, nas 8 direções (mesmo quadro e ponto de apoio da animação: dá para deixá-lo no chão ao terminar).</p>
+  <div class="grade" id="grade2"></div>
+</main>
+<script>
+const D=/*__DADOS__*/null;
+const M=D.meta, DIRN=['Frente','Frente/direita','Direita','Costas/direita','Costas','Costas/esquerda','Esquerda','Frente/esquerda'];
+const SN={adulto_masculino:'Adulto ♂',adulto_feminino:'Adulto ♀'};
+const st={v:'normal',s:'adulto_masculino',tick:0,pausa:false};
+const img=s=>{const i=new Image();i.src='data:image/png;base64,'+s;return i};
+const IM={anim:{},hum:{},chao:{}};
+for(const v in D.anim)IM.anim[v]=img(D.anim[v]);
+for(const s in D.hum){IM.hum[s]=img(D.hum[s]);IM.chao[s]=img(D.chao[s])}
+const CW=300,CH=175,GX=150,GY=128;
+function chips(id,obj,key){const el=document.getElementById(id);el.innerHTML='';for(const [k,t] of Object.entries(obj)){const b=document.createElement('button');b.className='chip'+(st[key]===k?' on':'');b.textContent=t;b.onclick=()=>{st[key]=k;chips(id,obj,key);montar()};el.appendChild(b)}}
+function seq(){const r=(a,b)=>Array.from({length:b-a},(_,i)=>a+i),md=document.getElementById('modo').value;
+  if(md==='loop')return r(...M.loop);if(md==='inicio')return r(...M.inicio);if(md==='fim')return r(...M.fim);
+  const l=r(...M.loop);return[...r(...M.inicio),...l,...l,...r(...M.fim)]}
+let cv=[],cv2=[];
+const off=document.createElement('canvas');off.width=CW;off.height=CH;
+function cena(ctx,d,q,soCorpo){
+  const o=off.getContext('2d');o.imageSmoothingEnabled=false;o.fillStyle=document.getElementById('fundo').value;o.fillRect(0,0,CW,CH);
+  o.fillStyle='rgba(0,0,0,.08)';for(let x=0;x<CW;x+=20)for(let y=0;y<CH;y+=10)if(((x/20)+(y/10))%2)o.fillRect(x,y,20,10);
+  const H=M.humano, A=M.animatronico, dl=M.humano_em_relacao_ao_animatronico.deslocamento[d], hr=(d+4)%8;
+  const hx=GX+dl[0], hy=GY+dl[1];
+  const ha=()=>{if(!document.getElementById('vHum').checked)return;const [w,h]=H.quadro,s=H.escala_jogo[0];
+    const src=soCorpo?IM.chao[st.s]:IM.hum[st.s], col=soCorpo?0:q;
+    o.drawImage(src,col*w,hr*h,w,h,Math.round(hx-H.pes[0]*s),Math.round(hy-H.pes[1]*s),Math.round(w*s),Math.round(h*s))};
+  const an=()=>{if(soCorpo||!document.getElementById('vAnim').checked)return;const [w,h]=A.quadro,[sx,sy]=A.escala_jogo;
+    o.drawImage(IM.anim[st.v],q*w,d*h,w,h,Math.round(GX-A.chao[0]*sx),Math.round(GY-A.chao[1]*sy),Math.round(w*sx),Math.round(h*sy))};
+  if(dl[1]>.5){an();ha()}else{ha();an()}
+  ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.drawImage(off,0,0,ctx.canvas.width,ctx.canvas.height);
+}
+function grade(id,arr,z){const g=document.getElementById(id);g.style.setProperty('--cel',(CW*z+20)+'px');g.innerHTML='';arr.length=0;
+  for(let d=0;d<8;d++){const c=document.createElement('div');c.className='cel';const k=document.createElement('canvas');k.width=CW*z;k.height=CH*z;k.style.width=CW*z+'px';
+    const n=document.createElement('div');n.className='nome';n.textContent=DIRN[d];c.append(k,n);g.appendChild(c);arr.push(k)}}
+function montar(){const z=+document.getElementById('zoom').value;grade('grade',cv,z);grade('grade2',cv2,z);
+  const b=document.getElementById('barra');b.innerHTML='';for(const[k,c]of[['inicio','--ini'],['loop','--loop'],['fim','--fim']]){const x=document.createElement('div');x.style.flex=M[k][1]-M[k][0];x.style.background=`var(${c})`;b.appendChild(x)}
+  desenhar()}
+function desenhar(){if(cv.length<8)return;const s=seq(),q=s[st.tick%s.length];for(let d=0;d<8;d++){cena(cv[d].getContext('2d'),d,q,false);cena(cv2[d].getContext('2d'),d,0,true)}
+  const f=q<M.inicio[1]?'ini':q<M.loop[1]?'loop':'fim';document.getElementById('pos').innerHTML=`quadro <b>${q}</b> · <span style="color:var(--${f});font-weight:600">${{ini:'começo',loop:'loop',fim:'fim'}[f]}</span>`}
+let ult=0,acc=0;function laco(t){acc+=Math.min(200,t-ult);ult=t;const dt=1000/(M.fps*+document.getElementById('vel').value);if(!st.pausa&&acc>=dt){acc%=dt;st.tick++;desenhar()}requestAnimationFrame(laco)}
+for(const id of['modo','zoom','fundo','vAnim','vHum'])document.getElementById(id).onchange=()=>{st.tick=0;montar()};
+document.getElementById('pausa').onclick=e=>{st.pausa=!st.pausa;e.target.textContent=st.pausa?'Continuar':'Pausar'};
+document.getElementById('passo').onclick=()=>{st.pausa=true;document.getElementById('pausa').textContent='Continuar';st.tick++;desenhar()};
+document.getElementById('tema').onclick=()=>{const r=document.documentElement;const dk=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dk?'light':'dark'};
+chips('versoes',M.animatronico.versoes,'v');chips('sexos',SN,'s');
+Promise.all([...Object.values(IM.anim),...Object.values(IM.hum),...Object.values(IM.chao)].map(i=>i.decode().catch(()=>0))).then(montar);
+requestAnimationFrame(t=>{ult=t;laco(t)});
+</script>
+</body>
+</html>

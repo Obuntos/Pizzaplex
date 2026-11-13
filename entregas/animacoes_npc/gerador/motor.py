@@ -24,6 +24,15 @@ PX += 0.5
 PY += 0.5
 
 
+def configurar(w, h, cx, ground):
+    """Troca o tamanho da tela de desenho (ex.: quadros maiores para o corpo caido)."""
+    global W, H, CX, GROUND, PX, PY
+    W, H, CX, GROUND = w, h, float(cx), float(ground)
+    PY, PX = np.mgrid[0:H, 0:W].astype(float)
+    PX += 0.5
+    PY += 0.5
+
+
 def eixos(d):
     """Vetores do mundo (X tela-direita, U cima, Z para a camera)."""
     phi = math.radians(45 * d)

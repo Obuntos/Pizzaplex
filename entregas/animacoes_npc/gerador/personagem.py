@@ -126,6 +126,19 @@ class Tipo:
                 f['boca'] = [(sum(xs_) / len(xs_), f['olhos'][0][1] + 5.0)]
             self.feat.append(f)
 
+    def ampliar(self, w, h, ox, oy):
+        """Coloca as camadas da cabeca (48x60) numa tela maior, deslocadas por (ox, oy)."""
+        def pad(a):
+            out = np.zeros((h, w, 4), np.uint8)
+            out[oy:oy + a.shape[0], ox:ox + a.shape[1]] = a
+            return out
+        self.cab = [pad(a) for a in self.cab]
+        self.olhos = {k: [pad(a) for a in v] for k, v in self.olhos.items()}
+        self.boca = {k: [pad(a) for a in v] for k, v in self.boca.items()}
+        self.feat = [{k: [(x + ox, y + oy) for (x, y) in v] for k, v in f.items()} for f in self.feat]
+        for k in ('head_top', 'head_bot', 'head_cy', 'eye_y', 'mouth_y'):
+            setattr(self, k, getattr(self, k) + oy)
+
     # landmarks (coordenadas de tela convertidas para u)
     def u_de_y(self, y):
         return M.GROUND - y
@@ -531,6 +544,13 @@ def montar(T, p, d, fase=0.0):
 
 
 _CENTRO = {}
+
+
+def tela(w, h, cx, ground):
+    """Muda a tela de desenho do modulo inteiro (motor + este)."""
+    global W, H
+    M.configurar(w, h, cx, ground)
+    W, H = w, h
 
 
 ORDEM = ['corpo', 'cabeca', 'objeto', 'frente']
