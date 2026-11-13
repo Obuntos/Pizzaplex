@@ -193,7 +193,7 @@ func atualizar() -> void:
 	visao=GradePlex.visao
 	var presentes: Dictionary={}
 	for a in controle.jogo.personagens:
-		if not a.visita.get("morto",false): continue
+		if not a.visita.get("morto",false) or a.visita.get("em_ataque",false): continue
 		presentes[a.identificador]=true
 		var s: Sprite2D=visuais.get(a.identificador)
 		if not is_instance_valid(s): s=criar(a)
@@ -201,7 +201,7 @@ func atualizar() -> void:
 		var tras: Sprite2D=visuais_tras[a.identificador]
 		tras.hide()
 		a.visible=false
-		s.visible=int(a.visita.get("oculto_em",-1))<0
+		s.visible=int(a.visita.get("oculto_em",-1))<0 and not controle.jogo.sistemas.ataques.ocultar_padrao(a)
 		var dono:=controle.ator(int(a.visita.get("carregado_por",-1)))
 		var altura: float=a.altura+4.0
 		if is_instance_valid(dono):

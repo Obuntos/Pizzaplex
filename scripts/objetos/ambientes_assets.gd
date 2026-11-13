@@ -8,7 +8,7 @@ static func catalogar(objetos:Dictionary) -> void:
 	novos.merge(JSON.parse_string(FileAccess.get_file_as_string("res://dados/assets_decoracao.json")),true)
 	for tipo in novos:
 		var dados:Dictionary=objetos.get(tipo,{}).duplicate(true);dados.merge(novos[tipo],true);objetos[tipo]=dados
-	for tipo in ["antigo_armario_duplo","mesa","mesa_longa_arredondada","maquina_fliperama","antigo_arcade_quebrado","sistema_mesa_redonda_forro","sistema_mesa_banquete_forro","sistema_palco_picadeiro"]:
+	for tipo in ["mesa","mesa_longa_arredondada","maquina_fliperama","antigo_arcade_quebrado","sistema_mesa_redonda_forro","sistema_mesa_banquete_forro","sistema_palco_picadeiro"]:
 		if objetos.has(tipo):objetos[tipo].oculto=true
 	for tipo in objetos:
 		if str(tipo).begins_with("pecas_") or str(tipo).begins_with("caixa_pecas_") or tipo in ["pecas_manutencao","caixa_ferramentas"]:objetos[tipo].oculto=true

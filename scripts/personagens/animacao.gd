@@ -103,7 +103,7 @@ func atualizar(acao: String, direcao: int, fase: float, relogio: float, pecas: i
 				var humor:=expressao if expressao in ["neutro","feliz","muito_feliz","triste","chateado","depressivo","ansioso","medo","pavor","incomodado","raivoso","confuso","surpreso","shocked"] else "neutro"
 				arquivo="res://assets/personagens/bonnie_visitante/"+humor+"/"+anim+".png"
 			if not variacao_corpo.is_empty() and ResourceLoader.exists("res://assets/personagens/"+modelo+"/variacoes/"+variacao_corpo+"/"+acao+".png"): arquivo="res://assets/personagens/"+modelo+"/variacoes/"+variacao_corpo+"/"+acao+".png"
-			if not ResourceLoader.exists(arquivo): arquivo = "res://assets/personagens/" + modelo + "/parado.png"
+			if not ResourceLoader.exists(arquivo): arquivo = "res://assets/personagens/" + modelo + ("/ancoras_3/" if modelo=="fantasia_coelho" else "/") + "parado.png"
 			if modelo == "endo" and pecas >= 0:
 				arquivo = "res://assets/personagens/endo/montagem.png"
 				coluna = clampi(pecas, 0, 4)

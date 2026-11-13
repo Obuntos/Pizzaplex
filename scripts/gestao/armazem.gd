@@ -8,7 +8,10 @@ const QUEBRADO={"novo_coelho_detalhes":"vi_orelhitas_quebrado","vi_toy_orelhitas
 const INTEIRO={"vi_orelhitas_quebrado":"novo_coelho_detalhes","vi_toy_orelhitas_quebrado":"vi_toy_orelhitas","vi_patitas_quebrado":"vi_patitas","vi_toy_patitas_quebrado":"vi_toy_patitas"}
 var jogo:Node
 var escolhendo:=-1
+var lugar:=-1
 var espera:=0.0
+const PASSOS:=52
+const TEMPO_PASSO:=1.2
 
 func _init(cena:Node) -> void:jogo=cena
 func ator(id:int) -> PersonagemPlex:return jogo.clientes.ator(id)
@@ -41,15 +44,30 @@ func livre(celula:Vector2i,r:PersonagemPlex) -> Vector2i:
 	return Vector2i(-1,-1)
 
 func opcao_atualizar(menu:CanvasLayer,r:PersonagemPlex) -> void:
-	if r.robotica.get("armazenado",false) or not PAR.has(r.modelo) or r.modelo not in ANTIGOS or jogo.controle_robo.controlado(r):return
+	if r.robotica.get("armazenado",false) or r.visita.has("troca_toy") or r.visita.has("toy_em_montagem") or not PAR.has(r.modelo) or r.modelo not in ANTIGOS or jogo.controle_robo.controlado(r):return
 	if existe(PAR[r.modelo]) or existe(QUEBRADO[PAR[r.modelo]]):return
 	menu.adicionar("Atualizar · Toy (US$ %.0f)"%custo(),func():iniciar(r))
 func iniciar(r:PersonagemPlex) -> void:
 	if jogo.servicos.saldo<custo():aviso("Saldo insuficiente. A atualização custa US$ %.0f (50%% das peças, reaproveitando o antigo)."%custo());return
-	var c:=celula_armazem()
-	if c.x>=0:confirmar(r,c);return
-	escolhendo=r.identificador
-	aviso("Clique em uma sala fechada e vazia, sem itens, para virar o armazém. Botão direito cancela.")
+	var destino:Dictionary=jogo.oficina.vaga(r,true)
+	if destino.is_empty():aviso("Para atualizar é preciso uma base de montagem livre com bancada de conserto acessível.");return
+	var nova:=base_nova(int(destino.base))
+	if nova<0:aviso("Coloque outra base de montagem livre: uma recebe o original e a outra, o endo novo do Toy.");return
+	jogo.servicos.saldo=snappedf(jogo.servicos.saldo-custo(),.01)
+	var pose:=r.pose if r.pose>=0 else int(r.visita.get("palco_anterior",r.robotica.get("pose_palco",-1)))
+	jogo.oficina.liberar_palco(r)
+	jogo.planta.objetos[int(destino.base)].robo_reserva=r.identificador
+	jogo.planta.objetos[int(destino.mesa)].reparo_reserva=r.identificador
+	jogo.planta.objetos[nova].robo_reserva=r.identificador
+	r.visita.troca_toy={"etapa":"indo","base":int(destino.base),"mesa":int(destino.mesa),"base_nova":nova,"novo":-1,"progresso":0.0,"ator":-1,"pose":pose,"modelo":str(PAR[r.modelo])}
+	r.automatico=false;r.trabalho="ir_oficina_robo";r.andar(destino.rota)
+	aviso("O "+IdentidadesPlex.completo(r)+" vai para a bancada. As peças dele vão para o Toy.")
+func base_nova(ocupada_id:int) -> int:
+	var lista:Array=jogo.planta.objetos.values().filter(func(p):return int(p.id)!=ocupada_id and jogo.oficina.base_livre(p))
+	if lista.is_empty():return -1
+	var origem:Vector2=Vector2(jogo.planta.objetos[ocupada_id].celula)
+	lista.sort_custom(func(a,b):return Vector2(a.celula).distance_squared_to(origem)<Vector2(b.celula).distance_squared_to(origem))
+	return int(lista[0].id)
 func clicar(celula:Vector2i) -> bool:
 	if escolhendo<0:return false
 	var r:=ator(escolhendo);escolhendo=-1
@@ -57,6 +75,8 @@ func clicar(celula:Vector2i) -> bool:
 	if not sala_vazia(jogo.ambientes.em(celula)):aviso("Essa sala não serve. O armazém precisa ser uma sala fechada e sem itens.");return true
 	confirmar(r,celula);return true
 func cancelar() -> bool:
+	if lugar>=0:
+		lugar=-1;jogo.escolher_ferramenta("selecionar");aviso("Escolha do lugar cancelada. Clique no animatrônico quebrado para escolher depois.");return true
 	if escolhendo<0:return false
 	escolhendo=-1;aviso("Escolha do armazém cancelada.");return true
 func confirmar(r:PersonagemPlex,celula:Vector2i) -> void:
@@ -142,6 +162,10 @@ func chegou(r:PersonagemPlex) -> void:
 	aviso(IdentidadesPlex.completo(novo)+" está pronto e indo para o palco. A carcaça antiga ficou no armazém.")
 
 func opcoes(menu:CanvasLayer,r:PersonagemPlex) -> bool:
+	if r.visita.has("toy_em_montagem"):return true
+	if r.visita.has("troca_toy"):
+		if str(r.visita.troca_toy.etapa)=="posicionar":menu.adicionar("Escolher lugar",func():pedir_lugar(r))
+		return true
 	if not r.robotica.get("armazenado",false):return false
 	if not INTEIRO.has(r.modelo):return true
 	var inteiro:=str(INTEIRO[r.modelo])
@@ -198,9 +222,96 @@ func guardar_aqui(r:PersonagemPlex) -> void:
 func atualizar(delta:float) -> void:
 	espera+=delta
 	if espera<.4:return
-	espera=0.0
+	var dt:=espera;espera=0.0
 	for r in jogo.personagens.duplicate():
 		if not r.robo:continue
+		if r.visita.has("troca_toy"):atualizar_troca(r,dt);continue
 		if r.visita.get("indo_armazem",false):
 			if not r.ocupado():chegou(r)
 		elif INTEIRO.has(r.modelo) and not r.robotica.get("armazenado",false) and not jogo.controle_robo.controlado(r):guardar_aqui(r)
+func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
+	var d:Dictionary=r.visita.troca_toy
+	var base:Dictionary=jogo.planta.objetos.get(int(d.base),{})
+	var mesa:Dictionary=jogo.planta.objetos.get(int(d.mesa),{})
+	var nova:Dictionary=jogo.planta.objetos.get(int(d.base_nova),{})
+	match str(d.etapa):
+		"indo":
+			if r.ocupado() or base.is_empty() or nova.is_empty():return
+			if r.celula!=base.celula:
+				var rota:Array[Vector2i]=jogo.rotas.caminho(r.origem_rota(),base.celula)
+				if not rota.is_empty():r.andar(rota)
+				return
+			r.trabalho="armazenado";r.robotica.bateria=100.0;r.direcao=GradePlex.direcao_suporte(int(base.rotacao));AnimatronicosPlex.mudar(r,"desligado")
+			var n:PersonagemPlex=jogo.criar_personagem(str(d.modelo),nova.celula,"atracao",true,{})
+			if not is_instance_valid(n):return
+			n.robotica.assombrado=false;n.automatico=false;n.visita.montando_atracao=true;n.visita.montagem_passos=0;n.visita.toy_em_montagem=r.identificador
+			jogo.atracoes.posicionar_na_bancada(n,nova);nova.robo_reserva=n.identificador
+			d.novo=n.identificador;d.etapa="transferir"
+		"transferir":
+			var n:=ator(int(d.novo))
+			if not is_instance_valid(n) or nova.is_empty() or base.is_empty():return
+			var progresso:=float(d.progresso)
+			var alvo:=int(d.base) if posmod(floori(progresso/6.0),2)==0 else int(d.base_nova)
+			var a:PersonagemPlex=jogo.oficina.operario(d,alvo)
+			if not is_instance_valid(a) or a.ocupado():return
+			if not jogo.planta.interacoes(alvo).has(a.celula):
+				var rota:Array[Vector2i]=jogo.rotas.aproximar(a.origem_rota(),alvo)
+				if not rota.is_empty():a.andar(rota);a.trabalho="ir_montar_atracao"
+				return
+			var peca:PersonagemPlex=r if alvo==int(d.base) else n
+			jogo.tarefas.orientar(a,peca.local);jogo.tarefas.orientar_cardinal(peca,a.local)
+			progresso+=dt*HabilidadesEquipePlex.fator(a,"manutencao")/TEMPO_PASSO
+			d.progresso=progresso;a.trabalho="montar";a.progresso_acao=fposmod(progresso,1.0)
+			n.visita.montagem_passos=mini(floori(progresso),34)
+			if progresso>=18.0 and not d.get("fantasia",false):d.fantasia=true;jogo.oficina.sentar_fantasia(r,d)
+			if progresso>=26.0 and not d.get("quebrou",false):
+				d.quebrou=true
+				var velho:=trocar(r,str(QUEBRADO[r.modelo]))
+				if not is_instance_valid(velho):return
+				velho.visita.troca_toy=d;velho.automatico=false;velho.trabalho="armazenado";velho.local=Vector2(base.celula);velho.celula=base.celula
+				AnimatronicosPlex.mudar(velho,"desligado")
+				base.robo_reserva=velho.identificador;mesa.reparo_reserva=velho.identificador;n.visita.toy_em_montagem=velho.identificador
+				if mesa.has("fantasia_robo"):mesa.fantasia_robo=velho.identificador
+				return
+			if progresso<PASSOS:return
+			jogo.oficina.liberar_operario(d)
+			for chave in ["montando_atracao","montagem_passos","toy_em_montagem","bancada_montagem","montagem_olhar_jogador","montagem_rotacao","montagem_altura"]:n.visita.erase(chave)
+			nova.erase("robo_reserva");mesa.erase("fantasia_bancada");mesa.erase("fantasia_robo")
+			ativar(n,int(d.pose),[nova.celula.x,nova.celula.y])
+			d.etapa="posicionar";jogo.planta.alterada.emit()
+			aviso(IdentidadesPlex.completo(n)+" está pronto e indo para o palco.")
+			pedir_lugar(r)
+		"indo_lugar":
+			if r.ocupado():return
+			var c:Array=d.lugar;var celula:=Vector2i(int(c[0]),int(c[1]))
+			if r.celula!=celula:
+				var rota:Array[Vector2i]=jogo.rotas.caminho(r.origem_rota(),celula)
+				if rota.is_empty():d.etapa="posicionar";aviso("O "+IdentidadesPlex.completo(r)+" não alcança o lugar escolhido. Escolha outro.");return
+				r.andar(rota);return
+			r.visita.erase("troca_toy");r.robotica.armazem=[celula.x,celula.y]
+			desligar(r)
+			var frente:=GradePlex.frente(int(c[2]))
+			jogo.tarefas.orientar(r,r.local+Vector2(frente))
+			if r.modelo in DEITADOS:
+				var atras:=celula-frente
+				r.robotica.deitado=[celula.x,celula.y,atras.x,atras.y]
+			jogo.planta.alterada.emit()
+func pedir_lugar(r:PersonagemPlex) -> void:
+	lugar=r.identificador
+	jogo.escolher_ferramenta("pose_quebrado")
+	aviso("Escolha onde o "+IdentidadesPlex.completo(r)+" vai ficar. A seta mostra para onde ele olha; R gira. Botão direito cancela.")
+func posicionar(celula:Vector2i,rotacao:int) -> void:
+	var r:=ator(lugar)
+	if not is_instance_valid(r) or not r.visita.has("troca_toy"):lugar=-1;return
+	if not GradePlex.dentro(celula) or not jogo.planta.transitavel(celula) or not jogo.planta.em(celula).is_empty() or not is_zero_approx(jogo.planta.altura(celula)) or ocupada(celula,r):aviso("Escolha um tile livre no chão.");return
+	if r.modelo in DEITADOS:
+		var atras:=celula-GradePlex.frente(rotacao)
+		if not GradePlex.dentro(atras) or not jogo.planta.transitavel(atras) or not jogo.planta.em(atras).is_empty() or ocupada(atras,r):aviso("Deitado, ele ocupa 2 tiles: o da seta e o de trás. Os dois precisam estar livres e sem parede.");return
+	if celula!=r.celula and jogo.rotas.caminho(r.origem_rota(),celula).is_empty():aviso("Sem caminho até esse lugar.");return
+	var d:Dictionary=r.visita.troca_toy
+	for id in [int(d.base),int(d.mesa)]:
+		var p:Dictionary=jogo.planta.objetos.get(id,{})
+		p.erase("robo_reserva");p.erase("reparo_reserva")
+	d.lugar=[celula.x,celula.y,posmod(rotacao,4)];d.etapa="indo_lugar"
+	lugar=-1;jogo.escolher_ferramenta("selecionar")
+

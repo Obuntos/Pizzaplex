@@ -46,11 +46,14 @@ func matar(r:PersonagemPlex,v:PersonagemPlex) -> void:
 	var saciou:=medo(v)>=MEDO_MAX
 	jogo.sistemas.investigacao.registrar_incidente(v)
 	if jogo.seguranca!=null:jogo.seguranca.registrar(v,presentes)
-	GorePlex.espalhar(jogo,v.celula,3 if saciou or r.modelo.ends_with("_quebrado") else 2,posmod(roundi(float(r.direcao)/2.0),4))
+	var violencia:=3 if saciou or r.modelo.ends_with("_quebrado") else 2
 	for a in presentes:jogo.controle.incidentes.fugir(a)
 	r.robotica.fome=0.0
 	if saciou:r.robotica.fome_folga_ate=agora()+FOLGA_EXTRA
-	jogo.despawn(v)
+	if jogo.sistemas.ataques.suporta(r,v):jogo.sistemas.ataques.iniciar(r,v,violencia)
+	else:
+		GorePlex.espalhar(jogo,v.celula,violencia,posmod(roundi(float(r.direcao)/2.0),4))
+		jogo.despawn(v)
 	jogo.painel.mensagem(("A vítima estava em pânico: o animatrônico ficou saciado por mais tempo." if saciou else "O animatrônico se alimentou. A fome voltou a zero.")+(" Houve testemunhas." if not presentes.is_empty() else ""))
 
 func sangue_camera(a:PersonagemPlex) -> void:

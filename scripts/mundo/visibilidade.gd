@@ -16,7 +16,7 @@ func atualizar(camera: Camera2D, viewport: Viewport) -> void:
 func personagem(a: PersonagemPlex) -> bool:
 	var ponto:=GradePlex.projetar(a.local,a.altura)
 	var limite:=area.grow(200.0) if a.visita.get("lanterna_equipada",false) else area
-	var mostrar:bool=(limite.has_point(ponto) or limite.has_point(ponto-Vector2(0,110))) and not a.visita.get("escondido_armario",false)
+	var mostrar:bool=(limite.has_point(ponto) or limite.has_point(ponto-Vector2(0,110))) and not a.visita.get("escondido_armario",false) and not a.visita.get("em_ataque",false)
 	if mostrar: visiveis+=1
 	else: distantes+=1
 	a.set_meta("visivel_cena",mostrar)

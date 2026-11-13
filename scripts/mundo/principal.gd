@@ -1,5 +1,6 @@
 extends Node2D
 
+const TIPOS_REMOVIDOS=["amb_riscos_arrasto","dec_bolinhas_espalhadas","oficina_duto_cruz","oficina_duto_curva","oficina_duto_linha","oficina_duto_quina","oficina_duto_reto","oficina_duto_t","oficina_duto_vertical","oficina_fita_perigo_1","oficina_fita_perigo_3","oficina_papeis_formularios","oficina_placa_voltagem_haste","oficina_placa_voltagem_horizontal","antigo_armario_duplo"]
 var ctrl_consumido:=false
 var apagando:=false
 var apagada_ultima:=Vector2i(-1,-1)
@@ -245,6 +246,7 @@ func _ready() -> void:
 func escolher_ferramenta(valor: String) -> void:
 	if valor!=editor.ferramenta: editor.item_movendo=-1
 	if valor!="pose": editor.alvo_pose_atracao=-1
+	if valor!="pose_quebrado" and sistemas!=null: sistemas.armazem.lugar=-1
 	traco_parede.encerrar()
 	if editor.ferramenta!=valor: editor.estado_visual=str(CatalogoPlex.objetos.get(valor,{}).get("estado_padrao",""))
 	editor.ferramenta = valor
@@ -893,7 +895,10 @@ func _carregar_partida(caminho: String) -> bool:
 	planta.proximo_id = 1
 	for registro in dados.objetos:
 		if registro.has("parte_endo") or str(registro.get("tipo","")).begins_with("caixa_pecas_") or registro.get("tipo","") in ["pecas_manutencao","pose_quebrado","pose_montagem"]: continue
+		if str(registro.get("tipo","")) in TIPOS_REMOVIDOS: continue
 		var objeto: Dictionary = registro.duplicate()
+		if objeto.tipo=="maquina_fliperama" and not str(objeto.get("variante","")).begins_with("amb_"):
+			objeto.variante="amb_fliperama_estrelar";objeto.estado="desligado"
 		if objeto.tipo=="suporte":
 			for chave in objeto.keys():
 				if chave not in ["id","tipo","celula","rotacao","estado","sobre","slot","valor_pago","atracao_livro"]: objeto.erase(chave)

@@ -97,6 +97,9 @@ func _aplicar(celula: Vector2i) -> void:
 		if CatalogoPlex.objetos.get(ferramenta,{}).get("camera",false):aviso.emit("Vire a câmera para uma sala interna. Não é permitido filmar a rua nem o banheiro.");return
 		aviso.emit("As paredes do perímetro são protegidas. Coloque uma nova parede sobre a antiga para reformar." if ferramenta=="remover" and TerrenoPlex.contem(planta,celula) else "Construa apenas dentro do terreno do restaurante. Os tiles vermelhos marcam o limite.")
 		return
+	if ferramenta=="pose_quebrado" and jogo.sistemas.armazem.lugar>=0:
+		jogo.sistemas.armazem.posicionar(celula,rotacao)
+		return
 	if ferramenta in ["pose_quebrado","pose_montagem"]:
 		destino_quebrado_escolhido.emit(marca_quebrado,celula,rotacao)
 		return

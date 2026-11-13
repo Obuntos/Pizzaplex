@@ -52,32 +52,6 @@
   "transitavel": true,
   "oculto": true
  },
- "dec_bolinhas_espalhadas": {
-  "nome": "Bolinhas espalhadas",
-  "pasta": "res://assets/objetos/decoracao/dec_bolinhas_espalhadas",
-  "largura": 2,
-  "profundidade": 2,
-  "altura": 9,
-  "pivo": [
-   96,
-   144
-  ],
-  "estados": [
-   "espalhadas",
-   "monte"
-  ],
-  "estado_padrao": "espalhadas",
-  "ambiente_novo": true,
-  "mobilia": true,
-  "categoria": "Decoração",
-  "preco": 0,
-  "conforto": 0,
-  "apoio": false,
-  "sobreposto": true,
-  "parede_requerida": false,
-  "transitavel": true,
-  "oculto": true
- },
  "dec_pizza_inteira": {
   "nome": "Pizza de parede · inteira",
   "pasta": "res://assets/objetos/decoracao/dec_pizza_inteira",
