@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animações Pizzaplex</title>
+<style>
+:root{--bg:#f4f1ec;--painel:#fff;--txt:#2a2420;--sub:#7a6f66;--borda:#e2dbd2;--real:#c0392b;--ini:#e3a33b;--loop:#3f9a5b;--fim:#4a76c9;--palco:#e9e4dc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1917;--painel:#25221f;--txt:#eee7de;--sub:#a3988c;--borda:#3a3530;--palco:#2e2a26}}
+:root[data-theme="dark"]{--bg:#1b1917;--painel:#25221f;--txt:#eee7de;--sub:#a3988c;--borda:#3a3530;--palco:#2e2a26}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:14px 16px;border-bottom:1px solid var(--borda);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+h1{font-size:17px;margin:0 12px 0 0}
+.wrap{display:flex;min-height:calc(100vh - 60px)}
+nav{width:270px;flex:none;border-right:1px solid var(--borda);padding:10px;overflow:auto;max-height:calc(100vh - 60px);position:sticky;top:0}
+nav h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);margin:14px 6px 6px}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--txt);padding:6px 8px;border-radius:6px;cursor:pointer;font:inherit}
+nav button:hover{background:var(--palco)}
+nav button.on{background:var(--real);color:#fff}
+main{flex:1;padding:14px 16px;min-width:0}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:12px}
+.ctl label{display:flex;gap:6px;align-items:center;color:var(--sub)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--borda);background:var(--painel);color:var(--txt);border-radius:999px;padding:4px 10px;cursor:pointer;font:inherit}
+.chip.on{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+select,input[type=range]{font:inherit}
+select{background:var(--painel);color:var(--txt);border:1px solid var(--borda);border-radius:6px;padding:3px 6px}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--cel),1fr));gap:10px}
+.cel{background:var(--painel);border:1px solid var(--borda);border-radius:10px;padding:8px;text-align:center}
+.cel .nome{font-size:12px;color:var(--sub);margin-top:4px}
+canvas{image-rendering:pixelated;image-rendering:crisp-edges;display:block;margin:auto;border-radius:6px}
+.fundo-claro canvas{background:#d9d4cc}.fundo-escuro canvas{background:#3b3631}
+.fundo-xadrez canvas{background:repeating-conic-gradient(#cfc9c0 0 25%,#e7e2da 0 50%) 0 0/16px 16px}
+.barra{height:8px;border-radius:4px;display:flex;overflow:hidden;margin:6px 0 2px;background:var(--palco)}
+.barra div{height:100%}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--sub);flex-wrap:wrap}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+.info{font-size:13px;color:var(--sub);margin:4px 0 10px}
+.fase{font-weight:600}
+.btn{border:1px solid var(--borda);background:var(--painel);color:var(--txt);border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit}
+.folha{margin-top:18px}
+.folha summary{cursor:pointer;color:var(--sub)}
+.folha canvas{margin:10px 0 0;max-width:100%}
+@media (max-width:760px){.wrap{display:block}nav{width:auto;max-height:230px;position:static;border-right:0;border-bottom:1px solid var(--borda)}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Animações Pizzaplex</h1>
+  <div class="chips" id="tipos"></div>
+  <button class="btn" id="tema" title="Alternar tema">◐</button>
+</header>
+<div class="wrap">
+  <nav id="lista"></nav>
+  <main>
+    <div class="ctl">
+      <label>Mostrar
+        <select id="modo">
+          <option value="seq">Sequência: começo → loop ×3 → fim</option>
+          <option value="loop">Só o loop</option>
+          <option value="inicio">Só o começo</option>
+          <option value="fim">Só o fim</option>
+          <option value="tudo">Folha inteira (quadro a quadro)</option>
+        </select></label>
+      <label>Velocidade <input type="range" id="vel" min="0.25" max="2" step="0.25" value="1"><span id="velv">1×</span></label>
+      <label>Zoom <input type="range" id="zoom" min="2" max="7" step="1" value="4"></label>
+      <label>Fundo
+        <select id="fundo"><option value="xadrez">Xadrez</option><option value="claro">Claro</option><option value="escuro">Escuro</option></select></label>
+      <button class="btn" id="pausa">Pausar</button>
+      <button class="btn" id="passo">Quadro ›</button>
+    </div>
+    <div class="ctl" id="camadasCtl"></div>
+    <div class="info" id="info"></div>
+    <div class="barra" id="barra"></div>
+    <div class="leg"><span style="--c:var(--ini)">começo</span><span style="--c:var(--loop)">loop (meio da ação)</span><span style="--c:var(--fim)">fim</span><span id="pos"></span></div>
+    <div style="height:10px"></div>
+    <div class="grade" id="grade"></div>
+    <details class="folha"><summary>Ver a folha de sprites (completo.png)</summary><canvas id="folha"></canvas></details>
+  </main>
+</div>
+<script>
+const D=/*__DADOS__*/null;
+const DIRN=['Frente','Frente/direita','Direita','Costas/direita','Costas','Costas/esquerda','Esquerda','Frente/esquerda'];
+const GN={adolescentes:'Adolescentes',criancas:'Crianças',adultos_npc:'Adultos NPCs',funcionarios:'Funcionários (ADM)'};
+const TN={adolescente_masculino:'Adolescente ♂',adolescente_feminino:'Adolescente ♀',crianca:'Criança',adulto_masculino:'Adulto ♂',adulto_feminino:'Adulto ♀'};
+const ORD=['corpo','cabeca','olhos','boca','objeto','frente'];
+const CN={corpo:'corpo',cabeca:'cabeça',olhos:'olhos',boca:'boca',objeto:'objeto',frente:'frente (mãos à frente)'};
+let st={g:'criancas',a:'correr_fugindo',t:null,tick:0,pausa:false,vis:{},hue:0};
+const cache={};
+function img(src){if(cache[src])return cache[src];const i=new Image();i.src='data:image/png;base64,'+src;cache[src]=i;return i}
+function tiposDe(g){return Object.keys(D.grupos[g])}
+function lista(){
+  const nav=document.getElementById('lista');nav.innerHTML='';
+  for(const g of Object.keys(D.grupos)){
+    const h=document.createElement('h2');h.textContent=GN[g]||g;nav.appendChild(h);
+    const t0=tiposDe(g)[0];
+    for(const [n,m] of Object.entries(D.grupos[g][t0])){
+      const b=document.createElement('button');b.textContent=m.titulo;
+      if(g===st.g&&n===st.a)b.className='on';
+      b.onclick=()=>{st.g=g;st.a=n;if(!tiposDe(g).includes(st.t))st.t=tiposDe(g)[0];st.tick=0;lista();montar()};
+      nav.appendChild(b);
+    }
+  }
+}
+function chips(){
+  const el=document.getElementById('tipos');el.innerHTML='';
+  for(const t of tiposDe(st.g)){const b=document.createElement('button');b.className='chip'+(t===st.t?' on':'');b.textContent=TN[t]||t;
+    b.onclick=()=>{st.t=t;montar()};el.appendChild(b)}
+}
+function anim(){return D.grupos[st.g][st.t][st.a]}
+function seqQuadros(m){
+  const r=(a,b)=>Array.from({length:b-a},(_,i)=>a+i);const md=document.getElementById('modo').value;
+  if(md==='loop')return r(...m.loop);if(md==='inicio')return r(...m.inicio);if(md==='fim')return r(...m.fim);
+  if(md==='tudo')return r(0,m.quadros);
+  const l=r(...m.loop);return [...r(...m.inicio),...l,...l,...l,...r(...m.fim)];
+}
+function faseDe(m,q){return q<m.inicio[1]?'ini':q<m.loop[1]?'loop':'fim'}
+let cvs=[];
+function montar(){
+  chips();const m=anim();
+  const ctl=document.getElementById('camadasCtl');ctl.innerHTML='';
+  const lab=document.createElement('label');lab.textContent='Camadas:';ctl.appendChild(lab);
+  for(const c of ORD){if(!m.camadas.includes(c))continue;if(!(c in st.vis))st.vis[c]=true;
+    const l=document.createElement('label');const i=document.createElement('input');i.type='checkbox';i.checked=st.vis[c];
+    i.onchange=()=>{st.vis[c]=i.checked;desenhar()};l.append(i,CN[c]);ctl.appendChild(l)}
+  if(m.camadas.includes('objeto')){const l=document.createElement('label');l.textContent='Cor do objeto';
+    const r=document.createElement('input');r.type='range';r.min=0;r.max=360;r.value=st.hue;r.oninput=()=>{st.hue=+r.value;desenhar()};l.appendChild(r);ctl.appendChild(l)}
+  document.getElementById('info').innerHTML=`<b>${m.titulo}</b> — ${TN[st.t]} · ${m.quadros} quadros (começo ${m.inicio[1]-m.inicio[0]}, loop ${m.loop[1]-m.loop[0]}, fim ${m.fim[1]-m.fim[0]}) · ${m.fps} fps · pasta <code>${st.g}/${st.t}/${st.a}/</code>`;
+  const bar=document.getElementById('barra');bar.innerHTML='';
+  for(const [k,c] of [['inicio','--ini'],['loop','--loop'],['fim','--fim']]){const d=document.createElement('div');d.style.flex=m[k][1]-m[k][0];d.style.background=`var(${c})`;bar.appendChild(d)}
+  const z=+document.getElementById('zoom').value;document.getElementById('grade').style.setProperty('--cel',(48*z+20)+'px');
+  const gr=document.getElementById('grade');gr.innerHTML='';cvs=[];
+  for(let d=0;d<8;d++){const c=document.createElement('div');c.className='cel';const cv=document.createElement('canvas');cv.width=48;cv.height=60;cv.style.width=48*z+'px';cv.style.height=60*z+'px';
+    const n=document.createElement('div');n.className='nome';n.textContent=DIRN[d];c.append(cv,n);gr.appendChild(c);cvs.push(cv)}
+  document.getElementById('grade').parentElement.className='fundo-'+document.getElementById('fundo').value;
+  const f=document.getElementById('folha');const ci=img(m.img.completo||'');
+  const pf=()=>{f.width=ci.width;f.height=ci.height;f.style.width=Math.min(ci.width*2,f.parentElement.clientWidth||ci.width*2)+'px';const x=f.getContext('2d');x.imageSmoothingEnabled=false;x.clearRect(0,0,f.width,f.height);x.drawImage(ci,0,0)};
+  if(ci.complete)pf();else ci.onload=pf;
+  desenhar();
+}
+const tmp=document.createElement('canvas');tmp.width=48;tmp.height=60;
+function desenhar(){
+  const m=anim();const seq=seqQuadros(m);const q=seq[st.tick%seq.length];
+  const usarCamadas=ORD.some(c=>m.camadas.includes(c)&&!st.vis[c])||(m.camadas.includes('objeto')&&st.hue);
+  for(let d=0;d<8;d++){const x=cvs[d].getContext('2d');x.imageSmoothingEnabled=false;x.clearRect(0,0,48,60);
+    if(!usarCamadas){x.drawImage(img(m.img.completo),q*48,d*60,48,60,0,0,48,60);continue}
+    for(const c of ORD){if(!m.camadas.includes(c)||!st.vis[c])continue;
+      if(c==='objeto'&&st.hue){const t=tmp.getContext('2d');t.clearRect(0,0,48,60);t.filter=`hue-rotate(${st.hue}deg)`;t.drawImage(img(m.img[c]),q*48,d*60,48,60,0,0,48,60);t.filter='none';x.drawImage(tmp,0,0)}
+      else x.drawImage(img(m.img[c]),q*48,d*60,48,60,0,0,48,60)}}
+  const fz=faseDe(m,q);const nm={ini:'começo',loop:'loop',fim:'fim'}[fz];
+  document.getElementById('pos').innerHTML=`quadro <b>${q}</b> · fase <span class="fase" style="color:var(--${fz})">${nm}</span>`;
+}
+let ult=0,acc=0;
+function laco(t){const m=anim();const v=+document.getElementById('vel').value;acc+=Math.min(200,t-ult);ult=t;
+  const dt=1000/(m.fps*v);if(!st.pausa&&acc>=dt){acc%=dt;st.tick++;desenhar()}requestAnimationFrame(laco)}
+for(const id of ['modo','zoom','fundo'])document.getElementById(id).onchange=()=>{st.tick=0;montar()};
+document.getElementById('zoom').oninput=montar;
+document.getElementById('vel').oninput=e=>document.getElementById('velv').textContent=e.target.value+'×';
+document.getElementById('pausa').onclick=e=>{st.pausa=!st.pausa;e.target.textContent=st.pausa?'Continuar':'Pausar'};
+document.getElementById('passo').onclick=()=>{st.pausa=true;document.getElementById('pausa').textContent='Continuar';st.tick++;desenhar()};
+document.getElementById('tema').onclick=()=>{const r=document.documentElement;const dk=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=dk?'light':'dark'};
+st.t=tiposDe(st.g)[0];lista();montar();
+Promise.all(Object.values(cache).map(i=>i.decode?i.decode().catch(()=>0):0)).then(desenhar);
+requestAnimationFrame(t=>{ult=t;laco(t)});
+</script>
+</body>
+</html>

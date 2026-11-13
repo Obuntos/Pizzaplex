@@ -1,0 +1,1435 @@
+{
+ "formato": {
+  "quadro": [
+   48,
+   60
+  ],
+  "pivo_pes": [
+   24,
+   55
+  ],
+  "direcoes": [
+   "frente",
+   "frente_direita",
+   "direita",
+   "costas_direita",
+   "costas",
+   "costas_esquerda",
+   "esquerda",
+   "frente_esquerda"
+  ],
+  "ordem_camadas": [
+   "corpo",
+   "cabeca",
+   "olhos",
+   "boca",
+   "objeto",
+   "frente"
+  ]
+ },
+ "grupos": {
+  "adolescentes": {
+   "adolescente_masculino": {
+    "jogar_fliperama": {
+     "titulo": "Jogando nos fliperamas",
+     "quadros": 20,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "bater_palmas": {
+     "titulo": "Batendo palmas",
+     "quadros": 16,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "apontar_rindo": {
+     "titulo": "Apontando e rindo",
+     "quadros": 22,
+     "fps": 12,
+     "inicio": [
+      0,
+      5
+     ],
+     "loop": [
+      5,
+      17
+     ],
+     "fim": [
+      17,
+      22
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_1": {
+     "titulo": "Conversando com outros 1",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_2": {
+     "titulo": "Conversando com outros 2",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_3": {
+     "titulo": "Conversando com outros 3",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_4": {
+     "titulo": "Conversando com outros 4",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "comer_pizza": {
+     "titulo": "Comendo pizza",
+     "quadros": 23,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_bolo": {
+     "titulo": "Comendo bolo",
+     "quadros": 21,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "objeto",
+      "frente"
+     ]
+    }
+   },
+   "adolescente_feminino": {
+    "jogar_fliperama": {
+     "titulo": "Jogando nos fliperamas",
+     "quadros": 20,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "bater_palmas": {
+     "titulo": "Batendo palmas",
+     "quadros": 16,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "apontar_rindo": {
+     "titulo": "Apontando e rindo",
+     "quadros": 22,
+     "fps": 12,
+     "inicio": [
+      0,
+      5
+     ],
+     "loop": [
+      5,
+      17
+     ],
+     "fim": [
+      17,
+      22
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_1": {
+     "titulo": "Conversando com outros 1",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_2": {
+     "titulo": "Conversando com outros 2",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_3": {
+     "titulo": "Conversando com outros 3",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "conversar_4": {
+     "titulo": "Conversando com outros 4",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos"
+     ]
+    },
+    "comer_pizza": {
+     "titulo": "Comendo pizza",
+     "quadros": 23,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_bolo": {
+     "titulo": "Comendo bolo",
+     "quadros": 21,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "objeto",
+      "frente"
+     ]
+    }
+   }
+  },
+  "criancas": {
+   "crianca": {
+    "correr_fugindo": {
+     "titulo": "Correndo do pique-pega",
+     "quadros": 18,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      18
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    },
+    "correr_pegador": {
+     "titulo": "Corredor que tenta pegar",
+     "quadros": 18,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      18
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "sentada_mao_boca": {
+     "titulo": "Sentada com a mao na boca",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      14
+     ],
+     "fim": [
+      14,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "sentada_maos_orelhas": {
+     "titulo": "Sentada com as maos nas orelhas",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      14
+     ],
+     "fim": [
+      14,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "sentada_tampando_olhos": {
+     "titulo": "Sentada tampando os olhos",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      14
+     ],
+     "fim": [
+      14,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "deitada_encolhida": {
+     "titulo": "Deitada encolhida abracando as pernas",
+     "quadros": 20,
+     "fps": 9,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      14
+     ],
+     "fim": [
+      14,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "em_pe_chorando": {
+     "titulo": "Em pe tampando os olhos, chorando",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      14
+     ],
+     "fim": [
+      14,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "pular_bracos_cima": {
+     "titulo": "Pulando com os bracos para cima",
+     "quadros": 17,
+     "fps": 12,
+     "inicio": [
+      0,
+      3
+     ],
+     "loop": [
+      3,
+      13
+     ],
+     "fim": [
+      13,
+      17
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "rindo_mao_barriga": {
+     "titulo": "Com a mao na barriga rindo",
+     "quadros": 20,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    },
+    "bater_palmas": {
+     "titulo": "Batendo palmas",
+     "quadros": 16,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    },
+    "andar_caixa_presente": {
+     "titulo": "Andando com caixa de presente",
+     "quadros": 23,
+     "fps": 12,
+     "inicio": [
+      0,
+      5
+     ],
+     "loop": [
+      5,
+      17
+     ],
+     "fim": [
+      17,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "andar_balao": {
+     "titulo": "Andando segurando um balao",
+     "quadros": 21,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_pizza": {
+     "titulo": "Comendo pizza",
+     "quadros": 23,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_bolo": {
+     "titulo": "Comendo bolo",
+     "quadros": 21,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    }
+   }
+  },
+  "adultos_npc": {
+   "adulto_masculino": {
+    "bater_palmas": {
+     "titulo": "Batendo palmas",
+     "quadros": 16,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    },
+    "rindo": {
+     "titulo": "Rindo",
+     "quadros": 20,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "comer_pizza": {
+     "titulo": "Comendo pizza",
+     "quadros": 23,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_bolo": {
+     "titulo": "Comendo bolo",
+     "quadros": 21,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    }
+   },
+   "adulto_feminino": {
+    "bater_palmas": {
+     "titulo": "Batendo palmas",
+     "quadros": 16,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    },
+    "rindo": {
+     "titulo": "Rindo",
+     "quadros": 20,
+     "fps": 12,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "frente"
+     ]
+    },
+    "comer_pizza": {
+     "titulo": "Comendo pizza",
+     "quadros": 23,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      23
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "comer_bolo": {
+     "titulo": "Comendo bolo",
+     "quadros": 21,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      21
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    }
+   }
+  },
+  "funcionarios": {
+   "adulto_masculino": {
+    "estudar": {
+     "titulo": "Estudando (sentado, lendo)",
+     "quadros": 32,
+     "fps": 8,
+     "inicio": [
+      0,
+      8
+     ],
+     "loop": [
+      8,
+      24
+     ],
+     "fim": [
+      24,
+      32
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_chave_fenda": {
+     "titulo": "Consertando animatronico - chave de fenda",
+     "quadros": 16,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_martelo": {
+     "titulo": "Consertando animatronico - martelo",
+     "quadros": 16,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_fita": {
+     "titulo": "Consertando animatronico - fita adesiva",
+     "quadros": 18,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      14
+     ],
+     "fim": [
+      14,
+      18
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "cozinhar": {
+     "titulo": "Cozinhando",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "lavar_pratos": {
+     "titulo": "Limpando os pratos",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "desempacotar_caixa": {
+     "titulo": "Desempacotando uma caixa",
+     "quadros": 26,
+     "fps": 9,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      20
+     ],
+     "fim": [
+      20,
+      26
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "mexer_caixa": {
+     "titulo": "Mexendo no caixa",
+     "quadros": 22,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      18
+     ],
+     "fim": [
+      18,
+      22
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "sentado_ibm": {
+     "titulo": "Sentado mexendo no IBM",
+     "quadros": 24,
+     "fps": 10,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      18
+     ],
+     "fim": [
+      18,
+      24
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    }
+   },
+   "adulto_feminino": {
+    "estudar": {
+     "titulo": "Estudando (sentado, lendo)",
+     "quadros": 32,
+     "fps": 8,
+     "inicio": [
+      0,
+      8
+     ],
+     "loop": [
+      8,
+      24
+     ],
+     "fim": [
+      24,
+      32
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_chave_fenda": {
+     "titulo": "Consertando animatronico - chave de fenda",
+     "quadros": 16,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_martelo": {
+     "titulo": "Consertando animatronico - martelo",
+     "quadros": 16,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      12
+     ],
+     "fim": [
+      12,
+      16
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "consertar_fita": {
+     "titulo": "Consertando animatronico - fita adesiva",
+     "quadros": 18,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      14
+     ],
+     "fim": [
+      14,
+      18
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "cozinhar": {
+     "titulo": "Cozinhando",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "lavar_pratos": {
+     "titulo": "Limpando os pratos",
+     "quadros": 20,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      16
+     ],
+     "fim": [
+      16,
+      20
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "desempacotar_caixa": {
+     "titulo": "Desempacotando uma caixa",
+     "quadros": 26,
+     "fps": 9,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      20
+     ],
+     "fim": [
+      20,
+      26
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "mexer_caixa": {
+     "titulo": "Mexendo no caixa",
+     "quadros": 22,
+     "fps": 10,
+     "inicio": [
+      0,
+      4
+     ],
+     "loop": [
+      4,
+      18
+     ],
+     "fim": [
+      18,
+      22
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca",
+      "objeto",
+      "frente"
+     ]
+    },
+    "sentado_ibm": {
+     "titulo": "Sentado mexendo no IBM",
+     "quadros": 24,
+     "fps": 10,
+     "inicio": [
+      0,
+      6
+     ],
+     "loop": [
+      6,
+      18
+     ],
+     "fim": [
+      18,
+      24
+     ],
+     "camadas": [
+      "corpo",
+      "cabeca",
+      "olhos",
+      "boca"
+     ]
+    }
+   }
+  }
+ }
+}

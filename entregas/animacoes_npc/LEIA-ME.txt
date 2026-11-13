@@ -1,0 +1,90 @@
+ANIMACOES DE NPC - PIZZAPLEX
+============================
+
+Feitas a partir dos moldes de "pizzaplex_base_corpos_objetos" (mesmos corpos, cabecas,
+olhos, bocas e objetos). Visualizador: abra "visualizador.html" no navegador.
+
+FORMATO (igual ao molde)
+- Quadro de 48 x 60 pixels. Ponto de apoio dos pes: x 24, y 55.
+- 8 linhas, uma por direcao, de cima para baixo:
+  frente, frente/direita, direita, costas/direita, costas, costas/esquerda, esquerda, frente/esquerda.
+- No jogo: crianca 1,25x; adulto e adolescente 1,375x (como no molde).
+
+COMECO / LOOP / FIM
+Cada animacao e UMA folha com todos os quadros em sequencia na horizontal:
+  [ comeco ][ loop (meio da acao) ][ fim ]
+Os intervalos exatos de cada parte (e o fps sugerido) estao em "animacoes.json":
+  "inicio": [a, b]  "loop": [b, c]  "fim": [c, total]   (b e c exclusivos)
+Uso: toca o comeco uma vez, repete o loop enquanto durar a acao e toca o fim uma vez.
+O primeiro quadro do loop continua do ultimo quadro do comeco, e o fim comeca da pose do loop
+e termina na pose parada (em pe), entao da para emendar com a animacao de andar.
+
+CAMADAS (desenhe nesta ordem)
+  corpo.png   - corpo e membros
+  cabeca.png  - cabeca (do molde)
+  olhos.png   - olhos (expressao muda conforme a acao)
+  boca.png    - boca (fala, mastiga, ri...)
+  objeto.png  - objeto de mao (pizza, bolo, presente, balao, ferramentas, livro...)
+  frente.png  - partes que ficam NA FRENTE da cabeca ou do objeto (maos no rosto, maos
+                segurando a caixa, lagrimas)
+  completo.png - tudo ja junto
+Camadas vazias numa animacao nao sao salvas (ver "camadas" no JSON).
+
+CAIXA DE PRESENTE
+Em criancas/crianca/andar_caixa_presente a caixa esta sozinha em "objeto.png" e as maos que
+seguram ficam em "frente.png". Para outro design de presente, troque so a camada objeto
+(mesmo tamanho/posicao) - o resto da animacao continua servindo.
+
+PASTAS
+  adolescentes/<adolescente_masculino|adolescente_feminino>/<animacao>/
+  criancas/crianca/<animacao>/
+  adultos_npc/<adulto_masculino|adulto_feminino>/<animacao>/
+  funcionarios/<adulto_masculino|adulto_feminino>/<animacao>/
+
+LISTA (pedido -> pasta)
+Adolescentes
+  Jogando nos fliperamas ............ jogar_fliperama
+  Batendo palmas ..................... bater_palmas
+  Apontando e rindo .................. apontar_rindo
+  Conversando com outros 1 a 4 ....... conversar_1 (gesto com uma mao), conversar_2 (duas maos
+                                       explicando), conversar_3 (bracos cruzados, acenando),
+                                       conversar_4 (mao na cintura, olhando para os lados)
+  Comendo pizza / bolo ............... comer_pizza / comer_bolo
+Criancas
+  Correndo do pique-pega ............. correr_fugindo
+  Corredor que tenta pegar ........... correr_pegador
+  Sentada com a mao na boca .......... sentada_mao_boca
+  Sentada com as maos nas orelhas .... sentada_maos_orelhas
+  Sentada tampando os olhos .......... sentada_tampando_olhos (com uma espiadinha no loop)
+  Deitada encolhida/abracando pernas . deitada_encolhida
+  Em pe tampando os olhos, chorando .. em_pe_chorando
+  Pulando com os bracos para cima .... pular_bracos_cima
+  Mao na barriga "rindo" ............. rindo_mao_barriga
+  Batendo palmas ..................... bater_palmas
+  Andando com caixa de presente ...... andar_caixa_presente (comeco: pega do chao; fim: poe no chao)
+  Andando segurando um balao ......... andar_balao (comeco: comeca a andar; fim: para)
+  Comendo pizza / bolo ............... comer_pizza / comer_bolo
+Adultos NPCs
+  Bater palmas, Rindo, Comendo pizza, Comendo bolo
+Funcionarios (servem para ADM)
+  Estudar ............................ estudar (sentado lendo, vira a pagina)
+  Consertar animatronico ............. consertar_chave_fenda, consertar_martelo, consertar_fita
+  Cozinhando ......................... cozinhar (mexe a panela e sacode)
+  Limpando os pratos ................. lavar_pratos
+  Desempacotar uma caixa ............. desempacotar_caixa (abre a caixa, tira um item, poe de lado)
+  Mexer no caixa ..................... mexer_caixa (digita e entrega o troco)
+  Sentado mexendo no IBM ............. sentado_ibm
+
+OBSERVACOES
+- Objetos de cena (fliperama, bancada, cadeira, terminal IBM, pia, fogao, caixa registradora)
+  NAO estao desenhados nas folhas: as poses foram feitas para o personagem ficar na frente
+  deles no jogo. Nas animacoes sentadas o corpo fica na altura de um assento comum.
+- Os rostos usam os olhos/bocas do molde e as expressoes que ja existem no projeto
+  (feliz, triste, assustado); olhos de riso "^ ^", olhos fechados, bocas abertas e
+  lagrimas foram desenhados no mesmo estilo.
+
+REFAZER / AJUSTAR
+O gerador esta em "gerador/" (Python 3 + Pillow + NumPy):
+  python3 gerador/gerar.py <pasta_do_zip_extraido> <raiz_do_projeto> <pasta_saida> [filtro]
+  python3 gerador/visualizador.py <pasta_saida> visualizador.html
+As poses de cada animacao ficam em gerador/animacoes.py (alvos das maos/pes por quadro).
