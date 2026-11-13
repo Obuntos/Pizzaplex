@@ -98,7 +98,7 @@ class Xadrez extends Control:
 	func _draw() -> void:
 		for y in range(0,int(size.y),lado):
 			for x in range(0,int(size.x),lado):
-				draw_rect(Rect2(x,y,lado,lado),a if (x/lado+y/lado)%2==0 else b)
+				draw_rect(Rect2(x,y,lado,lado),a if (floori(float(x)/lado)+floori(float(y)/lado))%2==0 else b)
 
 
 ## Fundo de palco atrás do retrato da ficha: cortina e chão.

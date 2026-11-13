@@ -27,6 +27,19 @@ func liberar() -> void:
 	var a:PersonagemPlex=jogo.clientes.ator(pesquisador)
 	if is_instance_valid(a) and a.visita.get("estudando",false):
 		a.visita.erase("estudando");a.visita.erase("estudo_forcado");a.trabalho="";a.movimento.cancelar()
+		if a.assento>=0 and int(jogo.planta.objetos.get(a.assento,{}).get("reserva",0))==a.identificador:jogo.planta.objetos[a.assento].reserva=0
+		a.assento=-1
+func cadeira(id_mesa:int,a:PersonagemPlex) -> int:
+	var m:Dictionary=jogo.planta.objetos.get(id_mesa,{})
+	if m.is_empty():return -1
+	var celulas:Array[Vector2i]=jogo.planta.celulas(str(m.tipo),m.celula,int(m.rotacao))
+	for o in jogo.planta.objetos.values():
+		if CatalogoPlex.base(str(o.tipo))!="cadeira" or int(o.get("carregada_por",0))>0 or int(o.get("sobre",-1))>=0:continue
+		if not celulas.has(Vector2i(o.celula)+GradePlex.frente(int(o.rotacao))):continue
+		if int(o.get("reserva",0)) not in [0,a.identificador if is_instance_valid(a) else -1]:continue
+		if jogo.personagens.any(func(p):return p!=a and p.assento==int(o.id)):continue
+		return int(o.id)
+	return -1
 ## Projeto que pode ser escolhido agora: qualquer um ainda não estudado,
 ## desde que nenhum outro tenha progresso em andamento.
 func pode_escolher(id:String) -> bool:
@@ -35,9 +48,10 @@ func configurar(id_mesa:int,id_pessoa:int,quantidade_horas:int,forcar:bool=false
 	var m:Dictionary=jogo.planta.objetos.get(id_mesa,{})
 	var a:PersonagemPlex=jogo.clientes.ator(id_pessoa)
 	if not eh_mesa(str(m.get("tipo",""))) or not elegivel(a) or proximo().is_empty(): return false
+	if cadeira(id_mesa,a)<0:jogo.painel.mensagem("Coloque uma cadeira de frente para a mesa de estudo.");return false
 	if forcar:
 		if TurnosEquipePlex.ocupado(a) or a.visita.get("morto",false) or a.visita.get("fora_turno",false) or a.visita.get("controle_manual",false) or a.visita.get("fugindo",false) or a.visita.get("saindo_fechamento",false):return false
-		if jogo.rotas.aproximar(a.origem_rota(),id_mesa).is_empty():return false
+		if jogo.rotas.aproximar(a.origem_rota(),cadeira(id_mesa,a)).is_empty():return false
 		jogo.controle.interromper(a)
 	else:
 		if ControleAdministradorPlex.ocupado(a) and not a.visita.get("estudando",false): return false
@@ -58,17 +72,21 @@ func atualizar(delta:float) -> void:
 	if not forcado and (minutos_dia>=horas*60 or jogo.calendario.minutos<480 or jogo.calendario.minutos>=1200): liberar();return
 	if TurnosEquipePlex.ocupado(a) or a.visita.get("saindo_fechamento",false) or a.visita.get("controle_manual",false) or a.visita.get("fora_turno",false) or a.visita.get("socializando",false) or a.visita.get("fugindo",false): liberar();return
 	if jogo.servicos.trabalhos.has(a.identificador) or jogo.tarefas.trabalhos.has(a.identificador): return
-	a.visita.estudando=true;a.visita.estudo_forcado=forcado;a.assento=-1
-	if a.ocupado(): return
-	if a.trabalho!="estudar" or not jogo.planta.interacoes(mesa).has(a.celula):
-		espera-=delta
-		if espera>0: return
-		espera=2.0
-		var rota:Array[Vector2i]=jogo.rotas.aproximar(a.origem_rota(),mesa)
-		if rota.is_empty(): a.visita.erase("estudando");return
-		if rota.size()>1: a.trabalho="ir_estudar";a.andar(rota);return
-		a.trabalho="estudar"
-	jogo.tarefas.orientar(a,Vector2(m.celula)+Vector2(CatalogoPlex.dimensoes(str(m.tipo),int(m.rotacao))-Vector2i.ONE)*.5)
+	a.visita.estudando=true;a.visita.estudo_forcado=forcado
+	var assento:=cadeira(mesa,a)
+	if assento<0:jogo.painel.mensagem("O estudo parou: falta uma cadeira de frente para a mesa.");pausar();return
+	if a.assento!=assento:
+		if a.ocupado(): return
+		a.assento=-1
+		if not jogo.planta.interacoes(assento).has(a.celula):
+			espera-=delta
+			if espera>0: return
+			espera=2.0
+			var rota:Array[Vector2i]=jogo.rotas.aproximar(a.origem_rota(),assento)
+			if rota.is_empty(): a.visita.erase("estudando");return
+			a.trabalho="ir_estudar";a.andar(rota);return
+		a.assento=assento;jogo.planta.objetos[assento].reserva=a.identificador
+	a.trabalho="estudar";a.direcao=GradePlex.direcao_suporte(int(jogo.planta.objetos[assento].rotacao))
 	var minutos:=delta*CalendarioPlex.MINUTOS_POR_SEGUNDO if forcado else minf(delta*CalendarioPlex.MINUTOS_POR_SEGUNDO,float(horas*60)-minutos_dia)
 	progresso=minf(MINUTOS_PROJETO,progresso+minutos);minutos_dia+=minutos;a.progresso_acao=fposmod(a.relogio/2.5,1.0)
 	if progresso>=MINUTOS_PROJETO: concluir()

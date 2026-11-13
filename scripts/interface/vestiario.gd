@@ -49,8 +49,8 @@ func configurar(cena: Node) -> void:
 		card.add_child(conteudo)
 		var imagem:=TextureRect.new()
 		var atlas:=CatalogoPlex.atlas_vazio()
-		atlas.atlas=load("res://assets/personagens/"+modelo+"/parado.png")
-		atlas.region=Rect2(0,0,64,100)
+		atlas.atlas=load("res://assets/personagens/"+modelo+("/ancoras_3/" if modelo=="fantasia_coelho" else "/")+"parado.png")
+		atlas.region=Rect2(0,0,128,100) if modelo=="fantasia_coelho" else Rect2(0,0,64,100)
 		imagem.texture=atlas
 		imagem.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 		imagem.expand_mode=TextureRect.EXPAND_IGNORE_SIZE

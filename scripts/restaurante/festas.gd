@@ -116,7 +116,8 @@ func atualizar(delta: float) -> void:
 			if not criancas.is_empty() and criancas.all(func(id): return is_instance_valid(jogo.clientes.ator(int(id))) and jogo.clientes.ator(int(id)).visita.get("comeu",false)):
 				grupo.desenho_avaliado=true
 				if posmod(int(grupo.id)+jogo.calendario.dias,3)==1:
-					jogo.servicos.recompensas.append({"tipo":["festa_desenho_coelho","festa_desenho_casa","festa_desenho_estrelas"][posmod(int(grupo.id),3)]})
+					var novo:=LembrancasPlex.desenho_palco(jogo)
+					jogo.servicos.recompensas.append({"tipo":novo if not novo.is_empty() else ["festa_desenho_coelho","festa_desenho_casa","festa_desenho_estrelas"][posmod(int(grupo.id),3)]})
 		if not pendente(grupo): continue
 		if grupo.festa_estado=="preparando":
 			if not jogo.servicos.trabalhos.has(int(grupo.get("bolo_ator",-1))): grupo.festa_estado="pedido"

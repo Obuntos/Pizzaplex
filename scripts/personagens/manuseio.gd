@@ -64,7 +64,7 @@ func atualizar(ator: PersonagemPlex, planta: PlantaPlex, andando: bool) -> void:
 	if ator.trabalho == "colocar":
 		hide()
 		return
-	var caixa_virtual: bool = ator.carregando and ator.trabalho not in ["montar","colocar"]
+	var caixa_virtual: bool = ator.carregando and ator.trabalho not in ["montar","colocar"] and not planta.objetos.get(ator.carga_item,{}).has("modelo_vi")
 	if caixa_virtual: item = {"tipo":ator.caixa_tipo,"id":-1}
 	var acao: String = ator.trabalho
 	if acao == "estudar": acao="preparar"

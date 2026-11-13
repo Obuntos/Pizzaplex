@@ -103,6 +103,7 @@ func opcoes(menu:CanvasLayer,r:PersonagemPlex) -> bool:
 		menu.adicionar("Sair do controle",func():soltar(true,"Controle encerrado. O animatrônico volta ao palco."))
 		return true
 	if possuido(r) and not r.ocupado():menu.adicionar("Controlar",func():assumir(r))
+	jogo.atracoes.opcoes_robo(menu,r)
 	if jogo.sistemas.armazem.opcoes(menu,r):return true
 	if not noite() and str(r.robotica.get("estado",""))=="ligado":poses(menu,r,"pose_dia",r.robotica)
 	jogo.sistemas.armazem.opcao_atualizar(menu,r)

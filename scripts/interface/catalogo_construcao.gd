@@ -57,7 +57,7 @@ func permitido(tipo: String) -> bool:
 	if CatalogoPlex.objetos[tipo].get("oculto",false) or CatalogoPlex.objetos[tipo].get("apenas_cenario",false): return false
 	var d: Dictionary = CatalogoPlex.objetos[tipo]
 	if tipo in ["suporte","vassoura","balde","pose_quebrado","pose_montagem","armario_ferramentas"]: return false
-	if tipo.begins_with("festa_bolo") or tipo.begins_with("festa_fatia") or tipo.begins_with("festa_prato") or tipo.begins_with("festa_pizza") or tipo.begins_with("festa_confetes") or tipo.begins_with("festa_desenho") or tipo=="festa_baloes_buque": return false
+	if tipo.begins_with("festa_bolo") or tipo.begins_with("festa_fatia") or tipo.begins_with("festa_prato") or tipo.begins_with("festa_pizza") or tipo.begins_with("festa_confetes") or LembrancasPlex.desenho(tipo) or tipo=="festa_baloes_buque": return false
 	if tipo=="chao" or tipo.begins_with("externo_") or DesgastePisosPlex.gasto(tipo): return false
 	if PalcosMadeiraPlex.eh(tipo) and tipo!=PalcosMadeiraPlex.MODULO: return false
 	if tipo.begins_with("cenario_trilha_") or tipo.begins_with("antigo_barricada_") or tipo.begins_with("cenario_buraco_") or tipo=="antigo_parede_quebrada_modulo" or tipo in ["cenario_parede_madeira_janela","cenario_parede_madeira_vitrine"]: return false

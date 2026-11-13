@@ -52,10 +52,16 @@ func ir_ate(a:PersonagemPlex,alvo:Vector2i) -> bool:
 		if not rota.is_empty():a.andar(rota);return true
 	return false
 
+func toy_pendente() -> bool:return jogo.personagens.any(func(p):return p.robo and str(p.visita.get("troca_toy",{}).get("etapa",""))=="transferir")
+
 func iniciar() -> void:
 	var m:=mecanico();var r:=robo_alvo()
 	feita=noite_atual()
-	if m==null or r==null:return
+	if m==null:return
+	if toy_pendente():
+		if m.visita.get("fora_turno",false) or m.visita.get("saindo_fechamento",false):jogo.turnos.chegada(m,.5)
+		m.visita.mec_toy=true;return
+	if r==null:return
 	var trazido:=false
 	if m.visita.get("fora_turno",false) or m.visita.get("saindo_fechamento",false):jogo.turnos.chegada(m,.5);trazido=true
 	m.visita.mec={"robo":r.identificador,"etapa":"chegar","t":0.0,"passo":0,"trazido":trazido}
@@ -66,7 +72,8 @@ func atualizar(delta:float) -> void:
 	var passo:=espera;espera=0.0
 	var m:=ativo()
 	if m==null:
-		if horario() and feita!=noite_atual():iniciar()
+		var livre:=mecanico()
+		if horario() and (feita!=noite_atual() or toy_pendente() and is_instance_valid(livre) and not livre.visita.get("mec_toy",false)):iniciar()
 		return
 	var d:Dictionary=m.visita.mec
 	var r:PersonagemPlex=jogo.clientes.ator(int(d.robo))

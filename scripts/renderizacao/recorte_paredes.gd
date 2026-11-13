@@ -69,17 +69,11 @@ func calcular(planta: PlantaPlex, nivel: int, automatico: bool) -> void:
 		var lados: Dictionary={}
 		for direcao in GradePlex.VIZINHOS:
 			var outro := planta.em(item.celula+direcao)
-			if outro.get("tipo","") in ESTRUTURA and int(outro.id)!=int(item.id) and base.has(outro.id): lados[direcao]=int(base[outro.id])
+			if outro.get("tipo","") in ESTRUTURA and outro.get("tipo","") not in CatalogoPlex.PORTAS and int(outro.id)!=int(item.id) and base.has(outro.id): lados[direcao]=int(base[outro.id])
 		if lados.is_empty(): continue
-		var menor: int=lados.values().min()
-		if lados.size()==1:
-			niveis[item.id]=menor
-			continue
-		var reto:=false
-		for direcao in lados:
-			if lados.has(-direcao) and int(lados[direcao])>1 and int(lados[-direcao])>1: reto=true
-		if lados.size()==2 and lados.keys().any(func(d): return lados.has(-d)): continue
-		if not reto: niveis[item.id]=menor
+		var maior: int=lados.values().max()
+		if lados.size()==1 or maior<=1: niveis[item.id]=int(lados.values().min())
+		elif lados.size()==2 and not lados.keys().any(func(d): return lados.has(-d)): niveis[item.id]=maior
 
 func nivel_para(item: Dictionary, padrao: int) -> int:
 	return int(niveis.get(item.id, padrao))

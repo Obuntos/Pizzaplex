@@ -97,6 +97,8 @@ func opcoes(menu:CanvasLayer,p:Dictionary) -> void:
 			FichasPremiosPlex.opcoes(jogo,menu,p)
 		"dec_piscina_bolinhas":jogo.sistemas.piscina.opcoes(menu,p)
 		"amb_balcao_tickets":menu.adicionar("Abrir troca de tickets" if p.estado=="fechado" else "Fechar troca de tickets",func():p.estado="aberto" if p.estado=="fechado" else "fechado")
+	jogo.sistemas.cartazes.opcoes(menu,p)
+	LembrancasPlex.opcoes(jogo,menu,p)
 func abrir_ponto() -> void:
 	var linhas:=PackedStringArray()
 	for a in jogo.personagens:

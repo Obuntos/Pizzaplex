@@ -161,7 +161,7 @@ func atualizar_visual(andando: bool) -> void:
 		acao = "parado"
 	elif trabalho in ["jogar", "assistir"] and (modelo == "crianca" or modelo.begins_with("adolescente")) and not ocupado():
 		acao = "parado" if trabalho == "assistir" and visita.get("assistiu",false) else trabalho
-	elif trabalho in ["sentar_mesa","sentar_banco","descansar","vigiar_ibm","aguardar_vestiario","caixa_sentado"] and assento >= 0 and not ocupado():
+	elif trabalho in ["sentar_mesa","sentar_banco","descansar","vigiar_ibm","aguardar_vestiario","caixa_sentado","estudar"] and assento >= 0 and not ocupado():
 		acao = "sentar"
 	elif int(visita.get("corpo_carregado",-1))>0:
 		acao="carregar"

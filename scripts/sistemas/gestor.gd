@@ -2,7 +2,7 @@ class_name NovosSistemasPlex
 extends RefCounted
 
 var jogo:Node
-var tutorial:Node
+var tutorial=null
 var bonnie:BonnieSemanalPlex
 var ambiencia:AmbienciaRestaurantePlex
 var shows:ShowsPalcoPlex
@@ -40,7 +40,7 @@ static func visual_coelho(a:PersonagemPlex) -> void:
 	if not a.visita.has("montagem_passos"):return
 	var passo:=clampi(int(a.visita.montagem_passos),0,52);var r:=posmod(floori(float(GradePlex.direcao_visual(a.direcao))/2.0),4)
 	if a.visita.has("montagem_rotacao"):r=GradePlex.rotacao_visual(int(a.visita.montagem_rotacao))
-	if a.visita.get("montagem_olhar_jogador",false):r=posmod(roundi(float(GradePlex.direcao_visual(a.direcao))/2.0),4)
+	if a.visita.has("montagem_tela"):r=int(a.visita.montagem_tela)
 	var atlas:AtlasTexture=a.animacao.atlases.modelo
 	atlas.atlas=CatalogoPlex.textura("res://assets/sistemas/vi/"+("patitas" if a.modelo.contains("patitas") else "orelhitas")+"/montagem/"+str(r)+".png");atlas.region=Rect2((passo%8)*192,floori(float(passo)/8)*192,192,192)
 	sprite.scale=Vector2.ONE/a.animacao.scale;sprite.position=-Vector2(96,144)*sprite.scale

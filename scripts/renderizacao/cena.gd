@@ -110,7 +110,7 @@ func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> v
 	if revisao_rapida!=planta.revisao or contexto_rapido!=contexto_novo:
 		observados.clear()
 		for item in planta.objetos.values():
-			if dinamico(item) or item.tipo=="bancada": observados.append(item)
+			if dinamico(item) or item.tipo in ["bancada",MontagemAtracoesPlex.BANCADA,"oficina_bancada_trabalho"]: observados.append(item)
 	else:
 		var estados_atuais := fotografia()
 		if estado_rapido==estados_atuais and not assinatura.is_empty():
@@ -125,7 +125,7 @@ func atualizar(planta: PlantaPlex, nivel: int, cortar_frente: bool = false) -> v
 	for registro in planta.objetos.values():
 		if MobiliaPlex.dados(registro).get("bairro",false) or ManchasPlex.eh(registro.tipo): continue
 		if registro.tipo in ["luz_teto","luz_parede","luz_chao","luz_teto_economica","luz_parede_economica","luz_chao_economica","pose","pose_quebrado","pose_montagem"] or ApoiosPlex.portador(planta,registro.id)>0: continue
-		var dados: Array=[registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1),registro.get("variante",""),MobiliaPlex.estado(registro),registro.get("camera_quadro",6),registro.get("camera_ligada",true),registro.get("porcoes",-1),registro.get("quantidade",-1),registro.get("pratos_guardados",false),registro.get("desenhos_pratos",[])]
+		var dados: Array=[registro.id,registro.tipo,registro.celula,registro.rotacao,registro.get("estado",""),registro.get("sobre",-1),registro.get("slot",-1),registro.get("variante",""),MobiliaPlex.estado(registro),registro.get("camera_quadro",6),registro.get("camera_ligada",true),registro.get("porcoes",-1),registro.get("quantidade",-1),registro.get("pratos_guardados",false),registro.get("desenhos_pratos",[]),registro.get("desmonte_bancada",""),registro.get("desmonte_tipo",""),registro.get("fantasia_bancada","")]
 		if registro.tipo in SalasPlex.ESTRUTURA: estados.append(dados.slice(0,4))
 		if dinamico(registro):
 			moveis.append(registro)
@@ -321,7 +321,7 @@ func atualizar_personagem(personagem: PersonagemPlex) -> void:
 func fotografia() -> int:
 	var valores: Array = []
 	for r in observados:
-		valores.append([r.id,r.celula,r.rotacao,r.get("estado",""),r.get("estado_visual",""),r.get("variante",""),r.get("sujo",false),r.get("aberta",false),r.get("sobre",-1),r.get("slot",-1),r.get("carregada_por",0),r.get("solto",false),r.get("caixa",false),r.get("caixa_tipo",""),r.get("ponto_caixa",[]),r.get("camera_quadro",6),r.get("camera_ligada",true),r.get("porcoes",-1),r.get("quantidade",-1),r.get("pratos_guardados",false),r.get("desenhos_pratos",[])])
+		valores.append([r.id,r.celula,r.rotacao,r.get("estado",""),r.get("estado_visual",""),r.get("variante",""),r.get("sujo",false),r.get("aberta",false),r.get("sobre",-1),r.get("slot",-1),r.get("carregada_por",0),r.get("solto",false),r.get("caixa",false),r.get("caixa_tipo",""),r.get("ponto_caixa",[]),r.get("camera_quadro",6),r.get("camera_ligada",true),r.get("porcoes",-1),r.get("quantidade",-1),r.get("pratos_guardados",false),r.get("desenhos_pratos",[]),r.get("desmonte_bancada",""),r.get("desmonte_tipo",""),r.get("fantasia_bancada","")])
 	return hash(valores)
 func atualizar_mapa(completa: bool) -> void:
 	if completa:

@@ -5,7 +5,6 @@ const VERSOES={"novo_coelho_detalhes":"normal","vi_toy_orelhitas":"toy","vi_orel
 const PASTA:="res://assets/sistemas/ataques/"
 const ESCALA_HUMANO:=1.375
 static var dados:Dictionary={}
-static var cabecas:Dictionary={}
 var jogo:Node
 var ativos:Array=[]
 var corpos:Dictionary={}
@@ -48,11 +47,20 @@ func folha(caminho:String,largura:int,altura_quadro:int,material_sprite:ShaderMa
 	return s
 
 static func cores_roupa(v:PersonagemPlex,faixas:Array=[["camisa",31,40,12,36],["calca",43,51,12,36],["sapato",52,56,12,36]]) -> Dictionary:
-	var fonte:=str(v.animacao.arquivos.get("corpo",""))
-	if fonte.is_empty():return {}
-	var parado:=fonte.get_base_dir()+"/parado_corpo.png"
-	var imagem:=CatalogoPlex.imagem(parado if ResourceLoader.exists(parado) else fonte)
+	var parado:=AparenciaPlex.vestir(v,"res://assets/personagens/"+v.modelo+"/parado_corpo.png")
+	if not ResourceLoader.exists(parado):return {}
+	var imagem:=CatalogoPlex.imagem(parado)
 	if imagem==null or imagem.is_empty():return {}
+	var tipo:=str(AnimacoesNpcPlex.TIPOS.get(v.modelo,""))
+	if not tipo.is_empty() and parado!="res://assets/personagens/"+v.modelo+"/parado_corpo.png":
+		AnimacoesNpcPlex.carregar()
+		var info:=AnimacoesNpcPlex.dados_roupa(parado,tipo,v.modelo)
+		var perna:Array=AnimacoesNpcPlex.dados.retangulos[tipo][0].perna_e
+		var cores:={"camisa":info.camisa,"calca":info.calca,"sapato":AnimacoesNpcPlex.cor_dominante(imagem,Rect2i(int(perna[0])-5,int(perna[1])+int(perna[3])-4,int(perna[2])+10,4))}
+		var saida:={}
+		for chave in cores:
+			if (cores[chave] as Color).a>.5:saida[chave]=cores[chave]
+		if saida.size()==3:return saida
 	PelePlex.carregar()
 	var pele:Dictionary=PelePlex.dados.mapas.get("branco",{})
 	var tons:Array[Color]=[]
@@ -68,65 +76,25 @@ static func cores_roupa(v:PersonagemPlex,faixas:Array=[["camisa",31,40,12,36],["
 				var hexa:=c.to_html(false)
 				if pele.has(hexa) or tons.any(func(t:Color):return absf(t.r-c.r)+absf(t.g-c.g)+absf(t.b-c.b)<.12):total_pele+=1;continue
 				contagem[hexa]=int(contagem.get(hexa,0))+1
-		var melhor:="";var maior:=0
-		for hexa in contagem:
-			if int(contagem[hexa])>maior:maior=int(contagem[hexa]);melhor=hexa
+		var ordem:Array=contagem.keys()
+		ordem.sort_custom(func(x,y):return int(contagem[x])>int(contagem[y]))
+		var melhor:=""
+		for hexa in ordem.slice(0,3):
+			if melhor.is_empty() or Color("#"+str(hexa)).get_luminance()>Color("#"+melhor).get_luminance():melhor=str(hexa)
 		var soma:=0
 		for hexa in contagem:soma+=int(contagem[hexa])
 		if soma>=6 and soma>=total_pele:resultado[faixa[0]]=Color("#"+melhor)
 	return resultado
-
-static func capturar_cabeca(a:PersonagemPlex,direcao_visual:int,expressao_alvo:String="pavor") -> Texture2D:
-	var chave:=str(a.identificador)+":"+str(direcao_visual)+":"+expressao_alvo
-	if cabecas.has(chave):return cabecas[chave]
-	var original:=a.direcao;var antes:=a.visible;var expressao:=a.animacao.expressao
-	a.direcao=posmod(direcao_visual+GradePlex.visao*2,8)
-	a.visible=true;a.animacao.expressao=expressao_alvo
-	a.atualizar_visual(false)
-	var incluir:Array=[]
-	for nome in ["cabeca","olhos","boca"]:
-		if a.animacao.camadas.has(nome):incluir.append(a.animacao.camadas[nome])
-	for nome in ["tras","frente","chapeu","rosto_0","rosto_1"]:
-		if a.personalizacao.camadas.has(nome):incluir.append(a.personalizacao.camadas[nome])
-	var imagem:=Image.create_empty(48,76,false,Image.FORMAT_RGBA8)
-	var referencia:=a.animacao.global_transform.affine_inverse()
-	for fonte in a.pintura.fontes:
-		var s:Sprite2D=fonte.sprite
-		if not s in incluir or not s.visible or s.texture==null:continue
-		var tex:Texture2D=s.texture
-		var regiao:=Rect2i(Vector2i.ZERO,Vector2i(tex.get_size()))
-		if tex is AtlasTexture:
-			regiao=Rect2i(tex.region)
-			tex=tex.atlas
-		if tex is CanvasTexture:tex=tex.diffuse_texture
-		if tex==null:continue
-		var im:=tex.get_image()
-		if im==null:continue
-		im=im.get_region(regiao)
-		var transformacao:=referencia*s.global_transform
-		var inversa:=transformacao.affine_inverse()
-		var offset:=s.offset-(Vector2(im.get_size())*.5 if s.centered else Vector2.ZERO)
-		for y in imagem.get_height():
-			for x in imagem.get_width():
-				var local:=inversa*(Vector2(x+.5,y+.5)-Vector2(24,63))-offset
-				var p:=Vector2i(local.floor())
-				if not Rect2i(Vector2i.ZERO,im.get_size()).has_point(p):continue
-				var c:=im.get_pixelv(p)
-				if c.a>.05:imagem.set_pixel(x,y,imagem.get_pixel(x,y).blend(c))
-	a.direcao=original;a.visible=antes;a.animacao.expressao=expressao
-	a.atualizar_visual(false)
-	cabecas[chave]=ImageTexture.create_from_image(imagem)
-	return cabecas[chave]
 
 func cabeca(v:PersonagemPlex,sx:String,dado:Array,material_cabeca:ShaderMaterial) -> Node2D:
 	var n0:Array=dados.pescoco[sx]
 	var pivo:=Node2D.new()
 	pivo.position=Vector2(float(n0[0])+float(dado[2])-56.0,float(n0[1])+float(dado[3])-80.0)
 	pivo.rotation=-float(dado[1])*PI*.5
-	var s:=Sprite2D.new()
-	s.texture=capturar_cabeca(v,int(dado[0]));s.centered=false;s.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	s.material=material_cabeca;s.position=Vector2(32.0-float(n0[0]),17.0-float(n0[1]))
-	pivo.add_child(s)
+	AnimacoesNpcPlex.carregar()
+	var montada:Node2D=jogo.sistemas.npc.cabeca(v,int(dado[0]),"pavor",material_cabeca)
+	montada.position=Vector2(32.0-float(n0[0]),25.0-float(n0[1]))
+	pivo.add_child(montada)
 	return pivo
 
 func montar_humano(v:PersonagemPlex,versao:String,parte:String,linha:int,roupa:Dictionary,plano:float,altura:float,deitado:bool) -> Node2D:
@@ -136,7 +104,6 @@ func montar_humano(v:PersonagemPlex,versao:String,parte:String,linha:int,roupa:D
 	var mascara:=CatalogoPlex.textura(pasta+"mascara.png")
 	var no:=Node2D.new();no.scale=Vector2.ONE*ESCALA_HUMANO
 	var mat_corpo:=material(plano,altura,mascara,v,roupa,deitado)
-	var mat_cabeca:=material(plano,altura,null,v,roupa,deitado)
 	var camadas:Array=info.camadas_humano if parte=="ataque" else info.get("camadas_corpo",info.camadas_humano)
 	for nome in ["corpo","cabeca","objeto","frente"]:
 		if nome=="cabeca":
@@ -151,7 +118,7 @@ func montar_humano(v:PersonagemPlex,versao:String,parte:String,linha:int,roupa:D
 func trocar_quadro(no:Node2D,v:PersonagemPlex,versao:String,parte:String,quadro:int) -> void:
 	var linha:=int(no.get_meta("linha"));var sx:=str(no.get_meta("sx"))
 	for filho in no.get_children():
-		if filho is Sprite2D:(filho.texture as AtlasTexture).region=Rect2(quadro*112,linha*110,112,110)
+		if filho is Sprite2D:((filho as Sprite2D).texture as AtlasTexture).region=Rect2(quadro*112,linha*110,112,110)
 	var lista:Array=dados.cabecas[versao][sx][parte][linha]
 	var dado:Array=lista[mini(quadro,lista.size()-1)]
 	var chave:=str(dado)
@@ -159,8 +126,9 @@ func trocar_quadro(no:Node2D,v:PersonagemPlex,versao:String,parte:String,quadro:
 	if str(cab.get_meta("dado","")) ==chave:return
 	cab.set_meta("dado",chave)
 	for filho in cab.get_children():filho.queue_free()
-	var corpo:Sprite2D=no.get_node_or_null("corpo")
-	var mat:ShaderMaterial=material(float(corpo.material.get_shader_parameter("plano")) if corpo!=null else 0.0,float(corpo.material.get_shader_parameter("altura")) if corpo!=null else 4.0,null,v,{},parte=="corpo_no_chao")
+	var corpo_sprite:Sprite2D=no.get_node_or_null("corpo")
+	var mat_corpo:ShaderMaterial=corpo_sprite.material as ShaderMaterial if corpo_sprite!=null else null
+	var mat:ShaderMaterial=material(float(mat_corpo.get_shader_parameter("plano")) if mat_corpo!=null else 0.0,float(mat_corpo.get_shader_parameter("altura")) if mat_corpo!=null else 4.0,null,v,{},parte=="corpo_no_chao")
 	cab.add_child(cabeca(v,sx,dado,mat))
 
 func iniciar(r:PersonagemPlex,v:PersonagemPlex,violencia:int) -> void:
@@ -169,7 +137,6 @@ func iniciar(r:PersonagemPlex,v:PersonagemPlex,violencia:int) -> void:
 	var d:=GradePlex.direcao_visual(r.direcao);var linha:=posmod(d+4,8)
 	var deslocamento:=Vector2(float(info.deslocamento[d][0]),float(info.deslocamento[d][1]))
 	var roupa:=cores_roupa(v)
-	for dado in dados.cabecas[versao][sexo(v)]["ataque"][linha]+dados.cabecas[versao][sexo(v)]["corpo_no_chao"][linha]:capturar_cabeca(v,int(dado[0]))
 	for nome in ["camisa","calca","sapato"]:
 		if roupa.has(nome):roupa[nome]=Color(roupa[nome],1.0)
 	var pivo:=Node2D.new();jogo.mundo.add_child(pivo)
@@ -184,6 +151,7 @@ func iniciar(r:PersonagemPlex,v:PersonagemPlex,violencia:int) -> void:
 	for no in ordem:pivo.add_child(no)
 	v.movimento.cancelar();r.movimento.cancelar()
 	v.visita.em_ataque=true;r.visita.em_ataque=true;v.visita.morto=true
+	v.visible=false;v.set_meta("visivel_cena",false)
 	v.local=r.local+GradePlex.inverter_vetor(deslocamento);v.celula=Vector2i(v.local.round())
 	v.visita.morte_orelhitas={"versao":versao,"linha":linha,"camisa":roupa.get("camisa",Color(0,0,0,0)).to_html(),"calca":roupa.get("calca",Color(0,0,0,0)).to_html(),"sapato":roupa.get("sapato",Color(0,0,0,0)).to_html(),"roupa":roupa.keys()}
 	ativos.append({"robo":r.identificador,"vitima":v.identificador,"versao":versao,"pivo":pivo,"longe":longe,"resto":resto,"humano":humano,"tempo":0.0,"violencia":violencia,"direcao":d})

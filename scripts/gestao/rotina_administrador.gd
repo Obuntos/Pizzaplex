@@ -72,6 +72,7 @@ func sair(a: PersonagemPlex) -> void:
 	a.visita.casa_partida=float(a.visita.casa_turno)-duracao
 
 func iniciar(a: PersonagemPlex) -> void:
+	jogo.atracoes.pausar_ator(a,"Aguardando")
 	jogo.controle.interromper(a)
 	tentativa_rota=0.0
 	a.automatico=false
@@ -88,7 +89,7 @@ func atualizar(delta: float) -> void:
 	var a: PersonagemPlex=jogo.controle.administrador()
 	atualizar_lar(a)
 	if not is_instance_valid(a) or a.visita.get("morto",false): return
-	if a.visita.get("tutorial_ativo",false) or a.visita.get("obra_atracao",false) or TurnosEquipePlex.ocupado(a) or a.visita.get("estudando",false) or a.visita.get("controle_manual",false) or a.visita.get("socializando",false) or jogo.controle.acao.get("tipo","")=="limpar_robo": return
+	if a.visita.get("tutorial_ativo",false) or TurnosEquipePlex.ocupado(a) or a.visita.get("estudando",false) or a.visita.get("controle_manual",false) or a.visita.get("socializando",false) or jogo.controle.acao.get("tipo","")=="limpar_robo": return
 	var fase:=str(a.visita.get("rotina_casa_etapa",""))
 	var lar:=casa()
 	if fase in ["indo","em_casa"] and not lar.is_empty():
@@ -161,4 +162,3 @@ func atualizar(delta: float) -> void:
 			a.automatico=true
 			TurnosEquipePlex.recuperar_descanso(a)
 			a.trabalho=""
-

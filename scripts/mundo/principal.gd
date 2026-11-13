@@ -420,7 +420,7 @@ func _atualizar_quadro(delta: float) -> void:
 	delta=minf(delta,.05)
 	if not atividade_janela.iniciar_quadro(delta): return
 	preparacao.atualizar(true)
-	var minigame_aberto:=atracoes.minigame_aberto() or is_instance_valid(sistemas.tutorial) and sistemas.tutorial.bloqueia()
+	var minigame_aberto:bool=atracoes.minigame_aberto() or is_instance_valid(sistemas.tutorial) and sistemas.tutorial.bloqueia()
 	if minigame_aberto:apagando=false;arrastando=false;traco_parede.encerrar()
 	var comando_camera := Vector2(float(Input.is_physical_key_pressed(KEY_D)) - float(Input.is_physical_key_pressed(KEY_A)), float(Input.is_physical_key_pressed(KEY_S)) - float(Input.is_physical_key_pressed(KEY_W)))
 	if not minigame_aberto and not sistemas.escala_aberta() and not seguranca.aberto() and not festas.aberto() and not menu_controle.aberto() and not energia_ui.aberto() and not carteira.aberto() and not terminal_ui.aberto() and not estudos_ui.aberto() and not painel.hud.menu_aberto() and not (get_viewport().gui_get_focus_owner() is LineEdit) and atividade_janela.em_foco and not comando_camera.is_zero_approx():

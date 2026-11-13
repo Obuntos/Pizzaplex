@@ -110,7 +110,7 @@ func abrir(pessoa: PersonagemPlex, objeto: int, posicao: Vector2) -> bool:
 		if MontagemAtracoesPlex.bancada(item):
 			var ordem:Dictionary=jogo.atracoes.ordem(objeto)
 			var fase:=str(ordem.get("fase",""))
-			if str(ordem.get("minigame_pendente","")).is_empty() and (fase in ["pronto_endo","pronto_plastico"] or fase.is_empty() and jogo.atracoes.pesquisado()):adicionar("Montar VI · Orelhitas · $180" if fase.is_empty() else "Encaixar plástico/metal · $110" if fase=="pronto_endo" else "Montar fantasia na bancada · $150",func():jogo.atracoes.continuar(objeto))
+			if str(ordem.get("minigame_pendente","")).is_empty() and (fase in ["pronto_endo","pronto_plastico","plastico_mesa"] or fase.is_empty() and jogo.atracoes.pesquisado()):adicionar("Montar VI · Orelhitas · $180" if fase.is_empty() else "Montar plástico · $110" if fase=="pronto_endo" else "Colocar plástico" if fase=="plastico_mesa" else "Colocar roupa · $150",func():jogo.atracoes.continuar(objeto))
 			if fase.is_empty() and item.tipo=="area_montagem_atracao" and jogo.atracoes.pesquisado("vi_patitas"):
 				adicionar("Montar VI · Patitas · $180",func():jogo.atracoes.continuar(objeto,"vi_patitas"))
 		if MobiliaPlex.dados(item).get("alto_falante",false):adicionar("Desligar som" if item.get("som_ligado",false) else "Ligar som",func():item.som_ligado=not item.get("som_ligado",false))

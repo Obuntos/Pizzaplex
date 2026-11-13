@@ -46,9 +46,11 @@ func continuar(id:int,modelo:String=MODELO) -> bool:
 				return true
 		return enfileirar(modelo,id)
 	if o.fase in ["endo","plastico","carcaca","reparo","troca_carcaca","desmontar"]:return retomar_trabalho(id)
+	if o.fase=="plastico_mesa":
+		o.fase="plastico";o.operacao="buscar";o.instaladas=0;o.tempo=0.0;jogo.livro.alterado.emit();return retomar_trabalho(id)
 	var proxima:="plastico" if o.fase=="pronto_endo" else "carcaca" if o.fase=="pronto_plastico" else ""
 	if proxima.is_empty() or not pagar(proxima):return false
-	o.fase=proxima;o.operacao="preparar" if proxima=="carcaca" else "instalar";o.preparadas=0;o.tempo=0.0;jogo.livro.alterado.emit();return retomar_trabalho(id)
+	o.fase=proxima;o.operacao="preparar";o.preparadas=0;o.instaladas=0;o.tempo=0.0;jogo.livro.alterado.emit();return retomar_trabalho(id)
 func disponivel(a:PersonagemPlex) -> bool:
 	return a.cargo=="funcionario" and not a.robo and a.automatico and (a.funcao=="manutencao" or AdministradorPlex.eh(a)) and not ControleAdministradorPlex.ocupado(a) and not TurnosEquipePlex.ocupado(a) and not a.visita.get("fora_turno",false) and not a.visita.get("saindo_fechamento",false) and not a.ocupado() and a.carga_item<0 and not jogo.servicos.trabalhos.has(a.identificador) and not jogo.tarefas.trabalhos.has(a.identificador) and not FantasiasRestaurantePlex.ocupando(a) and not a.visita.get("obra_atracao",false)
 func posicao_trabalho(a:PersonagemPlex,ponto:Dictionary) -> Array[Vector2i]:return jogo.rotas.aproximar(a.origem_rota(),int(ponto.id))
@@ -61,8 +63,8 @@ func liberar(o:Dictionary) -> void:
 			if jogo.planta.objetos.has(a.carga_item):
 				var item:Dictionary=jogo.planta.objetos[a.carga_item];item.carregada_por=0
 				var mesa:Dictionary=jogo.planta.objetos.get(int(o.get("bancada",-1)),{})
-				if not mesa.is_empty():item.sobre=mesa.id;item.slot=mini(int(item.get("modulo",0)),2);item.celula=mesa.celula
-			if o.fase in ["endo","carcaca"]:o.operacao="buscar"
+				if not mesa.is_empty():item.sobre=mesa.id;item.slot=slot_modulo(int(item.get("modulo",0)));item.celula=mesa.celula
+			if o.fase in ["endo","plastico","carcaca"]:o.operacao="buscar"
 			a.carga_item=-1;a.carregando=false;a.visita.erase("modulo_montagem");jogo.planta.reindexar();jogo.planta.alterada.emit()
 		a.visita.erase("obra_atracao");a.trabalho="manual" if a.visita.get("controle_manual",false) else "";a.progresso_acao=0.0
 	o.ator=-1
@@ -77,19 +79,20 @@ func montagem(delta:float) -> void:
 		if not str(o.get("minigame_pendente","")).is_empty():continue
 		var r:=ator(int(o.robo))
 		if is_instance_valid(r) and r.visita.get("montagem_olhar_jogador",false):
-			var mecanico:PersonagemPlex=ator(int(o.get("ator",-1)))
-			if not is_instance_valid(mecanico):mecanico=jogo.controle.administrador()
-			if is_instance_valid(mecanico) and mecanico.local.distance_squared_to(r.local)>.01:jogo.tarefas.orientar_cardinal(r,mecanico.local)
+			var adm:PersonagemPlex=jogo.controle.administrador()
+			if is_instance_valid(adm) and adm.celula!=r.celula:
+				jogo.tarefas.olhar_tela(r,Vector2(adm.celula))
 		if o.get("pausada",false):
 			if o.get("motivo","")=="Sem acesso" and int(o.get("bloqueio_revisao",-1))!=jogo.planta.revisao:o.pausada=false
+			elif o.get("motivo","")=="Aguardando" and jogo.personagens.any(disponivel):o.pausada=false
 			else:continue
 		if o.fase=="caminhando":
 			if not is_instance_valid(r) or not r.ocupado() and r.trabalho=="apresentar":fila.erase(o);jogo.livro.alterado.emit()
 			continue
-		if o.fase in ["pronto_endo","pronto_plastico","seta","aguardar_bancada"]:continue
+		if o.fase in ["pronto_endo","pronto_plastico","plastico_mesa","seta","aguardar_bancada"]:continue
 		var base:Dictionary=jogo.planta.objetos.get(int(o.ponto),{})
 		var ponto:Dictionary=base
-		if o.fase in ["endo","carcaca"] and o.get("operacao","") in ["preparar","buscar"]:
+		if o.fase in ["endo","plastico","carcaca"] and o.get("operacao","") in ["preparar","buscar"]:
 			var id_mesa:=int(o.get("bancada",-1))
 			if not jogo.planta.objetos.has(id_mesa):id_mesa=mesa_livre(int(o.ponto));o.bancada=id_mesa
 			ponto=jogo.planta.objetos.get(id_mesa,{})
@@ -109,7 +112,7 @@ func montagem(delta:float) -> void:
 			if o.servico!="desmontar":posicionar_na_bancada(r,ponto)
 		var a:=ator(int(o.ator))
 		if is_instance_valid(a) and bloqueado(a,o):
-			pausar_ator(a);continue
+			pausar_ator(a,"Aguardando");continue
 		if not is_instance_valid(a):
 			o.busca=float(o.get("busca",0))-delta
 			if float(o.busca)>0:continue
@@ -124,7 +127,7 @@ func montagem(delta:float) -> void:
 			if not rota.is_empty():a.trabalho="ir_montar_atracao";a.progresso_acao=0.0;a.andar(rota)
 			else:pausar_ator(a,"Sem acesso")
 			continue
-		if o.fase in ["endo","carcaca"]:
+		if o.fase in ["endo","plastico","carcaca"]:
 			if executar_preparacao(o,a,ponto,delta):continue
 		a.trabalho="montar";jogo.tarefas.orientar(a,Vector2(ponto.celula))
 		o.tempo=float(o.tempo)+delta*HabilidadesEquipePlex.fator(a,"manutencao");a.progresso_acao=fposmod(float(o.tempo)/2.4,1.0)
@@ -148,8 +151,8 @@ func montagem(delta:float) -> void:
 				if is_instance_valid(corpo):jogo.despawn(corpo)
 				r.visita.erase("corpo_oculto");liberar(o);fila.erase(o);jogo.despawn(r);jogo.painel.mensagem("Peças recicladas. As gravações e pistas já recolhidas permanecem no caso.")
 			continue
-		if o.fase=="endo" and o.get("operacao","")=="instalar":
-			o.instaladas=int(o.get("instaladas",0))+1;o.parte=[6,13,17][int(o.instaladas)-1];retirar_modulo(a);o.operacao="buscar" if int(o.instaladas)<3 else "concluir"
+		if o.fase in ["endo","plastico"] and o.get("operacao","")=="instalar":
+			o.instaladas=int(o.get("instaladas",0))+1;o.parte=([6,13,17] if o.fase=="endo" else [23,29,34])[mini(int(o.instaladas),3)-1];retirar_modulo(a);o.operacao="buscar" if int(o.instaladas)<3 else "concluir"
 		else:o.parte=int(o.parte)+1
 		r.visita.montagem_passos=int(o.parte)
 		var limite:=17 if o.fase=="endo" else 34 if o.fase=="plastico" else 52
@@ -160,13 +163,16 @@ func montagem(delta:float) -> void:
 				if o.get("conjunto_vi",false):continuar(int(o.ponto))
 				else:jogo.painel.mensagem("Endoesqueleto pronto. Agora é possível inserir somente o corpo de Bonnie; continuar com plástico encerra essa possibilidade.")
 			elif o.fase=="plastico":
-				o.fase="pronto_plastico"
-				if o.get("conjunto_vi",false) and str(o.modelo)=="vi_patitas":solicitar_minigame(o,"plastico")
-				elif o.get("conjunto_vi",false):o.plastico_configurado=true;continuar(int(o.ponto))
-				else:jogo.painel.mensagem("Plástico e metal encaixados. Prepare a roupa na bancada e encaixe-a na base cinza.")
+				o.fase="pronto_plastico";o.plastico_configurado=true
+				jogo.painel.mensagem("Plástico encaixado. Clique no animatrônico ou na base e escolha Colocar roupa para costurar e vestir.")
 			else:
 				r.visita.erase("montando_atracao");r.visita.erase("montagem_passos");r.visita.aguarda_seta=true;r.automatico=true;o.fase="seta";pedir_seta(o)
 			jogo.livro.alterado.emit()
+func opcoes_robo(menu:CanvasLayer,r:PersonagemPlex) -> void:
+	for o in fila:
+		if int(o.get("robo",-1))!=r.identificador:continue
+		if o.fase=="plastico_mesa":menu.adicionar("Colocar plástico",func():continuar(int(o.ponto)))
+		elif o.fase=="pronto_plastico":menu.adicionar("Colocar roupa · $%d"%int(PRECOS.carcaca),func():continuar(int(o.ponto)))
 func pedir_seta(o:Dictionary) -> void:
 	var r:=ator(int(o.robo))
 	if not is_instance_valid(r):return
@@ -183,7 +189,7 @@ func definir_pose(id:int,pose:int) -> bool:
 		if int(antiga.get("seta_de",-1))==id:jogo.planta.remover(int(antiga.id))
 		elif int(antiga.get("dono",-1))==id:antiga.dono=-1
 	jogo.oficina.liberar_reservas(r);r.visita.erase("oficina_robo");r.visita.erase("diagnostico_animacao");r.visita.erase("diagnostico_rota")
-	r.visita.erase("recolhendo_deposito");r.visita.erase("destino_deposito");r.visita.erase("bancada_montagem");r.visita.erase("montagem_olhar_jogador");r.visita.erase("montagem_rotacao");marca.dono=id;r.pose=pose;r.robotica.pose_palco=pose;r.visita.erase("aguarda_seta");r.trabalho="ir_pose";r.automatico=true;AnimatronicosPlex.garantir(r);r.robotica.desligado_manual=false;AnimatronicosPlex.mudar(r,"deslocando");r.andar(rota)
+	r.visita.erase("recolhendo_deposito");r.visita.erase("destino_deposito");r.visita.erase("bancada_montagem");r.visita.erase("montagem_olhar_jogador");r.visita.erase("montagem_tela");r.visita.erase("montagem_rotacao");marca.dono=id;r.pose=pose;r.robotica.pose_palco=pose;r.visita.erase("aguarda_seta");r.trabalho="ir_pose";r.automatico=true;AnimatronicosPlex.garantir(r);r.robotica.desligado_manual=false;AnimatronicosPlex.mudar(r,"deslocando");r.andar(rota)
 	for o in fila:
 		if int(o.robo)==id:o.fase="caminhando"
 	jogo.livro.alterado.emit();return true
@@ -297,8 +303,9 @@ func mesa_livre(base:int) -> int:
 func criar_modulo(o:Dictionary,indice:int) -> int:
 	var mesa:Dictionary=jogo.planta.objetos.get(int(o.bancada),{})
 	if mesa.is_empty():return -1
-	var id:int=jogo.planta.inserir("sistema_modulo_coelho_"+str(indice),mesa.celula,int(mesa.rotacao),{"pai":mesa.id,"slot":mini(indice,2)},{"ordem_montagem":int(o.ponto),"modulo":indice,"modelo_vi":str(o.modelo),"olhos_configurados":bool(o.get("olhos_configurados",false))})
+	var id:int=jogo.planta.inserir("sistema_modulo_coelho_"+str(indice),mesa.celula,int(mesa.rotacao),{"pai":mesa.id,"slot":slot_modulo(indice)},{"ordem_montagem":int(o.ponto),"modulo":indice,"modelo_vi":str(o.modelo),"olhos_configurados":bool(o.get("olhos_configurados",false))})
 	return id
+static func slot_modulo(indice:int) -> int:return indice-4 if indice>=4 else mini(indice,2)
 func retirar_modulo(a:PersonagemPlex) -> void:
 	if a.visita.get("modulo_montagem",false):
 		var id:=a.carga_item;a.carga_item=-1;a.carregando=false;a.visita.erase("modulo_montagem")
@@ -317,24 +324,33 @@ func executar_preparacao(o:Dictionary,a:PersonagemPlex,ponto:Dictionary,delta:fl
 				o.operacao="buscar"
 				if o.get("conjunto_vi",false) and str(o.modelo)==MODELO and not o.get("olhos_configurados",false):solicitar_minigame(o,"olhos")
 				elif str(o.modelo)=="vi_patitas":o.olhos_configurados=true
-		elif int(o.preparadas)>=18:criar_modulo(o,3);o.operacao="buscar";jogo.sistemas.baloes.exibir(a,"Roupa preparada. Vou encaixá-la no animatrônico.",4)
+		elif o.fase=="plastico":
+			if int(o.preparadas) in [6,12,17]:
+				var parte:=[6,12,17].find(int(o.preparadas));criar_modulo(o,4+parte);jogo.sistemas.baloes.exibir(a,["Pernas de plástico prontas.","Busto de plástico pronto.","Cabeça de plástico pronta."][parte],4)
+			if int(o.preparadas)>=17:
+				liberar(o);o.fase="plastico_mesa"
+				jogo.painel.mensagem("As 3 peças de plástico estão na bancada. Clique no endo ou na base e escolha Colocar plástico.")
+				jogo.livro.alterado.emit()
+		else:
+			if int(o.preparadas)==1:jogo.sistemas.baloes.exibir(a,"Costurando a roupa...",4)
+			if int(o.preparadas)>=18:criar_modulo(o,3);o.operacao="buscar";jogo.sistemas.baloes.exibir(a,"Roupa costurada. Vou vesti-la no animatrônico.",4)
 		return true
 	if operacao=="buscar":
-		var indice:=int(o.get("instaladas",0)) if o.fase=="endo" else 3
+		var indice:=int(o.get("instaladas",0)) if o.fase=="endo" else 4+int(o.get("instaladas",0)) if o.fase=="plastico" else 3
 		var modulos:Array=jogo.planta.objetos.values().filter(func(peca):return int(peca.get("ordem_montagem",-1))==int(o.ponto) and int(peca.get("modulo",-1))==indice)
 		var id:=int(modulos[0].id) if not modulos.is_empty() else criar_modulo(o,indice)
 		if id<0:return true
 		var base:Dictionary=jogo.planta.objetos.get(int(o.ponto),{})
 		if base.is_empty() or posicao_trabalho(a,base).is_empty():pausar_ator(a,"Sem acesso");return true
 		var p:Dictionary=jogo.planta.objetos[id];p.sobre=-1;p.slot=-1;p.carregada_por=a.identificador
-		a.carga_item=id;a.caixa_tipo=str(p.tipo);a.carregando=true;p.origem_sobre=ponto.id;p.origem_slot=mini(indice,2);p.origem_celula=[ponto.celula.x,ponto.celula.y];a.visita.modulo_montagem=true;o.operacao="instalar";o.tempo=0.0;jogo.planta.alterada.emit()
+		a.carga_item=id;a.caixa_tipo=str(p.tipo);a.carregando=true;p.origem_sobre=ponto.id;p.origem_slot=slot_modulo(indice);p.origem_celula=[ponto.celula.x,ponto.celula.y];a.visita.modulo_montagem=true;o.operacao="instalar";o.tempo=0.0;jogo.planta.alterada.emit()
 		jogo.sistemas.baloes.exibir(a,"Levando "+str(MobiliaPlex.dados(p).nome).to_lower()+" à base.",4)
 		return true
 	if o.fase=="carcaca" and a.visita.get("modulo_montagem",false):retirar_modulo(a)
 	return false
 
 func bloqueado(a:PersonagemPlex,o:Dictionary) -> bool:
-	if a.visita.get("morto",false) or a.visita.get("fora_turno",false) or TurnosEquipePlex.ocupado(a) or a.visita.get("saindo_fechamento",false):return true
+	if a.visita.get("morto",false) or a.visita.get("fora_turno",false) or not str(a.visita.get("rotina_casa_etapa","")).is_empty() or TurnosEquipePlex.ocupado(a) or a.visita.get("saindo_fechamento",false):return true
 	if int(o.get("manual",-1))==a.identificador and a.visita.get("controle_manual",false):return a.visita.get("preso",false) or a.visita.get("fugindo",false)
 	return ControleAdministradorPlex.ocupado(a)
 func pausar_ator(a:PersonagemPlex,motivo:String="Pausada") -> void:

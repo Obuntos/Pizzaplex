@@ -151,6 +151,7 @@ static func objeto(registro: Dictionary, planta: PlantaPlex, nivel: int, niveis:
 	if str(registro.tipo).begins_with("ajuste_cabeca_") or str(registro.tipo).begins_with("ajuste_estrutura_"):return OficinaRobosPlex.volume_cabeca(registro)
 	if registro.has("modelo_vi") and registro.has("modulo"):return ViVisuaisPlex.volume(registro)
 	if str(registro.tipo)=="sistema_camera_parede":return CamerasVigilanciaPlex.volume(registro)
+	if registro.has("desmonte_bancada") and CatalogoPlex.objetos.has(str(registro.get("desmonte_tipo",""))):return AmbientesAssetsPlex.obter(str(registro.desmonte_tipo),GradePlex.rotacao_visual(int(registro.rotacao)),str(registro.desmonte_bancada))
 	if registro.has("fantasia_bancada") and CatalogoPlex.objetos.has("of_fantasia_bancada"):return AmbientesAssetsPlex.obter("of_fantasia_bancada",GradePlex.rotacao_visual(int(registro.rotacao)),str(registro.fantasia_bancada))
 	if DecoracaoEstudoPlex.eh(str(registro.tipo)):return DecoracaoEstudoPlex.obter(str(registro.tipo),GradePlex.rotacao_visual(registro.rotacao),floorf(float(registro.get("relogio_minutos",610.0))*4)/4.0,MobiliaPlex.estado(registro))
 	if PacotesPratosPlex.guardado(registro): return PacotesPratosPlex.volume(registro,GradePlex.rotacao_visual(registro.rotacao))

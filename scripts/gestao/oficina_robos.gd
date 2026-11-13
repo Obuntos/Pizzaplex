@@ -40,7 +40,7 @@ func liberar_palco(r:PersonagemPlex) -> void:
 	if int(p.get("dono",-1))==r.identificador:p.dono=-1
 	for ordem in jogo.atracoes.fila.duplicate():
 		if int(ordem.get("robo",-1))==r.identificador and ordem.fase in ["seta","caminhando"]:jogo.atracoes.fila.erase(ordem)
-	for chave in ["aguarda_seta","montagem_olhar_jogador","montagem_rotacao","bancada_montagem","recolhendo_deposito","destino_deposito"]:r.visita.erase(chave)
+	for chave in ["aguarda_seta","montagem_olhar_jogador","montagem_tela","montagem_rotacao","bancada_montagem","recolhendo_deposito","destino_deposito"]:r.visita.erase(chave)
 	r.pose=-1;r.suporte=-1;r.automatico=false;AnimatronicosPlex.garantir(r);r.robotica.desligado_manual=true
 func recolher(r:PersonagemPlex,modo:String="deposito",silencioso:bool=false) -> bool:
 	if not is_instance_valid(r) or not r.robo or r.visita.get("montando_atracao",false):return false
@@ -121,7 +121,7 @@ func concluir_olhos(o:Dictionary) -> bool:
 	d.etapa="espera_plastico";d.olhos_consertados=true;o.minigame_pendente="";o.minigame_estado={};jogo.planta.alterada.emit();return true
 func operario(d:Dictionary,alvo:int) -> PersonagemPlex:
 	var a:PersonagemPlex=jogo.clientes.ator(int(d.get("ator",-1)))
-	if is_instance_valid(a) and (a.visita.get("fora_turno",false) or a.visita.get("morto",false) or TurnosEquipePlex.ocupado(a) or a.visita.get("controle_manual",false) and int(d.get("manual",-1))!=a.identificador):liberar_operario(d);a=null
+	if is_instance_valid(a) and (a.visita.get("fora_turno",false) or not str(a.visita.get("rotina_casa_etapa","")).is_empty() or a.visita.get("morto",false) or TurnosEquipePlex.ocupado(a) or a.visita.get("controle_manual",false) and int(d.get("manual",-1))!=a.identificador):liberar_operario(d);a=null
 	if is_instance_valid(a):a.visita.obra_atracao=true;a.visita.oficina_trabalho=true;return a
 	for p in jogo.personagens:
 		if not jogo.atracoes.disponivel(p) or jogo.rotas.aproximar(p.origem_rota(),alvo).is_empty():continue

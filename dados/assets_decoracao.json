@@ -369,7 +369,7 @@
   "pasta": "res://assets/objetos/decoracao/dec_cartaz_orelhitas_toy",
   "largura": 1,
   "profundidade": 1,
-  "altura": 82,
+  "altura": 74,
   "pivo": [
    96,
    144
@@ -396,7 +396,7 @@
   "pasta": "res://assets/objetos/decoracao/dec_cartaz_patitas_toy",
   "largura": 1,
   "profundidade": 1,
-  "altura": 82,
+  "altura": 74,
   "pivo": [
    96,
    144
@@ -1222,5 +1222,537 @@
   "sobreposto": false,
   "parede_requerida": false,
   "transitavel": false
+ },
+ "of_desmonte_toy_orelhitas": {
+  "nome": "Desmontagem na bancada",
+  "pasta": "res://assets/objetos/decoracao/of_desmonte_toy_orelhitas",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "e0",
+   "s1",
+   "e1",
+   "s2",
+   "e2",
+   "s3",
+   "e3",
+   "s4",
+   "e4",
+   "e5"
+  ],
+  "estado_padrao": "e0",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
+ },
+ "of_desmonte_toy_orelhitas_sangue": {
+  "nome": "Desmontagem na bancada",
+  "pasta": "res://assets/objetos/decoracao/of_desmonte_toy_orelhitas_sangue",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "e0",
+   "s1",
+   "e1",
+   "s2",
+   "e2",
+   "s3",
+   "e3",
+   "s4",
+   "e4",
+   "e5"
+  ],
+  "estado_padrao": "e0",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
+ },
+ "of_desmonte_orelhitas": {
+  "nome": "Desmontagem na bancada",
+  "pasta": "res://assets/objetos/decoracao/of_desmonte_orelhitas",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "e0",
+   "s1",
+   "e1",
+   "s2",
+   "e2",
+   "s3",
+   "e3",
+   "s4",
+   "e4",
+   "e5"
+  ],
+  "estado_padrao": "e0",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
+ },
+ "of_desmonte_orelhitas_sangue": {
+  "nome": "Desmontagem na bancada",
+  "pasta": "res://assets/objetos/decoracao/of_desmonte_orelhitas_sangue",
+  "largura": 3,
+  "profundidade": 1,
+  "altura": 96,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "e0",
+   "s1",
+   "e1",
+   "s2",
+   "e2",
+   "s3",
+   "e3",
+   "s4",
+   "e4",
+   "e5"
+  ],
+  "estado_padrao": "e0",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Oficina",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
+ },
+ "lem_desenho_orelhitas_presentes": {
+  "nome": "Desenho · Orelhitas (presentes)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_orelhitas_presentes",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_orelhitas_bolo": {
+  "nome": "Desenho · Orelhitas (aniversário)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_orelhitas_bolo",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_orelhitas_rosto": {
+  "nome": "Desenho · Orelhitas (rosto grande)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_orelhitas_rosto",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_patitas_presentes": {
+  "nome": "Desenho · Patitas (presentes)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_patitas_presentes",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_patitas_bolo": {
+  "nome": "Desenho · Patitas (aniversário)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_patitas_bolo",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_patitas_show": {
+  "nome": "Desenho · Patitas (show)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_patitas_show",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_orelhitas_baloes": {
+  "nome": "Desenho · Toy Orelhitas (balões)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_orelhitas_baloes",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_orelhitas_bolo": {
+  "nome": "Desenho · Toy Orelhitas (aniversário)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_orelhitas_bolo",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_orelhitas_show": {
+  "nome": "Desenho · Toy Orelhitas (show)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_orelhitas_show",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_patitas_presentes": {
+  "nome": "Desenho · Toy Patitas (presentes)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_patitas_presentes",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_patitas_baloes": {
+  "nome": "Desenho · Toy Patitas (balões)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_patitas_baloes",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_desenho_toy_patitas_show": {
+  "nome": "Desenho · Toy Patitas (show)",
+  "pasta": "res://assets/objetos/decoracao/lem_desenho_toy_patitas_show",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 72,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 0,
+  "conforto": 3,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": true,
+  "transitavel": true
+ },
+ "lem_boneco_pe": {
+  "nome": "Boneco de pano · em pé",
+  "pasta": "res://assets/objetos/decoracao/lem_boneco_pe",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 44,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "sem"
+  ],
+  "estado_padrao": "sem",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 25,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "apoio_livre": true
+ },
+ "lem_boneco_pe_mascara": {
+  "nome": "Boneco de pano · em pé com máscara",
+  "pasta": "res://assets/objetos/decoracao/lem_boneco_pe_mascara",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 44,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "orelhitas",
+   "patitas",
+   "toy-orelhitas",
+   "toy-patitas"
+  ],
+  "estado_padrao": "orelhitas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 25,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "apoio_livre": true,
+  "oculto": true
+ },
+ "lem_boneco_sentado": {
+  "nome": "Boneco de pano · sentado",
+  "pasta": "res://assets/objetos/decoracao/lem_boneco_sentado",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 32,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "sem"
+  ],
+  "estado_padrao": "sem",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 25,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "apoio_livre": true
+ },
+ "lem_boneco_sentado_mascara": {
+  "nome": "Boneco de pano · sentado com máscara",
+  "pasta": "res://assets/objetos/decoracao/lem_boneco_sentado_mascara",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 32,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "orelhitas",
+   "patitas",
+   "toy-orelhitas",
+   "toy-patitas"
+  ],
+  "estado_padrao": "orelhitas",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Decoração",
+  "preco": 25,
+  "conforto": 4,
+  "apoio": false,
+  "sobreposto": true,
+  "parede_requerida": false,
+  "transitavel": true,
+  "apoio_livre": true,
+  "oculto": true
  }
 }

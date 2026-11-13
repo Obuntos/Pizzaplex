@@ -149,7 +149,7 @@ func _aplicar(celula: Vector2i) -> void:
 	if not uso.permitido:
 		aviso.emit(str(uso.motivo))
 		return
-	var desenho:=ferramenta.begins_with("festa_desenho")
+	var desenho:=LembrancasPlex.desenho(ferramenta)
 	if desenho and (jogo==null or not jogo.servicos.presentes.has(ferramenta)):
 		aviso.emit("Este desenho é um presente dos visitantes.")
 		return
