@@ -189,7 +189,6 @@ func _aplicar(celula: Vector2i) -> void:
 			jogo.servicos.presentes.erase(ferramenta)
 			planta.objetos[id].valor_pago=0
 			ferramenta="selecionar"
-			aviso.emit("Desenho pendurado.")
 			return
 		if ferramenta=="area_montagem_atracao" and not atracao_pendente.is_empty():
 			if jogo.livro.reservar(atracao_pendente,id): atracao_pendente="";jogo.escolher_ferramenta("selecionar")

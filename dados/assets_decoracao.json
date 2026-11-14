@@ -1754,5 +1754,80 @@
   "transitavel": true,
   "apoio_livre": true,
   "oculto": true
+ },
+ "amigo_coruja": {
+  "nome": "Coruja · Pincel (Amigos do Bairro)",
+  "pasta": "res://assets/objetos/decoracao/amigo_coruja",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 60,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Palcos",
+  "preco": 900,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "amigo_bairro": "vi_coruja"
+ },
+ "amigo_arlequim": {
+  "nome": "Arlequim (Amigos do Bairro)",
+  "pasta": "res://assets/objetos/decoracao/amigo_arlequim",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 90,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Palcos",
+  "preco": 1200,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "amigo_bairro": "vi_arlequim"
+ },
+ "amigo_base": {
+  "nome": "Base dos Amigos do Bairro",
+  "pasta": "res://assets/objetos/decoracao/amigo_base",
+  "largura": 1,
+  "profundidade": 1,
+  "altura": 1,
+  "pivo": [
+   96,
+   144
+  ],
+  "estados": [
+   "padrao"
+  ],
+  "estado_padrao": "padrao",
+  "ambiente_novo": true,
+  "mobilia": true,
+  "categoria": "Palcos",
+  "preco": 0,
+  "conforto": 0,
+  "apoio": false,
+  "sobreposto": false,
+  "parede_requerida": false,
+  "transitavel": false,
+  "oculto": true
  }
 }

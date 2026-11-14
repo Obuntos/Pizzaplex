@@ -42,7 +42,6 @@ func mudar_abertura(valor: bool) -> void:
 		else: jogo.encerramento.iniciar()
 	aberto = valor
 	espera_chegada = minf(espera_chegada,3.0)
-	jogo.painel.mensagem("Restaurante aberto. Novas visitas chegam quando houver uma entrada e espaço interno para recebê-las." if aberto else "Restaurante fechado. Visitantes e funcionários interrompem as tarefas e seguem para a saída.")
 	jogo.painel.hud.atualizar(1.0)
 
 func chegada() -> Vector2i:

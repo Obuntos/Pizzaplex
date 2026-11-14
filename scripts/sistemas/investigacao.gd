@@ -70,12 +70,10 @@ func alterar_ponto() -> void:
 	if not ativo():jogo.painel.mensagem("Não há registros sob investigação.");return
 	if quadro_ponto.is_empty():jogo.painel.mensagem("Nenhum registro de turno disponível.");return
 	var registro:Dictionary=quadro_ponto[-1];registro.original=registro.get("original",registro.quando);registro.quando=float(registro.quando)+45;registro.alterado=true
-	jogo.painel.mensagem("Registro de turno ajustado no terminal. Outras fontes podem divergir deste horário.")
 func falso_rastro() -> void:
 	if not ativo():return
 	rastros_forjados+=1
 	quadro_ponto.append({"pessoa":"registro_manual","sala":"depósito","quando":agora()-60,"alterado":true,"falso":true})
-	jogo.painel.mensagem("Um registro manual foi incluído. Ele ainda pode ser confrontado com as câmeras.")
 func examinar(e:Dictionary,a:PersonagemPlex) -> void:
 	var caso:=str(e.id);var sala:Dictionary=jogo.ambientes.em(a.celula)
 	for o in jogo.planta.objetos.values():

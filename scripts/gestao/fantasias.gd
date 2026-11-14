@@ -86,7 +86,6 @@ func vestir(modelo: String) -> void:
 	jogo.preparacao.personagem(a)
 	a.atualizar_visual(false)
 	jogo.composicao.atualizar_personagem(a)
-	jogo.painel.mensagem("Fantasia vestida. O administrador atenderá, cozinhará e trabalhará com a fantasia até fechar.")
 
 func retirar(a: PersonagemPlex) -> void:
 	if not ArmariosPlex.em_vestiario(jogo.planta,a,int(a.visita.get("fantasia_armario",-1))):return

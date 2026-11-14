@@ -74,6 +74,10 @@ var velocidade_tempo:float:
 func pausar(motivo:String) -> void:
 	pausas_ativas[motivo]=true
 
+func pausa_automatica() -> void:
+	if velocidade_base<=0.0 or not is_instance_valid(painel.hud):return
+	painel.hud.pausa_anterior=velocidade_base;velocidade_base=0.0
+
 func retomar(motivo:String) -> void:
 	pausas_ativas.erase(motivo)
 
@@ -292,7 +296,6 @@ func criar_personagem(modelo: String, celula: Vector2i, cargo: String, silencios
 	preparar_personagem.call_deferred(ator)
 	if not silencioso:
 		selecionar(ator)
-		painel.mensagem("Personagem colocado. Ele procura tarefas compatíveis e acessíveis.")
 	return ator
 
 func preparar_personagem(ator: PersonagemPlex) -> void:
@@ -388,7 +391,6 @@ func girar_visao() -> void:
 		ator.atualizar_visual(ator.ocupado())
 		composicao.atualizar_personagem(ator)
 	for sombra in sombras_luzes.get_children(): sombra.atualizar()
-	painel.mensagem("Visão " + str(GradePlex.visao + 1) + " / 4 · Shift gira 90° · Ctrl alterna as paredes.")
 
 func definir_corte(valor: bool) -> void:
 	cortar_frente=valor

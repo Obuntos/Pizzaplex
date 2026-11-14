@@ -74,7 +74,6 @@ func abrir(pessoa: PersonagemPlex, objeto: int, posicao: Vector2) -> bool:
 			titulo=IdentidadesPlex.completo(pessoa)+jogo.controle_robo.sufixo(pessoa)
 		elif pessoa.robo:
 			jogo.oficina.opcoes(self,pessoa)
-			jogo.sistemas.bandas.opcoes(self,pessoa)
 			if pessoa.robotica.get("sangrando",false): botao("Limpar animatrônico","limpar_robo",pessoa.identificador)
 			if not pessoa.visita.get("montando_atracao",false):adicionar("Redefinir lugar",func(): jogo.atracoes.redefinir_lugar(pessoa.identificador))
 			if controle.manual() and is_instance_valid(admin) and jogo.atracoes.permite_corpo(pessoa,jogo.clientes.ator(int(admin.visita.get("corpo_carregado",-1)))): botao("Colocar corpo no animatrônico","ocultar",pessoa.identificador)

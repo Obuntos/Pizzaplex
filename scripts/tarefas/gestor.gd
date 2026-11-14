@@ -48,6 +48,11 @@ func olhar_tela(personagem: PersonagemPlex, destino: Vector2) -> void:
 	personagem.visita.montagem_tela=lado
 	personagem.direcao = posmod(lado*2+GradePlex.visao*2,8)
 
+func olhar_objeto(personagem: PersonagemPlex, id: int) -> void:
+	var item: Dictionary=planta.objetos.get(id,{})
+	if item.is_empty(): return
+	orientar_cardinal(personagem,Vector2(item.celula)+Vector2(CatalogoPlex.dimensoes(str(item.tipo),int(item.rotacao))-Vector2i.ONE)*.5)
+
 func orientar_cardinal(personagem: PersonagemPlex, destino: Vector2) -> void:
 	personagem.direcao = GradePlex.direcao_suporte(rotacao_para(personagem.local,destino))
 

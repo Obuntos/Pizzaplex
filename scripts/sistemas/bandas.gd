@@ -33,14 +33,10 @@ static func fita(a:PersonagemPlex) -> String:
 static func papel(a:PersonagemPlex) -> String:return "baixo" if a.modelo.contains("patitas") else "melodia"
 static func clipe(a:PersonagemPlex,padrao:String) -> String:
 	if a.modelo not in BANDA:return padrao
-	var nome:=str(FITAS[fita(a)].clipe)
+	var nome:=str(a.robotica.get("clipe_show",FITAS[fita(a)].clipe))
 	return nome if ClipesPlex.possui(a.modelo,nome) else padrao
 func musica(a:PersonagemPlex) -> String:
-	return str(FITAS[fita(a)].musica) if a.modelo in BANDA else ""
-func opcoes(menu:CanvasLayer,r:PersonagemPlex) -> void:
-	if r.modelo not in BANDA:return
-	for id in FITAS:
-		if id!=fita(r):menu.adicionar("Fita: "+str(FITAS[id].nome),func():r.robotica.fita=id;r.relogio=0.0;jogo.painel.mensagem("Fita trocada para "+str(FITAS[id].nome)+"."))
+	return str(a.robotica.get("musica_show",FITAS[fita(a)].musica)) if a.modelo in BANDA else ""
 
 func cantando(a:PersonagemPlex) -> bool:
 	if not a.robo or musica(a).is_empty() or a.robotica.get("avariado",false) or AnimatronicosPlex.pausado(a):return false

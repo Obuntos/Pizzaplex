@@ -128,6 +128,8 @@ func atualizar(personagem: Node2D, delta: float, planta: PlantaPlex, rotas: Rota
 	var velocidade: float = 0.55 if personagem.robo else (0.72 if caixa else 0.88)
 	velocidade*=HabilidadesEquipePlex.fator(personagem)*AcessoriosEquipePlex.fator(personagem)
 	if personagem.visita.has("controle_animatronico"): velocidade*=.85 if float(personagem.robotica.get("fome",0.0))>=4.0 else .6
+	if personagem.modelo=="vi_arlequim": velocidade*=.5
+	elif personagem.robo and str(personagem.robotica.get("espirito",""))=="raivoso": velocidade*=1.15
 	if str(personagem.visita.get("rotina_casa_etapa","")) in ["indo","voltando"] and not TerrenoPlex.contem(planta,destino): velocidade=CaminhosCidadePlex.PASSO_EXTERNO
 	if str(personagem.visita.get("turno_etapa",""))=="chegando" and not TerrenoPlex.contem(planta,destino):velocidade=maxf(velocidade,2.4)
 	if personagem.visita.get("fugindo",false): velocidade *= 1.8

@@ -1,23 +1,44 @@
 class_name PlacaAberturaPlex
 extends Control
+## Placa de OPEN / CLOSED pendurada por correntes. Vira ao trocar de lado
+## e solta confete quando o restaurante abre.
+
 var aberto:=false
 var trancado:=false
+var iniciada:=false
+var virando:Tween
+
 func _init() -> void:
-	mouse_filter=Control.MOUSE_FILTER_IGNORE;custom_minimum_size=Vector2(132,52)
+	mouse_filter=Control.MOUSE_FILTER_IGNORE;custom_minimum_size=Vector2(136,56)
+	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+
+## Troca o estado. Depois da primeira vez, a placa vira para mostrar o outro lado.
+func definir(esta_aberto:bool, esta_trancado:bool) -> void:
+	if iniciada and esta_aberto==aberto and esta_trancado==trancado:return
+	var mudou_lado:=iniciada and esta_aberto!=aberto
+	if not mudou_lado or not is_inside_tree():
+		aberto=esta_aberto;trancado=esta_trancado;iniciada=true;queue_redraw();return
+	pivot_offset=size*.5
+	if virando!=null and virando.is_valid():virando.kill()
+	virando=create_tween()
+	virando.tween_property(self,"scale:x",0.0,.09)
+	virando.tween_callback(func():
+		aberto=esta_aberto;trancado=esta_trancado;queue_redraw())
+	virando.tween_property(self,"scale:x",1.0,.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if esta_aberto:virando.tween_callback(func():ConfetePlex.sobre(self,30))
+
 func _draw() -> void:
-	var centro:=size.x*.5
-	var madeira:=Color("6b4e36");var luz:=Color("ceb685");var sombra:=Color("342d27")
-	for x in [centro-38,centro+38]:
-		draw_rect(Rect2(x-1,-14,4,4),sombra);draw_rect(Rect2(x,-13,2,2),luz)
-		draw_line(Vector2(x+1,-10),Vector2(x+1,12),sombra,3);draw_line(Vector2(x+1,-10),Vector2(x+1,12),luz,1)
-	draw_rect(Rect2(3,12,size.x-6,36),sombra);draw_rect(Rect2(5,10,size.x-10,38),madeira)
-	draw_rect(Rect2(7,11,size.x-14,2),luz);draw_rect(Rect2(7,46,size.x-14,2),Color("47372d"))
-	var fundo:=Color("425d50") if aberto else Color("73493d")
-	if trancado:fundo=Color("53524a")
-	draw_rect(Rect2(9,16,size.x-18,27),fundo);draw_rect(Rect2(10,17,size.x-20,1),fundo.lightened(.2))
-	for x in [7,size.x-9]:
-		for y in [15,42]:draw_rect(Rect2(x,y,2,2),luz)
+	var ci:=get_canvas_item()
+	for x in [26.0,size.x-26.0]:ShowPlex.corrente(ci,x,-10,10)
+	var cor:=Color("4f6a3f") if aberto else Color("8b2026")
+	if trancado:cor=Color("5d5a52")
+	var r:=Rect2(0,8,size.x,size.y-12)
+	ShowPlex.ret(ci,4,r.end.y,size.x-8,4,Color(0.07,0.03,0.02,.4))
+	ShowPlex.placa(ci,r,ShowPlex.MADEIRA,cor,3)
 	var palavra:="OPEN" if aberto and not trancado else "CLOSED"
-	var fonte:=VintagePlex.fonte("titulo");var largura:=fonte.get_string_size(palavra,HORIZONTAL_ALIGNMENT_LEFT,-1,18).x
-	draw_string(fonte,Vector2(roundf(centro-largura*.5),37),palavra,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("f1dfb9"))
-	if trancado:draw_rect(Rect2(centro-3,7,6,5),Color("d9c591"));draw_rect(Rect2(centro-1,9,2,2),sombra)
+	var fonte:=VintagePlex.fonte("titulo")
+	draw_string_outline(fonte,Vector2(0,r.position.y+29),palavra,HORIZONTAL_ALIGNMENT_CENTER,size.x,18,4,ShowPlex.TINTA)
+	draw_string(fonte,Vector2(0,r.position.y+29),palavra,HORIZONTAL_ALIGNMENT_CENTER,size.x,18,ShowPlex.CREME)
+	if trancado:
+		var c:=size.x*.5
+		ShowPlex.ret(ci,c-5,0,10,8,ShowPlex.TINTA);ShowPlex.ret(ci,c-3,2,6,4,Color("d9c591"))

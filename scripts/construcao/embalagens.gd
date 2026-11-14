@@ -55,4 +55,3 @@ static func solicitar(jogo: Node, id: int) -> void:
 		jogo.controle.solicitar("desembalar",-1,id)
 		return
 	jogo.planta.objetos[id].abrir_solicitado=true
-	jogo.painel.mensagem("Desembalagem solicitada.")

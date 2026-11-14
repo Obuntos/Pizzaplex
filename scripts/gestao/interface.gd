@@ -59,6 +59,13 @@ var saldo_anterior:=-1.0
 var cursor_terminal:=ColorRect.new()
 var tempo_cursor:=0.0
 var linha_rodape:ColorRect
+var show_robo:=-1
+var show_musica:="orelhitas"
+var show_animacao:="cantar"
+var show_volume:=.8
+var show_tempo:=0.0
+var show_previa:TextureRect
+var show_tocadores:Array[AudioStreamPlayer]=[]
 
 func configurar(cena:Node) -> void:
 	jogo=cena;layer=40;add_child(raiz);raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.theme=I.criar()
@@ -81,7 +88,7 @@ func configurar(cena:Node) -> void:
 	saldo_label=I.texto(dinheiro_c,"$ 0.00",36);saldo_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT
 	linha(tela,Vector2(24,110),764)
 	var nav:=HBoxContainer.new();nav.position=Vector2(24,126);nav.add_theme_constant_override("separation",12);tela.add_child(nav)
-	for item in [["funcionarios","F1 FUNCIONÁRIOS"],["mercado","F2 MERCADO"],["terrenos","F3 TERRENOS"],["seguranca","F4 SEGURANÇA"]]:
+	for item in [["funcionarios","F1 FUNCIONÁRIOS"],["mercado","F2 MERCADO"],["terrenos","F3 TERRENOS"],["seguranca","F4 SEGURANÇA"],["show","F5 SHOW"]]:
 		var id:String=item[0];var b:=I.botao(nav,item[1],func():mudar_aba(id));b.custom_minimum_size.y=42;b.add_theme_font_size_override("font_size",22);abas[id]=b
 	linha(tela,Vector2(24,182),764)
 	tela.add_child(corpo);corpo.position=Vector2(24,202)
@@ -107,6 +114,7 @@ func abrir(id:int) -> void:
 	if not jogo.compras.terminal_valido(id):jogo.painel.mensagem("Ligue o terminal e coloque-o sobre uma mesa ou balcão.");return
 	terminal=id;jogo.planta.objetos[id].estado="uso";jogo.planta.alterada.emit();jogo.arrastando=false;jogo.traco_parede.encerrar();raiz.show();montar_pagina();atualizar_valores()
 func fechar() -> void:
+	parar_previa()
 	if jogo!=null and jogo.planta.objetos.has(terminal):jogo.planta.objetos[terminal].estado="ligado";jogo.planta.alterada.emit()
 	terminal=-1;raiz.hide()
 func limpar(pai:Node) -> void:
@@ -124,7 +132,9 @@ func card(pai:Node,selecionada:bool=false,pontilhado:bool=false) -> VBoxContaine
 	p.add_theme_stylebox_override("panel",I.caixa(Color(I.VERDE,.07) if selecionada else Color.TRANSPARENT,Color.TRANSPARENT if pontilhado else I.VERDE if selecionada else I.SUAVE,12));pai.add_child(p)
 	var c:=VBoxContainer.new();c.add_theme_constant_override("separation",10);p.add_child(c);return c
 func mudar_aba(valor:String) -> void:
-	if valor not in ["funcionarios","mercado","terrenos","seguranca"]:return
+	if valor not in ["funcionarios","mercado","terrenos","seguranca","show"]:return
+	if valor=="show" and robos_show().is_empty():return
+	parar_previa()
 	aba=valor;recrutando=false;montar_pagina();atualizar_valores()
 func montar_pagina() -> void:
 	if not pagina_rolagem.is_empty():rolagens[pagina_rolagem]=Vector2i(rolagem.scroll_vertical,rolagem_detalhe.scroll_vertical)
@@ -132,7 +142,9 @@ func montar_pagina() -> void:
 	var posicoes:Vector2i=rolagens.get(chave_pagina,Vector2i.ZERO)
 	pagina_rolagem=chave_pagina;revisao_pagina+=1
 	pagina_registros=false
-	limpar(catalogo_area);limpar(detalhe_area);estoques.clear();total_label=null;comprar_botao=null
+	limpar(catalogo_area);limpar(detalhe_area);estoques.clear();total_label=null;comprar_botao=null;show_previa=null
+	abas["show"].visible=not robos_show().is_empty()
+	if aba=="show" and not abas["show"].visible:aba="mercado"
 	for id in abas:
 		var b:Button=abas[id]
 		for e in ["normal","hover","pressed"]:b.add_theme_stylebox_override(e,I.caixa(I.VERDE if id==aba else Color(I.VERDE,.07) if e=="hover" else Color.TRANSPARENT,I.VERDE if id==aba else I.SUAVE,10))
@@ -147,6 +159,7 @@ func montar_pagina() -> void:
 		else:montar_equipe()
 	elif aba=="terrenos":montar_terrenos()
 	elif aba=="seguranca":montar_seguranca()
+	elif aba=="show":montar_show()
 	else:
 		texto(catalogo_area,"> MERCADO",28)
 		for id in jogo.compras.catalogo:
@@ -365,6 +378,10 @@ func _process(delta:float) -> void:
 	if not jogo.compras.terminal_valido(terminal):fechar();return
 	tempo_notificacao=maxf(0,tempo_notificacao-delta);espera+=delta
 	if espera>=.5:espera=0;atualizar_valores()
+	if aba=="show" and is_instance_valid(show_previa):
+		var antes:=floori(show_tempo*12.0)
+		show_tempo+=delta
+		if floori(show_tempo*12.0)!=antes:atualizar_previa()
 func _input(e:InputEvent) -> void:
 	if not aberto():return
 	if e is InputEventMouseButton and e.pressed and e.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
@@ -378,9 +395,80 @@ func _input(e:InputEvent) -> void:
 		KEY_F2:mudar_aba("mercado")
 		KEY_F3:mudar_aba("terrenos")
 		KEY_F4:mudar_aba("seguranca")
+		KEY_F5:mudar_aba("show")
 		KEY_ESCAPE,KEY_F10:fechar()
 		_:return
 	get_viewport().set_input_as_handled()
+
+func robos_show() -> Array:
+	if jogo==null:return []
+	return jogo.personagens.filter(func(p):return p.robo and p.modelo in BandasPlex.BANDA and not p.robotica.get("armazenado",false))
+func animacoes_show(r:PersonagemPlex) -> Array:
+	var lista:Array=[]
+	for nome in ["cantar","dancar"]+CacaAnimatronicosPlex.POSES.keys():
+		if ClipesPlex.possui(r.modelo,nome):lista.append(nome)
+	return lista
+func nome_animacao(nome:String) -> String:
+	if nome=="cantar":return "Cantar"
+	if nome=="dancar":return "Dançar"
+	return str(CacaAnimatronicosPlex.POSES.get(nome,nome))
+func nome_musica(nome:String) -> String:return "Show Clássico" if nome=="orelhitas" else "Show Toy"
+func montar_show() -> void:
+	var robos:=robos_show()
+	var r:PersonagemPlex=null
+	for p in robos:
+		if p.identificador==show_robo:r=p
+	if r==null:r=robos[0];show_robo=r.identificador;show_musica=jogo.sistemas.bandas.musica(r);show_animacao=BandasPlex.clipe(r,"cantar")
+	if not show_animacao in animacoes_show(r):show_animacao="cantar"
+	texto(catalogo_area,"> COMPUTADOR DE SHOW",28)
+	for p in robos:
+		var c:=card(catalogo_area,p==r)
+		texto(c,IdentidadesPlex.completo(p).to_upper(),24)
+		texto(c,"MÚSICA: "+nome_musica(jogo.sistemas.bandas.musica(p)).to_upper()+" · "+nome_animacao(BandasPlex.clipe(p,"cantar")).to_upper(),20,I.SUAVE)
+		var id:int=p.identificador
+		I.botao(c,"SELECIONAR",func():show_robo=id;show_musica=jogo.sistemas.bandas.musica(p);show_animacao=BandasPlex.clipe(p,"cantar");parar_previa();montar_pagina())
+	texto(detalhe_area,"> MÚSICA",28)
+	for m in BandasPlex.MUSICAS:
+		var nome:String=m
+		var h:=HBoxContainer.new();h.add_theme_constant_override("separation",10);detalhe_area.add_child(h)
+		var b:=I.botao(h,("● " if nome==show_musica else "")+nome_musica(nome).to_upper(),func():show_musica=nome;montar_pagina());b.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		I.botao(h,"OUVIR",func():ouvir_previa(nome))
+	I.botao(detalhe_area,"PARAR",parar_previa)
+	texto(detalhe_area,"VOLUME",22,I.SUAVE)
+	var volume:=HSlider.new();volume.min_value=0.0;volume.max_value=1.0;volume.step=.05;volume.value=show_volume;volume.custom_minimum_size=Vector2(240,28)
+	volume.value_changed.connect(mudar_volume)
+	detalhe_area.add_child(volume)
+	regra(detalhe_area)
+	texto(detalhe_area,"> ANIMAÇÃO NO PALCO",28)
+	for nome in animacoes_show(r):
+		var clipe:String=nome
+		I.botao(detalhe_area,("● " if clipe==show_animacao else "")+nome_animacao(clipe).to_upper(),func():show_animacao=clipe;show_tempo=0.0;montar_pagina())
+	show_previa=TextureRect.new();show_previa.custom_minimum_size=Vector2(240,220);show_previa.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;show_previa.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;show_previa.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;detalhe_area.add_child(show_previa)
+	atualizar_previa()
+	regra(detalhe_area)
+	I.botao(detalhe_area,"GRAVAR CARTUCHO",gravar_cartucho)
+func gravar_cartucho() -> void:
+	var erro:String=jogo.sistemas.cartuchos.pedir(jogo.clientes.ator(show_robo),show_musica,show_animacao,terminal)
+	mensagem(erro if not erro.is_empty() else "Cartucho gravado. Um funcionário vai levá-lo ao animatrônico.")
+func mudar_volume(v:float) -> void:
+	show_volume=v
+	for t in show_tocadores:t.volume_db=linear_to_db(maxf(.001,v))
+func atualizar_previa() -> void:
+	var r:PersonagemPlex=jogo.clientes.ator(show_robo)
+	if not is_instance_valid(r) or not ClipesPlex.possui(r.modelo,show_animacao):show_previa.texture=null;return
+	var q:Dictionary=ClipesPlex.quadro(r.modelo,show_animacao,0,0.0,show_tempo)
+	var imagem:Image=CatalogoPlex.imagem(str(q.arquivo))
+	if imagem==null or imagem.is_empty():show_previa.texture=null;return
+	show_previa.texture=ImageTexture.create_from_image(imagem.get_region(q.regiao))
+func ouvir_previa(nome:String) -> void:
+	parar_previa()
+	for camada in BandasPlex.MUSICAS[nome]:
+		var t:=AudioStreamPlayer.new();t.stream=load(str(BandasPlex.MUSICAS[nome][camada]));t.volume_db=linear_to_db(maxf(.001,show_volume));add_child(t);t.play();show_tocadores.append(t)
+	mensagem("Tocando prévia: "+nome_musica(nome))
+func parar_previa() -> void:
+	for t in show_tocadores:
+		if is_instance_valid(t):t.stop();t.queue_free()
+	show_tocadores.clear()
 
 func mostrar_sistemas() -> void:
 	pagina_registros=true

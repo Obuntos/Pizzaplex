@@ -146,6 +146,8 @@ func _ready() -> void:
 	linha.add_child(previa)
 	var visual:=VBoxContainer.new()
 	previa.add_child(visual)
+	# Lâmpadas de camarim em volta do boneco.
+	var luzes:=LuzesShowPlex.new(false,24.0);luzes.cor=Color("ffd75e");previa.add_child(luzes)
 	quadro.custom_minimum_size=Vector2(214,302)
 	quadro.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	visual.add_child(quadro)
@@ -304,6 +306,7 @@ func confirmar() -> void:
 		erro.text="Preencha os dois nomes."
 		erro.show()
 		return
+	ConfetePlex.sobre(janela,48)
 	hide()
 	confirmada.emit(valor)
 

@@ -21,6 +21,10 @@ static func servir(servico: ServicosPlex, ator: PersonagemPlex) -> bool:
 			if ApoiosPlex.aceita(servico.planta,pedido.mesa,"guarana_tampa",slot): pedidos.append(pedido)
 			if pedidos.size()==2: break
 		if pedidos.is_empty(): continue
+		if pedidos.size()==1:
+			if not primeiro.has("bebida_desde"):primeiro.bebida_desde=servico.tempo_servico
+			var sentados:=servico.personagens.filter(func(p): return p.trabalho=="sentar_mesa" and LugaresPlex.cadeiras(servico.planta,mesa).has(p.assento)).size()
+			if sentados>=2 and servico.tempo_servico-float(primeiro.bebida_desde)<6.0: continue
 		for id in servico.encontrar("geladeira",["cozinha"]):
 			var geladeira: Dictionary=servico.planta.objetos[id]
 			SuprimentosPlex.preparar(geladeira)

@@ -67,7 +67,6 @@ func alternar() -> void:
 		if a.modelo.begins_with("fantasia_"):
 			a.visita.fantasia_etapa="passear"
 			a.visita.fantasia_tempo=2.0
-		aviso("Controle automático restaurado.")
 	else:
 		jogo.rotina_adm.cancelar(a)
 		a.visita.manual_automatico=a.automatico
@@ -184,7 +183,6 @@ func concluir(tipo: String, pessoa: PersonagemPlex, id: int) -> void:
 			a.visita.faca_equipada=true
 			jogo.planta.remover(id)
 			a.atualizar_visual(a.ocupado())
-			aviso("Faca equipada.")
 		"vestir","retirar_fantasia":
 			a.visita.fantasia_armario=id
 			ArmariosPlex.estado(jogo.planta,id,true)
@@ -250,7 +248,6 @@ func largar_faca() -> bool:
 		a.visita.erase("faca_tipo")
 		a.visita.erase("faca_equipada")
 		a.atualizar_visual(a.ocupado())
-		aviso("Faca colocada no restaurante.")
 		return true
 	aviso("Não há espaço para largar a faca neste local.")
 	return false

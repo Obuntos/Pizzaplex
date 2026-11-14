@@ -52,7 +52,7 @@ func configurar(cena: Node) -> void:
 	# Saldo: cédula + visor de dígitos, da mesma família do relógio. O painel
 	# cresce para a direita conforme o valor aumenta.
 	painel_saldo=KitPlex.painel(self,"hud",8);painel_saldo.position=Vector2(16,14);painel_saldo.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	painel_saldo.tooltip_text="Disponível no caixa"
+	painel_saldo.tooltip_text=""
 	var linha:=HBoxContainer.new();linha.add_theme_constant_override("separation",8);linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;painel_saldo.add_child(linha)
 	KitPlex.icone(linha,"res://assets/interface/hud/dinheiro.png",32)
 	var visor:=KitPlex.painel(linha,"visor",8);visor.mouse_filter=Control.MOUSE_FILTER_IGNORE;visor.custom_minimum_size=Vector2(168,37)
@@ -197,7 +197,7 @@ func compacto(pai: Node, texto: String, acao: Callable, cor: Color = T.FUNDO) ->
 
 func configurar_abertura() -> void:
 	var paineis:=controles_horario;paineis.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	paineis.offset_left=-336;paineis.offset_right=-6;paineis.offset_top=150;paineis.offset_bottom=204
+	paineis.offset_left=-304;paineis.offset_right=-16;paineis.offset_top=150;paineis.offset_bottom=204
 	paineis.add_theme_constant_override("separation",8);paineis.alignment=BoxContainer.ALIGNMENT_END;add_child(paineis)
 	paineis.add_child(linha_tempo);linha_tempo.alignment=BoxContainer.ALIGNMENT_CENTER;linha_tempo.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	linha_tempo.add_theme_constant_override("separation",3)
@@ -269,4 +269,4 @@ func atualizar_abertura() -> void:
 	abrir_botao.text="";placa_abertura.aberto=jogo.operacao.aberto;placa_abertura.trancado=trancado;placa_abertura.queue_redraw()
 	for estado in ["normal","hover","pressed","disabled","focus"]:abrir_botao.add_theme_stylebox_override(estado,StyleBoxEmpty.new())
 	abrir_botao.modulate=Color("bbb5a7") if trancado else Color.WHITE
-	abrir_botao.tooltip_text="Abertura indisponível." if trancado else "Fechar restaurante" if jogo.operacao.aberto else "Abrir restaurante"
+	abrir_botao.tooltip_text=""

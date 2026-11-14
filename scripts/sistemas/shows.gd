@@ -21,7 +21,6 @@ func alternar(id:int) -> bool:
 	for a in robos:AnimatronicosPlex.comandar_energia(a,true)
 	for o in jogo.planta.objetos.values():
 		if MobiliaPlex.dados(o).get("alto_falante",false):o.som_ligado=true
-	jogo.painel.mensagem("Show ligado. As crianças com atividades livres podem se aproximar para assistir.")
 	return true
 func vincular(palco:int) -> void:
 	jogo.animatronicos.palcos.atualizar()

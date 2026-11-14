@@ -146,7 +146,7 @@ static func fechar(pai:Node, acao:Callable) -> Button:
 	b.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	b.custom_minimum_size=Vector2(40,40)
 	b.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-	b.tooltip_text="Fechar"
+	b.tooltip_text=""
 	return b
 
 ## Seta de seletor. A direção fica no desenho, não em um caractere de fonte.

@@ -46,7 +46,6 @@ func assistir(inv:InvestigacaoProgressivaPlex) -> void:
 func triturar(id:int) -> void:
 	for f in fitas.duplicate():
 		if int(f.id)==id:fitas.erase(f)
-	jogo.painel.mensagem("Fita triturada. Ela não existe mais.")
 
 func opcoes(menu:CanvasLayer,_o:Dictionary) -> void:
 	if fitas.is_empty():menu.adicionar("Nenhuma fita VHS gravada",func():pass);return

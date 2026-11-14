@@ -50,7 +50,12 @@ func _ready() -> void:
 	arquivos.escolhido.connect(func(caminho): save_escolhido=caminho; comecar_carga("carregar"))
 	add_child(criacao)
 	criacao.confirmada.connect(func(dados): config_partida=dados; comecar_carga("novo"))
+	for janela in [painel_opcoes,creditos,arquivos,criacao]:janela.visibility_changed.connect(focar_menu)
 	set_process(false)
+
+func focar_menu() -> void:
+	if carregando or painel_opcoes.visible or creditos.visible or arquivos.visible or criacao.visible:return
+	(fundo_menu.botoes.novo as Button).grab_focus.call_deferred()
 
 func criar_opcoes() -> void:
 	painel_opcoes.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
@@ -65,6 +70,7 @@ func criar_opcoes() -> void:
 	IdiomaPlex.criar_seletor(lista).custom_minimum_size.y=44
 	KitPlex.secao(lista,"Tela")
 	KitPlex.botao(lista,"Tela cheia / Janela",func():
+		if Engine.is_embedded_in_editor():return
 		var janela:=get_window()
 		janela.mode=Window.MODE_WINDOWED if janela.mode==Window.MODE_FULLSCREEN else Window.MODE_FULLSCREEN,"noite")
 	var movimento:=CheckBox.new();movimento.text="Reduzir animações da interface"

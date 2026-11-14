@@ -476,7 +476,7 @@ func atualizar(delta: float) -> void:
 			if float(grupo.tempo_pago)>=150.0:
 				remover_grupo(grupo,true)
 				continue
-			if float(grupo.tempo_pago)>=45.0 and grupo.get("estado","") not in ["saindo","comprar_baloes"]: sair(grupo)
+			if float(grupo.tempo_pago)>=6.0 and grupo.get("estado","") not in ["saindo","comprar_baloes"]: sair(grupo)
 		else: grupo.erase("tempo_pago")
 		if grupo.get("estado","")=="saindo":
 			grupo.tempo_saida=float(grupo.get("tempo_saida",0.0))+tempo

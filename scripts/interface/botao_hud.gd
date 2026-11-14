@@ -14,10 +14,10 @@ var icone_normal:Texture2D
 var icone_ligado:Texture2D
 var ligado:=false
 
-func _init(icone:String, texto:String="", dica:String="", cor:Color=FACE) -> void:
+func _init(icone:String, texto:String="", _dica:String="", cor:Color=FACE) -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	focus_mode=Control.FOCUS_NONE
-	tooltip_text=dica
+	tooltip_text=""
 	KitPlex.preparar_botao(self,cor,false,4)
 	custom_minimum_size=Vector2(56,56)
 	add_child(conteudo)

@@ -45,6 +45,7 @@ func matar(r:PersonagemPlex,v:PersonagemPlex) -> void:
 	var presentes:Array=jogo.personagens.filter(func(a):return a!=v and vivo(a) and VisaoNPCPlex.ve(jogo,a,v))
 	var saciou:=medo(v)>=MEDO_MAX
 	jogo.sistemas.investigacao.registrar_incidente(v)
+	jogo.sistemas.espiritos.por_vitima(v)
 	if jogo.seguranca!=null:jogo.seguranca.registrar(v,presentes)
 	var violencia:=3 if saciou or r.modelo.ends_with("_quebrado") else 2
 	for a in presentes:jogo.controle.incidentes.fugir(a)

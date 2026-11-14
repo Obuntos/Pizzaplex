@@ -120,7 +120,6 @@ func concluir_partida() -> void:
 	item.combustivel=minf(100.0,anterior+ganho)
 	item.ligada=false;item.reinicio_pendente=true;jogo.equipamentos.solicitar_energia(int(item.id),-1,false)
 	jogo.iluminacao.rede.atualizar();jogo.iluminacao.atualizar()
-	jogo.painel.mensagem("Manivela concluída · +%.0f de energia · Sem custo."%(float(item.combustivel)-anterior))
 	cancelar_partida();atualizar()
 
 

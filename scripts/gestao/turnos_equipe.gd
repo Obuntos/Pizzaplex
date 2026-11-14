@@ -63,7 +63,7 @@ func chegada(a:PersonagemPlex,atraso:float=0.0) -> void:
 		var entradas:Array=ChegadasEquipePlex.entradas(jogo)
 		if not entradas.is_empty():
 			var fora:Vector2i=entradas[0].fora;a.celula=fora;a.local=Vector2(fora);a.position=GradePlex.projetar(a.local);a.visita.erase("fora_turno");a.visita.turno_etapa="aguardar_acesso";a.visita.turno_revisao=jogo.planta.revisao;a.trabalho="aguardar_acesso";a.show()
-		jogo.painel.mensagem("Funcionário chamado. Libere a entrada e o caminho até a área de trabalho.");return
+		return
 	var ponto:=ChegadasEquipePlex.origem(jogo,a,destino)
 	a.visita.turno_origem_pendente=ponto.x<0
 	if ponto.x>=0:a.celula=ponto;a.local=Vector2(ponto);a.position=GradePlex.projetar(a.local)
@@ -86,6 +86,7 @@ func fechar() -> void:
 		if not funcionario(a):continue
 		if a.funcao=="seguranca" and jogo.sistemas.guarda.escala.ativo(a,jogo.calendario.dias,jogo.calendario.minutos):continue
 		if a.visita.get("fora_turno",false):a.visita.erase("turno_etapa");a.hide();continue
+		if a.funcao=="manutencao" and jogo.sistemas.mecanico.toy_pendente():a.visita.mec_toy=true;continue
 		liberar_cadeira(a);a.visita.turno_etapa="ir_trocar_saida";a.visita.turno_tempo=0.0;a.automatico=false
 
 func liberar_cadeira(a:PersonagemPlex) -> void:
@@ -205,7 +206,7 @@ func sair(a:PersonagemPlex) -> void:
 func comecar_turno(a:PersonagemPlex) -> bool:
 	if not funcionario(a):return false
 	if a.visita.get("contrato_noturno",false) and not jogo.sistemas.guarda.escala.ativo(a,jogo.calendario.dias,jogo.calendario.minutos):
-		jogo.painel.mensagem("O segurança comparece no horário contratado.");return false
+		return false
 	if ocupado(a) and not a.visita.get("fora_turno",false):voltar(a)
 	if not a.visita.get("fora_turno",false) and a.visita.get("turno_iniciado",false) and TerrenoPlex.contem(jogo.planta,a.celula):a.show();return true
 	a.visita.turno_manual=true;chegada(a,0);return true

@@ -1,7 +1,7 @@
 class_name AtracoesCatalogoPlex
 extends RefCounted
 
-const DISPONIVEIS=["novo_coelho_detalhes","vi_patitas","vi_toy_orelhitas","vi_orelhitas_quebrado","vi_toy_orelhitas_quebrado","vi_toy_patitas","vi_patitas_quebrado","vi_toy_patitas_quebrado"]
+const DISPONIVEIS=["novo_coelho_detalhes","vi_patitas","vi_toy_orelhitas","vi_orelhitas_quebrado","vi_toy_orelhitas_quebrado","vi_toy_patitas","vi_patitas_quebrado","vi_toy_patitas_quebrado","vi_coruja","vi_arlequim"]
 static var dados: Array=[]
 
 static func permitido(id: String) -> bool: return id in DISPONIVEIS

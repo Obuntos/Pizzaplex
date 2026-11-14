@@ -28,7 +28,6 @@ func restaurar(o:Dictionary) -> void:
 	if not jogo.editor.cobrar(PRECO):return
 	o.cartaz_dia=dia();o.estado="novo"
 	jogo.planta.alterada.emit()
-	jogo.painel.mensagem("Cartaz restaurado.")
 
 func opcoes(menu:CanvasLayer,o:Dictionary) -> void:
 	if not eh(o) or str(o.get("estado","novo"))=="novo":return

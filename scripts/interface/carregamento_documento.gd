@@ -9,7 +9,7 @@ var pizza:=Sprite2D.new()
 var tempo:=0.0
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var sombra:=ColorRect.new();sombra.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);sombra.color=Color("101915");add_child(sombra)
+	var sombra:=ColorRect.new();sombra.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);sombra.color=Color("140d09");add_child(sombra)
 	var caixa:=Control.new();caixa.name="Caixa";caixa.size=Vector2(676,236);add_child(caixa)
 	var fundo:=TextureRect.new();fundo.texture=load("res://assets/interface/documentos/carregamento.png");fundo.size=caixa.size;caixa.add_child(fundo)
 	etapa=DocumentoPessoaPlex.texto(caixa,"Preparando o espaço...",Vector2(34,80),Vector2(525,30),20,"corpo");etapa.add_theme_color_override("font_color",Color("f1e2bd"))

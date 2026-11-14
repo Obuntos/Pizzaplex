@@ -137,7 +137,6 @@ func ocultar(robo: PersonagemPlex) -> bool:
 	admin.visita.erase("corpo_carregado")
 	if visuais.has(a.identificador): visuais[a.identificador].hide()
 	if visuais_tras.has(a.identificador): visuais_tras[a.identificador].hide()
-	controle.aviso("Corpo colocado no animatrônico.")
 	return true
 
 func apontado(ponto: Vector2) -> PersonagemPlex:

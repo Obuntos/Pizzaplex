@@ -28,10 +28,13 @@ var piscina:PiscinaBolinhasPlex
 var cartazes:CartazesPlex
 var ataques:AtaquesOrelhitasPlex
 var npc:AnimacoesNpcPlex
+var amigos:AmigosBairroPlex
+var espiritos:EspiritosPlex
+var cartuchos:CartuchosPlex
 func _init(cena:Node) -> void:
-	jogo=cena;bonnie=BonnieSemanalPlex.new(cena);ambiencia=AmbienciaRestaurantePlex.new(cena);shows=ShowsPalcoPlex.new(cena);jovens=BrincadeirasBairroPlex.new(cena);investigacao=InvestigacaoProgressivaPlex.new(cena);guarda=GuardaAutonomoPlex.new(cena);baloes=BaloesAcaoPlex.new(cena);caca=CacaAnimatronicosPlex.new(cena);armazem=ArmazemRobosPlex.new(cena);bandas=BandasPlex.new(cena);jornal=JornalCidadePlex.new(cena);entregas=EntregasMercadoPlex.new(cena);vhs=FitasVhsPlex.new(cena);tempestade=TempestadeEnergiaPlex.new(cena);mecanico=MecanicoNoturnoPlex.new(cena);acessorios=AcessoriosEquipePlex.new(cena);perdidas=CriancasPerdidasPlex.new(cena);resumo=ResumoNoitePlex.new(cena);piscina=PiscinaBolinhasPlex.new(cena);cartazes=CartazesPlex.new(cena);ataques=AtaquesOrelhitasPlex.new(cena);npc=AnimacoesNpcPlex.new(cena)
+	jogo=cena;bonnie=BonnieSemanalPlex.new(cena);ambiencia=AmbienciaRestaurantePlex.new(cena);shows=ShowsPalcoPlex.new(cena);jovens=BrincadeirasBairroPlex.new(cena);investigacao=InvestigacaoProgressivaPlex.new(cena);guarda=GuardaAutonomoPlex.new(cena);baloes=BaloesAcaoPlex.new(cena);caca=CacaAnimatronicosPlex.new(cena);armazem=ArmazemRobosPlex.new(cena);bandas=BandasPlex.new(cena);jornal=JornalCidadePlex.new(cena);entregas=EntregasMercadoPlex.new(cena);vhs=FitasVhsPlex.new(cena);tempestade=TempestadeEnergiaPlex.new(cena);mecanico=MecanicoNoturnoPlex.new(cena);acessorios=AcessoriosEquipePlex.new(cena);perdidas=CriancasPerdidasPlex.new(cena);resumo=ResumoNoitePlex.new(cena);piscina=PiscinaBolinhasPlex.new(cena);cartazes=CartazesPlex.new(cena);ataques=AtaquesOrelhitasPlex.new(cena);npc=AnimacoesNpcPlex.new(cena);amigos=AmigosBairroPlex.new(cena);espiritos=EspiritosPlex.new(cena);cartuchos=CartuchosPlex.new(cena)
 func atualizar(delta:float) -> void:
-	guarda.atualizar_energia(delta);baloes.atualizar(delta);bonnie.atualizar(delta);ambiencia.atualizar(delta);shows.atualizar(delta);jovens.atualizar(delta);investigacao.atualizar(delta);caca.atualizar(delta);armazem.atualizar(delta);bandas.atualizar(delta);jornal.atualizar(delta);entregas.atualizar(delta);vhs.atualizar(delta);tempestade.atualizar(delta);mecanico.atualizar(delta);acessorios.atualizar(delta);perdidas.atualizar(delta);resumo.atualizar(delta);piscina.atualizar(delta);cartazes.atualizar(delta);ataques.atualizar(delta);npc.atualizar(delta)
+	guarda.atualizar_energia(delta);baloes.atualizar(delta);bonnie.atualizar(delta);ambiencia.atualizar(delta);shows.atualizar(delta);jovens.atualizar(delta);investigacao.atualizar(delta);caca.atualizar(delta);armazem.atualizar(delta);bandas.atualizar(delta);jornal.atualizar(delta);entregas.atualizar(delta);vhs.atualizar(delta);tempestade.atualizar(delta);mecanico.atualizar(delta);acessorios.atualizar(delta);perdidas.atualizar(delta);resumo.atualizar(delta);piscina.atualizar(delta);cartazes.atualizar(delta);ataques.atualizar(delta);npc.atualizar(delta);amigos.atualizar(delta);espiritos.atualizar(delta);cartuchos.atualizar(delta)
 static func visual_coelho(a:PersonagemPlex) -> void:
 	if not AtracoesCatalogoPlex.permitido(a.modelo) or not a.animacao.camadas.has("modelo"):return
 	var sprite:Sprite2D=a.animacao.camadas.modelo
@@ -55,7 +58,7 @@ func trancar(id:int) -> bool:
 	o.trancada=not o.get("trancada",false);o.aberta=false
 	for a in jogo.personagens:
 		if a.movimento.rota.any(func(c):return jogo.planta.celulas(o.tipo,o.celula,o.rotacao).has(c)):a.movimento.cancelar()
-	jogo.planta.alterada.emit();jogo.painel.mensagem("Porta trancada." if o.trancada else "Porta destrancada.");return true
+	jogo.planta.alterada.emit();return true
 func arrombar(a:PersonagemPlex,e:Dictionary) -> bool:
 	if e.tipo!="policial":return false
 	var portas:Array=jogo.planta.objetos.values().filter(func(o):return o.tipo in CatalogoPlex.PORTAS and o.get("trancada",false))
@@ -75,12 +78,12 @@ func arrombar(a:PersonagemPlex,e:Dictionary) -> bool:
 					var rota:Array[Vector2i]=jogo.rotas.caminho(a.origem_rota(),c+d)
 					if not rota.is_empty():a.andar(rota);a.trabalho="visita_autoridade";return true
 	return false
-func gravar() -> Dictionary:return {"tutorial":tutorial.gravar() if is_instance_valid(tutorial) else {},"equipamentos":jogo.equipamentos.gravar(),"bonnie":bonnie.gravar(),"shows":shows.gravar(),"investigacao":investigacao.gravar(),"fidelidade":fidelidade.duplicate(),"escala_noturna":guarda.gravar(),"jornal":jornal.gravar(),"vhs":vhs.gravar(),"mecanico":mecanico.gravar(),"perdidas":perdidas.gravar()}
+func gravar() -> Dictionary:return {"tutorial":tutorial.gravar() if is_instance_valid(tutorial) else {},"equipamentos":jogo.equipamentos.gravar(),"bonnie":bonnie.gravar(),"shows":shows.gravar(),"investigacao":investigacao.gravar(),"fidelidade":fidelidade.duplicate(),"escala_noturna":guarda.gravar(),"jornal":jornal.gravar(),"vhs":vhs.gravar(),"mecanico":mecanico.gravar(),"perdidas":perdidas.gravar(),"espiritos":espiritos.gravar()}
 func restaurar(d:Dictionary) -> void:
 	remover_testes_antigos()
 	jogo.equipamentos.restaurar(d.get("equipamentos",{}))
 	if is_instance_valid(tutorial):tutorial.restaurar(d.get("tutorial",{}))
-	PacotesPratosPlex.compactar(jogo.planta);baloes.limpar();guarda.restaurar(d.get("escala_noturna",{}));ambiencia.limpar();jovens.grupos.clear();jovens.provocacoes.clear();jovens.dinamica.acumulado=0.0;bonnie.restaurar(d.get("bonnie",{}));shows.restaurar(d.get("shows",{}));investigacao.restaurar(d.get("investigacao",{}));fidelidade=d.get("fidelidade",{}).duplicate();jornal.restaurar(d.get("jornal",{}));vhs.restaurar(d.get("vhs",{}));mecanico.restaurar(d.get("mecanico",{}));perdidas.restaurar(d.get("perdidas",{}));CompraTerrenosPlex.aplicar_moradores(jogo);CompraTerrenosPlex.expandir_lotes(jogo)
+	PacotesPratosPlex.compactar(jogo.planta);baloes.limpar();guarda.restaurar(d.get("escala_noturna",{}));ambiencia.limpar();jovens.grupos.clear();jovens.provocacoes.clear();jovens.dinamica.acumulado=0.0;bonnie.restaurar(d.get("bonnie",{}));shows.restaurar(d.get("shows",{}));investigacao.restaurar(d.get("investigacao",{}));fidelidade=d.get("fidelidade",{}).duplicate();jornal.restaurar(d.get("jornal",{}));vhs.restaurar(d.get("vhs",{}));mecanico.restaurar(d.get("mecanico",{}));perdidas.restaurar(d.get("perdidas",{}));espiritos.restaurar(d.get("espiritos",{}));CompraTerrenosPlex.aplicar_moradores(jogo);CompraTerrenosPlex.expandir_lotes(jogo)
 	for ordem in jogo.atracoes.fila:
 		if ordem.fase in ["caminhando","aguardar_robo"]:continue
 		var bancada:Dictionary=jogo.planta.objetos.get(int(ordem.ponto),{});var robo:PersonagemPlex=jogo.clientes.ator(int(ordem.robo))

@@ -24,7 +24,7 @@ var assinatura:=-1
 func configurar(cena:Node) -> void:
 	jogo=cena;layer=118;add_child(raiz);raiz.theme=T.criar();raiz.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	raiz.add_child(emblema);emblema.position=Vector2(16,80);emblema.custom_minimum_size=Vector2(224,56);emblema.pressed.connect(alternar)
-	KitPlex.preparar_botao(emblema,Color("3a2420"),false,4);emblema.tooltip_text="Quadro da investigação"
+	KitPlex.preparar_botao(emblema,Color("3a2420"),false,4);emblema.tooltip_text=""
 	var linha:=HBoxContainer.new();linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;emblema.add_child(linha);linha.position=Vector2(4,2)
 	var icone:=IconeHudPlex.new("fichario");icone.escala_pixel=2.0;icone.custom_minimum_size=Vector2(48,48);linha.add_child(icone)
 	var coluna:=VBoxContainer.new();coluna.mouse_filter=Control.MOUSE_FILTER_IGNORE;coluna.add_theme_constant_override("separation",4);coluna.alignment=BoxContainer.ALIGNMENT_CENTER;linha.add_child(coluna)

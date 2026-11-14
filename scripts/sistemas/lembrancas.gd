@@ -37,4 +37,3 @@ static func mascarar(jogo:Node,o:Dictionary,estado:String) -> void:
 	if not jogo.editor.cobrar(PRECO_MASCARA):return
 	o.variante=str(o.tipo)+"_mascara";o.estado=estado
 	jogo.planta.alterada.emit()
-	jogo.painel.mensagem("Máscara colocada no boneco.")

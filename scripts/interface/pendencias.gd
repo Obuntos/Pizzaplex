@@ -153,7 +153,7 @@ func mostrar() -> void:
 			if DESTINOS.has(aviso.codigo) or aviso.codigo in ["pizza","bebida","pratos"]:
 				var acao:=KitPlex.seta(linha,1,func(): resolver(aviso))
 				acao.custom_minimum_size=Vector2(32,36)
-				acao.tooltip_text="Resolver"
+				acao.tooltip_text=""
 			lista.add_child(HSeparator.new())
 
 func atualizar(delta: float) -> void:

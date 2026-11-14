@@ -56,7 +56,6 @@ static func comprar(jogo: Node, id: String) -> bool:
 	jogo.limites_terreno.assinatura=-1
 	jogo.limites_terreno.atualizar()
 	aplicar_moradores(jogo)
-	jogo.painel.mensagem(str(LOTES[id].nome)+" adquirida.")
 	return true
 
 static func aplicar_moradores(jogo: Node) -> void:

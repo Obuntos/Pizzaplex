@@ -48,6 +48,7 @@ static func acao(a: PersonagemPlex, normal: String, andando: bool) -> String:
 	if a.visita.has("controle_animatronico") and not andando:
 		if a.visita.get("controle_desligado",false):return "desligado"
 		if a.visita.get("controle_cantando",false) and ClipesPlex.possui(a.modelo,"cantar"):return "cantar"
+	if not andando and str(a.robotica.get("espirito",""))=="medio" and normal in ["cantar","falar","apresentar","dancar"] and fposmod(a.relogio+float(a.identificador)*7.0,40.0)<1.6 and ClipesPlex.possui(a.modelo,"cantar_possuido"):return "cantar_possuido"
 	var debug: bool=a.visita.has("controle_animatronico")
 	if not debug and float(a.robotica.get("surto",0.0))<=0.0: return normal
 	var variante: String="andar_possuido" if andando else "cantar_possuido" if debug or normal in ["cantar","falar","apresentar","parado","dancar"] else ""

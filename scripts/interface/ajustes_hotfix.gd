@@ -23,7 +23,7 @@ func instalar() -> void:
 	var hud:HudPlex=jogo.painel.hud
 	if hud.expandir.get_parent()==hud.controles_horario:
 		hud.controles_horario.move_child(hud.expandir,0)
-		hud.expandir.custom_minimum_size=Vector2(132,52)
+		hud.expandir.custom_minimum_size=Vector2(100,52)
 		hud.controles_horario.add_theme_constant_override("separation",5)
 		hud.linha_tempo.add_theme_constant_override("separation",2)
 		for valor in hud.velocidades:

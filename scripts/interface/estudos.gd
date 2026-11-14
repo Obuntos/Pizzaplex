@@ -69,11 +69,11 @@ func configurar(cena:Node) -> void:
 	KitPlex.texto(papel,"Pesquisador",14,TINTA,"forte")
 	var s:=KitPlex.seletor(papel,func():mudar_pessoa(-1),func():mudar_pessoa(1))
 	pessoa_anterior=s.menos;pessoa_seguinte=s.mais;pessoa_nome=s.valor
-	pessoa_anterior.tooltip_text="Pesquisador anterior";pessoa_seguinte.tooltip_text="Próximo pesquisador"
+	pessoa_anterior.tooltip_text="";pessoa_seguinte.tooltip_text=""
 	KitPlex.texto(papel,"Horas por dia",14,TINTA,"forte")
 	var h:=KitPlex.seletor(papel,func():mudar_horas(-1),func():mudar_horas(1),true)
 	horas_menos=h.menos;horas_mais=h.mais;horas_texto=h.valor
-	horas_menos.tooltip_text="Menos horas";horas_mais.tooltip_text="Mais horas"
+	horas_menos.tooltip_text="";horas_mais.tooltip_text=""
 	KitPlex.secao(papel,"2 · Progresso",SEPIA,Color("b8955e"))
 	var linha_progresso:=HBoxContainer.new();linha_progresso.add_theme_constant_override("separation",12);papel.add_child(linha_progresso)
 	percentual.custom_minimum_size.x=72;percentual.alinhamento=HORIZONTAL_ALIGNMENT_LEFT;percentual.size_flags_vertical=Control.SIZE_SHRINK_CENTER;linha_progresso.add_child(percentual)

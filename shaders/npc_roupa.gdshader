@@ -94,7 +94,7 @@ void fragment() {
 	}
 	float d = plano * 2.0 + altura * 3.0;
 	float cena = amostrar_cena(profundidade_cena, (mundo - origem) / tamanho, tamanho).r;
-	if (cena > d + 0.4) { discard; }
+	if (cena > d + 1.25) { discard; }
 	vec3 luz = iluminar_plex(base.rgb, vec3(mundo.x, mundo.y * 2.0 + altura * 2.0, altura), vec3(0.0, 0.0, 1.0), vec3(.85, .0, .05), 0.0, false);
 	COLOR = vec4(luz, base.a);
 }

@@ -60,7 +60,6 @@ static func contratar(jogo: Node, funcao: String, candidato:Dictionary={}) -> Pe
 	a.necessidades.turno = true
 	FolhaPagamentoPlex.registrar(a,int(jogo.calendario.dias))
 	reservar_cabelo(jogo)
-	jogo.painel.mensagem(IdentidadesPlex.completo(a)+" contratado para "+str(EquipePlex.NOMES.get(funcao,funcao))+" · Salário: US$ %d por semana."%HabilidadesEquipePlex.salario(a))
 	if "turnos" in jogo and jogo.turnos!=null:
 		if jogo.operacao.aberto:jogo.turnos.chegada(a,1.0)
 		else:a.visita.fora_turno=true;a.hide()

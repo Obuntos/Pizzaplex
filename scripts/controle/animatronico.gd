@@ -1,7 +1,7 @@
 class_name ControleAnimatronicoPlex
 extends RefCounted
 
-const MODELOS=["novo_coelho_detalhes","vi_toy_orelhitas","vi_orelhitas_quebrado","vi_toy_orelhitas_quebrado","vi_patitas","vi_toy_patitas","vi_patitas_quebrado","vi_toy_patitas_quebrado"]
+const MODELOS=["vi_arlequim","novo_coelho_detalhes","vi_toy_orelhitas","vi_orelhitas_quebrado","vi_toy_orelhitas_quebrado","vi_patitas","vi_toy_patitas","vi_patitas_quebrado","vi_toy_patitas_quebrado"]
 const ESPERA_PORTA=60.0
 const PORTA_QUEBRAVEL=120.0
 var jogo:Node
@@ -20,6 +20,7 @@ func ativo() -> bool:return is_instance_valid(ator())
 func controlado(r:PersonagemPlex) -> bool:return ativo() and r==ator()
 func noite() -> bool:return jogo.calendario.minutos>=1380.0 or jogo.calendario.minutos<360.0
 func possuido(r:PersonagemPlex) -> bool:
+	if r.modelo=="vi_arlequim":return jogo.sistemas.amigos.pode_controlar(r)
 	return r.robo and r.modelo in MODELOS and (r.visita.get("debug_possuido",false) or r.robotica.get("assombrado",false))
 func admin_em_casa() -> bool:
 	var a:PersonagemPlex=jogo.controle.administrador()
@@ -27,6 +28,7 @@ func admin_em_casa() -> bool:
 func aviso(texto:String) -> void:jogo.painel.mensagem(texto)
 
 func motivo_bloqueio(r:PersonagemPlex) -> String:
+	if r.modelo=="vi_arlequim" and not jogo.sistemas.amigos.hora_controle():return "O Arlequim só pode ser controlado às 4h da manhã."
 	if not noite():return "O controle só funciona entre 23:00 e 06:00."
 	if not admin_em_casa():return "O administrador precisa estar em casa para controlar um animatrônico."
 	if jogo.controle.manual():return "Desative o controle manual do administrador primeiro."
@@ -56,6 +58,7 @@ func soltar(voltar:bool=true,motivo:String="") -> void:
 	if r.visita.get("debug_robo",false):r.robotica.desligado_manual=true;AnimatronicosPlex.mudar(r,"desligado")
 	if not motivo.is_empty():aviso(motivo)
 func voltar_palco(r:PersonagemPlex) -> void:
+	if AmigosBairroPlex.eh(r):return
 	var pose:=int(r.visita.get("palco_anterior",-1))
 	if jogo.planta.objetos.has(pose) and jogo.poses.livre(pose,r) and jogo.atracoes.definir_pose(r.identificador,pose):return
 	var destino:Vector2i=origem if origem.x>=0 else r.celula
@@ -104,6 +107,7 @@ func opcoes(menu:CanvasLayer,r:PersonagemPlex) -> bool:
 		return true
 	if possuido(r) and not r.ocupado():menu.adicionar("Controlar",func():assumir(r))
 	jogo.atracoes.opcoes_robo(menu,r)
+	jogo.sistemas.amigos.opcoes(menu,r)
 	if jogo.sistemas.armazem.opcoes(menu,r):return true
 	if not noite() and str(r.robotica.get("estado",""))=="ligado":poses(menu,r,"pose_dia",r.robotica)
 	jogo.sistemas.armazem.opcao_atualizar(menu,r)

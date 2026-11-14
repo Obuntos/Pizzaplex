@@ -29,14 +29,16 @@ func atualizar(delta:float) -> void:
 
 func mostrar() -> void:
 	var s=jogo.sistemas
-	var linhas:=PackedStringArray(["Fim da noite. O controle dos animatrônicos foi encerrado.",""])
-	if dados.medo.is_empty():linhas.append("Nenhum segurança em turno.")
-	for nome in dados.medo:linhas.append("%s · medo máximo %d/4"%[nome,roundi(float(dados.medo[nome]))])
+	var linhas:Array=[]
+	if dados.medo.is_empty():linhas.append({"nome":"Segurança","valor":"Sem turno","formato":"texto"})
+	for nome in dados.medo:
+		var medo:=roundi(float(dados.medo[nome]))
+		linhas.append({"nome":str(nome),"valor":"Medo %d / 4"%medo,"formato":"texto","alerta":medo>=3})
 	var incidentes:=0
 	for h in s.investigacao.historico.slice(int(dados.incidentes)):
 		if h.get("incidente",false):incidentes+=1
-	linhas.append("Ataques e mortes: %d"%incidentes)
-	linhas.append("Fitas VHS gravadas: %d"%(int(s.vhs.proximo)-int(dados.fitas)))
-	linhas.append("Quedas de energia: %d"%(int(s.tempestade.quedas)-int(dados.quedas)))
-	linhas.append("Portas trancadas pelo segurança: %d"%(int(s.guarda.trancamentos)-int(dados.trancas)))
-	AvisoPlex.mostrar(jogo,"Resumo da noite · 06:00","\n".join(linhas),"Fechar","",460)
+	linhas.append({"nome":"Ataques e mortes","valor":incidentes,"alerta":incidentes>0})
+	linhas.append({"nome":"Fitas VHS gravadas","valor":int(s.vhs.proximo)-int(dados.fitas)})
+	linhas.append({"nome":"Quedas de energia","valor":int(s.tempestade.quedas)-int(dados.quedas)})
+	linhas.append({"nome":"Portas trancadas","valor":int(s.guarda.trancamentos)-int(dados.trancas)})
+	CartazDinerPlex.resumo(jogo,"06:00","Noite",linhas,incidentes==0)

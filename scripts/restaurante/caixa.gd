@@ -35,6 +35,13 @@ static func postos(planta: PlantaPlex, item: Dictionary, operador: bool, fila: i
 		if not ocupadas.has(borda): break
 	var c: Vector2i=borda+frente*fila
 	if planta.transitavel(c) and is_zero_approx(planta.altura(c)): resultado.append(c)
+	elif not operador and fila>0:
+		var lado:=Vector2i(-frente.y,frente.x)
+		for desvio in [lado,-lado,lado*2,-lado*2]:
+			var alternativa:Vector2i=c+desvio
+			if planta.transitavel(alternativa) and is_zero_approx(planta.altura(alternativa)):
+				resultado.append(alternativa)
+				break
 	elif operador and fila==0 and CatalogoPlex.base(str(planta.em(c).get("tipo","")))=="cadeira":
 		var lado:=Vector2i(-frente.y,frente.x)
 		for alternativa in [c+lado,c-lado,c+frente]:

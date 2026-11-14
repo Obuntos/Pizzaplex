@@ -63,7 +63,6 @@ func iniciar(r:PersonagemPlex) -> void:
 	r.visita.troca_toy={"etapa":"indo","base":int(destino.base),"mesa":int(destino.mesa),"novo":-1,"progresso":0.0,"ator":-1,"pose":pose,"modelo":str(PAR[r.modelo])}
 	r.automatico=false;r.trabalho="ir_oficina_robo"
 	if not rota.is_empty():r.andar(rota)
-	aviso("O "+IdentidadesPlex.completo(r)+" vai sentar na bancada. As peças dele vão para o Toy, montado na base.")
 func clicar(celula:Vector2i) -> bool:
 	if escolhendo<0:return false
 	var r:=ator(escolhendo);escolhendo=-1
@@ -84,7 +83,6 @@ func confirmar(r:PersonagemPlex,celula:Vector2i) -> void:
 	r.robotica.armazem=[celula.x,celula.y];r.robotica.troca={"novo":PAR[r.modelo],"pose":pose}
 	marcar_sala(celula)
 	mandar(r,destino)
-	aviso("O "+IdentidadesPlex.completo(r)+" está indo para o armazém. As peças dele vão para o Toy.")
 func mandar(r:PersonagemPlex,destino:Vector2i) -> void:
 	r.automatico=false;r.visita.indo_armazem=true;r.trabalho="ir_armazem"
 	if destino==r.celula:return
@@ -188,13 +186,11 @@ func reconstruir(carcaca:PersonagemPlex) -> void:
 	jogo.oficina.liberar_palco(ativo)
 	ativo.robotica.armazem=celula;ativo.robotica.troca={"novo":inteiro,"pose":pose}
 	mandar(ativo,destino)
-	aviso("O "+IdentidadesPlex.completo(ativo)+" vai para o armazém e será desmontado para o antigo voltar.")
 
 func marcar_sala(celula:Vector2i) -> void:
 	var sala:Dictionary=jogo.ambientes.em(celula)
 	if not sala.get("fechada",false) or str(sala.get("tipo",""))=="armazem_robos":return
 	jogo.ambientes.definir(celula,"armazem_robos")
-	aviso("A sala virou o Armazém de animatrônicos.")
 func base(modelo:String) -> String:return str(INTEIRO.get(modelo,modelo))
 func encaixar(novo:PersonagemPlex) -> void:
 	var familia:=base(novo.modelo)
@@ -252,7 +248,11 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 			if not is_instance_valid(n) or base_toy.is_empty() or mesa.is_empty():return
 			var progresso:=float(d.progresso)
 			var fase:=0 if progresso<17.0 else 1 if progresso<34.0 else 2
-			var alvo:=int(d.mesa) if progresso-[0.0,17.0,34.0][fase]<10.0 else int(d.base)
+			var local:float=progresso-[0.0,17.0,34.0][fase]
+			var peca:=mini(2,floori(local/6.0))
+			var inicio:=float(peca)*6.0
+			var na_mesa:=local<inicio+((17.0 if peca==2 else inicio+6.0)-inicio)*.5
+			var alvo:=int(d.mesa) if na_mesa else int(d.base)
 			var adm:PersonagemPlex=jogo.controle.administrador()
 			var a:PersonagemPlex=jogo.oficina.operario(d,alvo)
 			var m:PersonagemPlex=jogo.sistemas.mecanico.mecanico()
@@ -262,7 +262,10 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 				if jogo.controle.manual():jogo.controle.cancelar_acao();jogo.controle.interromper(adm)
 				d.ator=adm.identificador;d.manual=adm.identificador;adm.visita.obra_atracao=true;adm.visita.oficina_trabalho=true
 				a=adm
+			var carregada:Dictionary=jogo.planta.objetos.get(int(d.get("peca_id",-1)),{})
+			if not carregada.is_empty() and (not is_instance_valid(a) or int(carregada.get("carregada_por",0))!=a.identificador or na_mesa):soltar_peca(ator(int(carregada.get("carregada_por",0))),d)
 			if not is_instance_valid(a) or a.ocupado():return
+			if not na_mesa and fase<2 and not d.has("peca_id"):d.peca_id=pegar_peca(a,mesa,d,peca if fase==0 else 4+peca)
 			if not jogo.planta.interacoes(alvo).has(a.celula):
 				var rota:Array[Vector2i]=jogo.rotas.aproximar(a.origem_rota(),alvo)
 				if not rota.is_empty():a.andar(rota);a.trabalho="ir_montar_atracao"
@@ -270,10 +273,10 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 			if int(d.get("fase_toy",-1))!=fase:
 				d.fase_toy=fase
 				jogo.sistemas.baloes.exibir(a,["Montando o endo do Toy com as peças do antigo.","Encaixando o plástico do Toy.","Costurando o pelo do Toy."][fase],4)
-			jogo.tarefas.orientar(a,Vector2(jogo.planta.objetos[alvo].celula))
+			jogo.tarefas.olhar_objeto(a,alvo)
 			if is_instance_valid(adm) and adm.celula!=n.celula:jogo.tarefas.olhar_tela(n,Vector2(adm.celula))
 			progresso+=dt*HabilidadesEquipePlex.fator(a,"manutencao")/TEMPO_PASSO
-			d.progresso=progresso;a.trabalho="montar";a.progresso_acao=fposmod(progresso,1.0)
+			d.progresso=progresso;a.trabalho="montar";a.visita.anim_ferramenta=fase==2;a.progresso_acao=fposmod(progresso,1.0)
 			n.visita.montagem_passos=clampi(floori(progresso),1,PASSOS)
 			desmonte(r,d,mesa)
 			if progresso>=26.0 and not d.get("quebrou",false):
@@ -287,6 +290,7 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 				base_toy.robo_reserva=n.identificador;mesa.reparo_reserva=velho.identificador;n.visita.toy_em_montagem=velho.identificador
 				return
 			if progresso<PASSOS:return
+			soltar_peca(a,d)
 			if d.has("desmonte"):
 				mesa.erase("desmonte_bancada");mesa.erase("desmonte_tipo");r.visita.erase("em_animacao");d.erase("desmonte")
 			for chave in ["montando_atracao","montagem_passos","toy_em_montagem","bancada_montagem","montagem_olhar_jogador","montagem_tela","montagem_rotacao","montagem_altura"]:n.visita.erase(chave)
@@ -298,7 +302,7 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 			var n:=ator(int(d.novo))
 			if not is_instance_valid(n):return
 			var a:=ator(int(d.ator))
-			if is_instance_valid(a) and not a.ocupado():a.trabalho="montar";jogo.tarefas.orientar(a,n.local)
+			if is_instance_valid(a) and not a.ocupado():a.trabalho="montar";a.visita.anim_ferramenta=false;jogo.tarefas.orientar_cardinal(a,n.local)
 			var lista:Array=jogo.sistemas.mecanico.clipes(n)
 			d.tempo_teste=float(d.tempo_teste)+dt
 			if int(d.teste)<lista.size():
@@ -311,7 +315,6 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 			base_toy.erase("robo_reserva");mesa.erase("reparo_reserva")
 			ativar(n,int(d.pose),[base_toy.celula.x,base_toy.celula.y])
 			d.etapa="posicionar";jogo.planta.alterada.emit()
-			aviso(IdentidadesPlex.completo(n)+" passou nos testes e está indo para o palco.")
 			perguntar_sala(r)
 		"indo_lugar":
 			if r.ocupado():return
@@ -328,6 +331,15 @@ func atualizar_troca(r:PersonagemPlex,dt:float) -> void:
 				var atras:=celula-frente
 				r.robotica.deitado=[celula.x,celula.y,atras.x,atras.y]
 			jogo.planta.alterada.emit()
+func pegar_peca(a:PersonagemPlex,mesa:Dictionary,d:Dictionary,indice:int) -> int:
+	var id:int=jogo.planta.inserir("sistema_modulo_coelho_"+str(indice),mesa.celula,int(mesa.rotacao),{"pai":mesa.id,"slot":MontagemAtracoesPlex.slot_modulo(indice)},{"modulo":indice,"modelo_vi":"vi_patitas" if str(d.modelo).contains("patitas") else MontagemAtracoesPlex.MODELO,"olhos_configurados":true})
+	var p:Dictionary=jogo.planta.objetos[id];p.sobre=-1;p.slot=-1;p.carregada_por=a.identificador
+	a.carga_item=id;a.caixa_tipo=str(p.tipo);a.carregando=true;jogo.planta.alterada.emit()
+	return id
+func soltar_peca(a:PersonagemPlex,d:Dictionary) -> void:
+	var id:=int(d.get("peca_id",-1));d.erase("peca_id")
+	if is_instance_valid(a) and a.carga_item==id:a.carga_item=-1;a.carregando=false
+	if jogo.planta.objetos.has(id):jogo.planta.remover(id)
 func desmonte(r:PersonagemPlex,d:Dictionary,mesa:Dictionary) -> void:
 	if not d.has("desmonte"):return
 	var quadro:=str(QUADROS_DESMONTE[clampi(floori(float(d.progresso)/float(PASSOS)*10.0),0,9)])
@@ -343,7 +355,7 @@ func perguntar_sala(r:PersonagemPlex) -> void:
 	janela.cancelado.connect(aviso.bind("O "+IdentidadesPlex.completo(r)+" fica ao lado da bancada. Clique nele para escolher um lugar depois."))
 func pedir_lugar(r:PersonagemPlex) -> void:
 	lugar=r.identificador
-	jogo.escolher_ferramenta("pose_quebrado")
+	jogo.escolher_ferramenta("pose_quebrado");jogo.pausa_automatica()
 	aviso("Escolha onde o "+IdentidadesPlex.completo(r)+" vai ficar. A seta mostra para onde ele olha; R gira. Botão direito cancela.")
 func posicionar(celula:Vector2i,rotacao:int) -> void:
 	var r:=ator(lugar)

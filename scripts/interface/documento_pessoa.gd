@@ -33,7 +33,7 @@ func construir(c:CarteiraPlex) -> void:
 	medidor=texto(self,"",Vector2(420 if empregado else 566,265 if empregado else 255),Vector2(96 if empregado else 104,34),13,"forte")
 	if empregado and a.funcao!="seguranca":
 		descansar=botao(self,"DESCANSAR",Vector2(530,262),Vector2(122,44),func():c.jogo.turnos.descansar(a))
-		descansar.tooltip_text="Recuperar energia na sala de descanso."
+		descansar.tooltip_text=""
 	elif not empregado:botao(self,"CONVERSAR",Vector2(526,306),Vector2(126,36),func():c.fechar();c.jogo.menu_controle.abrir_social(a)).disabled=a.visita.get("morto",false)
 	texto(self,"PZ  "+str(a.identificador).pad_zeros(4)+"  "+str(int(a.identidade.get("idade",0))).pad_zeros(2),Vector2(28,312),Vector2(290,26),14,"corpo")
 	estado=texto(self,"",Vector2(28,337),Vector2(620,24),12,"corpo");c.atividade=estado

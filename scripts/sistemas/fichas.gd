@@ -93,4 +93,4 @@ static func trocar(jogo:Node,a:PersonagemPlex) -> bool:
 static func opcoes(jogo:Node,menu:CanvasLayer,p:Dictionary) -> void:
 	var caixa:=float(p.get("caixa_fichas",0.0))
 	menu.adicionar("Fichas restantes: %d · Caixa: US$ %.2f"%[int(p.get("fichas",0)),caixa],func():pass)
-	if caixa>0.0:menu.adicionar("Retirar US$ %.2f"%caixa,func():jogo.servicos.saldo=snappedf(jogo.servicos.saldo+caixa,.01);p.caixa_fichas=0.0;jogo.painel.mensagem("Dinheiro das fichas retirado."))
+	if caixa>0.0:menu.adicionar("Retirar US$ %.2f"%caixa,func():jogo.servicos.saldo=snappedf(jogo.servicos.saldo+caixa,.01);p.caixa_fichas=0.0)

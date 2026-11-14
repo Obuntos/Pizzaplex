@@ -79,7 +79,6 @@ func registrar(alvo: PersonagemPlex, tipo: String = "conversar") -> void:
 	if agora-float(conhecido.ultimo)>=15.0:
 		conhecido.nivel=mini(3,int(conhecido.nivel)+1);conhecido.ultimo=agora;registros[id]=conhecido
 	if jogo.selecionado==alvo: jogo.painel.selecao.text=nome(alvo)
-	jogo.painel.mensagem("Conversa concluída com "+nome(alvo)+".")
 
 func atualizar(delta: float) -> void:
 	if conversa.is_empty(): return

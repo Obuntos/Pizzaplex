@@ -4,6 +4,7 @@ extends RefCounted
 const PASTA:="res://assets/personagens/animacoes_npc/"
 const TIPOS={"humano":"adulto_masculino","humana":"adulto_feminino","adolescente":"adolescente_masculino","adolescente_feminina":"adolescente_feminino","crianca":"crianca"}
 const EXPRESSOES={"em_pe_chorando":"triste","deitada_encolhida":"pavor","sentada_maos_orelhas":"medo","sentada_tampando_olhos":"medo","sentada_mao_boca":"medo","apontar_rindo":"muito_feliz","rindo":"muito_feliz","rindo_mao_barriga":"muito_feliz","bater_palmas":"feliz","pular_bracos_cima":"muito_feliz","correr_fugindo":"feliz","correr_pegador":"feliz","andar_balao":"feliz","comer_pizza":"feliz","comer_bolo":"feliz"}
+const MOVEIS=["correr_pegador","correr_fugindo","andar_balao","andar_caixa_presente"]
 static var dados:Dictionary={}
 static var centros:Dictionary={}
 static var roupas:Dictionary={}
@@ -33,6 +34,7 @@ func escolher(a:PersonagemPlex) -> String:
 		if andando:
 			if a.trabalho=="brincar_grupo" and a.visita.get("correndo",false):return "correr_pegador" if a.visita.get("pegador",false) else "correr_fugindo"
 			if a.visita.get("balao_comprado",false):return "andar_balao"
+			if a.visita.get("presente_arlequim",false):return "andar_caixa_presente"
 			return ""
 		var medo:=float(a.visita.get("medo",0.0))
 		if medo>=3.0:return "deitada_encolhida"
@@ -273,7 +275,7 @@ func montar(a:PersonagemPlex,nome:String) -> Dictionary:
 		if not camada in info.camadas:continue
 		var s:=sprite(CatalogoPlex.textura(pasta+camada+".png"),Rect2(0,0,48,60),Vector2(-24,-55),Vector2.ONE,mat_corpo if camada=="corpo" else mat_frente if camada=="frente" else mat_simples)
 		s.name=camada;no.add_child(s)
-	return {"nome":nome,"grupo":g,"tipo":t,"info":info,"pivo":pivo,"no":no,"tempo":0.0,"fase":"inicio","mat":mat_corpo,"frente":mat_frente,"simples":mat_simples}
+	return {"nome":nome,"grupo":g,"tipo":t,"info":info,"pivo":pivo,"no":no,"local":a.local,"tempo":0.0,"fase":"inicio","mat":mat_corpo,"frente":mat_frente,"simples":mat_simples}
 
 func quadro_atual(e:Dictionary) -> int:
 	var info:Dictionary=e.info;var fps:=float(info.fps)
@@ -326,6 +328,7 @@ func atualizar(delta:float) -> void:
 		var desejada:=escolher(a)
 		if not desejada.is_empty() and grupo(a,desejada).is_empty():desejada=""
 		var e:Dictionary=ativos.get(a.identificador,{})
+		if not e.is_empty() and not str(e.nome) in MOVEIS and Vector2(e.local).distance_to(a.local)>.05:soltar(a);e={}
 		if e.is_empty():
 			a.visita.erase("em_animacao")
 			if desejada.is_empty():continue

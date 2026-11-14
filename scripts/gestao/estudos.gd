@@ -95,7 +95,7 @@ func concluir() -> bool:
 	if id.is_empty(): return false
 	concluidos[id]=true;jogo.livro.adquiridos[id]=true
 	liberar();projeto="";pesquisador=-1;progresso=0.0;forcado=false
-	jogo.livro.alterado.emit();jogo.painel.mensagem("Estudo concluído: "+CatalogoMontagemPlex.nome(id)+".")
+	jogo.livro.alterado.emit()
 	return true
 func gravar() -> Dictionary:
 	return {"projeto":projeto,"mesa":mesa,"pesquisador":pesquisador,"horas":horas,"progresso":progresso,"dia":dia,"minutos_dia":minutos_dia,"concluidos":concluidos.duplicate(),"forcado":forcado}

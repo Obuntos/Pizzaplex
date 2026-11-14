@@ -28,7 +28,6 @@ func pedir(id: int, aniversario: bool=false) -> bool:
 	for pedido in jogo.servicos.aniversarios:
 		if int(pedido.grupo)==id: pedido.estado="comprado"
 	grupo.merge({"pedido_bolo":true,"aniversario":aniversario,"festa_estado":"pedido","bolo":-1,"bolo_ator":-1,"tempo_parabens":0.0,"sobremesas":{}},true)
-	jogo.painel.mensagem("Aniversário registrado. O bolo será servido na mesa da família." if aniversario else "Pedido de bolo registrado para esta mesa.")
 	return true
 
 static func atribuir(servico: ServicosPlex, ator: PersonagemPlex) -> bool:
@@ -111,13 +110,6 @@ func atualizar(delta: float) -> void:
 		if grupo.get("aniversario_solicitado",false) and not grupo.get("pedido_bolo",false) and grupo.estado=="visita":
 			grupo.espera_aniversario=float(grupo.get("espera_aniversario",0.0))+dt*CalendarioPlex.MINUTOS_POR_SEGUNDO
 			if float(grupo.espera_aniversario)>120.0:recusar(int(grupo.id))
-		if not grupo.get("desenho_avaliado",false) and grupo.get("estado","")=="visita":
-			var criancas: Array=grupo.get("criancas",[])
-			if not criancas.is_empty() and criancas.all(func(id): return is_instance_valid(jogo.clientes.ator(int(id))) and jogo.clientes.ator(int(id)).visita.get("comeu",false)):
-				grupo.desenho_avaliado=true
-				if posmod(int(grupo.id)+jogo.calendario.dias,3)==1:
-					var novo:=LembrancasPlex.desenho_palco(jogo)
-					jogo.servicos.recompensas.append({"tipo":novo if not novo.is_empty() else ["festa_desenho_coelho","festa_desenho_casa","festa_desenho_estrelas"][posmod(int(grupo.id),3)]})
 		if not pendente(grupo): continue
 		if grupo.festa_estado=="preparando":
 			if not jogo.servicos.trabalhos.has(int(grupo.get("bolo_ator",-1))): grupo.festa_estado="pedido"

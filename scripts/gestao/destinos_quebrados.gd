@@ -89,6 +89,5 @@ func mover(id: int, celula: Vector2i, rotacao: int) -> bool:
 	jogo.planta.alterada.emit()
 	if ator!=null: jogo.poses.encaminhar(ator,id)
 	jogo.escolher_ferramenta("selecionar")
-	jogo.painel.mensagem("Destino confirmado. A montagem pode começar; a seta define a direção final.")
 	return true
 

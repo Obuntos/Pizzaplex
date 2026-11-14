@@ -129,7 +129,7 @@ func montagem(delta:float) -> void:
 			continue
 		if o.fase in ["endo","plastico","carcaca"]:
 			if executar_preparacao(o,a,ponto,delta):continue
-		a.trabalho="montar";jogo.tarefas.orientar(a,Vector2(ponto.celula))
+		a.trabalho="montar";a.visita.anim_ferramenta=o.fase in ["carcaca","reparo","troca_carcaca"];jogo.tarefas.olhar_objeto(a,int(ponto.id))
 		o.tempo=float(o.tempo)+delta*HabilidadesEquipePlex.fator(a,"manutencao");a.progresso_acao=fposmod(float(o.tempo)/2.4,1.0)
 		if not is_instance_valid(r):
 			var tamanho:=CatalogoPlex.dimensoes(str(base.tipo),int(base.rotacao));var centro:=Vector2(base.celula)+Vector2(tamanho-Vector2i.ONE)*.5
@@ -177,7 +177,7 @@ func pedir_seta(o:Dictionary) -> void:
 	var r:=ator(int(o.robo))
 	if not is_instance_valid(r):return
 	if is_instance_valid(jogo.painel.hud):jogo.painel.hud.livro_ui.fechar()
-	jogo.editor.alvo_pose_atracao=r.identificador;jogo.escolher_ferramenta("pose");jogo.painel.mensagem("Posicione a seta do animatrônico no palco.")
+	jogo.editor.alvo_pose_atracao=r.identificador;jogo.escolher_ferramenta("pose");jogo.pausa_automatica();jogo.painel.mensagem("Posicione a seta do animatrônico no palco.")
 func definir_pose(id:int,pose:int) -> bool:
 	var r:=ator(id);var marca:Dictionary=jogo.planta.objetos.get(pose,{})
 	if is_instance_valid(r) and r.visita.has("oficina_robo") and r.visita.oficina_robo.get("etapa","") not in ["indo","estacionado"]:return false
@@ -313,7 +313,7 @@ func retirar_modulo(a:PersonagemPlex) -> void:
 func executar_preparacao(o:Dictionary,a:PersonagemPlex,ponto:Dictionary,delta:float) -> bool:
 	var operacao:=str(o.get("operacao","instalar"))
 	if operacao=="preparar":
-		a.trabalho="montar";jogo.tarefas.orientar(a,Vector2(ponto.celula)+Vector2(CatalogoPlex.dimensoes(str(ponto.tipo),int(ponto.rotacao))-Vector2i.ONE)*.5);o.tempo=float(o.tempo)+delta*HabilidadesEquipePlex.fator(a,"manutencao")
+		a.trabalho="montar";a.visita.anim_ferramenta=o.fase=="carcaca";jogo.tarefas.olhar_objeto(a,int(ponto.id));o.tempo=float(o.tempo)+delta*HabilidadesEquipePlex.fator(a,"manutencao")
 		a.progresso_acao=fposmod(float(o.tempo)/2.4,1)
 		if float(o.tempo)<TEMPO_PARTE:return true
 		o.tempo=0.0;o.preparadas=int(o.get("preparadas",0))+1

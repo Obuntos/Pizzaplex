@@ -56,6 +56,7 @@ func enquadrar() -> void:
 	jogo.camera.force_update_scroll()
 
 func alternar_tela_cheia() -> void:
+	if Engine.is_embedded_in_editor():return
 	var janela := jogo.get_window()
 	janela.mode = Window.MODE_MAXIMIZED if janela.mode in [Window.MODE_FULLSCREEN, Window.MODE_EXCLUSIVE_FULLSCREEN] else Window.MODE_FULLSCREEN
 

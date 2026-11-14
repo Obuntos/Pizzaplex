@@ -7,7 +7,6 @@ static func solicitar(jogo: Node, alvo: int, acao: String="limpar") -> void:
 	s.prioridades=s.prioridades.filter(func(p): return int(p.alvo)!=alvo)
 	s.prioridades.push_front({"alvo":alvo,"acao":acao})
 	if acao=="atender": ordenar(s,alvo)
-	jogo.painel.mensagem("Prioridade registrada: "+("limpar" if acao=="limpar" else "atender")+". O próximo funcionário habilitado atenderá assim que estiver livre.")
 
 static func ordenar(s: ServicosPlex, mesa: int) -> void:
 	var primeiros: Array[Dictionary]=[]
@@ -54,4 +53,3 @@ static func solicitar_sala(jogo: Node, celula: Vector2i) -> void:
 		if not sala.get("celulas",[]).has(item.celula):continue
 		if LimpezaAmbientesPlex.eh(item) or LugaresPlex.mesa(str(item.tipo)) and suja(jogo.servicos,int(item.id)):
 			solicitar(jogo,int(item.id),"limpar");total+=1
-	jogo.painel.mensagem("Limpeza da sala priorizada: "+str(total)+" alvo(s).")

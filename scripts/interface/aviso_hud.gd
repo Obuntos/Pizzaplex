@@ -18,7 +18,7 @@ func _ready() -> void:
 	raiz.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	raiz.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	add_child(raiz)
-	painel.add_theme_stylebox_override("panel",KitPlex.moldura("hud_ativo",10))
+	painel.add_theme_stylebox_override("panel",ShowPlex.estilo("painel",10,Color("5a3320"),{"tampas":true}))
 	painel.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	raiz.add_child(painel)
 	var linha:=HBoxContainer.new();linha.add_theme_constant_override("separation",10);linha.mouse_filter=Control.MOUSE_FILTER_IGNORE;painel.add_child(linha)
